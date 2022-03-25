@@ -1,6 +1,6 @@
 
 
-from ast import In
+
 from importlib.resources import contents
 from unicodedata import name
 from variables import *
