@@ -1,0 +1,88 @@
+body {
+  background-color: white;
+  margin: 25px 50px;
+  
+}
+img {
+  max-width:30%;
+  height:30%;
+}
+h5 {
+  color: rebeccapurple;
+  margin: auto;
+  
+  
+}
+.glob_section {
+  margin-left: 15px;
+}
+.intf_section{
+  margin-left: 15px;
+  
+}
+p {
+  color: black;
+}
+table {
+	border-collapse: collapse;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+table td {
+	padding: 15px;
+}
+.Security_Audit{
+  margin-top: 20px;
+  
+}
+.rp_section{
+  margin-left: 15px;
+}
+.globalaudit{
+  margin-left: 18px;
+  
+}
+table thead td {
+	background-color: #FF5C00;
+	color: #8DC100;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #54585d;
+ 
+}
+.dataframe{
+  margin-top: 20px;
+}
+table tbody td {
+	color: #701ac0;
+	border: 1px solid #dddfe1;
+}
+table tbody tr {
+	background-color: #f9fafb;
+}
+table tbody tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+h1 {
+  text-decoration: solid;
+  text-align: center;
+}
+.command{
+  font-size: 95%; 
+  font-family: courier;
+}
+.container {
+  display: flex; 
+}
+.square{
+box-sizing: content-box;
+background-color: aliceblue;
+color: brown;
+padding: 5px;
+width: auto;
+height: 85px;
+border-radius: 13px;
+border: dashed black 0.8px;
+
+
+}
+

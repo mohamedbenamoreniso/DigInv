@@ -1,0 +1,543 @@
+{
+    "1": {
+        "name": "BGP Neighbors Configured With No Passwords",
+        "observation": "BGP is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. Routing neighbors are configured to define which BGP hosts the routing updates will be sent to. Message Digest 5 (MD5) authentication can be configured for each neighbor to ensure that BGP routing updates are sent from a trusted source.",
+        "impact": "An attacker may attempt to modify the routing table of a BGP routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "An attacker could make use of their own routing device, or routing software, in order to insert malicious routing updates.",
+        "recommandation": "DigInv recommends that strong MD5 authentication passwords should be configured for all BGP routing updates. Although an attacker could extract theMD5 password authentication hash from a network packet and brute-force the password, it would take significantly more effort than if a default password were to be configured.\nDigInv recommends that:BGP passwords should be at least eight characters in length;characters in the BGP password should not be repeated more than three times;BGP passwords should include both upper case and lower case characters;BGP passwords should include numbers;BGP passwords should include punctuation characters;BGP passwords should not include a device's name, make or model;BGP passwords should not be based on dictionary words.",
+        "command": "neighbor {address | group} password password",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "2": {
+        "name": "Not All GLBP Groups Were Authenticated",
+        "observation": "GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker who is able to configure their router with the relevant GLBP group configuration would be able to participate in network routing in order to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "An attacker could use a GLBP capable device in order to perform the attack. The attacker could then configure their GLBP capable router to be in the same group and with a higher priority in order to become the Active Virtual Gateway (AVG).",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all GLBP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if no authentication were to be configured.\nDigInv recommends that: GLBP authentication keys should be at least eight characters in length; characters in the GLBP authentication key should not be repeated more than three times; GLBP authentication keys should include both upper case and lower case characters; GLBP authentication keys should include numbers; GLBP authentication keys should include punctuation characters; GLBP authentication keys should not include a device's name, make or model; GLBP authentication keys should not be based on dictionary words.",
+        "command": "glbp [group] authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "3": {
+        "name": "Not All HSRP Groups Were Authenticated",
+        "observation": "HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. HSRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker may attempt to join a HSRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "An attacker could use a HSRP capable device, or download HSRP software from the Internet. The attacker could then configure their HSRP to be in the same group and with a higher priority in order to become the master during an election.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all HSRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if no authentication were to be configured. DigInv recommends that: HSRP authentication keys should be at least eight characters in length; characters in the HSRP authentication key should not be repeated more than three times; HSRP authentication keys should include both upper case and lower case characters; HSRP authentication keys should include numbers; HSRP authentication keys should include punctuation characters; HSRP authentication keys should not include a device's name, make or model; HSRP authentication keys should not be based on dictionary words.",
+        "command": "standby [group] authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "4": {
+        "name": "Clear-Text HSRP Group Authentication Was Configured",
+        "observation": "HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. HSRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker may attempt to join a HSRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "An attacker could use a HSRP capable device, or download HSRP software from the Internet. The attacker could then configure their HSRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using a HSRP packet captured from the network.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all HSRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: HSRP authentication keys should be at least eight characters in length; characters in the HSRP authentication key should not be repeated more than three times; HSRP authentication keys should include both upper case and lower case characters; HSRP authentication keys should include numbers; HSRP authentication keys should include punctuation characters; HSRP authentication keys should not include a device's name, make or model; HSRP authentication keys should not be based on dictionary words.",
+        "command": "standby [group] authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "5": {
+        "name": "Not All OSPF Routing Updates Were Authenticated",
+        "observation": "OSPF is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. OSPF supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates are sent from a trusted source.",
+        "impact": "An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "Tools can be downloaded from the Internet that can be used to send malicious OSPF routing updates. With no authentication configured, an attacker would not have to determine the authentication key prior to sending malicious OSPF route updates.",
+        "recommandation": "DigInv recommends that strong OSPF authentication keys should be configured for all routing updates. DigInv recommends that: OSPF authentication keys should be at least eight characters in length; characters in the OSPF authentication key should not be repeated more than three times; OSPF authentication keys should include both upper case and lower case characters; OSPF authentication keys should include numbers; OSPF authentication keys should include punctuation characters; OSPF authentication keys should not include a device's name, make or model; OSPF authentication keys should not be based on dictionary words.",
+        "command": "ip ospf authentication message-digest",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "6": {
+        "name": "RIP Version 1 Was Configured",
+        "observation": "IP is a routing protocol that allows network devices to dynamically adapt to changes in the network infrastructure. There are three main versions of RIP: version 1 of the protocol, outlined in RFC 1058, supports simple routing updates with support only for classful routing and broadcast updates;version 2 of the protocol, outlined in RFC 2453, added support for Classless Inter-Domain Routing (CIDR), authentication (both in clear-text and MD5 forms) and multicast updates; NG, outlined in RFC 2080, adds support for Internet Protocol version 6 (IPv6) but does not include support for authentication.",
+        "impact": "An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication. Another issue with RIP version 1, though not necessarily a security one, is that broadcast updates can wake up computers that are shutdown on the Local Area Network (LAN).",
+        "ease": "Tools can be downloaded from the Internet that can be used to send malicious RIP routing updates. With RIP version 1 supported, the attacker would not need to provide authentication information.",
+        "recommandation": "DigInv recommends that, if RIP is required, only support for version 2 should be configured. However, this may require a firmware update if the device does not support version 2.",
+        "command": "version 2",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "7": {
+        "name": "Clear-Text RIP Authentication Was Configured",
+        "observation": "RIP is a routing protocol that allows network devices to dynamically adapt to changes in the network infrastructure. There are three main versions of RIP; version 1, 2 and NG. Version 2 of RIP supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates were sent from a trusted source.",
+        "impact": "An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "Tools can be downloaded from the Internet that could be used to send malicious RIP routing updates. With clear-text authentication configured, an attacker would simply have to monitor RIP routing updates and extract the authentication key prior to sending malicious RIP route updates. Tools can be downloaded from the Internet that are capable of capturing RIP route updates and extracting the authentication key.",
+        "recommandation": "DigInv recommends that MD5 authentication should be configured for all RIP routing updates. Although an attacker could extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required to use an authentication key that was sent without encryption.",
+        "command": "",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "8": {
+        "name": "Clear-Text VRRP Group Authentication Was Configured",
+        "observation": "VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. VRRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker may attempt to join a VRRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "An attacker could use a VRRP capable device, or download VRRP software from the Internet. The attacker could then configure their VRRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using a VRRP packet captured from the network.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all VRRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: VRRP authentication keys should be at least eight characters in length; characters in the VRRP authentication key should not be repeated more than three times; VRRP authentication keys should include both upper case and lower case characters; VRRP authentication keys should include numbers; VRRP authentication keys should include punctuation characters; VRRP authentication keys should not include a device's name, make or model; VRRP authentication keys should not be based on dictionary words.",
+        "command": "vrrp group authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "9": {
+        "name": "Not All VRRP Groups Were Authenticated",
+        "observation": "VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. VRRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker may attempt to join a VRRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "An attacker could use a VRRP capable device, or download VRRP software from the Internet. The attacker could then configure their VRRP to be in the same group and with a higher priority in order to become the master during an election.",
+        "recommandation": "recommends that MD5 authentication with a strong key should be configured for all VRRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if no authentication were to be configured. DigInv recommends that: VRRP authentication keys should be at least eight characters in length; characters in the VRRP authentication key should not be repeated more than three times; VRRP authentication keys should include both upper case and lower case characters; VRRP authentication keys should include numbers; VRRP authentication keys should include punctuation characters; VRRP authentication keys should not include a device's name, make or model; VRRP authentication keys should not be based on dictionary words.",
+        "command": "vrrp group authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "10": {
+        "name": "Not All RIP Updates Were Authenticated",
+        "observation": "RIP is a routing protocol that allows network devices to dynamically adapt to changes in the network infrastructure. There are three main versions of RIP; version 1, 2 and NG. Version 2 of RIP supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates were sent from a trusted source.",
+        "impact": "An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "Tools can be downloaded from the Internet that could be used to send malicious RIP routing updates. With no authentication configured, an attacker would not have to determine the authentication key prior to sending malicious RIP route updates.",
+        "recommandation": "recommends that strong authentication keys should be configured for all RIP routing updates with RIP version 2 MD5 authentication. DigInv recommends that: RIP authentication keys should be at least eight characters in length; characters in the RIP authentication key should not be repeated more than three times; RIP authentication keys should include both upper case and lower case characters; RIP authentication keys should include numbers; RIP authentication keys should include punctuation characters; RIP authentication keys should not include a device's name, make or model; RIP authentication keys should not be based on dictionary words.",
+        "command": "",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Planned"
+        ]
+    },
+    "11": {
+        "name": "Clear-Text GLBP Group Authentication Was Configured",
+        "observation": "GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker who is able to configure GLBP with the relevant authentication configuration in order to become the AVG would be able to control network routing in order to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "An attacker could use a GLBP capable device in the attack. The attacker could then configure their GLBP capable device to be in the same group to become a network router. The authentication key can be configured using a GLBP packet captured from the network.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all GLBP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: GLBP authentication keys should be at least eight characters in length; characters in the GLBP authentication key should not be repeated more than three times; GLBP authentication keys should include both upper case and lower case characters; GLBP authentication keys should include numbers; GLBP authentication keys should include punctuation characters; GLBP authentication keys should not include a device's name, make or model; GLBP authentication keys should not be based on dictionary words.",
+        "command": "glbp [group] authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "12": {
+        "name": "Not All EIGRP Updates Were Authenticated",
+        "observation": "EIGRP is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. EIGRP supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates are sent from a trusted source.",
+        "impact": "An attacker may attempt to modify the routing table of a EIGRP routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "Tools can be downloaded from the Internet that can be used to send malicious EIGRP routing updates. With no authentication configured, an attacker would not have to determine the authentication key prior to sending malicious EIGRP route updates.",
+        "recommandation": "DigInv recommends that strong EIGRP authentication keys should be configured for all routing updates. DigInv recommends that: EIGRP authentication keys should be at least eight characters in length; characters in the EIGRP authentication key should not be repeated more than three times; EIGRP authentication keys should include both upper case and lower case characters; EIGRP authentication keys should include numbers; EIGRP authentication keys should include punctuation characters; EIGRP authentication keys should not include a device's name, make or model; EIGRP authentication keys should not be based on dictionary words.",
+        "command": "ip authentication mode eigrp [group] md5;ip authentication key-chain eigrp [group] key",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Planned"
+        ]
+    },
+    "13": {
+        "name": "Clear-Text OSPF Authentication Was Configured",
+        "observation": "OSPF is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. OSPF supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates are sent from a trusted source.",
+        "impact": "An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "Tools can be downloaded from the Internet that can be used to send malicious OSPF routing updates. With no authentication configured, an attacker would not have to determine the authentication key prior to sending malicious OSPF route updates.",
+        "recommandation": "DigInv recommends that strong OSPF authentication keys should be configured for all routing updates. DigInv recommends that: OSPF authentication keys should be at least eight characters in length; characters in the OSPF authentication key should not be repeated more than three times; OSPF authentication keys should include both upper case and lower case characters; OSPF authentication keys should include numbers; OSPF authentication keys should include punctuation characters; OSPF authentication keys should not include a device's name, make or model; OSPF authentication keys should not be based on dictionary words.",
+        "command": "ip ospf authentication message-digest",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Involved"
+        ]
+    },
+    "14": {
+        "name": "Low VRRP Router Priorities",
+        "observation": "VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. Multiple routers can be configured in a VRRP group in a master and backup router configuration. The master router is determined by an election where the router with the highest priority will become the master. Router priorities can be between 1 and 254.",
+        "impact": "An attacker who is able to configure VRRP with the relevant authentication configuration, could configure a higher priority and force a router election in order to become the master router. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "To perform this attack, the attacker would first have to determine the existing VRRP configuration. If authentication credentials are used, the attacker could extract them from the captured network packets. With MD5-based authentication, the attacker would have use a dictionary/brute-force attack in order to determine the authentication key. Additionally, the attacker would require access to a network segment where they could participate in VRRP routing. The attacker could then configure their router with a higher priority in order to perform the attack. All of the software required to complete each of these components can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that the VRRP priority of 254 should be configured. If two or more routers are present, DigInv recommends that each of the routers should be configured with high numbered priorities.",
+        "command": "vrrp group priority priority",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Planned"
+        ]
+    },
+    "15": {
+        "name": "Low GLBP Group Priorities",
+        "observation": "GLBP is a Cisco proprietary protocol which is used for router load balancing and redundancy. A priority is configured to determine which GLBP enabled router will become the AVG and respond to ARP requests on behalf of the Active Virtual Forwarders (AVFs). The router with the highest priority will become the AVG.",
+        "impact": "An attacker who is able to configure GLBP with the relevant authentication configuration, could configure a higher priority in order to become the AVG. If an attacker is able to become the GLBP AVG, they would be able to control network routing in order to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "To perform this attack, the attacker would first have to determine the existing GLBP configuration. If authentication credentials are used, the attacker could extract them from the captured network packets. With MD5-based authentication, the attacker would have use a dictionary/brute-force attack in order todetermine the authentication key. Additionally, the attacker would require access to a network segment where they could participate in GLBP routing. The attacker could then configure their router with a higher priority in order to perform the attack. All of the software required to complete each of these components can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that the GLBP group priority of 255 should be configured. If two or more routers are present, DigInv recommends that each of the routers should be configured with high numbered priorities.",
+        "command": "glbp group priority priority",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Planned"
+        ]
+    },
+    "16": {
+        "name": "Low HSRP Router Priorities",
+        "observation": "HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. Multiple routers can be configured in a HSRP group in a master and backup router configuration. The master router is determined by an election where the router with the highest priority will become the master. Router priorities can be between 1 and 255.",
+        "impact": "An attacker who is able to configure HSRP with the relevant authentication configuration, could configure a higher priority and force a router election in order to become the master router. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "To perform this attack, the attacker would first have to determine the existing HSRP configuration. If authentication credentials are used, the attacker could extract them from the captured network packets. With MD5-based authentication, the attacker would have use a dictionary/brute-force attack in order to determine the authentication key. Additionally, the attacker would require access to a network segment where they could participate in HSRP routing. The attacker could then configure their router with a higher priority in order to perform the attack. All of the software required to complete each of these components can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that the HSRP priority of 255 should be configured. If two or more routers are present, DigInv recommends that each of the routers should be configured with high numbered priorities.",
+        "command": "standby group priority priority",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Planned"
+        ]
+    },
+    "17": {
+        "name": "Interfaces Were Configured With No Filtering",
+        "observation": "Network filtering rule lists can be assigned to individual network interfaces to provide filtering of network traffic.",
+        "impact": "The network traffic from an attacker attached to one of the network interfaces detailed above would not be subjected to filtering, potentially providing unrestricted access to network services.",
+        "ease": "The network traffic would not be subjected to filtering.",
+        "recommandation": "DigInv recommends that all network interfaces should be configured filtering to help prevent unauthorized access to network services and hosts.",
+        "command": "ip access-group ACL [in | out]",
+        "tab": [
+            "HIGH",
+            "High",
+            "N/A",
+            "Quick"
+        ]
+    },
+    "18": {
+        "name": "Dictionary-Based Routing Protocol Authentication Keys",
+        "observation": "Routers and routing devices can be configured to send route updates to each other. This enables devices to dynamically adapt to changes in the network topology and enables router devices to make informed decisions when routing network traffic between networks. Authentication keys, sometimes referred to as shared secrets, can be configured for routing protocols. The routing protocol authentication keys are configured to ensure that any routing updates sent to the device that will update the device's routing information were only sent from trusted sources.",
+        "impact": "An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "Tools can be downloaded from the Internet that can be used to send malicious routing updates. With a simple dictionary-based authentication key configured, it would not be time consuming for an attacker to determine the authentication key. The attacker could then send routing updates that appear to be authentic and the source address can be spoofed.",
+        "recommandation": "DigInv recommends that strong routing protocol authentication keys should be configured for all routing updates. DigInv recommends that: routing authentication keys should be at least eight characters in length; characters in the routing authentication key should not be repeated more than three times; routing authentication keys should include both upper case and lower case characters; routing authentication keys should include numbers; routing authentication keys should include punctuation characters; routing authentication keys should not include a device's name, make or model; routing authentication keys should not be based on dictionary words.",
+        "command": "key chain chain-name  key key-number key-string authentication-string",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "19": {
+        "name": "Dictionary-Based VRRP Group Authentication Keys",
+        "observation": "VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. VRRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker may attempt to join a VRRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "For a clear-text VRRP group authentication, the attacker could monitor the network traffic in order to gain the VRRP group authentication key. For MD5 authentication, an attacker could perform a dictionary-based attack. This can be achieved using software downloaded from the Internet. An attacker could use a VRRP capable device, or download VRRP software from the Internet. The attacker could then configure their VRRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using the VRRP group authentication key.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all VRRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: VRRP authentication keys should be at least eight characters in length; characters in the VRRP authentication key should not be repeated more than three times; VRRP authentication keys should include both upper case and lower case characters; VRRP authentication keys should include numbers; VRRP authentication keys should include punctuation characters; VRRP authentication keys should not include a device's name, make or model; VRRP authentication keys should not be based on dictionary words.",
+        "command": "vrrp group authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "20": {
+        "name": "Weak VRRP Group Authentication Keys",
+        "observation": "VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. VRRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker may attempt to join a VRRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "For a clear-text VRRP group authentication, the attacker could monitor the network traffic in order to gain the VRRP group authentication key. For MD5 authentication, an attacker could perform a dictionary-based attack. This can be achieved using software downloaded from the Internet. An attacker could use a VRRP capable device, or download VRRP software from the Internet. The attacker could then configure their VRRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using the VRRP group authentication key.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all VRRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: VRRP authentication keys should be at least eight characters in length; characters in the VRRP authentication key should not be repeated more than three times; VRRP authentication keys should include both upper case and lower case characters; VRRP authentication keys should include numbers; VRRP authentication keys should include punctuation characters; VRRP authentication keys should not include a device's name, make or model; VRRP authentication keys should not be based on dictionary words.",
+        "command": "vrrp group authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "21": {
+        "name": "BGP Neighbors Configured With Dictionary-Based Passwords",
+        "observation": "BGP is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. Routing neighbors are configured to define which BGP hosts the routing updates will be sent to. MD5 authentication can be configured for each neighbor to ensure that BGP routing updates are sent from a trusted source.",
+        "impact": "An attacker may attempt to modify the routing table of a BGP routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "An attacker could make use of their own routing device, or routing software, in order to insert malicious routing updates. However, the attacker may first have to perform a dictionary-based attack in order to determine the password.",
+        "recommandation": "DigInv recommends that strong MD5 authentication passwords should be configured for all BGP routing updates. Although an attacker could extract the MD5 password authentication hash from a network packet and brute-force the password, it would take significantly more effort than if a default password were to be configured. DigInv recommends that: BGP passwords should be at least eight characters in length; characters in the BGP password should not be repeated more than three times; BGP passwords should include both upper case and lower case characters; BGP passwords should include numbers; BGP passwords should include punctuation characters; BGP passwords should not include a device's name, make or model; BGP passwords should not be based on dictionary words.",
+        "command": "neighbor {address | group} password password",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "22": {
+        "name": "DTP Was Enabled",
+        "observation": "DTP is a proprietary protocol developed by Cisco for the purpose of negotiating VLAN trunking between switches. When enabled the switch can dynamically negotiate trunking with an attached switch without requiring any manual configuration. Once the negotiation is successful, any VLANs configured to trunk will then be transferred between the devices. If specific VLANs have not been specified then all VLANs will be transferred.",
+        "impact": "An attacker could attempt to negotiate a trunk with the device in order to gain access to all the VLANs configured for the trunk. This will enable an attacker to bypass any network filtering provided to restrict access between VLANs. For example, if a management network were to be available then the attacker will be able to connect to all the devices and services offered on that network as if they were attached to it directly.",
+        "ease": "Software to enable an attacker to negotiate a trunk is available on the Internet. Alternatively an attacker could make use of their own DTP capable network device.",
+        "recommandation": "DigInv recommends that, if not required, DTP should be disabled. DigInv recommends that switch ports should be configured to either trunk or not and those ports where trunking is required should only be configured to trunk the required VLANs.",
+        "command": "switchport mode {access | trunk} switchport nonegotiate",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Planned"
+        ]
+    },
+    "23": {
+        "name": "Weak GLBP Group Authentication Keys",
+        "observation": "GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker who is able to configure GLBP with the relevant authentication configuration in order to become the AVG would be able to control network routing in order to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "For a clear-text GLBP group authentication, the attacker could monitor the network traffic in order to gain the GLBP group authentication key. For MD5 authentication, an attacker could perform a brute-force attack. This can be achieved using software downloaded from the Internet. An attacker could use a GLBP capable device in the attack. The attacker could then configure their GLBP capable router, with the authentication key, in order to become a network router.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all GLBP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: GLBP authentication keys should be at least eight characters in length; characters in the GLBP authentication key should not be repeated more than three times;GLBP authentication keys should include both upper case and lower case characters; GLBP authentication keys should include numbers; GLBP authentication keys should include punctuation characters; GLBP authentication keys should not include a device's name, make or model; GLBP authentication keys should not be based on dictionary words.",
+        "command": "glbp [group] authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "24": {
+        "name": "Dictionary-Based GLBP Group Authentication Keys",
+        "observation": "GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker who is able to configure GLBP with the relevant authentication configuration in order to become the AVG would be able to control network routing in order to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "For a clear-text GLBP group authentication, the attacker could monitor the network traffic in order to gain the GLBP group authentication key. For MD5 authentication, an attacker could perform a brute-force attack. This can be achieved using software downloaded from the Internet. An attacker could use a GLBP capable device in the attack. The attacker could then configure their GLBP capable router, with the authentication key, in order to become a network router.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all GLBP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: GLBP authentication keys should be at least eight characters in length; characters in the GLBP authentication key should not be repeated more than three times;GLBP authentication keys should include both upper case and lower case characters; GLBP authentication keys should include numbers; GLBP authentication keys should include punctuation characters; GLBP authentication keys should not include a device's name, make or model; GLBP authentication keys should not be based on dictionary words.",
+        "command": "glbp [group] authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "25": {
+        "name": "Weak HSRP Group Authentication Keys",
+        "observation": "HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. HSRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker may attempt to join a HSRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "For a clear-text HSRP group authentication, the attacker could monitor the network traffic in order to gain the HSRP group authentication key. For MD5 authentication, an attacker could perform a brute force attack. This can be achieved using software downloaded from the Internet. An attacker could use a HSRP capable device, or download HSRP software from the Internet. The attacker could then configure their HSRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using the HSRP group authentication key.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all HSRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: HSRP authentication keys should be at least eight characters in length; characters in the HSRP authentication key should not be repeated more than three times; HSRP authentication keys should include both upper case and lower case characters; HSRP authentication keys should include numbers; HSRP authentication keys should include punctuation characters; HSRP authentication keys should not include a device's name, make or model; HSRP authentication keys should not be based on dictionary words.",
+        "command": "standby [group] authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "26": {
+        "name": "Dictionary-Based HSRP Group Authentication Keys",
+        "observation": "HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. HSRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.",
+        "impact": "An attacker may attempt to join a HSRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "For a clear-text HSRP group authentication, the attacker could monitor the network traffic in order to gain the HSRP group authentication key. For MD5 authentication, an attacker could perform a brute force attack. This can be achieved using software downloaded from the Internet. An attacker could use a HSRP capable device, or download HSRP software from the Internet. The attacker could then configure their HSRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using the HSRP group authentication key.",
+        "recommandation": "DigInv recommends that MD5 authentication with a strong key should be configured for all HSRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: HSRP authentication keys should be at least eight characters in length; characters in the HSRP authentication key should not be repeated more than three times; HSRP authentication keys should include both upper case and lower case characters; HSRP authentication keys should include numbers; HSRP authentication keys should include punctuation characters; HSRP authentication keys should not include a device's name, make or model; HSRP authentication keys should not be based on dictionary words.",
+        "command": "standby [group] authentication md5 {key-string key | key-chain key-chain}",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "27": {
+        "name": "Weak Routing Protocol Authentication Keys",
+        "observation": "Routers and routing devices can be configured to send route updates to each other. This enables devices to dynamically adapt to changes in the network topology and enables router devices to make informed decisions when routing network traffic between networks. Authentication keys, sometimes referred to as shared secrets, can be configured for routing protocols. The routing protocol authentication keys are configured to ensure that any routing updates sent to the device that will update the device's routing information were only sent from trusted sources.",
+        "impact": "An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "Tools can be downloaded from the Internet that can be used to send malicious routing updates. With a simple dictionary-based authentication key configured, it would not be time consuming for an attacker to determine the authentication key. The attacker could then send routing updates that appear to be authentic and the source address can be spoofed.",
+        "recommandation": "DigInv recommends that strong routing protocol authentication keys should be configured for all routing updates. DigInv recommends that: routing authentication keys should be at least eight characters in length; characters in the routing authentication key should not be repeated more than three times; routing authentication keys should include both upper case and lower case characters; routing authentication keys should include numbers; routing authentication keys should include punctuation characters; routing authentication keys should not include a device's name, make or model; routing authentication keys should not be based on dictionary words.",
+        "command": "key chain chain-name  key key-number key-string authentication-string",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Involved"
+        ]
+    },
+    "28": {
+        "name": "Low OSPF Router Priorities",
+        "observation": "OSPF is a routing protocol that can be configured to dynamically update the routing table with changes to the network topology. Multiple routers can be configured on a network for fault tolerance, in that situation the router with the highest priority will take precedence. Router priorities can be between 0 and 255, if set to 0 the router will not become the designated or backup router. If two routers have the same priority, the router with the highest router Identifier (ID) will then take precedence.",
+        "impact": "An attacker who is able to configure OSPF with the relevant authentication configuration, could configure a higher priority in order to take precedence over the existing router. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "To perform this attack, the attacker would first have to determine the existing OSPF configuration. If authentication credentials are used, the attacker could extract them from the captured network packets. With MD5-based authentication, the attacker would have use a dictionary/brute-force attack in order to determine the authentication key. Additionally, the attacker would require access to a network segment where they could participate in OSPF routing. The attacker could then configure their router with a higher priority in order to perform the attack. All of the software required to complete each of these components can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that the OSPF priority of 255 should be configured. If two or more routers are present, DigInv recommends that each of the routers should be configured with high numbered priorities.",
+        "command": "ip ospf priority priority-no",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Planned"
+        ]
+    },
+    "29": {
+        "name": "No BGP Route Flap Prevention",
+        "observation": "BGP is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. BGP routers update their neighbors with changes such as network link status changes. BGP route flapping is a condition where routing tables are constantly being updated due to a link transitioning between up and down status. These transitions cause routing tables to be continuously updated across the infrastructure. Routing devices can be configured with BGP route dampening in order to help mitigate against constant route flapping.",
+        "impact": "Excessive route updates, caused by a link status constantly changing between up to down, can impact network routing performance. Network routing could slow with network packets being dropped, possibly causing a DoS condition.",
+        "ease": "It is possible for an attacker to send BGP packets to a router to update the routing table and cause a route flapping condition. However, the attacker may need additional information in order to perform the attack, such as a BGP password.",
+        "recommandation": "DigInv recommends that BGP route dampening should be configured to help prevent excessive routing updates from causing a DoS condition.",
+        "command": "bgp dampening",
+        "tab": [
+            "MEDIUM",
+            "Medium",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "30": {
+        "name": "No RIP Update Neighbors Were Configured",
+        "observation": "RIP is a routing protocol that allows network devices to dynamically adapt to changes in the network infrastructure. The routing devices can be configured to send RIP routing updates to specified RIP neighbors. If not specified, RIP routing updates will be sent to all LAN hosts.",
+        "impact": "With no RIP routing update neighbors configured, route updates will be sent to all LAN hosts. If an attacker is able to monitor a network segment to which the device is attached, they would be able to monitor the routing traffic. This would give the attacker: a list of routes that the device sending the updates is aware of; if clear-text authentication is used, the authentication key; if MD5 authentication is used, the authentication hash which could then be subjected to a brute-force attack.",
+        "ease": "RIP routing updates will be sent to all hosts on the LAN. Tools can be downloaded from the Internet that can be used to monitor, extract and exploit the information contained in the RIP route update packets.",
+        "recommandation": "DigInv recommends that RIP routing update neighbors should be configured to send RIP updates to specific addresses.",
+        "command": "neighbor ip-address",
+        "tab": [
+            "MEDIUM",
+            "Medium",
+            "Trivial",
+            "Planned"
+        ]
+    },
+    "31": {
+        "name": "No OSPF LSA Thresholds",
+        "observation": "OSPF is a routing protocol that can be configured to dynamically update the routing table with changes to the network topology. OSPF uses LSA to communicate changes to other routers and update the routers own Link State Database (LSDB). Devices can be configured with a LSA message threshold in order to limit the number of LSA messages being processed by the device.",
+        "impact": "An attacker may be able to perform an OSPF DoS by flooding the device with LSA messages. monitor network traffic sent between network segments; perform a man in the middle attack; capture clear-text protocol authentication credentials; capture encrypted authentication hashes which could be subjected to a brute-force attack; perform a network wide DoS; route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.",
+        "ease": "Tools can be downloaded from the Internet that can be used to perform a DoS by flooding the device with LSA messages.",
+        "recommandation": "DigInv recommends that the number of OSPF LSA messages accepted by the device should be limited.",
+        "command": "max-lsa threshold",
+        "tab": [
+            "LOW",
+            "Medium",
+            "Moderate",
+            "Planned"
+        ]
+    },
+    "32": {
+        "name": "IP Directed Broadcasts Were Enabled",
+        "observation": "ICMP echo requests can be addressed to an entire network or subnet as well as to individual hosts. Disabling directed broadcasts on each individual network interface will help prevent network ping requests.",
+        "impact": "A DoS attack known as a Smurf attack makes use of network ICMP echo requests to perform the attack. An attacker would send an ICMP echo request with the victim hosts IP address spoofed as the source address. The hosts on the network would then reply to the echo request, flooding the victim host.",
+        "ease": "Tools can be downloaded from the Internet that are capable of performing the smurf attack outlined above.",
+        "recommandation": "DigInv recommends that directed broadcasts should be disabled on all network interfaces.",
+        "command": "no ip directed broadcast",
+        "tab": [
+            "LOW",
+            "Medium",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "33": {
+        "name": "Switch Port Security Disabled",
+        "observation": "Switch port security is used to monitor and restrict the number of network devices that can be connected to a single switch port. The switch does this by monitoring the Media Access Control (MAC) addresses that originate from the switch port. The MAC addresses can either be specified for a particular switch port or they can be dynamically learned in order to significantly reduce the administrative overhead. When the number of permitted number of MAC addresses connected to a single switch port is exceeded then a number of different actions can be performed, such as disabling the switch port.",
+        "impact": "A switch port with no configured port security could allow an attacker to attach an unauthorized device and gain access to the network.",
+        "ease": "An attacker would have to gain access to a switch port with no security configured. If the switch port is not directly patched to a wall socket, the attacker would have to gain physical access to the device. It is worth noting that an attacker could assume the MAC address of a device already attached to the port in order to gain access and bypass the port security feature.",
+        "recommandation": "DigInv recommends that, where possible, port security should be enabled on all switch ports. Furthermore, DigInv recommends that all switch ports that are not used should be shutdown.",
+        "command": "switchport port-security ;switchport port-security violation shutdown ;switchport port-security mac-address sticky",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Planned"
+        ]
+    },
+    "34": {
+        "name": "ICMP Address Mask Reply Messages Were Enabled",
+        "observation": "ICMP address mask reply messages inform network hosts of the TCP / IP network mask for a network segment. This protocol can now be regarded as legacy as hosts will typically either make use of protocols such as DHCP or be configured fixed address information.",
+        "impact": "An attacker could use the ICMP address mask reply feature to gain additional information about the network configuration.",
+        "ease": "ICMP scanning tools, that are capably of sending various types of ICMP messages, can be downloaded from the Internet. Furthermore, some OS include ICMP tools as standard.",
+        "recommandation": "DigInv recommends that, if not required, ICMP address mask reply messages should be disabled on all network interfaces.",
+        "command": "no ip mask-reply",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "35": {
+        "name": "Proxy ARP Was Enabled",
+        "observation": "ARP is a protocol that network hosts use to translate network IP addresses into MAC addresses. Under normal circumstances, ARP packets are confined to the sender's network segment. However, some network devices can be configured to act as a proxy for ARP requests, retransmitting an ARP request on other network segments and sending any response back to the originator of the request.",
+        "impact": "A router that acts as a proxy for ARP requests will extend layer two access across multiple network segments, potentially breaking perimeter security.",
+        "ease": "A network device with proxy ARP enabled will proxy ARP requests for all hosts on those interfaces. A number of ARP tools can be downloaded from the Internet for use in exploiting this issue.",
+        "recommandation": "DigInv recommends that, if not required, the Proxy ARP feature should be disabled on all interfaces.",
+        "command": "no ip proxy-arp",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "36": {
+        "name": "ICMP Unreachable Messages Were Enabled",
+        "observation": "When a network packet is sent to a destination host or service that is unreachable, a ICMP unreachable message can be sent from a network gateway or the destination host to inform the requester that it was unreachable. If it is a host that is unreachable the message will be in the form of an ICMP host unreachable message. ICMP unreachable messages are described in more detail in RFC 792.",
+        "impact": "An attacker who was performing network scans to determine what services were available would be able to scan a device more quickly. If the device being scanned sends ICMP unreachable messages, informing the attacker that a network or protocol is not supported, the attacker will not have to wait for a connection time-out.",
+        "ease": "The ICMP messages are automatically returned by a device with the ICMP unreachable feature enabled. Network scanning tools can be downloaded from the Internet that are able to perform a wide variety of scan types and take into account ICMP unreachable messages.",
+        "recommandation": "DigInv recommends that, if not required, ICMP unreachable messages should be disabled. However, it is important to note that whilst disabling of ICMP unreachable messages will not stop a network scan, it will make the scan more time consuming for the attacker to perform.",
+        "command": "no ip unreachables",
+        "tab": [
+            "LOW",
+            "Low",
+            "N/A",
+            "Quick"
+        ]
+    },
+    "37": {
+        "name": "ICMP Redirect Messages Were Enabled",
+        "observation": "When sending network traffic through a router, ICMP redirect messages could be sent to the router in order to indicate a specific route that the sending host would like the network traffic to take. On a router that accepts ICMP redirect message the network traffic will be forwarded using the specified route.Furthermore, some routers will cache the new routing information for use with future network packets.",
+        "impact": "An attacker could use ICMP redirects to modify the route that a packet takes through a network. However, it is worth noting that on networks with functional network routing, disabling ICMP redirects will have little to no effect.",
+        "ease": "ICMP redirect messages will be accepted, but not necessarily acted upon. An attacker could download software from the Internet in order to perform this attack.",
+        "recommandation": "DigInv recommends that, if not required, the processing of ICMP redirect messages on devices should be disabled.",
+        "command": "no ip redirects",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Quick"
+        ]
+    },
+    "38": {
+        "name": "Switch Port Trunking Allows All VLANs",
+        "observation": "VLAN network packets can be sent between networked devices, extending a VLAN across different physical devices. In order to extend a VLAN to a different physical device a trunk has to be created between the devices. In order to restrict VLAN access over different physical devices the VLAN trunk can be configured to only permit specific VLANs.",
+        "impact": "An attacker who is able to create a trunk would gain direct access to all the VLANs extended over the trunk. This would allow an attacker to bypass any network filtering between the VLANs and capture potentially sensitive information. If a clear-text protocols network traffic is transferred over the trunk an attacker would gain immediate access to any authentication credentials transferred.",
+        "ease": "Tools can be downloaded from the Internet that are capable of creating trunks, or the attacker could use a network switch. The attacker would require a little knowledge of network trunking.",
+        "recommandation": "DigInv recommends that, if not required, VLAN trunking should be disabled. If trunking is required on a specific switch port, DigInv recommends that the switch port should be configured to trunk only the required VLANs.",
+        "command": "switchport mode access  ;switchport trunk allowed vlan vlan-list",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Quick"
+        ]
+    },
+    "39": {
+        "name": "",
+        "observation": "",
+        "impact": "",
+        "ease": "",
+        "recommandation": "",
+        "command": "",
+        "tab": []
+    }
+}

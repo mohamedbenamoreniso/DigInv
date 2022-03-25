@@ -1,0 +1,776 @@
+{
+    "1": {
+        "name": "Users With Dictionary-Based Passwords",
+        "observation": "Access to restricted network user and administration services are typically secured using username and password authentication credentials. The strength of the authentication credentials is even more important if the service allows for devices to be reconfigured or it allows access to potentially sensitive information.",
+        "impact": "A malicious user, or remote attacker, who is able to connect to an administrative service will be able to perform a dictionary-based attack in order to identify valid authentication credentials and logon to the device. The attacker will then be able to perform administrative and user level tasks. This could include re- configuring the device, extracting potentially sensitive information and disabling the device. Once an attacker has obtained the configuration from the device they may be able to identify authentication credentials that could then be used to gain access to other network devices.",
+        "ease": "Dictionary-based password guessing attacks have been widely documented on the Internet and published media, enabling an attacker with very little knowledge or experience to perform the attack. There are a number of different dictionary-based password guessing tools and password dictionaries available on the Internet. Additionally an experienced attacker is likely to have a collection of personal password dictionaries which they have built up over time. However, there are a number of factors that may discourage an attacker from performing a dictionary-based attack. ;Account lockout facilities can quickly prevent access to the account. ;Device protection mechanisms may slow or disconnect connections where multiple authentication attempts are made in a short period of time. ;Brute-forcing can be very time consuming, especially if the password is long or made up of various character types. ;Network administrators may be alerted to locked out accounts or authentication attempts.",
+        "recommandation": "DigInv recommends that: passwords should be at least eight characters in length; characters in the password should not be repeated more than three times; passwords should include both upper case and lower case characters; passwords should include numbers; passwords should include punctuation characters; passwords should not include the username; passwords should not include a device's name, make or model; passwords should not be based on dictionary words.",
+        "command": "enable secret password;username user secret password",
+        "tab": [
+            "CRITICAL",
+            "Critical",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "2": {
+        "name": "Default SNMP Community Strings Were Configured",
+        "observation": "SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. Access to the SNMP Management Information Base (MIB) with protocol versions 1 and 2 is restricted using a community string to help prevent unauthorized access.",
+        "impact": "With read access to the SNMP MIB an attacker would be able to enumerate a large quantity of information about the device, its configuration, network details and more. With write access to the SNMP MIB an attacker could reconfigure the device, potentially causing a DoS. Additionally, write access to SNMP on some devices would enable an attacker to download a copy of a device's configuration, including password hashes.",
+        "ease": "Default SNMP community strings are usually documented in the manufacturers manuals, on third-party Internet web sites and in the password dictionaries of testing tools. Furthermore, SNMP query tools are installed by default on some operating systems and other SNMP tools can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that, if not required, SNMP should be disabled. If SNMP is required then DigInv recommends that only SNMP version 3 should be configured. If access using SNMP community strings is required, DigInv recommends that only strong community strings should be chosen that are also not used for any other authentication.\nDigInv recommends that:SNMP community strings should be at least eight characters in length; characters in the SNMP community string should not be repeated more than three times; SNMP community strings should include both upper case and lower case characters; SNMP community strings should include numbers; SNMP community strings should include punctuation characters; SNMP community strings should not include a device's name, make or model; SNMP community strings should not be based on dictionary words.",
+        "command": "no snmp-server",
+        "tab": [
+            "HIGH",
+            "High",
+            "Trivial",
+            "Quick"
+        ]
+    },
+    "3": {
+        "name": "No VTP Authentication Password Was Configured",
+        "observation": "VTP was developed by Cisco to assist with the management of VLANs over multiple devices. The protocol enables the addition, renaming and deletion of VLANs on a single switch to be propagated to other network switches in the same VTP domain. VTP can be configured to authenticate updates with the use of a password.",
+        "impact": "If no VTP authentication password is configured, an attacker could potentially modify the VLAN configuration on all the network switches causing a DoS.",
+        "ease": "An attacker could download a VTP attack tool from the Internet or use their own VTP capable switch. However, the network switches would have to be configured to accept the VTP updates. The attacker would then have to ensure that their configuration has a higher revision number.",
+        "recommandation": "DigInv recommends that, if not required, VTP should be disabled or placed in transparent mode. However, if VTP is required DigInv recommends that a strong VTP authentication password should be configured on all VTP devices. DigInv recommends that: passwords should be at least eight characters in length; characters in the password should not be repeated more than three times; passwords should include both upper case and lower case characters; passwords should include numbers; passwords should include punctuation characters; passwords should not include the username; passwords should not include a device's name, make or model; passwords should not be based on dictionary words.",
+        "command": "vtp password password-string",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Planned"
+        ]
+    },
+    "4": {
+        "name": "UDP Small Services Enabled",
+        "observation": "Some devices and platforms provide a collection of simple User Datagram Protocol (UDP) network services, which are also sometimes referred to Fix: Quick as small services. These services provide little functionality and are rarely used and they typically include:\nEcho (defined in RFC 862) returns any data sent to it back to the connecting client;\nDiscard (defined in RFC 863) ignores any data sent to it by a connecting client;\nChargen (defined in RFC 864) generates printable characters which are returned to the connecting client.\nDigInv determined that the UDP small servers were enabled",
+        "impact": "An attacker could use the UDP small servers as part of a DoS attack. UDP is a connection-less protocol and an experienced attacker could forge network packets to use the echo and chargen services to increase the network traffic and system utilization of devices offering the services. Additionally, each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not as significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.",
+        "ease": "Tools that can be used to connect to these services are installed by default on some systems or can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that the UDP small servers should be disabled.",
+        "command": "no service udp-small-servers",
+        "tab": [
+            "HIGH",
+            "High",
+            "Trivial",
+            "Quick"
+        ]
+    },
+    "5": {
+        "name": "Enable Secret",
+        "observation": "Cisco IOS-based device enable passwords can be stored using an iterated MD5 hash, which is far stronger than the easily reversible Cisco type-7 encryption.\nDigInv identified one enable password that was not stored using the MD5 hash.",
+        "impact": "An attacker could use an enable password from a Cisco device to access the device and possibly modify its configuration.",
+        "ease": "An attacker who had access to the Cisco configuration file would easily be able to retrieve passwords that are stored in clear-text or using the Cisco type-7 encryption. However, an attacker who had access to a Cisco configuration file could brute-force any stronger MD5 passwords.",
+        "recommandation": "DigInv recommends that all enable passwords be stored using the MD5 hash. Enable passwords can be stored using the MD5 hash with the following Cisco IOS command:",
+        "command": "enable secret",
+        "tab": [
+            "HIGH",
+            "High",
+            "Trivial",
+            "Quick"
+        ]
+    },
+    "6": {
+        "name": "Clear-Text SNMP In Use",
+        "observation": "SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. With write access to SNMP, it is possible to re-configure networking, system properties and even shutdown a device. There are multiple versions of SNMP and versions prior to version 3 offer no encryption of either the authentication or data network traffic.",
+        "impact": "An attacker or malicious user who can monitor the unencrypted SNMP network traffic would capture the SNMP community string used to authenticate access to the SNMP agent service. Additionally, they would capture all the information transferred using the unencrypted connection. With write access to SNMP an attacker could modify a device's settings and potentially cause a DoS condition.",
+        "ease": "Network packet capture tools can be downloaded from the Internet that can allow an attacker to monitor the network traffic. In a modern network environment, switches are typically deployed to connect the network infrastructure devices rather than hubs. With network switch devices, the attacker should only be able to see broadcast network traffic or traffic sent directly to or from the attacker's host. However, a skilled attacker could bypass this restriction by performing an attack such as ARP spoofing or exploiting a vulnerability with the network routing. Tools for bypassing a network switching environment's restrictions can be downloaded from the Internet. It is worth noting that with no SNMP view configured, the attacker would not be restricted to a specified subset of the SNMP MIB.",
+        "recommandation": "DigInv recommends that, if not required, SNMP should be disabled. However, if SNMP access is required, DigInv recommends that only SNMP version 3 should be configured with strong authentication and privacy passwords.",
+        "command": "no snmp-server",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Planned"
+        ]
+    },
+    "7": {
+        "name": "SNMP Write Access Enabled",
+        "observation": "SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. With write access to SNMP, it is possible to re-configure networking, system properties and even shutdown a device. There are multiple versions of SNMP and versions prior to version 3 offer no encryption of either the authentication or data network traffic",
+        "impact": "A malicious user, or attacker, with a write access SNMP community string could modify the configuration of the device and in some circumstances cause the device to reboot. It is also worth noting that SNMP write access could enable an attacker to extract the full configuration from the device.",
+        "ease": "An attacker who wanted to modify a device's configuration using SNMP would require a tool that could write to the SNMP MIB and a community string with write access. SNMP tools that can write to a SNMP MIB can be downloaded from the Internet and some Operating System (OS) install them by default.An attacker who wanted to modify a device's configuration using SNMP would require a tool that could write to the SNMP MIB and a community string with write access. SNMP tools that can write to a SNMP MIB can be downloaded from the Internet and some Operating System (OS) install them by default.",
+        "recommandation": "DigInv recommends that, if not required, SNMP should be disabled.else DigInv recommanded that disable the write access",
+        "command": "no snmp-server",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "8": {
+        "name": "No HTTP Server Session Timeout",
+        "observation": "The HTTP server session timeout setting is used to determine if a web session is no longer being used, enabling a device to determine when a connection can be automatically disconnected. A HTTP server session could become unused if an administrator has not properly terminated a connection and remains authenticated, such as when a user does not click on a logout button. The session could also become unused if the user leaves their computer unattended without terminating the session.",
+        "impact": "If an attacker was able to access a system using an authenticated session that is no longer being used, the attacker would be able to perform information gathering, configuration and other malicious activities under the context of the previous authenticated user. The level of access could potentially be at an administrative level.",
+        "ease": "To exploit this issue an attacker would first have to identify a working HTTP server session, possibly prior to it becoming unused by the user, and then be able to control that web session. This may be as simple as using the users computer whilst they are away, otherwise the attacker may have to exploit a weakness in the protocol or perform a man-in-the-middle attack. The man-in-the-middle attack could be performed using a proxy server, but a user could become suspicious if the session is using Hypertext Transfer Protocol over SSL (HTTPS) and the web browser provides the user with a certificate warning.",
+        "recommandation": "DigInv recommends that a HTTP server session timeout period of 10 minutes should be configured.",
+        "command": "ip http timeout-policy idle seconds life seconds requests number",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "9": {
+        "name": "No Inbound TCP Connection Keep-Alives",
+        "observation": "The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.",
+        "impact": "An attacker could attempt a DoS attack against a device by exhausting the number of possible connections. To perform this attack, the attacker could keep requesting new connections to the device and spoof the source IP addresses. This would then prevent any new legitimate connections to the device from being made as the device awaits the completion of the connection attempts that have already been initiated. This attack would prevent both users and administrators from connecting to the device.",
+        "ease": "Tools can be downloaded from the Internet that are capable of opening a large number of TCP connections without correctly terminating them.",
+        "recommandation": "DigInv recommends that TCP keep alive messages should be sent to detect and drop orphaned connections from remote systems.",
+        "command": "service tcp-keepalives-in",
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "10": {
+        "name": "IP Classless",
+        "observation": "Classless routing is enabled by default on Cisco routers. If a router has classless routing enabled and it receives a network packet for which there is no configured route, the router will forward the packet to the best destination. With classless routing disabled, the router would discard any network traffic for which no route is defined.\nDigInv determined that classless routing was enabled",
+        "impact": "Network traffic that should not be routed by the router may be routed when classless routing is enabled.",
+        "ease": "N/A",
+        "recommandation": "DigInv recommends that, if possible, classless routing be disabled. Classless routing can be disabled with the following command:",
+        "command": "no ip classless",
+        "tab": [
+            "HIGH",
+            "High",
+            "Trivial",
+            "Quick"
+        ]
+    },
+    "11": {
+        "name": "Enable Password Configured",
+        "observation": "Cisco Internet Operating System (IOS)-based devices enable passwords can be stored using MD5 hashes or using the Cisco Type 7 password encoding algorithm. A strong password stored using an MD5 hash can take a significant period of time to brute-force. However, the same password stored in Cisco Type 7 form can be reversed in a fraction of a second. The MD5 enable user password hash can be created using the secret keyword, whilst the Cisco Type 7 hash is created using the password keyword.",
+        "impact": "An attacker could use an enable password from a Cisco device to gain administrative level access to the device and modify its configuration.",
+        "ease": "An attacker who had access to the Cisco configuration file would easily be able to retrieve passwords that are stored in clear-text or using the Cisco type-7 encryption. However, an attacker who had access to a Cisco configuration file could attempt a brute-force attack against the stronger MD5 hashes. Tools can be downloaded from the Internet that are capable of reversing Cisco Type 7 passwords. However, an attacker would need to obtain a copy of the configuration file and would need to be able to gain initial access to the device before they could make use of an enable password.",
+        "recommandation": "DigInv recommends that all enable passwords should be stored using the MD5 hash",
+        "command": "enable secret password",
+        "tab": [
+            "HIGH",
+            "High",
+            "Trivial",
+            "Quick"
+        ]
+    },
+    "12": {
+        "name": "SNMP System Shutdown Enabled",
+        "observation": "A SNMP system shutdown facility can be configured for some SNMP agents so that network administrators can remotely reset the devices using SNMP.",
+        "impact": "An attacker who had SNMP write access could cause a DoS condition by causing the device to shutdown.",
+        "ease": "For an attacker to exploit this issue they would require SNMP query tools and a community string with write access to the SNMP MIB. SNMP query tools can be downloaded from the Internet and some OS install them by default. If the attacker does not know the community string it may be possible to determine it by monitoring the network traffic or by brute-forcing the community string.",
+        "recommandation": "Generally the SNMP system shutdown facility is not saved to the configuration file and should not persist following a system shutdown.DigInv recommends that the SNMP system shutdown facility should be disabled.",
+        "command": "no snmp-server system-shutdown",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "13": {
+        "name": "User Account Names Contained ADMIN",
+        "observation": "When User Account names contain admin, a clear indication is given to an attacker or malicous user that the account most likely has higher privilege levels than a standard user. This allows an attacker to focus their resources in a more direct way, such as targeted phishing attacks or other social engineering techniques.",
+        "impact": "A malicious user would be able to create targeted phishing and social engineering attacks at a specific user they believe to have admin or elevated privileges. Once access is gained, they would have that user's access to a system, which could include re-configuring the device, extracting potentially sensitive information and disabling the device. Once an attacker has obtained the configuration from the device they may be able to identify authentication credentials that could then be used to gain access to other network devices.",
+        "ease": "Exploiting this vulnerability would require an attacker to have gained access to sensitive information detailing user accounts and associated ID's before being able to identify appropriate targets for phishing or social engineering attacks.",
+        "recommandation": "DigInv strongly recommends that all Admin or elevated privilege accounts should not contain information that identifies them as being such.",
+        "command": "",
+        "tab": [
+            "MEDIUM",
+            "Critical",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "14": {
+        "name": "Users Configured With Weak Password Encryption",
+        "observation": "User passwords on Cisco IOS-based devices can be configured to store user passwords using either a MD5 password hash or using the Cisco Type 7 password encoding algorithm. Whilst the Cisco Type-7 password encoding can be easily reversed to reveal the original password, MD5 hashes can not be reversed. Instead if the original password needs to be determined from an MD5 hash, the passwords must be guessed and then put through the MD5 hashing process. The resulting MD5 hashes can then be compared in order to determine if the passwords match.",
+        "impact": "A strong password stored using an MD5 hash can take a significant period of time to brute-force. However, the same password stored in Cisco Type 7 form can be reversed in a fraction of a second. An attacker could use decoded passwords from a Cisco device in order to gain a level of access to the device and potentially modify its configuration.",
+        "ease": "An attacker who had access to the Cisco configuration file would easily be able to retrieve and decode passwords that are stored using the Cisco type-7 encoding scheme. However, an attacker who had access to a Cisco configuration file could attempt a brute-force attack against the stronger MD5 hashes. Tools can be downloaded from the Internet that are capable of reversing Cisco Type 7 passwords. However, an attacker would need to obtain a copy of the configuration file and would need to be able to gain initial access to the device before they could make use of an enable password.",
+        "recommandation": "DigInv recommands that users can be configured to store passwords using an MD5 hash using the following command:",
+        "command": "username user-name secret password",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "15": {
+        "name": "Clear Text HTTP Service Enabled",
+        "observation": "HTTP (RFC 2616) provides web-based services, such as information services, network device administration and other potentially sensitive services. HTTP provides no encryption of the connection between the client and server including any authentication and data transfer.",
+        "impact": "Due to the lack of encryption provided by the HTTP service, an attacker who is able to monitor a session would be able to view all of the authentication credentials and data passed in the session. The attacker could then attempt to gain access to the device using the authentication credentials extracted from the session and potentially gain access under the context of that user. Since HTTP is commonly used for network device administration this could gain the attacker an administrative level of access.",
+        "ease": "To exploit the fact that the HTTP service does not provide any encryption, the attacker would need to be able to monitor the session between a HTTP server and web browser. In some situations the attacker may not need to perform any further action other than launching a network monitoring tool. However, in a switched network the attacker may need to perform additional actions such as an ARP attack and in a routed environment the attacker may have to compromise the network routing.Tools that are capable of both monitoring and displaying network traffic in an easy to read form can be downloaded from the Internet. There are also tools that automatically detect where authentication credentials or files are being transferred and display or save the data. Tools are also available that enable an attacker to easily perform a variety of network attacks in order to be able to monitor and intercept sessions between two network devices.",
+        "recommandation": "DigInv recommends that the HTTP service should be disabled. If remote administrative access is required then DigInv recommends that a cryptographically secure alternative, such as HTTPS, should be used instead.",
+        "command": "no ip http server",
+        "tab": [
+            "Medium",
+            "High",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "16": {
+        "name": "AUX Port Not Disabled",
+        "observation": "The Auxilary (AUX) port's primary purpose is to provide a remote administration capability. With a modem connected to the AUX port, a remote administrator could dial into the device in order to perform remote administration. As an extra layer of security, some devices can be configured with a callback facility. The callback facility, if configured, drops any incoming calls and dials the network administrator back.",
+        "impact": "If an attacker is able to dial in and connect to the device remotely using the AUX port, the attacker could perform a brute-force attack against the authentication mechanism in order to gain remote administrative access. If a malicious user was able to gain physical access to a device where the AUX port had not been disabled, they could attach a modem in order to perform an attack from a remote location. If a callback facility has not been configured, then the device would not drop incoming calls and attempt to dial the network administrators phone number.",
+        "ease": "In order to successfully exploit this issue, the attacker would require a modem to be attached to the AUX port. If a modem is already attached, an attacker could discover the modem's telephone number during a war-dial. However, even though a number of war dial tools are available on the Internet, a war dial is more likely to be discovered due to the number of telephones which would be called in an office.",
+        "recommandation": "DigInv recommends that, if not required, the AUX port should be disabled. If the AUX port is required and the device supports callback then DigInv suggests that the callback facility should be configured as an additional level of protection.",
+        "command": "transport input none login local no exec",
+        "tab": [
+            "MEDIUM",
+            "High",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "17": {
+        "name": "No HTTP Service Network Access Restrictions",
+        "observation": "HTTP (RFC 2616) provides web-based services, such as information services, network device administration and other potentially sensitive services. HTTP provides no encryption of the connection between the client and server including any authentication and data transfer. HTTPS, which is HTTP over Secure Sockets Layer (SSL)/TLS, is used to provide cryptographically secure web-based connection. Network access to the HTTP service can be restricted by specifying those hosts that are allowed to access the service and thereby denying access to all other network host addresses.",
+        "impact": "Without management host address restrictions an attacker, or malicious user, with authentication credentials would be able to connect to the HTTPS service, logon and access the functionality and information provided for that user. If an attacker does not have authentication credentials they could attempt a brute- force attack in order to identify valid credentials. Additionally, if there is a vulnerability with the service then allowing anyone to connect to the service could enable an attacker to exploit the vulnerability.",
+        "ease": "With no HTTP network host access restrictions an attacker would not be prevented from connecting to the service. Furthermore, web browsers and other web- based client tools are included as standard with most operating systems. Alternative web service tools are available on the Internet, together with vulnerability exploit code, enumeration and brute-force tools.",
+        "recommandation": "DigInv recommends that access to the HTTP service should be restricted to only those network hosts that require access.",
+        "command": "ip http access-class acl-number",
+        "tab": [
+            "MEDIUM",
+            "Medium",
+            "Trivial",
+            "Quick"
+        ]
+    },
+    "18": {
+        "name": "Syslog Logging Not Enabled",
+        "observation": "Logging is an important component of a secure network configuration. When appropriately configured, the messages logged provide a wealth of information to a network administrator when diagnosing a problem, identifying an attack or when used to provide an activity audit trail. When a well configured logging system is combined with a good monitoring and alert system it will enable network administrators to promptly respond to networking issues, DoS attacks, administrative system logons and a host of other important information. Syslog logging provides an industry standard system (detailed in RFC 5424) for logging messages, enabling the collection, storage and administration of logs from a variety of devices to a single location. The sending of logs to other systems, not only provides extra storage space for logs which could be size restricted on the originating network device, but it also provides an extra level of protection for the logs in a scenario where an attacker has compromised the security of themessage source.",
+        "impact": "If logging of system messages is not configured, a network administrator may not be made aware of significant events happening on the device. These events could include security issues such as intrusion attempts, network scans, authentication failures or diagnostic and management information such as potential hardware issues. Without logging system messages, the information would not be available to either a forensic investigation or for diagnostic purposes.",
+        "ease": "System messages will not be sent to a Syslog logging server.",
+        "recommandation": "DigInv recommends that Syslog logging should be configured to enable system messages to be logged to a central logging server.",
+        "command": "logging host ip-address",
+        "tab": [
+            "MEDIUM",
+            "Medium",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "19": {
+        "name": "NTP Control Queries Were Permitted",
+        "observation": "Time synchronization for network devices is inherently important, not just for the various services that make use of time, but also for the accurate logging of events. Therefore network devices can be configured to synchronize their time against a network time source in order to ensure that the time is synchronized. NTP (described in RFC 5905) is a complex time synchronization protocol with a number of different features and options. In addition to time, a number of control queries can be made to an NTP server, these include requesting a list of the servers NTP peers and a number of different variables.",
+        "impact": "An attacker may send control queries to an NTP service in order to gather information about the device. In addition to time information, an attacker may learn internal IP addresses of NTP peers or basic operating system information.",
+        "ease": "NTP query tools are installed by default with some operating systems and NTP tools can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that, if a time server must be configured on the device, access should be restricted to only time requests.",
+        "command": "ntp access-group query-only acl",
+        "tab": [
+            "MEDIUM",
+            "Medium",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "20": {
+        "name": "No Time Synchronization Configured",
+        "observation": "Time synchronization for network devices is inherently important, not just for the various services that make use of time, but also for the accurate logging of events. Therefore network devices can be configured to synchronize their time against a network time source in order to ensure that the time is synchronized.",
+        "impact": "Although not a direct threat to security, a device with no time synchronization configured would make it more difficult to correlate events in the logs. This would make a forensic investigation more complex, hindering any troubleshooting. The lack of time synchronization could also cause problems with some systems that depend on accurate time, such as some authentication services.",
+        "ease": "The system time will not be synchronized. Furthermore, over a period of time the initial configuration could gradually drift away being anywhere near accurate.",
+        "recommandation": "DigInv recommends that all networked devices should synchronize their clocks with a network time source.",
+        "command": "ntp-service authentication enable;ntp-service authentication-keyid key-id authentication-mode md5 key",
+        "tab": [
+            "MEDIUM",
+            "Medium",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "21": {
+        "name": "Service Password Encryption Disabled",
+        "observation": "Cisco service passwords are stored by default in their clear-text form rather than being encrypted. However, it is possible to have these passwords stored using the reversible Cisco type-7 encryption.\nDigInv determined that the Cisco device Router was not running the password encryption service that helps provide a basic level of encryption to passwords that otherwise would be stored in clear-text.",
+        "impact": "If a malicious user were to see a Cisco configuration that contained clear-text passwords, they could use the passwords to access the device. However, an attacker who had access to a Cisco configuration file would easily be able to reverse the passwords.",
+        "ease": "Even though it is trivial to reverse Cisco type-7 passwords, they do provide a greater level of security than clear-text passwords. Tools are widely available on the Internet that reverse Cisco type-7 passwords.",
+        "recommandation": "DigInv recommends that the Cisco password encryption service be enabled. The Cisco password encryption service can be started with the following Cisco IOS command:",
+        "command": "service password-encryption",
+        "tab": [
+            "LOW",
+            "Medium",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "22": {
+        "name": "CDP enabled",
+        "observation": "CDP is a proprietary protocol that was developed and is primarily used by Cisco. A CDP enabled device can be configured to broadcast.\nCDP packets on the network enabling network management applications and CDP aware devices to identify each other. CDP packets include information about thesender, such as OS version and IP address information.",
+        "impact": "CDP packets contain information about the sender, such as hardware model information, operating system version and IP address details. This information would give an attacker valuable information about the device. The attacker could then use this information as part of a targeted attack.",
+        "ease": "CDP packets are broadcast to an entire network segment. The attacker or malicious user would require access to a network segment on which the CDP packets are broadcast and network monitoring software. A wide variety of network monitoring, packet capture and analysis tools can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that, if not required, CDP should be disabled.\nIn some configurations with IP phones, deployed using either Auto Discovery or Dynamic Host Configuration Protocol (DHCP), the CDP service may need to be enabled. However, if the device supports disabling CDP on individual interfaces, then DigInv recommends that it should be disabled on all the interfaces where it is not required.",
+        "command": "no cdp run",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "23": {
+        "name": "VTP Was In Server Mode",
+        "observation": "VTP was developed by Cisco to assist with the management of VLANs over multiple devices. The protocol enables the addition, renaming and deletion of VLANs on a single switch to be propagated to other network switches in the same VTP domain. A device in VTP server mode will transmit VTP packets containing VLAN information. If a device in VTP client mode in the same domain receives a VTP network packet with a higher revision number the changes will be applied.\n DigInv determined that VTP was in server mode.It is worth mentioning that although the VTP was found to be in server mode(adefault setting), no VTP domain was configured. However, there have been instances where a device in this configuration have had their VTP domain setremotely from other networked devices.",
+        "impact": "An attacker could determine the VLAN configuration by capturing VTP packets sent from the device and VTP packets are not encrypted, even when a password is specified. The attacker could then use the VLAN information or password as part of a targeted attack.",
+        "ease": "Tools that are capable of capturing network packets are available on the Internet and installed by default on some OS.",
+        "recommandation": "DigInv recommends that, if not required, VTP should be disabled or placed in transparent mode, even if no VTP domain has been configured.",
+        "command": "vtp transparent \nvtp mode transparent",
+        "tab": [
+            "LOW",
+            "Low",
+            "Moderate",
+            "Planned"
+        ]
+    },
+    "24": {
+        "name": "IP Source Routing Was Enabled",
+        "observation": "TCP/IP packets can contain source route information, this can enable a packet to define its own route through a network rather than using a route defined by static routes or routing protocols. The source route option functionality was defined in RFC 791.\nMany network filtering and routing devices include facilities that enable them to ignore the source route defined in a packet or block the packets entirely.\n DigInv determined that IP source routing was enabled",
+        "impact": "IP source routing can allow an attacker to specify a route for a network packet to follow, possibly to bypass a Firewall device or an Intrusion Detection System (IDS). An attacker could also use source routing to capture network traffic by routing it through a system controlled by the attacker.",
+        "ease": "An attacker would have to control either a routing device or an end point device in order to modify a packets route through the network. However, tools can be downloaded from the Internet that would allow an attacker to specify source routes. Tools are also available to modify network routing using vulnerabilities in some routing protocols.",
+        "recommandation": "DigInv recommends that IP source routing information contained in network packets should be ignored.",
+        "command": "no ip source-route",
+        "tab": [
+            "LOW",
+            "Low",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "25": {
+        "name": "Warning In Pre-Logon Banner",
+        "observation": "Logon banner messages are an important, but often overlooked, part of a secure configuration. Logon banner messages can provide connecting users with important information and warn against unauthorized access.",
+        "impact": "A carefully worded warning message could deter a casual attacker or malicious user, but not a determined attacker. However, it would be more difficult to prove any intent without a message warning against unauthorized access if any legal action were to be taken against an attacker.",
+        "ease": "An attacker would not be presented with a carefully worded legal warning prior to attempting to logon.",
+        "recommandation": "DigInv recommends that all pre-logon banner messages should be configured to warn against unauthorized access.",
+        "command": "banner login delimiter banner-message delimiter",
+        "tab": [
+            "LOW",
+            "Low",
+            "N/A",
+            "Quick"
+        ]
+    },
+    "26": {
+        "name": "The BOOTP Service Was Not Disabled",
+        "observation": "BOOTstrap Protocol (BOOTP) is a datagram protocol that allows compatible hosts to load their operating system over the network from a BOOTP server. Cisco routers are capable of acting as BOOTP servers for other Cisco devices and the service is enabled by default. However, BOOTP is rarely used and may represent a security risk.\nDigInv determined that BOOTP was not disabled. However, it is worth noting that not all Cisco devices support BOOTP.",
+        "impact": "An attacker could use the BOOTP service to download a copy of the router's IOS software.",
+        "ease": "Tools are available on the Internet to access BOOTP servers.",
+        "recommandation": "DigInv recommends that, if not required, the BOOTP service be disabled. The following command can be used to disable BOOTP:",
+        "command": "no ip bootp server",
+        "tab": [
+            "LOW",
+            "LOW",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "27": {
+        "name": "The Finger Service Was Enabled",
+        "observation": "The Finger protocol (defined in RFC 749 and RFC 1288) enables the enumeration of status and user information from a system running a Finger service. The Finger protocol is simple and does not encrypt the data or provide any authentication. The default TCP port for the Finger service is 79.",
+        "impact": "An attacker could use the Finger service to enumerate users and user information. The attacker could then use this information as part of a targeted attack such as password guessing or a brute-force attack. The Finger user information may also be used by an attacker for a targeted attack where user identity information would be useful.",
+        "ease": "The Finger query tool is installed by default on some platforms by default and is relatively easy to use. Additionally, tools that an attacker can use to attack a system using the information obtained using Finger are available to download from the Internet.",
+        "recommandation": "DigInv recommends that the Finger service should be disabled to help prevent an attacker from enumerating user information.",
+        "command": "no ip finger",
+        "tab": [
+            "LOW",
+            "Low",
+            "Trivial",
+            "Quick"
+        ]
+    },
+    "28": {
+        "name": "No SNMP TFTP Server Access List Configured",
+        "observation": "Using SNMP, some network devices can be instructed to send its configuration to a file on a specified TFTP server. This feature enables network administrators and management software to quickly obtain a copy of a device's configuration. A network access list can be configured on those devices to help secure access to this functionality (supported on Cisco IOS devices from version 10.2).",
+        "impact": "An attacker who had SNMP write access could remotely obtain a copy of a device's configuration. The configuration would include any passwords for the device and include the configuration of the administrative services.",
+        "ease": "For an attacker to exploit this issue they would require SNMP query tools, a TFTP server and a community string with write access to the SNMP MIB. SNMP query tools and TFTP server software can be downloaded from the Internet and some OS install them by default. If the attacker does not know the community string it may be possible to determine it by monitoring the network traffic or by brute-forcing the community string.",
+        "recommandation": "DigInv recommends that a SNMP TFTP server list ACL should be configured to ensure that configurations are only saved to specific hosts.",
+        "command": "snmp-server tftp-server-list acl-number",
+        "tab": [
+            "LOW",
+            "Medium",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "29": {
+        "name": "NTP Authentication Was Disabled",
+        "observation": "Time synchronization for network devices is inherently important, not just for the various services that make use of time, but also for the accurate logging of events. Therefore network devices can be configured to synchronize their time against a network time source in order to ensure that the time is synchronized. NTP (described in RFC 5905) is a complex time synchronization protocol with a number of different features and options such as time update authentication.",
+        "impact": "If an attacker is able to modify a device's time with an inaccurate time update then it would be more difficult during an examination to correlate the system logs. Furthermore, any systems that depend on accurate time, such as some authentication systems, could be disrupted and potentially cause a DoS.",
+        "ease": "With NTP time authentication disabled, an attacker could attempt to update the time by sending malicious time updates. An attacker could do this using open source code or by sending customized network packets and spoofing the source address.",
+        "recommandation": "DigInv recommends that NTP time authentication should be enabled.",
+        "command": "ntp authenticate;ntp authentication-key key-num md5 key-string;ntp server ip-address key key-num [prefer]",
+        "tab": [
+            "LOW",
+            "Low",
+            "Trivial",
+            "Planned"
+        ]
+    },
+    "30": {
+        "name": "Weak SNMP Community Strings Were Configured",
+        "observation": "SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. Access to the SNMP MIB with protocol versions 1 and 2 is restricted using a community string to help prevent unauthorized access.",
+        "impact": "With read access to the SNMP MIB an attacker would be able to enumerate a large quantity of information about the device, its configuration, network details and more. The attacker could then use this information as part of a targeted attack.",
+        "ease": "An attacker will typically attempt to gain access to an SNMP service by guessing the community string used to restrict access. This usually means that testing for public and private are attempted first as these are the most common community strings. If simple community string guessing does not succeed then it would be trivial for an attacker to perform a dictionary-based and brute-force attack. There are a number of tools available that an attacker could use for this and they do not require any advanced skills on behalf of the attacker.",
+        "recommandation": "DigInv recommends that, if not required, SNMP should be disabled. If SNMP is required then DigInv recommends that only SNMP version 3 should be configured. If access using SNMP community strings is required, DigInv recommends that only strong community strings should be chosen that are also not used for any other authentication. DigInv recommends that: SNMP community strings should be at least eight characters in length; characters in the SNMP community string should not be repeated more than three times; SNMP community strings should include both upper case and lower case characters; SNMP community strings should include numbers; SNMP community strings should include punctuation characters; SNMP community strings should not include a device's name, make or model; SNMP community strings should not be based on dictionary words.",
+        "command": "no snmp-server",
+        "tab": [
+            "LOW",
+            "MEDIUM",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "31": {
+        "name": "SNMP version 1 was configured",
+        "observation": "SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. Access to the SNMP MIB with protocol versions 1 and 2 is restricted using a community string to help prevent unauthorized access.",
+        "impact": "With read access to the SNMP MIB an attacker would be able to enumerate a large quantity of information about the device, its configuration, network details and more. The attacker could then use this information as part of a targeted attack.",
+        "ease": "An attacker will typically attempt to gain access to an SNMP service by guessing the community string used to restrict access. This usually means that testing for public and private are attempted first as these are the most common community strings. If simple community string guessing does not succeed then it would be trivial for an attacker to perform a dictionary-based and brute-force attack. There are a number of tools available that an attacker could use for this and they do not require any advanced skills on behalf of the attacker.",
+        "recommandation": "DigInv recommends that, if not required, SNMP should be disabled. If SNMP is required then DigInv recommends that only SNMP version 3 should be configured. If access using SNMP community strings is required, DigInv recommends that only strong community strings should be chosen that are also not used for any other authentication. DigInv recommends that: SNMP community strings should be at least eight characters in length; characters in the SNMP community string should not be repeated more than three times; SNMP community strings should include both upper case and lower case characters; SNMP community strings should include numbers; SNMP community strings should include punctuation characters; SNMP community strings should not include a device's name, make or model; SNMP community strings should not be based on dictionary words.",
+        "command": "no snmp-server",
+        "tab": [
+            "LOW",
+            "MEDIUM",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "32": {
+        "name": "IP Directed Broadcasts Were Enabled",
+        "observation": "ICMP echo requests can be addressed to an entire network or subnet as well as to individual hosts. Disabling directed broadcasts on each individual network interface will help prevent network ping requests.",
+        "impact": "A DoS attack known as a Smurf attack makes use of network ICMP echo requests to perform the attack. An attacker would send an ICMP echo request with the victim hosts IP address spoofed as the source address. The hosts on the network would then reply to the echo request, flooding the victim host.",
+        "ease": "Tools can be downloaded from the Internet that are capable of performing the smurf attack outlined above.",
+        "recommandation": "DigInv ecommends that directed broadcasts should be disabled on all network interfaces.",
+        "command": "no ip directed broadcast",
+        "tab": [
+            "LOW",
+            "MEDIUM",
+            "Moderate",
+            "Quick"
+        ]
+    },
+    "33": {
+        "name": "SNMP Access Without Network Filtering",
+        "observation": "SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. Access to the SNMP service can be restricted to specific Network Management System (NMS), or SNMP management hosts, using a filter list.",
+        "impact": "A malicious user, or attacker, with a community string for the SNMP agent, could gain access to the data offered by the service. With no network filtering the attacker would not be restricted by the device from connecting to the service. Additionally, if a software vulnerability existed in the service, then the attacker may be able to exploit the vulnerability without requiring knowledge of a community string.",
+        "ease": "An attacker would not be prevented from connecting to the SNMP agent. SNMP query tools are included by default with some operating systems and further query tools can be downloaded from the Internet.",
+        "recommandation": "DigInv recommends that, if not required, SNMP should be disabled. If SNMP is required then DigInv recommends that only SNMP version 3 should be configured. If access using community strings is required, DigInv recommends that network filtering should be configured to restrict access to the service.",
+        "command": "no snmp-server",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "34": {
+        "name": "SNMP Access With No View",
+        "observation": "SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. Views are used to restrict access to specific sections of the SNMP MIB. This enables an administrator to restrict SNMP access to only the information that the caller requires.",
+        "impact": "A malicious user, or attacker, who has SNMP access using a community string for which no view had been configured would have unrestricted access to the SNMP MIB.",
+        "ease": "With no SNMP view configured, an attacker would not be restricted to specific sections of the SNMP MIB.",
+        "recommandation": "DigInv recommends that, if not required, SNMP should be disabled. If SNMP is required then DigInv recommends that a view is configured for every community string in order to limit the access to only those sections of the MIB that are required.",
+        "command": "no snmp-server",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "35": {
+        "name": "Weak Minimum Password Length Policy Setting",
+        "observation": "The minimum password length policy setting is used to force users to set passwords that are at least the specified number of characters in length.",
+        "impact": "Strong authentication credentials are a key component of a systems security. It is therefore important that a user chooses a strong password and that it is changed on a regular basis. Generally, the greater the number of characters within a password the stronger the password will be. With a short minimum password length configured a user could set a short password, requiring less time for an attacker to brute-force the authentication password.",
+        "ease": "It takes far less time for an attacker to brute-force the authentication credentials for a user account that has a short password.",
+        "recommandation": "DigInv recommends that a minimum password length policy setting of 8 characters should be configured.",
+        "command": "security passwords min-length length",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "36": {
+        "name": "Weak User Account Lockout Policy Setting",
+        "observation": "When configured, the user account lockout policy setting will prevent a user account from authenticating if the user has failed to logon the number of times defined by the threshold.",
+        "impact": "A malicious user, or attacker, may attempt to determine a password for a specific user account by repeatedly attempting to logon using a different password each time. If no user account lockout policy setting has been configured then an attacker could brute-force a password by going through each character combination until a valid password is found. However, if a user account lockout policy setting has been defined, the attacker will be limited to a far smaller number of guesses before the account becomes unusable.",
+        "ease": "Brute-force and dictionary-based password guessing attacks have been widely documented on the Internet and published media, enabling an attacker with very little knowledge or experience to perform the attack. However, it is also worth noting that there are a number of factors that may discourage an attacker from performing a password guessing attack. If a user account lockout policy setting has been configured the user account could quickly become disabled; Device protection mechanisms may slow or disconnect connections where multiple authentication attempts are made in a short period of time; Brute-forcing can be very time consuming, especially if the password is long or made up of various character types; Network administrators may be alerted to locked out accounts or authentication attempts.",
+        "recommandation": "DigInv recommends that a user account lockout threshold of 3 should be configured in order to help prevent unauthorized access to user accounts.",
+        "command": "password-control login-attempt number-of-attempts",
+        "tab": [
+            "LOW",
+            "Medium",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "37": {
+        "name": "Weak Password History Policy Setting",
+        "observation": "The password history facility maintains a limited list of passwords for each user in order to determine if a user is selecting a previously used password when they change it. The password history policy setting is used to prevent a user from choosing the same password within the defined number of previous passwords.",
+        "impact": "Strong authentication credentials are a key component of a systems security. It is therefore important that a user chooses a strong password and that it is changed on a regular basis. If a user is able to repeatedly select the same password each time they are asked to change their password it would make the password age facility redundant. The younger a passwords age the better it is for security because of a number of reasons. For example, if given enough time it may be possible for an attacker who had captured some encrypted network traffic to decrypt and identify the user authentication credentials. Over time any password is likely to be used and be present in a greater number of locations, such as on other devices, system backups and temporary files. It is also possible that over a period of time a password may become known to co-workers or passersby from casual or intentional shoulder surfing.",
+        "ease": "A malicious user, or attacker, who has gained access to a password would have a far greater chance of the password continuing to work in the future if the device does not maintain a password history.",
+        "recommandation": "DigInv recommends that a user password history of 10 should be configured in order to help prevent users from repeatedly selecting the same password",
+        "command": "password-control history number-of-passwords",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "38": {
+        "name": "Weak Password Age Policy Setting",
+        "observation": "The password age policy setting is used to determine how much time can pass before a user will be forced to change their password.",
+        "impact": "Strong authentication credentials are a key component of a systems security. It is therefore important that a user chooses a strong password and that it is changed on a regular basis. The younger a passwords age the better it is for security because of a number of reasons. For example, if given enough time it may be possible for an attacker who had captured some encrypted network traffic to decrypt and identify the user authentication credentials. Over time any password is likely to be used and be present in a greater number of locations, such as on other devices, system backups and temporary files. It is also possible that over a period of time a password may become known to co-workers or passersby from casual or intentional shoulder surfing.",
+        "ease": "A malicious user, or attacker, who has gained access to a password would have a far greater chance of the password continuing to work in the future if the device does not enforce a maximum password age.",
+        "recommandation": "DigInv recommends that a user password age policy setting of 60 days should be configured.",
+        "command": "password-control aging days",
+        "tab": [
+            "LOW",
+            "Low",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "39": {
+        "name": "TCP Small Services Enabled",
+        "observation": "Some devices and platforms provide a collection of simple TCP network services, which are also sometimes referred to as small services. These services provide little functionality and are rarely used and they typically include:Echo (defined in RFC 862) returns any data sent to it back to the connecting client;Discard (defined in RFC 863) ignores any data sent to it by a connecting client;Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client;Daytime (defined in RFC 867) returns the current time to a connecting client.DigInv determined that the TCP small servers were enabled",
+        "impact": "Each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.",
+        "ease": "Tools such as Telnet can be used to connect to these services and are often installed by default.",
+        "recommandation": "It is generally considered good security practice to disable all unused services and not running the services will free system resources for other use. Therefore DigInv suggests that the TCP small servers should be disabled.",
+        "command": "no service tcp-small-servers",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "Trivial",
+            "Quick"
+        ]
+    },
+    "40": {
+        "name": "Domain Lookups were enabled",
+        "observation": "Cisco IOS-based devices support name lookups using the Domain Name System (DNS). However, if a DNS server has not been configured, then the DNS request is broadcast.\nDigInv determined that name lookups had not been disabled and no DNS servers had been configured.",
+        "impact": "An attacker who was able to capture network traffic could monitor DNS queries from the Cisco Router. Furthermore, Cisco devices can connect to Telnet servers by supplying only the hostname or IP address of the server. A mistyped Cisco command could be interpreted as an attempt to connect to a Telnet server and broadcast on the network.",
+        "ease": "It would be trivial for an attacker to capture network traffic broadcast from a Cisco Router. Furthermore, network traffic capture tools are widely available on the Internet.",
+        "recommandation": "DigInv recommends that domain lookups be disabled. Domain lookups can be disabled with the following command:",
+        "command": "no ip domain-lookup",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "Easy",
+            "Quick"
+        ]
+    },
+    "41": {
+        "name": "NTP not authenticated",
+        "observation": "Time synchronization for network devices is inherently important, not just for the various services that make use of time, but also for the accurate logging of events. Therefore network devices can be configured to synchronize their time against a network time source in order to ensure that the time is synchronized. NTP (described in RFC 5905) is a complex time synchronization protocol with a number of different features and options. In addition to time, a number of control queries can be made to an NTP server, these include requesting a list of the servers NTP peers and a number of different variables.",
+        "impact": "If an attacker is able to modify a device's time with an inaccurate time update then it would be more difficult during an examination to correlate the system logs. Furthermore, any systems that depend on accurate time, such as some authentication systems, could be disrupted and potentially cause a DoS.",
+        "ease": "With NTP time authentication disabled, an attacker could attempt to update the time by sending malicious time updates. An attacker could do this using open source code or by sending customized network packets and spoofing the source address.",
+        "recommandation": "DigInv recommends that, if NTP must be configured on the device, authentication must be configured.",
+        "command": "ntp authentication-key key-number md5 Auth-key\nntp server ip-address key key-num",
+        "tab": [
+            "INFORMATIONAL",
+            "Medium",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "42": {
+        "name": "No Network Filtering Rules Were Configured",
+        "observation": "Network filtering can be configured to restrict access to network services from only those hosts that require the access, helping to prevent unauthorized access. When configured, network filter rules are processed sequentially and the first rule in the filter rule list which matches the network packet is applied.",
+        "impact": "Typically firewall appliances will drop network traffic if there are no network filtering rules configured. Whereas most non-firewall appliances will usually allow all network traffic if no network filtering rules have been configured. Although no network filter rules had been configured the default action was to drop the all network packets. Therefore an attacker, or malicious user, would not be able to access network services as all network traffic would be blocked.",
+        "ease": "No specialist skills or tools are required by the attacker to exploit this issue.",
+        "recommandation": "DigInv recommends that network filter rules should be configured to help prevent unauthorized access to network services.DigInv recommends that: filter rules should only allow access to specific destination addresses; filter rules should only allow access to specific destination network ports; filter rules should only allow access from specific source addresses; filter rules should specify a specific network protocol; ICMP filter rules should specify a specific message type; filter rules should always drop network packets and not reject them; filter rules should perform a specific action and not rely on a default action.",
+        "command": "access-list number [permit | deny] protocol source-address [source-port] dest-address [dest-port] [log]",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "43": {
+        "name": "No Post Logon Banner Message",
+        "observation": "Post logon banner messages are ones that are shown to users after they have authenticated and prior to being given access to the device. It is one that is shown to users when they connect to a device and prior to the user logon.",
+        "impact": "The post logon banner is useful for detailing the acceptable use policy and the change control procedures which should be followed prior to making any changes to a device's configuration. An acceptable use message detailing the change control procedures and waning against abuse of the policy could help to prevent ad- hoc changes being made to a device's configuration. Additionally, if a device does not have the facilities to configure a pre-logon banner message then the post logon banner message could be the only place where a legal warning against unauthorized access could be given.",
+        "ease": "With no post logon banner configured, a user would not be given a reminder of the acceptable use and change control procedure policy details.",
+        "recommandation": "DigInv recommends that a post logon banner message is configured that details both the acceptable use policy and change control procedures. Additionally, if the device does not support a pre-logon banner message then DigInv recommends that the post logon banner message should also include a carefully worded legal warning against unauthorized access.",
+        "command": "banner exec delimiter banner-message delimiter",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "N/A",
+            "Quick"
+        ]
+    },
+    "44": {
+        "name": "PAD Service Enabled",
+        "observation": "The PAD service enables X.25 commands and connections between PAD devices and access servers, converting the character stream data into network packets and network packets into character stream data. The PAD service is enabled by default on some devices but it is only required if support for X.25 links are necessary.",
+        "impact": "In addition to the extra overhead, running unused services increases the chances of an attacker finding a security hole or fingerprinting a device.",
+        "ease": "The PAD service was enabled.",
+        "recommandation": "DigInv recommends that, if not required, the PAD service should be disabled.",
+        "command": "no service pad",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "N/A",
+            "Quick"
+        ]
+    },
+    "45": {
+        "name": "Unrestricted Outbound Administrative Access",
+        "observation": "Many network devices, such as switches and routers, contain network client tools that enable a network administrator to connect to administrative services offered by other devices. Outbound access from these devices to others can be restricted to specific host addresses in order to limit the access to only those that are required.",
+        "impact": "A malicious user, or attacker, with a basic level of access to the device could use it to attack other devices on the network. An attacker may prefer to use this facility as a way of masking their trail or because the target device may not be contactable directly. If an outbound ACL had been configured then the potential list of targets would be restricted to only those network addresses.",
+        "ease": "The attacker must have a level of access to the device in order to be able to use the administrative service client tools to access another system. However, once a level of access has been gained on the device the attacker would then be able to use the available client tools to access services offered by other devices.",
+        "recommandation": "DigInv recommends that, unless required, an outbound ACL should be configured and assigned in order to restrict administrative access to other systems.",
+        "command": "line line-type line-number(s) access-class access-list-number out",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "46": {
+        "name": "IP Identification Service was enabled",
+        "observation": "The Ident Protocol (Identification Protocol, Ident), specified in RFC 1413, is an Internet protocol that helps identify the user of a particular TCP connection. One popular daemon program for providing the ident service is identd.",
+        "impact": "It is dangerous to allow any system on a directly connected segment to learn that the router is a Cisco device and to determine the model number and the Cisco IOS software version being run.",
+        "ease": "Identification support allows you to query a TCP port for identification. This feature enables an unsecure protocol to report the identity of a client initiating a TCP connection and a host responding to the connection. With identification support, you can connect a TCP port on a host, issue a simple text string to request information, and receive a simple text-string reply.",
+        "recommandation": "DigInv recommands that,if not required IP Identification service should be disabled",
+        "command": "no ip identd",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "47": {
+        "name": "No Outbound TCP Connection Keep-Alives",
+        "observation": "The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.",
+        "impact": "An attacker could attempt a DoS attack against a device by exhausting the number of possible connections. To perform this attack, the attacker could keep requesting new connections to the device and spoof the source IP addresses. This would then prevent any new legitimate connections to the device from being made as the device awaits the completion of the connection attempts that have already been initiated. This attack would prevent both users and administrators from connecting to the device.",
+        "ease": "Tools can be downloaded from the Internet that are capable of opening a large number of TCP connections without correctly terminating them.",
+        "recommandation": "DigInv recommends that TCP keep alive messages should be sent to detect and drop orphaned connections from remote systems.",
+        "command": "service tcp-keepalives-out",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "48": {
+        "name": "Sequence Numbers and Time Stamps on Debugs was disabled",
+        "observation": "Timestamps are useful for viewing when certain events happen on a router. Timestanps are also helpful for troubleshooting, because they allow the network administrator to compare simultaneous events on network routers and analyze whether one occurrence caused, or was a result of, another.",
+        "impact": "sequence numbers and time stamps on all debug and log messages whenever possible. Time stamps on debug and log messages indicate the time and date that the message was generated. Sequence numbers indicate the sequence in which messages that have identical time stamps were generated.",
+        "ease": "Knowing the timing and sequence that messages are generated is an important tool in diagnosing potential attacks.",
+        "recommandation": "DigInv recommands that, Sequence Numbers and Time Stamps on Debugs should be enabled. ",
+        "command": "service timestamps debug datetime localtime show-timezone msec service timestamps log datetime localtime show-timeout msec service sequence-numbers",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "49": {
+        "name": "IP CEF was disabled",
+        "observation": "Cisco Express Forwarding (CEF) is an advanced layer 3 switching technology used mainly in large core networks or the Internet to enhance the overall network performance. Although CEF is a Cisco proprietary protocol other vendors of multi-layer switches or high-capacity routers offer a similar functionality where layer-3 switching or routing is done in hardware (in an ASIC) instead of by software and the (central) CPU.",
+        "impact": "Cisco Express Forwarding (CEF) or Distributed Cisco Express Forwarding (DCEF) whenever possible. Because there is no need to build cache entries when traffic starts arriving at new destinations, CEF behaves more predictably than other modes when presented with large volumes of traffic addressed to many destinations.",
+        "ease": "Routes configured for CEF perform better under SYN attacks than routers using the traditional cache.",
+        "recommandation": "DigInv recommands that, IP CEF should be enabled",
+        "command": "ip cef",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "50": {
+        "name": " IP Gratuitous ARPs was enabled",
+        "observation": "A Gratuitous ARP is an ARP Response that was not prompted by an ARP Request. The Gratuitous ARP is sent as a broadcast, as a way for a node to announce or update its IP to MAC mapping to the entire network.",
+        "impact": "IP gratuitous Address Resolution Protocol (ARP) requests whenever possible. A gratuitous ARP is an ARP broadcast in which the source and destination IP addresses are the same. It is used primarily by a host to inform the network about its IP address.",
+        "ease": " A spoofed gratuitous ARP message can cause network mapping information to be stored incorrectly, causing network malfunction.",
+        "recommandation": "DigInv recommands that, IP Gratuitous ARPs should be disabled",
+        "command": "no ip gratuitous-arps",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "51": {
+        "name": "Authentication Failure Rate configured with more than 3 tries",
+        "observation": "Authentication for a computer system is a process allowing the system to ensure the legitimacy of the access request made by an entity (human being or another system...) in order to authorize the access of this entity to system resources ( systems , networks, applications , etc.)",
+        "impact": "Allow an attacker to gain access to the device if dictionary based attack was passed succefully",
+        "ease": " One method of cracking passwords, called the dictionary attack, is to use software that attempts to log in using every word in a dictionary.Tools are available in Internet",
+        "recommandation": "DigInv recommands that authentication failure rate should be configured with 3 tries or less",
+        "command": "security authentication failure rate <3>",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "52": {
+        "name": "Authentication Failure Rate was not configured",
+        "observation": "Authentication for a computer system is a process allowing the system to ensure the legitimacy of the access request made by an entity (human being or another system...) in order to authorize the access of this entity to system resources ( systems , networks, applications , etc.)",
+        "impact": "Allow an attacker to gain access to the device if dictionary based attack was passed succefully",
+        "ease": "One method of cracking passwords, called the dictionary attack, is to use software that attempts to log in using every word in a dictionary.Tools are available in Internet",
+        "recommandation": "DigInv recommands that authentication failure rate should be configured with 3 tries or less",
+        "command": "security authentication failure rate <3>",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "53": {
+        "name": "TCP Synwait Time was configured with more than 10 secondes",
+        "observation": "A TCP connection requires a three-phase handshake to initially establish the connection. A connection request is sent by the originator, an acknowledgement is sent by the receiver, and then an acceptance of that acknowledgement is sent by the originator. ",
+        "impact": "TCP synwait time is a value that is useful in defeating SYN flooding attacks, a form of Denial-of-Service (DoS) attack.",
+        "ease": "Tools are available in the Internet",
+        "recommandation": "DigInv recommands that, the TCP Synwait should be configured with 10 seconds or less",
+        "command": "ip tcp synwait-time <10>",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "54": {
+        "name": "TCP Synwait Time was not configured",
+        "observation": "A TCP connection requires a three-phase handshake to initially establish the connection. A connection request is sent by the originator, an acknowledgement is sent by the receiver, and then an acceptance of that acknowledgement is sent by the originator. ",
+        "impact": "TCP synwait time is a value that is useful in defeating SYN flooding attacks, a form of Denial-of-Service (DoS) attack.",
+        "ease": "Tools are available in the Internet",
+        "recommandation": "DigInv recommands that, the TCP Synwait should be configured with 10 seconds or less",
+        "command": "ip tcp synwait-time <10>",
+        "tab": [
+            "INFORMATIONAL",
+            "INFORMATIONAL",
+            "Challenging",
+            "Quick"
+        ]
+    },
+    "55": {
+        "name": "",
+        "observation": "",
+        "impact": "",
+        "ease": "",
+        "recommandation": "",
+        "command": "",
+        "tab": []
+    },
+    "56": {
+        "name": "",
+        "observation": "",
+        "impact": "",
+        "ease": "",
+        "recommandation": "",
+        "command": "",
+        "tab": []
+    }
+}
