@@ -1,0 +1,151 @@
+{
+    "General": {
+        "header": [
+            "Description",
+            "Setting"
+        ],
+        "Hostname": "",
+        "IOS Version": "",
+        "Service Password Encryption": "",
+        "Minimum Password Length": "6",
+        "IP Source Routing": "Enabled",
+        "BOOTP": "Enabled",
+        "Service Config": "Disabled",
+        "TCP Keep Alives (In)": "",
+        "TCP Keep Alives (Out)": "",
+        "Cisco Express Forwarding": "Disabled",
+        "Gratuitous ARPs": "Enabled",
+        "Classless Routing": "Enabled"
+    },
+    "Services": {
+        "header": [
+            "Service",
+            "Status"
+        ],
+        "Telnet": "",
+        "SSH": "",
+        "HTTP": "",
+        "Finger": "",
+        "TCP Small Services": "",
+        "UDP Small Services": "",
+        "CDP": "",
+        "PAD": ""
+    },
+    "User Policy Settings": {
+        "header": [
+            "Description",
+            "Setting"
+        ]
+    },
+    "Local Users": {
+        "header": [
+            "Description",
+            "Setting"
+        ]
+    },
+    "Domain Name Settings": {
+        "header": [
+            "Description",
+            "Setting"
+        ]
+    },
+    "Time Zone Settings": {
+        "header": [
+            "Description",
+            "Setting"
+        ]
+    },
+    "Logging": {
+        "header": [
+            "Description",
+            "Setting"
+        ]
+    },
+    "HyperText Transfer Protocol": {
+        "header": [
+            "Description",
+            "Setting"
+        ]
+    },
+    "Lines": {
+        "header": [
+            "Line Type",
+            "Start Line",
+            "Logins",
+            "Exec",
+            "Authorization",
+            "Accounting",
+            "Telnet",
+            "SSH",
+            "Timeout",
+            "Exec Timeout",
+            "Session Timeout",
+            "Absolute Timeout",
+            "Password",
+            "Password Encryption"
+        ]
+    },
+    "Interfaces": {
+        "header": [
+            "Interface",
+            "Active",
+            "IP Address",
+            "Proxy ARP",
+            "IP Unreachable",
+            "IP Redirect",
+            "IP Mask Reply",
+            "IP Direct Broadcast",
+            "NTP",
+            "CDP",
+            "uRPF",
+            "MOP"
+        ]
+    },
+    "CDP Settings": {
+        "header": [
+            "Interface",
+            "Active",
+            "CDP"
+        ]
+    },
+    "DTP Settings": {
+        "header": [
+            "Interface",
+            "Active",
+            "VLAN",
+            "Trunk",
+            "Trunk VLAN",
+            "DTP"
+        ]
+    },
+    "VTP Settings": {
+        "header": [
+            "Description",
+            "Setting"
+        ],
+        "VTP Version": "",
+        "VTP Domain": "",
+        "VTP Password": "",
+        "VTP Mode": "",
+        "VTP Pruning": ""
+    },
+    "Port Security Settings":{
+        "header":["Interface","Active","Security","Max MAC","Aging","Age Type","Sticky","MAC"]
+    },
+    "Routing Configuration":{
+        "intro":"Cisco Router devices routing tables can be configured with static routes or updated dynamically. Routing protocols are used by network routing devices to dynamically update the routing tables that devices use to forward network traffic to their destination. Routing protocols can be split into two different categories; Interior Gateway Protocols (IGPs) and Exterior Gateway Protocols (EGPs). IGPs are usually used in situations where the routing devices are all controlled by a single entity, such as within a company. EGPs are usually used in situations where routing devices are managed by a number of entities, such as the Internet. Typically routing devices will support a number of standard routing protocols. This section describes the routing configuration settings.",
+        "RIP Configuration":{
+            "intro":"RIP is an IGP and calculates routes using a distance vector. RIP is only suitable for small networks, routing updates are sent every 30 seconds and contain the entire routing table. Furthermore, RIP has a maximum distance of 15 hops. If RIP routes have not been updated within three minutes the route is marked as unusable. Routes not updated within four minutes are removed.",
+            "header":["Description","Setting"],
+            "Rip Routing":"",
+            "RIP Send Version":"",
+            "RIP Receive Version":"",
+            "Timeout":"",
+            "Update Interval":"",
+            "Route Summary":"",
+            "Inbound Distribution List":"",
+            "Outbound Distribution List":""
+               
+        }
+    }
+}

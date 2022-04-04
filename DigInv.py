@@ -1,16 +1,33 @@
-
-
-
-from importlib.resources import contents
-from unicodedata import name
+import sys
+#never change this path 
+sys.path.extend(('./Router','./Switch','./Firewall'))
 from variables import *
-from func import build_table
+print("the device is {} and the file name is {}".format(device_type,file_name))
+from func import *
+if device_type=="router":
+        
+        from Router.GlobAudit import *
+        from Router.IntfAudit import *
+        from Router.vuln import *
+elif device_type=="switch":
+        from Switch.GlobAudit import *
+        from Switch.IntAudit import *
+        from Switch.vuln import *
+elif device_type=="firewall":
+        from Firewall import *
+       
+
+
+
 from dominate import *
 from dominate.tags import *
+from dominate.util import raw
 from datetime import date
 import matplotlib.pyplot as plt
 import numpy as np
-from device_conf import d_device_conf
+
+
+
 
 
 #get current datetime
@@ -24,8 +41,7 @@ report = document(title="DigInv")
 with report.head:
         link(rel='stylesheet', href='style.css')
 
-from IntfAudit import d_intfaudit
-from GlobAudit import *
+
         
 report+=h1("DigInv")
 report+=h1("Audit report")
@@ -55,9 +71,9 @@ y = np.array([CRITICAL_RATING, HIGH_RATING, MEDUIM_RATING, LOW_RATING, INFORMATI
 mylabels = ["CRITICAL", "HIGH", "MEDIUM", "LOW","INFORMATIONNAL"]
 
 
-#plt.pie(y,labels=mylabels)
+plt.pie(y,labels=mylabels)
 
-#plt.savefig('cache/graph.png',bbox_inches='tight',transparent=True)
+plt.savefig('cache/graph.png',bbox_inches='tight',transparent=True)
 
 report+=img(src="./cache/graph.png")
 
@@ -69,7 +85,7 @@ your_report=div()
 your_report+=h5("1 Your Report")
 your_report_s=div()
 your_report_s+=h5("1.1 Introduction",_class="rp_section")
-your_report_s+=h5("1.2 Evaluation Use Only",_class="rp_section")
+#your_report_s+=h5("1.2 Evaluation Use Only",_class="rp_section")
 your_report+=your_report_s
 contents+=your_report
 
@@ -184,6 +200,8 @@ report+=d_globaudit
 report+=h2("Interfaces Audit")
 report+=d_intfaudit
 #the vulnerability section
+report+=h2("Vulnerabilty Audit")
+report+=d_vulnerability
 
 #the configuration report
 report+=h3("3 Configuration Report")

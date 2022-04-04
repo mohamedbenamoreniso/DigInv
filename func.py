@@ -2,11 +2,13 @@ from email.policy import default
 from dominate.tags import *
 from dominate import *
 import re
-import numpy as np
 import pandas as pd
 import settings
-import itertools
+import variables
 from variables import *
+
+
+import itertools
 from ipaddress import NetmaskValueError
 import ipaddress
 
@@ -46,7 +48,7 @@ def check_strength_password(password):
         elif not re.search("[0-9]", password):
             flag = -1
             break
-        elif not re.search("[_()#&@$]", password):
+        elif not re.search("[&'(-_)=$*%!:;,<>§µ^]", password):
             flag = -1
             break
         elif re.search("\s", password):
@@ -68,14 +70,14 @@ def check_strings(_str):
         return False
         
 # function to retrieve data from the json file (global audit)
-d_globaudit=div(_class="globaudit")
+
 settings.init()
 i=1
 def retrieve_data_from_json(id):
     global i
     global d_globaudit
     str_id = str(id)
-    global_list_sec_audit.append(settings.audits[str_id]['name'])
+    variables.global_list_sec_audit.append(settings.audits[str_id]['name'])
     # start global report generating
     inf_div=div(_class="information")
     threat_div=div(_class="container")
@@ -110,13 +112,13 @@ def retrieve_data_from_json(id):
     return 0
 
 # function to retrieve data from the json file (interface audit)
-d_intfaudit=div(_class="interfaceaudit")
+
 settings.init_securityaudits_intf()
 def retrieve_data_from_json_intf(id):
     global i
     str_id = str(id)
     global d_intfaudit
-    intf_list_sec_audit.append(settings.audits_intf[str_id]["name"])
+    variables.intf_list_sec_audit.append(settings.audits_intf[str_id]["name"])
     #start interface report generating
     inf_div=div(_class="information")
     threat_div=div(_class="container")
@@ -158,7 +160,7 @@ def build_table(data,column):
 #iterate over Key-chain as input and return of the key-strins as output 
 def get_key_strings(key_chain):
     key_strings=list()
-    for key_c in parse.find_objects(r"^key chain\s"+key_chain):
+    for key_c in variables.parse.find_objects(r"^key chain\s"+key_chain):
         local_key=[]
         for key_c_child in key_c.children:
             
@@ -255,3 +257,4 @@ def get_interfaces(networks,parse,interfaces):
                         interfaces.append(intf)
     return interfaces
 
+print("end successfully")

@@ -32,7 +32,10 @@ table td {
 }
 .Security_Audit{
   margin-top: 20px;
-  
+
+}
+.dataframe{
+  margin-top: 20px;
 }
 .rp_section{
   margin-left: 15px;
@@ -49,11 +52,9 @@ table thead td {
 	border: 1px solid #54585d;
  
 }
-.dataframe{
-  margin-top: 20px;
-}
+
 table tbody td {
-	color: #701ac0;
+	color: #bd321a;
 	border: 1px solid #dddfe1;
 }
 table tbody tr {
