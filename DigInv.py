@@ -66,16 +66,16 @@ sec_sum=CRITICAL_RATING+HIGH_RATING+MEDUIM_RATING+LOW_RATING+INFORMATIONAL_RATIN
 report+=h2("Security Audit Summary")
 report+=p("DigInv  performed a security audit of the device detailed in the scope and identified %s security-related issues. Each of the issues identified is described in greater detail in the main body of this report."%sec_sum)
 #report+=p("DigInv can draw the following statistics from the results of this security assessment, (percentages have been rounded). %s issue(s) (%s %) was rated as critical, %s issues (%s%) were rated as high, %s issues (%s%) were rated as medium, %s issues (%s%) were rated as low and %s issues (%s%) were rated as informational."%CRITICAL_RATING %(CRITICAL_RATING/sec_sum)*100 %HIGH_RATING %(HIGH_RATING/sec_sum)*100 %MEDUIM_RATING %(MEDUIM_RATING/sec_sum)*100 %LOW_RATING %(LOW_RATING/sec_sum)*100 %INFORMATIONAL_RATING %(INFORMATIONAL_RATING/sec_sum)*100)
-report+=p("DigInv can draw the following statistics from the results of this security assessment, {} issue(s) ({}%)  was rated as critical, {} issues ({}%) were rated as high, {} issues ({}%) were rated as medium, {} issues ({}%) were rated as low and {} issues ({}%) were rated as informational.".format(CRITICAL_RATING ,(CRITICAL_RATING/sec_sum)*100 ,HIGH_RATING ,(HIGH_RATING/sec_sum)*100 ,MEDUIM_RATING ,(MEDUIM_RATING/sec_sum)*100 ,LOW_RATING ,(LOW_RATING/sec_sum)*100 ,INFORMATIONAL_RATING ,(INFORMATIONAL_RATING/sec_sum)*100))
+#report+=p("DigInv can draw the following statistics from the results of this security assessment, {} issue(s) ({}%)  was rated as critical, {} issues ({}%) were rated as high, {} issues ({}%) were rated as medium, {} issues ({}%) were rated as low and {} issues ({}%) were rated as informational.".format(CRITICAL_RATING ,(CRITICAL_RATING/sec_sum)*100 ,HIGH_RATING ,(HIGH_RATING/sec_sum)*100 ,MEDUIM_RATING ,(MEDUIM_RATING/sec_sum)*100 ,LOW_RATING ,(LOW_RATING/sec_sum)*100 ,INFORMATIONAL_RATING ,(INFORMATIONAL_RATING/sec_sum)*100))
 y = np.array([CRITICAL_RATING, HIGH_RATING, MEDUIM_RATING, LOW_RATING, INFORMATIONAL_RATING])
 mylabels = ["CRITICAL", "HIGH", "MEDIUM", "LOW","INFORMATIONNAL"]
 
 
-plt.pie(y,labels=mylabels)
+#plt.pie(y,labels=mylabels)
 
-plt.savefig('cache/graph.png',bbox_inches='tight',transparent=True)
+#plt.savefig('cache/graph.png',bbox_inches='tight',transparent=True)
 
-report+=img(src="./cache/graph.png")
+#report+=img(src="./cache/graph.png")
 
 report+=h2("Contents")
 contents=div(_class="contents")

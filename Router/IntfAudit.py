@@ -6,6 +6,7 @@ from itertools import count
 from logging import shutdown
 from variables import *
 from func import *
+from settings import *
 from dominate.util import raw
 from collections import defaultdict
 
@@ -247,8 +248,10 @@ for intf in interfaces_networks_rp:
         intf_audit.append(5)
         
 data=dict(data)
-convert_str_table(28,["Interface","OSPF Priority"])     
-
+try:
+    convert_str_table(28,["Interface","OSPF Priority"])     
+except:
+    pass
 
 networks_rp.clear()
 interfaces_networks_rp.clear()
@@ -362,8 +365,9 @@ for key_chain in auth_keys:
             data[27].append(obj_data)
 
 data=dict(data)   
+if(27 in data):
 
-convert_str_table(27,["key-chain","key-ID","Key-string"])
+    convert_str_table(27,["key-chain","key-ID","Key-string"])
 data=defaultdict(list)
 #interfaces audit
 for obj in parse.find_objects(r"interface"):
@@ -375,6 +379,7 @@ for obj in parse.find_objects(r"interface"):
         obj_list.append(str(child.text))
     #make the children of interface as string   
     obj_list= ''.join(map(str,obj_list))
+  
     if ("no shutdown" in obj_list):
         try:
             
@@ -418,44 +423,39 @@ for obj in parse.find_objects(r"interface"):
             #build the table 
 data=dict(data)
 for i in [17,32,34,35,36,37]:
-    convert_str_table(i,["Interface","Address","State","Description"])
-
-
-
-#proxy ARP 
-for obj in parse.find_objects_wo_child(r"interface",r"no\sip\sproxy-arp"):
-    intf_audit.append(34)
-    
-    obj_data=[]
    
-    #get the interface name
-    
-    _active= obj.has_child_with("no\sshutdown")
-    
-    obj_data.append(str(obj.text))
-    obj_data.append(_active)
-    
-    for obj_child in obj.children:
-        _ipaddress=obj_child.re_match_typed(r"ip\saddress\s(\d+\.\d+\.\d+\.\d+)",default=NO_MATCH)
-        _description=obj_child.re_match_typed(r"description\s(\w+?)\s+(\d*)[^\d]*(\d+)",default=NO_MATCH)
+    if(i in data):
+        convert_str_table(i,["Interface","Address","State","Description"])
 
-        
-        if(_ipaddress!=NO_MATCH):
 
-            obj_data.append(_ipaddress)
-            
-        if(_description!=NO_MATCH):
-            print(_description)
 
-            #obj_data.append(_description)
-    
-    #data.append(obj_data)
 
-#intf_table_dict[34]=raw(build_table(data,column))
 
 intf_audit=list(set(intf_audit))
-intf_audit.sort()
+
 print(intf_audit)
+#sort security audits from CRITICAL to INFORMATIONAL
+cl = list()
+hl = list()
+ml = list()
+ll = list()
+il = list()
+for i in intf_audit:
+    print(intf_audit[str(i)]['tab'][0])
+    if(audits_intf[str(i)]['tab'][0] == "CRITICAL"):
+        cl.append(i)
+    elif(audits_intf[str(i)]['tab'][0] == "HIGH"):
+        hl.append(i)
+    elif(audits_intf[str(i)]['tab'][0] == "MEDIUM"):
+        ml.append(i)
+    elif(audits_intf[str(i)]['tab'][0] == "LOW"):
+        ll.append(i)
+    else:
+        il.append(i)
+
+intf_audit.clear()
+intf_audit = cl+hl+ml+ll+il
+
 settings.init_securityaudits_intf()
 for i in intf_audit:
     retrieve_data_from_json_intf(i)

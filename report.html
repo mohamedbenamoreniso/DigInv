@@ -7,9 +7,9 @@
   <body>
     <h1>DigInv</h1>
     <h1>Audit report</h1>
-    <h4>2022-04-04</h4>
+    <h4>2022-04-05</h4>
     <h3>Summary</h3>
-    <p>DigInv performed an audit on 2022-04-04 of the network device detailed in the scope.The audit consisted of the following components:</p>
+    <p>DigInv performed an audit on 2022-04-05 of the network device detailed in the scope.The audit consisted of the following components:</p>
     <ul>
       <li><a href="#part2">a best practice security audit (Part 2)</a></li>
       <li><a href="#part3">a software vulnerability audit report (Part 3)</a></li>
@@ -27,16 +27,14 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>mohamed</td>
+      <td>Switch</td>
       <td>Router</td>
-      <td>12.4</td>
+      <td>15.0</td>
     </tr>
   </tbody>
 </table>
     <h2>Security Audit Summary</h2>
-    <p>DigInv  performed a security audit of the device detailed in the scope and identified 7 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
-    <p>DigInv can draw the following statistics from the results of this security assessment, 0 issue(s) (0.0%)  was rated as critical, 2 issues (28.57142857142857%) were rated as high, 0 issues (0.0%) were rated as medium, 2 issues (28.57142857142857%) were rated as low and 3 issues (42.857142857142854%) were rated as informational.</p>
-    <img src="./cache/graph.png">
+    <p>DigInv  performed a security audit of the device detailed in the scope and identified 0 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
     <h2>Contents</h2>
     <div class="contents">
       <div>
@@ -49,13 +47,24 @@
         <h5>2.1 Introduction</h5>
         <div class="globalaudit">
           <h5>2.2 Global Audit</h5>
-          <h5>2.2.1 PAD Service Enabled</h5>
+          <h5>2.2.1 UDP Small Services Enabled</h5>
           <h5>2.2.2 No Inbound TCP Connection Keep-Alives</h5>
-          <h5>2.2.3 Service Password Encryption Disabled</h5>
-          <h5>2.2.4 UDP Small Services Enabled</h5>
-          <h5>2.2.5 Domain Lookups were enabled</h5>
-          <h5>2.2.6 No Post Logon Banner Message</h5>
-          <h5>2.2.7 CDP enabled</h5>
+          <h5>2.2.3 IP Classless</h5>
+          <h5>2.2.4 Service Password Encryption Disabled</h5>
+          <h5>2.2.5 CDP enabled</h5>
+          <h5>2.2.6 IP Source Routing Was Enabled</h5>
+          <h5>2.2.7 Warning In Pre-Logon Banner</h5>
+          <h5>2.2.8 The BOOTP Service Was Not Disabled</h5>
+          <h5>2.2.9 VTP Was In Server Mode</h5>
+          <h5>2.2.10 TCP Small Services Enabled</h5>
+          <h5>2.2.11 Domain Lookups were enabled</h5>
+          <h5>2.2.12 No Network Filtering Rules Were Configured</h5>
+          <h5>2.2.13 PAD Service Enabled</h5>
+          <h5>2.2.14 No Post Logon Banner Message</h5>
+          <h5>2.2.15 No Outbound TCP Connection Keep-Alives</h5>
+          <h5>2.2.16 Sequence Numbers and Time Stamps on Debugs was disabled</h5>
+          <h5>2.2.17 Authentication Failure Rate was not configured</h5>
+          <h5>2.2.18 TCP Synwait Time was not configured</h5>
         </div>
         <div>
           <h5>2.3 Interface Audit</h5>
@@ -67,14 +76,14 @@
     </div>
     <h2>1. Your Report</h2>
     <h3>1.1 Introduction</h3>
-    <p>This report was produced by DigInv on 2022-04-04. This report is comprised of the following sections:</p>
+    <p>This report was produced by DigInv on 2022-04-05. This report is comprised of the following sections:</p>
     <ul>
       <li>a security audit section which details any identified         security-related issues. Each security issue identified includes details of what was found together with the impact of the issue,         how easy it would be for an attacker to exploit and a recommendation.         The recommendations may include alternatives and, where relevant, the commands to resolve the issue;</li>
       <li>a software vulnerability audit section that provides a comparison of the device software versions against a database of known vulnerabilities. In addition to a         brief description, each potential vulnerability includes a CVSSv2 score and references to more specific information provided by the device manufacturers and         third parties;</li>
       <li>a configuration report which details the configuration settings of all the audited devices in an easy to read format. The configuration settings are divided in to report sub-sections which group related settings together and provide additional information about their purpose;</li>
     </ul>
     <h2>2 Security Audit</h2>
-    <p>DigInv performed a security audit on 2022-04-04 of the device detailed in the Table below.</p><table border="1" class="dataframe">
+    <p>DigInv performed a security audit on 2022-04-05 of the device detailed in the Table below.</p><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -86,9 +95,9 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>mohamed</td>
+      <td>Switch</td>
       <td>Router</td>
-      <td>12.4</td>
+      <td>15.0</td>
     </tr>
   </tbody>
 </table>
@@ -209,25 +218,29 @@
     <div class="globaudit">
       <div class="container">
         <div class="information">
-          <h3>1. PAD Service Enabled</h3>
+          <h3>1. UDP Small Services Enabled</h3>
           <h5>observation</h5>
-          <p>The PAD service enables X.25 commands and connections between PAD devices and access servers, converting the character stream data into network packets and network packets into character stream data. The PAD service is enabled by default on some devices but it is only required if support for X.25 links are necessary.</p>
+          <p>Some devices and platforms provide a collection of simple User Datagram Protocol (UDP) network services, which are also sometimes referred to Fix: Quick as small services. These services provide little functionality and are rarely used and they typically include:
+Echo (defined in RFC 862) returns any data sent to it back to the connecting client;
+Discard (defined in RFC 863) ignores any data sent to it by a connecting client;
+Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client.
+DigInv determined that the UDP small servers were enabled</p>
           <h5>impact</h5>
           <ul>
-            <li>In addition to the extra overhead, running unused services increases the chances of an attacker finding a security hole or fingerprinting a device.</li>
+            <li>An attacker could use the UDP small servers as part of a DoS attack. UDP is a connection-less protocol and an experienced attacker could forge network packets to use the echo and chargen services to increase the network traffic and system utilization of devices offering the services. Additionally, each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not as significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.</li>
           </ul>
           <h5>ease</h5>
-          <p>The PAD service was enabled.</p>
+          <p>Tools that can be used to connect to these services are installed by default on some systems or can be downloaded from the Internet.</p>
           <h5>recommandation</h5>
           <ul>
-            <li>DigInv recommends that, if not required, the PAD service should be disabled.</li>
+            <li>DigInv recommends that the UDP small servers should be disabled.</li>
           </ul>
-          <p class="command">no service pad</p>
+          <p class="command">no service udp-small-servers</p>
         </div>
         <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:INFORMATIONAL</div>
-          <div>Ease:N/A</div>
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Trivial</div>
           <div>Fix:Quick</div>
         </div>
       </div>
@@ -257,7 +270,32 @@
       </div>
       <div class="container">
         <div class="information">
-          <h3>3. Service Password Encryption Disabled</h3>
+          <h3>3. IP Classless</h3>
+          <h5>observation</h5>
+          <p>Classless routing is enabled by default on Cisco routers. If a router has classless routing enabled and it receives a network packet for which there is no configured route, the router will forward the packet to the best destination. With classless routing disabled, the router would discard any network traffic for which no route is defined.
+DigInv determined that classless routing was enabled</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Network traffic that should not be routed by the router may be routed when classless routing is enabled.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>N/A</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if possible, classless routing be disabled. Classless routing can be disabled with the following command:</li>
+          </ul>
+          <p class="command">no ip classless</p>
+        </div>
+        <div class="square">
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Trivial</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>4. Service Password Encryption Disabled</h3>
           <h5>observation</h5>
           <p>Cisco service passwords are stored by default in their clear-text form rather than being encrypted. However, it is possible to have these passwords stored using the reversible Cisco type-7 encryption.
 DigInv determined that the Cisco device Router was not running the password encryption service that helps provide a basic level of encryption to passwords that otherwise would be stored in clear-text.</p>
@@ -282,35 +320,158 @@ DigInv determined that the Cisco device Router was not running the password encr
       </div>
       <div class="container">
         <div class="information">
-          <h3>4. UDP Small Services Enabled</h3>
+          <h3>5. CDP enabled</h3>
           <h5>observation</h5>
-          <p>Some devices and platforms provide a collection of simple User Datagram Protocol (UDP) network services, which are also sometimes referred to Fix: Quick as small services. These services provide little functionality and are rarely used and they typically include:
-Echo (defined in RFC 862) returns any data sent to it back to the connecting client;
-Discard (defined in RFC 863) ignores any data sent to it by a connecting client;
-Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client.
-DigInv determined that the UDP small servers were enabled</p>
+          <p>CDP is a proprietary protocol that was developed and is primarily used by Cisco. A CDP enabled device can be configured to broadcast.
+CDP packets on the network enabling network management applications and CDP aware devices to identify each other. CDP packets include information about thesender, such as OS version and IP address information.</p>
           <h5>impact</h5>
           <ul>
-            <li>An attacker could use the UDP small servers as part of a DoS attack. UDP is a connection-less protocol and an experienced attacker could forge network packets to use the echo and chargen services to increase the network traffic and system utilization of devices offering the services. Additionally, each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not as significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.</li>
+            <li>CDP packets contain information about the sender, such as hardware model information, operating system version and IP address details. This information would give an attacker valuable information about the device. The attacker could then use this information as part of a targeted attack.</li>
           </ul>
           <h5>ease</h5>
-          <p>Tools that can be used to connect to these services are installed by default on some systems or can be downloaded from the Internet.</p>
+          <p>CDP packets are broadcast to an entire network segment. The attacker or malicious user would require access to a network segment on which the CDP packets are broadcast and network monitoring software. A wide variety of network monitoring, packet capture and analysis tools can be downloaded from the Internet.</p>
           <h5>recommandation</h5>
           <ul>
-            <li>DigInv recommends that the UDP small servers should be disabled.</li>
+            <li>DigInv recommends that, if not required, CDP should be disabled.
+In some configurations with IP phones, deployed using either Auto Discovery or Dynamic Host Configuration Protocol (DHCP), the CDP service may need to be enabled. However, if the device supports disabling CDP on individual interfaces, then DigInv recommends that it should be disabled on all the interfaces where it is not required.</li>
           </ul>
-          <p class="command">no service udp-small-servers</p>
+          <p class="command">no cdp run</p>
         </div>
         <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>6. IP Source Routing Was Enabled</h3>
+          <h5>observation</h5>
+          <p>TCP/IP packets can contain source route information, this can enable a packet to define its own route through a network rather than using a route defined by static routes or routing protocols. The source route option functionality was defined in RFC 791.
+Many network filtering and routing devices include facilities that enable them to ignore the source route defined in a packet or block the packets entirely.
+ DigInv determined that IP source routing was enabled</p>
+          <h5>impact</h5>
+          <ul>
+            <li>IP source routing can allow an attacker to specify a route for a network packet to follow, possibly to bypass a Firewall device or an Intrusion Detection System (IDS). An attacker could also use source routing to capture network traffic by routing it through a system controlled by the attacker.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>An attacker would have to control either a routing device or an end point device in order to modify a packets route through the network. However, tools can be downloaded from the Internet that would allow an attacker to specify source routes. Tools are also available to modify network routing using vulnerabilities in some routing protocols.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that IP source routing information contained in network packets should be ignored.</li>
+          </ul>
+          <p class="command">no ip source-route</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:Moderate</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>7. Warning In Pre-Logon Banner</h3>
+          <h5>observation</h5>
+          <p>Logon banner messages are an important, but often overlooked, part of a secure configuration. Logon banner messages can provide connecting users with important information and warn against unauthorized access.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>A carefully worded warning message could deter a casual attacker or malicious user, but not a determined attacker. However, it would be more difficult to prove any intent without a message warning against unauthorized access if any legal action were to be taken against an attacker.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>An attacker would not be presented with a carefully worded legal warning prior to attempting to logon.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that all pre-logon banner messages should be configured to warn against unauthorized access.</li>
+          </ul>
+          <p class="command">banner login delimiter banner-message delimiter</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:N/A</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>8. The BOOTP Service Was Not Disabled</h3>
+          <h5>observation</h5>
+          <p>BOOTstrap Protocol (BOOTP) is a datagram protocol that allows compatible hosts to load their operating system over the network from a BOOTP server. Cisco routers are capable of acting as BOOTP servers for other Cisco devices and the service is enabled by default. However, BOOTP is rarely used and may represent a security risk.
+DigInv determined that BOOTP was not disabled. However, it is worth noting that not all Cisco devices support BOOTP.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could use the BOOTP service to download a copy of the router's IOS software.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools are available on the Internet to access BOOTP servers.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, the BOOTP service be disabled. The following command can be used to disable BOOTP:</li>
+          </ul>
+          <p class="command">no ip bootp server</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:LOW</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>9. VTP Was In Server Mode</h3>
+          <h5>observation</h5>
+          <p>VTP was developed by Cisco to assist with the management of VLANs over multiple devices. The protocol enables the addition, renaming and deletion of VLANs on a single switch to be propagated to other network switches in the same VTP domain. A device in VTP server mode will transmit VTP packets containing VLAN information. If a device in VTP client mode in the same domain receives a VTP network packet with a higher revision number the changes will be applied.
+ DigInv determined that VTP was in server mode.It is worth mentioning that although the VTP was found to be in server mode(adefault setting), no VTP domain was configured. However, there have been instances where a device in this configuration have had their VTP domain setremotely from other networked devices.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could determine the VLAN configuration by capturing VTP packets sent from the device and VTP packets are not encrypted, even when a password is specified. The attacker could then use the VLAN information or password as part of a targeted attack.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools that are capable of capturing network packets are available on the Internet and installed by default on some OS.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, VTP should be disabled or placed in transparent mode, even if no VTP domain has been configured.</li>
+          </ul>
+          <p class="command">vtp transparent 
+vtp mode transparent</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:Moderate</div>
+          <div>Fix:Planned</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>10. TCP Small Services Enabled</h3>
+          <h5>observation</h5>
+          <p>Some devices and platforms provide a collection of simple TCP network services, which are also sometimes referred to as small services. These services provide little functionality and are rarely used and they typically include:Echo (defined in RFC 862) returns any data sent to it back to the connecting client;Discard (defined in RFC 863) ignores any data sent to it by a connecting client;Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client;Daytime (defined in RFC 867) returns the current time to a connecting client.DigInv determined that the TCP small servers were enabled</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools such as Telnet can be used to connect to these services and are often installed by default.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>It is generally considered good security practice to disable all unused services and not running the services will free system resources for other use. Therefore DigInv suggests that the TCP small servers should be disabled.</li>
+          </ul>
+          <p class="command">no service tcp-small-servers</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:Informational</div>
           <div>Ease:Trivial</div>
           <div>Fix:Quick</div>
         </div>
       </div>
       <div class="container">
         <div class="information">
-          <h3>5. Domain Lookups were enabled</h3>
+          <h3>11. Domain Lookups were enabled</h3>
           <h5>observation</h5>
           <p>Cisco IOS-based devices support name lookups using the Domain Name System (DNS). However, if a DNS server has not been configured, then the DNS request is broadcast.
 DigInv determined that name lookups had not been disabled and no DNS servers had been configured.</p>
@@ -335,7 +496,61 @@ DigInv determined that name lookups had not been disabled and no DNS servers had
       </div>
       <div class="container">
         <div class="information">
-          <h3>6. No Post Logon Banner Message</h3>
+          <h3>12. No Network Filtering Rules Were Configured</h3>
+          <h5>observation</h5>
+          <p>Network filtering can be configured to restrict access to network services from only those hosts that require the access, helping to prevent unauthorized access. When configured, network filter rules are processed sequentially and the first rule in the filter rule list which matches the network packet is applied.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Typically firewall appliances will drop network traffic if there are no network filtering rules configured. Whereas most non-firewall appliances will usually allow all network traffic if no network filtering rules have been configured. Although no network filter rules had been configured the default action was to drop the all network packets. Therefore an attacker, or malicious user, would not be able to access network services as all network traffic would be blocked.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>No specialist skills or tools are required by the attacker to exploit this issue.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that network filter rules should be configured to help prevent unauthorized access to network services.DigInv recommends that: filter rules should only allow access to specific destination addresses</li>
+            <li> filter rules should only allow access to specific destination network ports</li>
+            <li> filter rules should only allow access from specific source addresses</li>
+            <li> filter rules should specify a specific network protocol</li>
+            <li> ICMP filter rules should specify a specific message type</li>
+            <li> filter rules should always drop network packets and not reject them</li>
+            <li> filter rules should perform a specific action and not rely on a default action.</li>
+          </ul>
+          <p class="command">access-list number [permit | deny] protocol source-address [source-port] dest-address [dest-port] [log]</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:N/A</div>
+          <div>Fix:Planned</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>13. PAD Service Enabled</h3>
+          <h5>observation</h5>
+          <p>The PAD service enables X.25 commands and connections between PAD devices and access servers, converting the character stream data into network packets and network packets into character stream data. The PAD service is enabled by default on some devices but it is only required if support for X.25 links are necessary.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>In addition to the extra overhead, running unused services increases the chances of an attacker finding a security hole or fingerprinting a device.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>The PAD service was enabled.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, the PAD service should be disabled.</li>
+          </ul>
+          <p class="command">no service pad</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:N/A</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>14. No Post Logon Banner Message</h3>
           <h5>observation</h5>
           <p>Post logon banner messages are ones that are shown to users after they have authenticated and prior to being given access to the device. It is one that is shown to users when they connect to a device and prior to the user logon.</p>
           <h5>impact</h5>
@@ -359,27 +574,97 @@ DigInv determined that name lookups had not been disabled and no DNS servers had
       </div>
       <div class="container">
         <div class="information">
-          <h3>7. CDP enabled</h3>
+          <h3>15. No Outbound TCP Connection Keep-Alives</h3>
           <h5>observation</h5>
-          <p>CDP is a proprietary protocol that was developed and is primarily used by Cisco. A CDP enabled device can be configured to broadcast.
-CDP packets on the network enabling network management applications and CDP aware devices to identify each other. CDP packets include information about thesender, such as OS version and IP address information.</p>
+          <p>The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.</p>
           <h5>impact</h5>
           <ul>
-            <li>CDP packets contain information about the sender, such as hardware model information, operating system version and IP address details. This information would give an attacker valuable information about the device. The attacker could then use this information as part of a targeted attack.</li>
+            <li>An attacker could attempt a DoS attack against a device by exhausting the number of possible connections. To perform this attack, the attacker could keep requesting new connections to the device and spoof the source IP addresses. This would then prevent any new legitimate connections to the device from being made as the device awaits the completion of the connection attempts that have already been initiated. This attack would prevent both users and administrators from connecting to the device.</li>
           </ul>
           <h5>ease</h5>
-          <p>CDP packets are broadcast to an entire network segment. The attacker or malicious user would require access to a network segment on which the CDP packets are broadcast and network monitoring software. A wide variety of network monitoring, packet capture and analysis tools can be downloaded from the Internet.</p>
+          <p>Tools can be downloaded from the Internet that are capable of opening a large number of TCP connections without correctly terminating them.</p>
           <h5>recommandation</h5>
           <ul>
-            <li>DigInv recommends that, if not required, CDP should be disabled.
-In some configurations with IP phones, deployed using either Auto Discovery or Dynamic Host Configuration Protocol (DHCP), the CDP service may need to be enabled. However, if the device supports disabling CDP on individual interfaces, then DigInv recommends that it should be disabled on all the interfaces where it is not required.</li>
+            <li>DigInv recommends that TCP keep alive messages should be sent to detect and drop orphaned connections from remote systems.</li>
           </ul>
-          <p class="command">no cdp run</p>
+          <p class="command">service tcp-keepalives-out</p>
         </div>
         <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:Easy</div>
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:Challenging</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>16. Sequence Numbers and Time Stamps on Debugs was disabled</h3>
+          <h5>observation</h5>
+          <p>Timestamps are useful for viewing when certain events happen on a router. Timestanps are also helpful for troubleshooting, because they allow the network administrator to compare simultaneous events on network routers and analyze whether one occurrence caused, or was a result of, another.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>sequence numbers and time stamps on all debug and log messages whenever possible. Time stamps on debug and log messages indicate the time and date that the message was generated. Sequence numbers indicate the sequence in which messages that have identical time stamps were generated.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Knowing the timing and sequence that messages are generated is an important tool in diagnosing potential attacks.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommands that, Sequence Numbers and Time Stamps on Debugs should be enabled. </li>
+          </ul>
+          <p class="command">service timestamps debug datetime localtime show-timezone msec service timestamps log datetime localtime show-timeout msec service sequence-numbers</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:Challenging</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>17. Authentication Failure Rate was not configured</h3>
+          <h5>observation</h5>
+          <p>Authentication for a computer system is a process allowing the system to ensure the legitimacy of the access request made by an entity (human being or another system...) in order to authorize the access of this entity to system resources ( systems , networks, applications , etc.)</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Allow an attacker to gain access to the device if dictionary based attack was passed succefully</li>
+          </ul>
+          <h5>ease</h5>
+          <p>One method of cracking passwords, called the dictionary attack, is to use software that attempts to log in using every word in a dictionary.Tools are available in Internet</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommands that authentication failure rate should be configured with 3 tries or less</li>
+          </ul>
+          <p class="command">security authentication failure rate &lt;3&gt;</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:Challenging</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>18. TCP Synwait Time was not configured</h3>
+          <h5>observation</h5>
+          <p>A TCP connection requires a three-phase handshake to initially establish the connection. A connection request is sent by the originator, an acknowledgement is sent by the receiver, and then an acceptance of that acknowledgement is sent by the originator. </p>
+          <h5>impact</h5>
+          <ul>
+            <li>TCP synwait time is a value that is useful in defeating SYN flooding attacks, a form of Denial-of-Service (DoS) attack.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools are available in the Internet</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommands that, the TCP Synwait should be configured with 10 seconds or less</li>
+          </ul>
+          <p class="command">ip tcp synwait-time &lt;10&gt;</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:Challenging</div>
           <div>Fix:Quick</div>
         </div>
       </div>
@@ -387,7 +672,20 @@ In some configurations with IP phones, deployed using either Auto Discovery or D
     <h2>Interfaces Audit</h2>
     <div class="interfaceaudit"></div>
     <h2>Vulnerabilty Audit</h2>
-    <div class="vulnerability"></div>
+    <div class="vulnerability">
+      <div>
+        <p>HIGH</p>
+        <p>V39.8CRITICAL</p>
+      </div>
+      <div>
+        <p>MEDIUM</p>
+        <p>V39.0CRITICAL</p>
+      </div>
+      <div>
+        <p>HIGH</p>
+        <p>V39.8CRITICAL</p>
+      </div>
+    </div>
     <h3>3 Configuration Report</h3>
     <h4>3.1 Introduction</h4>
     <p>This section details the configuration settings of your device in an easy to read and understand format.         The various device configuration settings are grouped into sections of related options.</p>
@@ -403,9 +701,9 @@ In some configurations with IP phones, deployed using either Auto Discovery or D
   <tbody>
     <tr>
       <th>0</th>
-      <td>mohamed</td>
+      <td>Switch</td>
       <td>Router</td>
-      <td>12.4</td>
+      <td>15.0</td>
     </tr>
   </tbody>
 </table>

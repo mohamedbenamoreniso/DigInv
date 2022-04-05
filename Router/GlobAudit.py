@@ -1,6 +1,6 @@
 from variables import *
-from settings import *
 import re
+from settings import *
 from func import *
 from dominate.util import raw
 
@@ -279,9 +279,31 @@ if (parse.find_objects(r"^ntp")):
         glob_list.append(41)
 
 glob_list=list(set(glob_list))
-glob_list.sort()
+
 print(glob_list)
-settings.init()
+#sort security audits from CRITICAL to INFORMATIONAL
+cl = list()
+hl = list()
+ml = list()
+ll = list()
+il = list()
+for i in glob_list:
+    
+    if(audits[str(i)]['tab'][0] == "CRITICAL"):
+        cl.append(i)
+    elif(audits[str(i)]['tab'][0] == "HIGH"):
+        hl.append(i)
+    elif(audits[str(i)]['tab'][0] == "MEDIUM"):
+        ml.append(i)
+    elif(audits[str(i)]['tab'][0] == "LOW"):
+        ll.append(i)
+    else:
+        il.append(i)
+
+glob_list.clear()
+glob_list = cl+hl+ml+ll+il
+
+
 for i in glob_list:
     retrieve_data_from_json(i)
     if i in glob_table_dict:
