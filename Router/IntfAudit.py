@@ -1,9 +1,4 @@
 ##############interface auditing##################
-
-
-from email.policy import default
-from itertools import count
-from logging import shutdown
 from variables import *
 from func import *
 from settings import *
@@ -441,7 +436,7 @@ ml = list()
 ll = list()
 il = list()
 for i in intf_audit:
-    print(intf_audit[str(i)]['tab'][0])
+    print(audits_intf[str(i)]['tab'][0])
     if(audits_intf[str(i)]['tab'][0] == "CRITICAL"):
         cl.append(i)
     elif(audits_intf[str(i)]['tab'][0] == "HIGH"):

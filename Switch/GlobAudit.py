@@ -132,6 +132,10 @@ for obj in parse.find_objects(r'^snmp-server'):
 
                 tests["ACCESS_LIST"]=True
                 glob_list.append(27)
+
+
+glob_list=list(set(glob_list))
+
 #sort security audits from CRITICAL to INFORMATIONAL
 cl = list()
 hl = list()

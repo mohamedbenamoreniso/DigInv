@@ -663,7 +663,7 @@
         "impact": "sequence numbers and time stamps on all debug and log messages whenever possible. Time stamps on debug and log messages indicate the time and date that the message was generated. Sequence numbers indicate the sequence in which messages that have identical time stamps were generated.",
         "ease": "Knowing the timing and sequence that messages are generated is an important tool in diagnosing potential attacks.",
         "recommandation": "DigInv recommands that, Sequence Numbers and Time Stamps on Debugs should be enabled. ",
-        "command": "service timestamps debug datetime localtime show-timezone msec service timestamps log datetime localtime show-timeout msec service sequence-numbers",
+        "command": "service timestamps debug datetime localtime show-timezone msec \\n service timestamps log datetime localtime show-timeout msec \\n service sequence-numbers",
         "tab": [
             "INFORMATIONAL",
             "INFORMATIONAL",
