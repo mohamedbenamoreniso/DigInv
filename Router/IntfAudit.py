@@ -439,14 +439,19 @@ for i in intf_audit:
     print(audits_intf[str(i)]['tab'][0])
     if(audits_intf[str(i)]['tab'][0] == "CRITICAL"):
         cl.append(i)
+        CRITICAL_RATING+=1
     elif(audits_intf[str(i)]['tab'][0] == "HIGH"):
         hl.append(i)
+        HIGH_RATING+=1
     elif(audits_intf[str(i)]['tab'][0] == "MEDIUM"):
         ml.append(i)
+        MEDUIM_RATING+=1
     elif(audits_intf[str(i)]['tab'][0] == "LOW"):
         ll.append(i)
+        LOW_RATING+=1
     else:
         il.append(i)
+        INFORMATIONAL_RATING+=1
 
 intf_audit.clear()
 intf_audit = cl+hl+ml+ll+il
@@ -458,17 +463,7 @@ for i in intf_audit:
         d_intfaudit+=p('This table below illustrates the weakness of : %s' %settings.audits_intf[str(i)]['name'])
         d_intfaudit+=intf_table_dict.get(i)
         
-    if(i==1):
-        #CRITICAL_RATING+=1
-        pass
-    elif(1<= i <=17):
-        HIGH_RATING+=1
-    elif(18<= i <=29):
-        MEDUIM_RATING+=1
-    elif(30<=i<=35):
-        LOW_RATING+=1
-    else:
-        INFORMATIONAL_RATING+=1
+
     
 
 

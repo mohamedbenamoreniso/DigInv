@@ -18,3 +18,9 @@ for obj in parse.find_objects(r"interface"):
         #port security
         if ("switchport port-security" not in obj_list):
             intf_audit.append(4)
+#audit STP
+glob_bpduguard= parse.has_line_with(r"spanning-tree portfast bpduguard default")
+glob_bpdufilter=parse.has_line_with(r"spanning-tree portfast bpdufilter default")
+
+
+    

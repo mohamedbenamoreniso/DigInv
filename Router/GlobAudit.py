@@ -291,14 +291,19 @@ for i in glob_list:
     
     if(audits[str(i)]['tab'][0] == "CRITICAL"):
         cl.append(i)
+        CRITICAL_RATING+=1
     elif(audits[str(i)]['tab'][0] == "HIGH"):
         hl.append(i)
+        HIGH_RATING+=1
     elif(audits[str(i)]['tab'][0] == "MEDIUM"):
         ml.append(i)
+        MEDUIM_RATING+=1
     elif(audits[str(i)]['tab'][0] == "LOW"):
         ll.append(i)
+        LOW_RATING+=1
     else:
         il.append(i)
+        INFORMATIONAL_RATING+=1
 
 glob_list.clear()
 glob_list = cl+hl+ml+ll+il
@@ -310,16 +315,7 @@ for i in glob_list:
         d_globaudit+=p('This table below illustrates the weakness of : %s' %settings.audits[str(i)]['name'])
         d_globaudit+=glob_table_dict.get(i)
         
-    if(i==1):
-        CRITICAL_RATING+=1
-    elif(2<= i <=11):
-        HIGH_RATING+=1
-    elif(12<= i <=20):
-        MEDUIM_RATING+=1
-    elif(21<=i<=38):
-        LOW_RATING+=1
-    else:
-        INFORMATIONAL_RATING+=1
+
 
 
 
