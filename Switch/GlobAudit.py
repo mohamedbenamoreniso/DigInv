@@ -4,6 +4,10 @@ from settings import *
 from func import *
 
 
+
+#software version
+if parse.find_objects(r"version 12"):
+    glob_list.append(55)
 # service PAD
 if not (parse.find_objects(r"no service pad")):
     glob_list.append(44)

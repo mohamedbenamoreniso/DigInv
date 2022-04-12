@@ -532,6 +532,24 @@
         ]
     },
     "39": {
+        "name": "Telnet is enabled",
+        "observation": "elnet is widely used to provide remote command-based access to a variety of devices and is commonly used on network devices for remote administration. However, Telnet is a clear-text protocol and is vulnerable to various packet capture techniques.",
+        "impact": "An attacker who was able to monitor network traffic could capture sensitive information or authentication credentials.",
+        "ease": "Network packet and password sniffing tools are widely available on the Internet and some of the tools are specifically designed to capture clear-text protocol authentication credentials. However, in a switched environment an attacker may not be able to capture network traffic destined for other devices without employing an attack such as Address Resolution Protocol (ARP) spoofing.",
+        "recommandation": "DigInv recommends that, if possible, Telnet be disabled. If remote administrative access to the device is required, DigInv recommends that Secure Shell (SSH) be configured. The Telnet service can be disabled on individual lines with the following command:",
+        "command": "transport input none",
+        "tab": ["HIGH","High","Easy","Quick"]
+    },
+    "40": {
+        "name": "Connection Timeout not configured",
+        "observation": "Connection timeouts can be configured for a number of the device services. If a timeout were configured on an administrative service, an administrator that did not correctly terminate the connection would have it automatically closed after the timeout expires. However, if a timeout is not configured, or is configured to be a long timeout, an unauthorised user may be able to gain access using the administrator's previously logged-in connection.",
+        "impact": "An attacker who was able to gain access to a connection that had not expired, would be able to continue using that connection. A connection could be a console port on the device that was not correctly terminated or a remote administrative connection.",
+        "ease": "The attacker would have to gain physical access to the device to use the console port, or gain remote access to an administration machine that is attached to the port. To gain access to remote connections, an attacker would have to be able to intercept network traffic between the client and the device. The attacker would then have to take over the connection, which could be very difficult with some services. Tools are available on the Internet that would facilitate the monitoring of network connections.",
+        "recommandation": "DigInv ecommends that a timeout period of ten minutes be configured for connections to the device",
+        "command": "exec-timeout time(minutes) time(seconds)",
+        "tab": ["INFORMATIONAL","Informational","Easy","Quick"]
+    },
+    "41": {
         "name": "",
         "observation": "",
         "impact": "",

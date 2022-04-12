@@ -47,19 +47,27 @@ for obj in parse.find_objects(r"interface"):
         if ("switchport mode trunk" in obj_list):
             if ("switchport trunk allowed vlan" not in obj_list):
                 intf_audit.append(13)
-#telnet
-for obj in parse.find_objects(r"line vty"):
+#lines audit
+for obj in parse.find_objects(r"line"):
     obj_list=list()
     for child in obj.children:
         obj_list.append(str(child.text))
     #make the children of interface as string   
     obj_list= ''.join(map(str,obj_list))
 
-    if ("telnet" in obj_list):
-        intf_audit.append(7)
+    #telnet enabled
+    if ("vty" in str(obj.text)):
+        if ("telnet" in obj_list):
+            intf_audit.append(39)
+    #connection timeout
+    if not ("exec-timeout"  in obj_list):
+        intf_audit.append(40)
+
+
 
 
 intf_audit=list(set(intf_audit))
+print("int")
 print(intf_audit)
 #sort security audits from CRITICAL to INFORMATIONAL
 cl = list()

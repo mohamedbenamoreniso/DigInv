@@ -190,6 +190,24 @@ for i in [3,4,16,25,26,24,23,15,11,19,20,14,8,9]:
     if(i in data):
         convert_str_table(i,["interface","Virtual Address","group","priority"])    
 
+
+#lines audit
+for obj in parse.find_objects(r"line"):
+    obj_list=list()
+    for child in obj.children:
+        obj_list.append(str(child.text))
+    #make the children of interface as string   
+    obj_list= ''.join(map(str,obj_list))
+
+    #telnet enabled
+    if ("vty" in str(obj.text)):
+        if ("telnet" in obj_list):
+            intf_audit.append(39)
+    #connection timeout
+    if not ("exec-timeout"  in obj_list):
+        intf_audit.append(40)
+
+        
 #Routing Protocols audit
 networks_rp=list()
 interfaces_networks_rp=list()

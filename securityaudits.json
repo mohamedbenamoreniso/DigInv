@@ -756,13 +756,18 @@
         ]
     },
     "55": {
-        "name": "",
-        "observation": "",
-        "impact": "",
-        "ease": "",
-        "recommandation": "",
+        "name": "Software Version wasn't updated",
+        "observation": "It is critically important that software be regularly maintained with patches and upgrades in order to help mitigate the risk of an attacker exploiting a known software vulnerability. Furthermore, additional security features and other functionality are normally added or extended with each software revision.",
+        "impact": "There are  vulnerabilities on this software release could allow an attacker to gain remote administrative access or perform a Denial of Service (DoS) attack.",
+        "ease": "Exploit code is widely available on the Internet for known Cisco vulnerabilities.",
+        "recommandation": "DigInv strongly recommends that the software be updated and patched to the latest software version. Furthermore, DigInv recommends that the current patch policy be reviewed.",
         "command": "",
-        "tab": []
+        "tab": [
+            "CRITICAL",
+            "Critical",
+            "Challenging",
+            "Quick"
+        ]
     },
     "56": {
         "name": "",
