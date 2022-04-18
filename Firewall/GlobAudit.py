@@ -128,10 +128,7 @@ glob_table_dict[1]=raw(build_table(table_data,column))
 
 #check NTP Queries
 if (parse.find_objects(r"^ntp")):
-    if(parse.find_objects(r"ntp\saccess-group\squery-only")):
-        pass
-    else:
-        glob_list.append(19)
+    
     if not (parse.find_objects(r"ntp authentication-key")):
         glob_list.append(41)
 
