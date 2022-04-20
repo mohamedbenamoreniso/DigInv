@@ -1,3 +1,5 @@
+from ast import Try
+from Router.IntfAudit import HELPER_REGEX
 from variables import *
 import re
 from settings import *
@@ -62,7 +64,7 @@ for obj in parse.find_objects(r'^snmp-server'):
             glob_list.append(31)
 
 
-# checking enable secret
+# checking enable password
 if not parse.find_objects(r'enable password'):
    
      glob_list.append(4)
@@ -96,36 +98,6 @@ if not parse.find_objects(r'banner login'):
       glob_list.append(25)
 
 
-#Users stregth password checker
-#users with dictionnary based attack
-
-for user in parse.find_objects(r"^username"):
-
-    #initialize the list of the object data
-    obj_data=[]
-    
-    password=re.findall(r"password\s\d\s(\S+)",str(user.text))
-    username=re.findall(r"username\s(\w+)",str(user.text))
-    privilege=re.findall(r"privilege\s(\d+)",str(user.text))
-    
-    try:
-        if not (check_strength_password(password[0])):
-            glob_list.append(14)
-
-        
-        if(check_dict_password(password[0])):
-        
-            glob_list.append(1)
-            obj_data.extend((username[0],password[0],privilege[0]))
-            table_data.append(obj_data)
-    except:
-        pass
-
-column=["User","Password","Privilege"]
-glob_table_dict[1]=raw(build_table(table_data,column))
-        
-        
-
 #check NTP Queries
 if (parse.find_objects(r"^ntp")):
     
@@ -134,6 +106,47 @@ if (parse.find_objects(r"^ntp")):
 
 glob_list=list(set(glob_list))
 
+#Network filtering(ACL Audit)
+print("----------start auditing access control lists--------------------")
+# 1 - extended access control list
+for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
+    #check if there are any source/destination allowed
+    HELPER_REGEX=r"access-list\s\w+\sextended\s(\w+)\s\w+\s(\S+)\s(\S+)"
+    
+    
+    try:
+        acl_audits=re.findall(HELPER_REGEX,str(acl.text))[0]
+        print(acl_audits)
+        if("any" in acl_audits[1]):
+            print(str(acl_audits[0])+" any source")
+        if("any" in acl_audits[2]):
+            print(str(acl_audits[0])+" any destination")
+    except:
+        pass
+    #check if there are entire subnet source/destination allowed
+    HELPER_REGEX=r"access-list\s\w+\sextended\s\w+\s\w+\s(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+)\s(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+)"
+    try:
+        acl_audits=re.findall(HELPER_REGEX,str(acl.text))[0]
+        print(acl_audits)
+        if("any" in acl_audits[1]):
+            print(str(acl_audits[0])+" any source")
+        if("any" in acl_audits[2]):
+            print(str(acl_audits[0])+" any destination")
+    except:
+        pass
+
+
+    
+
+
+
+
+
+
+
+
+
+glob_list=list(set(glob_list))
 print(glob_list)
 #sort security audits from CRITICAL to INFORMATIONAL
 cl = list()

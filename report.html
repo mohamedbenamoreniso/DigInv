@@ -7,9 +7,9 @@
   <body>
     <h1>DigInv</h1>
     <h1>Audit report</h1>
-    <h4>2022-04-12</h4>
+    <h4>2022-04-20</h4>
     <h3>Summary</h3>
-    <p>DigInv performed an audit on 2022-04-12 of the network device detailed in the scope.The audit consisted of the following components:</p>
+    <p>DigInv performed an audit on 2022-04-20 of the network device detailed in the scope.The audit consisted of the following components:</p>
     <ul>
       <li><a href="#part2">a best practice security audit (Part 2)</a></li>
       <li><a href="#part3">a software vulnerability audit report (Part 3)</a></li>
@@ -19,22 +19,22 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Device</th>
       <th>Name</th>
+      <th>Device</th>
       <th>OS</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Router</td>
-      <td>Router</td>
-      <td>12.3</td>
+      <td>ciscoasa</td>
+      <td>firewall</td>
+      <td>9.6</td>
     </tr>
   </tbody>
 </table>
     <h2>Security Audit Summary</h2>
-    <p>DigInv  performed a security audit of the device detailed in the scope and identified 6 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
+    <p>DigInv  performed a security audit of the device detailed in the scope and identified 3 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
     <h2>Contents</h2>
     <div class="contents">
       <div>
@@ -47,32 +47,14 @@
         <h5>2.1 Introduction</h5>
         <div class="globalaudit">
           <h5>2.2 Global Audit</h5>
-          <h5>2.2.1 Software Version wasn't updated</h5>
-          <h5>2.2.2 Default SNMP Community Strings Were Configured</h5>
-          <h5>2.2.3 UDP Small Services Enabled</h5>
-          <h5>2.2.4 Clear-Text SNMP In Use</h5>
-          <h5>2.2.5 No Inbound TCP Connection Keep-Alives</h5>
-          <h5>2.2.6 User Account Names Contained ADMIN</h5>
-          <h5>2.2.7 VTP Was In Server Mode</h5>
-          <h5>2.2.8 Service Password Encryption Disabled</h5>
-          <h5>2.2.9 CDP enabled</h5>
-          <h5>2.2.10 The BOOTP Service Was Not Disabled</h5>
-          <h5>2.2.11 The Finger Service Was Enabled</h5>
-          <h5>2.2.12 No SNMP TFTP Server Access List Configured</h5>
-          <h5>2.2.13 Domain Lookups were enabled</h5>
-          <h5>2.2.14 No Network Filtering Rules Were Configured</h5>
-          <h5>2.2.15 No Post Logon Banner Message</h5>
-          <h5>2.2.16 PAD Service Enabled</h5>
+          <h5>2.2.1 Warning In Pre-Logon Banner</h5>
+          <h5>2.2.2 No Network Filtering Rules Were Configured</h5>
+          <h5>2.2.3 No Post Logon Banner Message</h5>
         </div>
         <div>
           <h5>2.3 Interface Audit</h5>
           <div class="intf_section">
-            <h5>2.3.1 BGP Neighbors Configured With No Passwords</h5>
-            <h5>2.3.2 Not All GLBP Groups Were Authenticated</h5>
-            <h5>2.3.3 Clear-Text HSRP Group Authentication Was Configured</h5>
-            <h5>2.3.4 Clear-Text GLBP Group Authentication Was Configured</h5>
-            <h5>2.3.5 Not All EIGRP Updates Were Authenticated</h5>
-            <h5>2.3.6 Connection Timeout not configured</h5>
+            <h5>2.3.1 Connection Timeout not configured</h5>
           </div>
         </div>
         <h5>3. Vulnerability Audit</h5>
@@ -81,14 +63,14 @@
     </div>
     <h2>1. Your Report</h2>
     <h3>1.1 Introduction</h3>
-    <p>This report was produced by DigInv on 2022-04-12. This report is comprised of the following sections:</p>
+    <p>This report was produced by DigInv on 2022-04-20. This report is comprised of the following sections:</p>
     <ul>
       <li>a security audit section which details any identified         security-related issues. Each security issue identified includes details of what was found together with the impact of the issue,         how easy it would be for an attacker to exploit and a recommendation.         The recommendations may include alternatives and, where relevant, the commands to resolve the issue;</li>
       <li>a software vulnerability audit section that provides a comparison of the device software versions against a database of known vulnerabilities. In addition to a         brief description, each potential vulnerability includes a CVSSv2 score and references to more specific information provided by the device manufacturers and         third parties;</li>
       <li>a configuration report which details the configuration settings of all the audited devices in an easy to read format. The configuration settings are divided in to report sub-sections which group related settings together and provide additional information about their purpose;</li>
     </ul>
     <h2>2 Security Audit</h2>
-    <p>DigInv performed a security audit on 2022-04-12 of the device detailed in the Table below.</p><table border="1" class="dataframe">
+    <p>DigInv performed a security audit on 2022-04-20 of the device detailed in the Table below.</p><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -100,9 +82,9 @@
   <tbody>
     <tr>
       <th>0</th>
+      <td>ciscoasa</td>
       <td>Router</td>
-      <td>Router</td>
-      <td>12.3</td>
+      <td>9.6</td>
     </tr>
   </tbody>
 </table>
@@ -223,337 +205,31 @@
     <div class="globaudit">
       <div class="container">
         <div class="information">
-          <h3>1. Software Version wasn't updated</h3>
+          <h3>1. Warning In Pre-Logon Banner</h3>
           <h5>observation</h5>
-          <p>It is critically important that software be regularly maintained with patches and upgrades in order to help mitigate the risk of an attacker exploiting a known software vulnerability. Furthermore, additional security features and other functionality are normally added or extended with each software revision.</p>
+          <p>Logon banner messages are an important, but often overlooked, part of a secure configuration. Logon banner messages can provide connecting users with important information and warn against unauthorized access.</p>
           <h5>impact</h5>
           <ul>
-            <li>There are  vulnerabilities on this software release could allow an attacker to gain remote administrative access or perform a Denial of Service (DoS) attack.</li>
+            <li>A carefully worded warning message could deter a casual attacker or malicious user, but not a determined attacker. However, it would be more difficult to prove any intent without a message warning against unauthorized access if any legal action were to be taken against an attacker.</li>
           </ul>
           <h5>ease</h5>
-          <p>Exploit code is widely available on the Internet for known Cisco vulnerabilities.</p>
+          <p>An attacker would not be presented with a carefully worded legal warning prior to attempting to logon.</p>
           <h5>recommandation</h5>
           <ul>
-            <li>DigInv strongly recommends that the software be updated and patched to the latest software version. Furthermore, DigInv recommends that the current patch policy be reviewed.</li>
+            <li>DigInv recommends that all pre-logon banner messages should be configured to warn against unauthorized access.</li>
           </ul>
-          <p class="command"></p>
-        </div>
-        <div class="square">
-          <div>Overall:CRITICAL</div>
-          <div>Impact:Critical</div>
-          <div>Ease:Challenging</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>2. Default SNMP Community Strings Were Configured</h3>
-          <h5>observation</h5>
-          <p>SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. Access to the SNMP Management Information Base (MIB) with protocol versions 1 and 2 is restricted using a community string to help prevent unauthorized access.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>With read access to the SNMP MIB an attacker would be able to enumerate a large quantity of information about the device, its configuration, network details and more. With write access to the SNMP MIB an attacker could reconfigure the device, potentially causing a DoS. Additionally, write access to SNMP on some devices would enable an attacker to download a copy of a device's configuration, including password hashes.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Default SNMP community strings are usually documented in the manufacturers manuals, on third-party Internet web sites and in the password dictionaries of testing tools. Furthermore, SNMP query tools are installed by default on some operating systems and other SNMP tools can be downloaded from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, SNMP should be disabled. If SNMP is required then DigInv recommends that only SNMP version 3 should be configured. If access using SNMP community strings is required, DigInv recommends that only strong community strings should be chosen that are also not used for any other authentication.
-DigInv recommends that:SNMP community strings should be at least eight characters in length</li>
-            <li> characters in the SNMP community string should not be repeated more than three times</li>
-            <li> SNMP community strings should include both upper case and lower case characters</li>
-            <li> SNMP community strings should include numbers</li>
-            <li> SNMP community strings should include punctuation characters</li>
-            <li> SNMP community strings should not include a device's name, make or model</li>
-            <li> SNMP community strings should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">no snmp-server</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Trivial</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>3. UDP Small Services Enabled</h3>
-          <h5>observation</h5>
-          <p>Some devices and platforms provide a collection of simple User Datagram Protocol (UDP) network services, which are also sometimes referred to Fix: Quick as small services. These services provide little functionality and are rarely used and they typically include:
-Echo (defined in RFC 862) returns any data sent to it back to the connecting client;
-Discard (defined in RFC 863) ignores any data sent to it by a connecting client;
-Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client.
-DigInv determined that the UDP small servers were enabled</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker could use the UDP small servers as part of a DoS attack. UDP is a connection-less protocol and an experienced attacker could forge network packets to use the echo and chargen services to increase the network traffic and system utilization of devices offering the services. Additionally, each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not as significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools that can be used to connect to these services are installed by default on some systems or can be downloaded from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that the UDP small servers should be disabled.</li>
-          </ul>
-          <p class="command">no service udp-small-servers</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Trivial</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>4. Clear-Text SNMP In Use</h3>
-          <h5>observation</h5>
-          <p>SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. With write access to SNMP, it is possible to re-configure networking, system properties and even shutdown a device. There are multiple versions of SNMP and versions prior to version 3 offer no encryption of either the authentication or data network traffic.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker or malicious user who can monitor the unencrypted SNMP network traffic would capture the SNMP community string used to authenticate access to the SNMP agent service. Additionally, they would capture all the information transferred using the unencrypted connection. With write access to SNMP an attacker could modify a device's settings and potentially cause a DoS condition.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Network packet capture tools can be downloaded from the Internet that can allow an attacker to monitor the network traffic. In a modern network environment, switches are typically deployed to connect the network infrastructure devices rather than hubs. With network switch devices, the attacker should only be able to see broadcast network traffic or traffic sent directly to or from the attacker's host. However, a skilled attacker could bypass this restriction by performing an attack such as ARP spoofing or exploiting a vulnerability with the network routing. Tools for bypassing a network switching environment's restrictions can be downloaded from the Internet. It is worth noting that with no SNMP view configured, the attacker would not be restricted to a specified subset of the SNMP MIB.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, SNMP should be disabled. However, if SNMP access is required, DigInv recommends that only SNMP version 3 should be configured with strong authentication and privacy passwords.</li>
-          </ul>
-          <p class="command">no snmp-server</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>5. No Inbound TCP Connection Keep-Alives</h3>
-          <h5>observation</h5>
-          <p>The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker could attempt a DoS attack against a device by exhausting the number of possible connections. To perform this attack, the attacker could keep requesting new connections to the device and spoof the source IP addresses. This would then prevent any new legitimate connections to the device from being made as the device awaits the completion of the connection attempts that have already been initiated. This attack would prevent both users and administrators from connecting to the device.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools can be downloaded from the Internet that are capable of opening a large number of TCP connections without correctly terminating them.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that TCP keep alive messages should be sent to detect and drop orphaned connections from remote systems.</li>
-          </ul>
-          <p class="command">service tcp-keepalives-in</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>6. User Account Names Contained ADMIN</h3>
-          <h5>observation</h5>
-          <p>When User Account names contain admin, a clear indication is given to an attacker or malicous user that the account most likely has higher privilege levels than a standard user. This allows an attacker to focus their resources in a more direct way, such as targeted phishing attacks or other social engineering techniques.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>A malicious user would be able to create targeted phishing and social engineering attacks at a specific user they believe to have admin or elevated privileges. Once access is gained, they would have that user's access to a system, which could include re-configuring the device, extracting potentially sensitive information and disabling the device. Once an attacker has obtained the configuration from the device they may be able to identify authentication credentials that could then be used to gain access to other network devices.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Exploiting this vulnerability would require an attacker to have gained access to sensitive information detailing user accounts and associated ID's before being able to identify appropriate targets for phishing or social engineering attacks.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv strongly recommends that all Admin or elevated privilege accounts should not contain information that identifies them as being such.</li>
-          </ul>
-          <p class="command"></p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:Critical</div>
-          <div>Ease:Challenging</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>7. VTP Was In Server Mode</h3>
-          <h5>observation</h5>
-          <p>VTP was developed by Cisco to assist with the management of VLANs over multiple devices. The protocol enables the addition, renaming and deletion of VLANs on a single switch to be propagated to other network switches in the same VTP domain. A device in VTP server mode will transmit VTP packets containing VLAN information. If a device in VTP client mode in the same domain receives a VTP network packet with a higher revision number the changes will be applied.
- DigInv determined that VTP was in server mode.It is worth mentioning that although the VTP was found to be in server mode(adefault setting), no VTP domain was configured. However, there have been instances where a device in this configuration have had their VTP domain setremotely from other networked devices.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker could determine the VLAN configuration by capturing VTP packets sent from the device and VTP packets are not encrypted, even when a password is specified. The attacker could then use the VLAN information or password as part of a targeted attack.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools that are capable of capturing network packets are available on the Internet and installed by default on some OS.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, VTP should be disabled or placed in transparent mode, even if no VTP domain has been configured.</li>
-          </ul>
-          <p class="command">vtp transparent 
-vtp mode transparent</p>
+          <p class="command">banner login delimiter banner-message delimiter</p>
         </div>
         <div class="square">
           <div>Overall:LOW</div>
           <div>Impact:Low</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>8. Service Password Encryption Disabled</h3>
-          <h5>observation</h5>
-          <p>Cisco service passwords are stored by default in their clear-text form rather than being encrypted. However, it is possible to have these passwords stored using the reversible Cisco type-7 encryption.
-DigInv determined that the Cisco device Router was not running the password encryption service that helps provide a basic level of encryption to passwords that otherwise would be stored in clear-text.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If a malicious user were to see a Cisco configuration that contained clear-text passwords, they could use the passwords to access the device. However, an attacker who had access to a Cisco configuration file would easily be able to reverse the passwords.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Even though it is trivial to reverse Cisco type-7 passwords, they do provide a greater level of security than clear-text passwords. Tools are widely available on the Internet that reverse Cisco type-7 passwords.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that the Cisco password encryption service be enabled. The Cisco password encryption service can be started with the following Cisco IOS command:</li>
-          </ul>
-          <p class="command">service password-encryption</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Medium</div>
-          <div>Ease:Challenging</div>
+          <div>Ease:N/A</div>
           <div>Fix:Quick</div>
         </div>
       </div>
       <div class="container">
         <div class="information">
-          <h3>9. CDP enabled</h3>
-          <h5>observation</h5>
-          <p>CDP is a proprietary protocol that was developed and is primarily used by Cisco. A CDP enabled device can be configured to broadcast.
-CDP packets on the network enabling network management applications and CDP aware devices to identify each other. CDP packets include information about thesender, such as OS version and IP address information.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>CDP packets contain information about the sender, such as hardware model information, operating system version and IP address details. This information would give an attacker valuable information about the device. The attacker could then use this information as part of a targeted attack.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>CDP packets are broadcast to an entire network segment. The attacker or malicious user would require access to a network segment on which the CDP packets are broadcast and network monitoring software. A wide variety of network monitoring, packet capture and analysis tools can be downloaded from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, CDP should be disabled.
-In some configurations with IP phones, deployed using either Auto Discovery or Dynamic Host Configuration Protocol (DHCP), the CDP service may need to be enabled. However, if the device supports disabling CDP on individual interfaces, then DigInv recommends that it should be disabled on all the interfaces where it is not required.</li>
-          </ul>
-          <p class="command">no cdp run</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>10. The BOOTP Service Was Not Disabled</h3>
-          <h5>observation</h5>
-          <p>BOOTstrap Protocol (BOOTP) is a datagram protocol that allows compatible hosts to load their operating system over the network from a BOOTP server. Cisco routers are capable of acting as BOOTP servers for other Cisco devices and the service is enabled by default. However, BOOTP is rarely used and may represent a security risk.
-DigInv determined that BOOTP was not disabled. However, it is worth noting that not all Cisco devices support BOOTP.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker could use the BOOTP service to download a copy of the router's IOS software.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools are available on the Internet to access BOOTP servers.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, the BOOTP service be disabled. The following command can be used to disable BOOTP:</li>
-          </ul>
-          <p class="command">no ip bootp server</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:LOW</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>11. The Finger Service Was Enabled</h3>
-          <h5>observation</h5>
-          <p>The Finger protocol (defined in RFC 749 and RFC 1288) enables the enumeration of status and user information from a system running a Finger service. The Finger protocol is simple and does not encrypt the data or provide any authentication. The default TCP port for the Finger service is 79.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker could use the Finger service to enumerate users and user information. The attacker could then use this information as part of a targeted attack such as password guessing or a brute-force attack. The Finger user information may also be used by an attacker for a targeted attack where user identity information would be useful.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The Finger query tool is installed by default on some platforms by default and is relatively easy to use. Additionally, tools that an attacker can use to attack a system using the information obtained using Finger are available to download from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that the Finger service should be disabled to help prevent an attacker from enumerating user information.</li>
-          </ul>
-          <p class="command">no ip finger</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:Trivial</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>12. No SNMP TFTP Server Access List Configured</h3>
-          <h5>observation</h5>
-          <p>Using SNMP, some network devices can be instructed to send its configuration to a file on a specified TFTP server. This feature enables network administrators and management software to quickly obtain a copy of a device's configuration. A network access list can be configured on those devices to help secure access to this functionality (supported on Cisco IOS devices from version 10.2).</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who had SNMP write access could remotely obtain a copy of a device's configuration. The configuration would include any passwords for the device and include the configuration of the administrative services.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>For an attacker to exploit this issue they would require SNMP query tools, a TFTP server and a community string with write access to the SNMP MIB. SNMP query tools and TFTP server software can be downloaded from the Internet and some OS install them by default. If the attacker does not know the community string it may be possible to determine it by monitoring the network traffic or by brute-forcing the community string.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that a SNMP TFTP server list ACL should be configured to ensure that configurations are only saved to specific hosts.</li>
-          </ul>
-          <p class="command">snmp-server tftp-server-list acl-number</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Medium</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>13. Domain Lookups were enabled</h3>
-          <h5>observation</h5>
-          <p>Cisco IOS-based devices support name lookups using the Domain Name System (DNS). However, if a DNS server has not been configured, then the DNS request is broadcast.
-DigInv determined that name lookups had not been disabled and no DNS servers had been configured.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who was able to capture network traffic could monitor DNS queries from the Cisco Router. Furthermore, Cisco devices can connect to Telnet servers by supplying only the hostname or IP address of the server. A mistyped Cisco command could be interpreted as an attempt to connect to a Telnet server and broadcast on the network.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>It would be trivial for an attacker to capture network traffic broadcast from a Cisco Router. Furthermore, network traffic capture tools are widely available on the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that domain lookups be disabled. Domain lookups can be disabled with the following command:</li>
-          </ul>
-          <p class="command">no ip domain-lookup</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>14. No Network Filtering Rules Were Configured</h3>
+          <h3>2. No Network Filtering Rules Were Configured</h3>
           <h5>observation</h5>
           <p>Network filtering can be configured to restrict access to network services from only those hosts that require the access, helping to prevent unauthorized access. When configured, network filter rules are processed sequentially and the first rule in the filter rule list which matches the network packet is applied.</p>
           <h5>impact</h5>
@@ -583,7 +259,7 @@ DigInv determined that name lookups had not been disabled and no DNS servers had
       </div>
       <div class="container">
         <div class="information">
-          <h3>15. No Post Logon Banner Message</h3>
+          <h3>3. No Post Logon Banner Message</h3>
           <h5>observation</h5>
           <p>Post logon banner messages are ones that are shown to users after they have authenticated and prior to being given access to the device. It is one that is shown to users when they connect to a device and prior to the user logon.</p>
           <h5>impact</h5>
@@ -605,192 +281,9 @@ DigInv determined that name lookups had not been disabled and no DNS servers had
           <div>Fix:Quick</div>
         </div>
       </div>
-      <div class="container">
-        <div class="information">
-          <h3>16. PAD Service Enabled</h3>
-          <h5>observation</h5>
-          <p>The PAD service enables X.25 commands and connections between PAD devices and access servers, converting the character stream data into network packets and network packets into character stream data. The PAD service is enabled by default on some devices but it is only required if support for X.25 links are necessary.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>In addition to the extra overhead, running unused services increases the chances of an attacker finding a security hole or fingerprinting a device.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The PAD service was enabled.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, the PAD service should be disabled.</li>
-          </ul>
-          <p class="command">no service pad</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:INFORMATIONAL</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
     </div>
     <h2>Interfaces Audit</h2>
     <div class="interfaceaudit">
-      <div class="container">
-        <div class="information">
-          <h3>17. BGP Neighbors Configured With No Passwords</h3>
-          <h5>observation</h5>
-          <p>BGP is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. Routing neighbors are configured to define which BGP hosts the routing updates will be sent to. Message Digest 5 (MD5) authentication can be configured for each neighbor to ensure that BGP routing updates are sent from a trusted source.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to modify the routing table of a BGP routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could make use of their own routing device, or routing software, in order to insert malicious routing updates.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that: passwords should be at least eight characters in length</li>
-            <li> characters in the password should not be repeated more than three times</li>
-            <li> passwords should include both upper case and lower case characters</li>
-            <li> passwords should include numbers</li>
-            <li> passwords should include punctuation characters</li>
-            <li> passwords should not include the username</li>
-            <li> passwords should not include a device's name, make or model</li>
-            <li> passwords should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">neighbor {address | group} password password</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Not All GLBP Groups Were Authenticated</h3>
-          <h5>observation</h5>
-          <p>GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who is able to configure their router with the relevant GLBP group configuration would be able to participate in network routing in order to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could use a GLBP capable device in order to perform the attack. The attacker could then configure their GLBP capable router to be in the same group and with a higher priority in order to become the Active Virtual Gateway (AVG).</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, SNMP should be disabled. If SNMP is required then DigInv recommends that only SNMP version 3 should be configured. If access using SNMP community strings is required, DigInv recommends that only strong community strings should be chosen that are also not used for any other authentication.
-DigInv recommends that:SNMP community strings should be at least eight characters in length</li>
-            <li> characters in the SNMP community string should not be repeated more than three times</li>
-            <li> SNMP community strings should include both upper case and lower case characters</li>
-            <li> SNMP community strings should include numbers</li>
-            <li> SNMP community strings should include punctuation characters</li>
-            <li> SNMP community strings should not include a device's name, make or model</li>
-            <li> SNMP community strings should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">glbp [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Clear-Text HSRP Group Authentication Was Configured</h3>
-          <h5>observation</h5>
-          <p>HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. HSRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to join a HSRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could use a HSRP capable device, or download HSRP software from the Internet. The attacker could then configure their HSRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using a HSRP packet captured from the network.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that the UDP small servers should be disabled.</li>
-          </ul>
-          <p class="command">standby [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Clear-Text GLBP Group Authentication Was Configured</h3>
-          <h5>observation</h5>
-          <p>GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who is able to configure GLBP with the relevant authentication configuration in order to become the AVG would be able to control network routing in order to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could use a GLBP capable device in the attack. The attacker could then configure their GLBP capable device to be in the same group to become a network router. The authentication key can be configured using a GLBP packet captured from the network.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that all enable passwords should be stored using the MD5 hash</li>
-          </ul>
-          <p class="command">glbp [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Not All EIGRP Updates Were Authenticated</h3>
-          <h5>observation</h5>
-          <p>EIGRP is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. EIGRP supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates are sent from a trusted source.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to modify the routing table of a EIGRP routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools can be downloaded from the Internet that can be used to send malicious EIGRP routing updates. With no authentication configured, an attacker would not have to determine the authentication key prior to sending malicious EIGRP route updates.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>Generally the SNMP system shutdown facility is not saved to the configuration file and should not persist following a system shutdown.DigInv recommends that the SNMP system shutdown facility should be disabled.</li>
-          </ul>
-          <p class="command">ip authentication mode eigrp [group] md5 ; ip authentication key-chain eigrp [group] key</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
       <div class="container">
         <div class="information">
           <h3>1. Connection Timeout not configured</h3>
@@ -825,17 +318,17 @@ DigInv recommends that:SNMP community strings should be at least eight character
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Device</th>
       <th>Name</th>
+      <th>Device</th>
       <th>OS</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Router</td>
-      <td>Router</td>
-      <td>12.3</td>
+      <td>ciscoasa</td>
+      <td>firewall</td>
+      <td>9.6</td>
     </tr>
   </tbody>
 </table>

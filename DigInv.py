@@ -57,9 +57,9 @@ report+=ul(li(a(name, href=link), __pretty=False) for name, link in menu_itmes)
 report+=h3("scope")
 hostname=parse.find_objects(r'hostname')[0]
 hostname=hostname.re_match_typed(r'hostname\s(\S+)')
-versio_os=parse.find_objects(r'version')[0]
-versio_os=versio_os.re_match_typed(r'version\s(\d+\.\d+)')
-report+=raw(build_table([[hostname,"Router",versio_os]],["Device","Name","OS"]))
+versio_os=parse.find_objects(r'ersion')[0]
+versio_os=versio_os.re_match_typed(r'ersion\s(\d+\.\d+)')
+report+=raw(build_table([[hostname,device_type,versio_os]],["Name","Device","OS"]))
 
 
 sec_sum=CRITICAL_RATING+HIGH_RATING+MEDUIM_RATING+LOW_RATING+INFORMATIONAL_RATING
@@ -210,7 +210,7 @@ report+=h4("3.1 Introduction")
 report+=p("This section details the configuration settings of your device in an easy to read and understand format. \
         The various device configuration settings are grouped into sections of related options.")
 report+=h4("3.2 Basic Information")
-report+=raw(build_table([[hostname,"Router",versio_os]],["Device","Name","OS"]))
+report+=raw(build_table([[hostname,device_type,versio_os]],["Name","Device","OS"]))
 report+=d_device_conf
 with open("report.html","w") as f:
         f.write(report.render())
