@@ -111,29 +111,17 @@ print("----------start auditing access control lists--------------------")
 # 1 - extended access control list
 for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
     #check if there are any source/destination allowed
-    HELPER_REGEX=r"access-list\s\w+\sextended\s(\w+)\s\w+\s(\S+)\s(\S+)"
+    SOURCE=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any|any4|any6|interface\s\w+|object\s\w+|object-group\s\w+)\s"
+    DESTINATION=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any|any4|any6|interface\s\w+|object\s\w+|object-group\w+)\s"
+    #HELPER_REGEX=r"access-list\s(\S+)\sextended\s(\w+)\s(\d+|\w+)\s"+SOURCE+DESTINATION+r"(\S+)\s(\d+|\w+)($|\w+)"
     
+    HELPER_REGEX=r"access-list\s(\S+)\sextended\s(\w+)\s(\d+|\w+)\s"+SOURCE+DESTINATION+r"($|(\S+))"
     
-    try:
-        acl_audits=re.findall(HELPER_REGEX,str(acl.text))[0]
-        print(acl_audits)
-        if("any" in acl_audits[1]):
-            print(str(acl_audits[0])+" any source")
-        if("any" in acl_audits[2]):
-            print(str(acl_audits[0])+" any destination")
-    except:
-        pass
-    #check if there are entire subnet source/destination allowed
-    HELPER_REGEX=r"access-list\s\w+\sextended\s\w+\s\w+\s(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+)\s(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+)"
-    try:
-        acl_audits=re.findall(HELPER_REGEX,str(acl.text))[0]
-        print(acl_audits)
-        if("any" in acl_audits[1]):
-            print(str(acl_audits[0])+" any source")
-        if("any" in acl_audits[2]):
-            print(str(acl_audits[0])+" any destination")
-    except:
-        pass
+    acl_audits=re.findall(HELPER_REGEX,str(acl.text))
+    print(acl_audits)
+
+    
+
 
 
     
