@@ -112,26 +112,13 @@ print("----------start auditing access control lists--------------------")
 for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
     #check if there are any source/destination allowed
     SOURCE=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any|any4|any6|interface\s\w+|object\s\w+|object-group\s\w+)\s"
-    DESTINATION=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any|any4|any6|interface\s\w+|object\s\w+|object-group\w+)\s"
-    #HELPER_REGEX=r"access-list\s(\S+)\sextended\s(\w+)\s(\d+|\w+)\s"+SOURCE+DESTINATION+r"(\S+)\s(\d+|\w+)($|\w+)"
+    DESTINATION=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any|any4|any6|interface\s\w+|object\s\w+|object-group\s\w+)"
+    PORT=r"\s(eq|gt|lt|neq)\s(\d+|\w+)"
     
-    HELPER_REGEX=r"access-list\s(\S+)\sextended\s(\w+)\s(\d+|\w+)\s"+SOURCE+DESTINATION+r"($|(\S+))"
+    HELPER_REGEX=r"access-list\s(\S+)\sextended\s(\w+)\s(\d+|\w+)\s"+SOURCE+DESTINATION+PORT
     
     acl_audits=re.findall(HELPER_REGEX,str(acl.text))
     print(acl_audits)
-
-    
-
-
-
-    
-
-
-
-
-
-
-
 
 
 glob_list=list(set(glob_list))
