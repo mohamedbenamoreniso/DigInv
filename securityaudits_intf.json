@@ -538,7 +538,12 @@
         "ease": "Network packet and password sniffing tools are widely available on the Internet and some of the tools are specifically designed to capture clear-text protocol authentication credentials. However, in a switched environment an attacker may not be able to capture network traffic destined for other devices without employing an attack such as Address Resolution Protocol (ARP) spoofing.",
         "recommandation": "DigInv recommends that, if possible, Telnet be disabled. If remote administrative access to the device is required, DigInv recommends that Secure Shell (SSH) be configured. The Telnet service can be disabled on individual lines with the following command:",
         "command": "transport input none",
-        "tab": ["HIGH","High","Easy","Quick"]
+        "tab": [
+            "HIGH",
+            "High",
+            "Easy",
+            "Quick"
+        ]
     },
     "40": {
         "name": "Connection Timeout not configured",
@@ -547,15 +552,109 @@
         "ease": "The attacker would have to gain physical access to the device to use the console port, or gain remote access to an administration machine that is attached to the port. To gain access to remote connections, an attacker would have to be able to intercept network traffic between the client and the device. The attacker would then have to take over the connection, which could be very difficult with some services. Tools are available on the Internet that would facilitate the monitoring of network connections.",
         "recommandation": "DigInv ecommends that a timeout period of ten minutes be configured for connections to the device",
         "command": "exec-timeout time(minutes) time(seconds)",
-        "tab": ["INFORMATIONAL","Informational","Easy","Quick"]
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "Easy",
+            "Quick"
+        ]
     },
     "41": {
+        "name": "Filter Rule Allows Packets From A Network Source",
+        "observation": "Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.",
+        "impact": "If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.",
+        "ease": "The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.",
+        "recommandation": "DigInv recommends that, where possible, all network filtering rules should be configured to restrict access to network services from only those hosts that require the access. However, it is worth noting that it may not be possible to achieve this in all circumstances, such as with a public web server where business requirements imply that any network address should be permitted to access the service.DigInv recommends that: filter rules should only allow access to specific destination addresses; filter rules should only allow access to specific destination network ports; filter rules should only allow access from specific source addresses; filter rules should specify a specific network protocol; ICMP filter rules should specify a specific message type; filter rules should always drop network packets and not reject them; filter rules should perform a specific action and not rely on a default action.",
+        "command": "access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "42": {
+        "name": "Filter Rule Allows Packets To A Network Destination",
+        "observation": "Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.",
+        "impact": "If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.",
+        "ease": "The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.",
+        "recommandation": "DigInv recommends that, where possible, all network filtering rules should be configured to restrict access to network services from only those hosts that require the access. However, it is worth noting that it may not be possible to achieve this in all circumstances, such as with a public web server where business requirements imply that any network address should be permitted to access the service.DigInv recommends that: filter rules should only allow access to specific destination addresses; filter rules should only allow access to specific destination network ports; filter rules should only allow access from specific source addresses; filter rules should specify a specific network protocol; ICMP filter rules should specify a specific message type; filter rules should always drop network packets and not reject them; filter rules should perform a specific action and not rely on a default action.",
+        "command": "access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "43": {
+        "name": "Filter Rule Allows Packets From Any Source",
+        "observation": "Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.",
+        "impact": "If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.",
+        "ease": "The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.",
+        "recommandation": "DigInv recommends that, where possible, all network filtering rules should be configured to restrict access to network services from only those hosts that require the access. However, it is worth noting that it may not be possible to achieve this in all circumstances, such as with a public web server where business requirements imply that any network address should be permitted to access the service.DigInv recommends that: filter rules should only allow access to specific destination addresses; filter rules should only allow access to specific destination network ports; filter rules should only allow access from specific source addresses; filter rules should specify a specific network protocol; ICMP filter rules should specify a specific message type; filter rules should always drop network packets and not reject them; filter rules should perform a specific action and not rely on a default action.",
+        "command": "access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "44": {
+        "name": "Filter Rule Allows Packets To Any Destination",
+        "observation": "Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.",
+        "impact": "If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.",
+        "ease": "The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.",
+        "recommandation": "DigInv recommends that, where possible, all network filtering rules should be configured to restrict access to network services from only those hosts that require the access. However, it is worth noting that it may not be possible to achieve this in all circumstances, such as with a public web server where business requirements imply that any network address should be permitted to access the service.DigInv recommends that: filter rules should only allow access to specific destination addresses; filter rules should only allow access to specific destination network ports; filter rules should only allow access from specific source addresses; filter rules should specify a specific network protocol; ICMP filter rules should specify a specific message type; filter rules should always drop network packets and not reject them; filter rules should perform a specific action and not rely on a default action.",
+        "command": "access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "45": {
+        "name": "Filter Drop Rules Were Configured Without Logging",
+        "observation": "Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.",
+        "impact": "It is common for an attacker to perform network reconnaissance in order to identify potential target hosts and services. An attackers reconnaissance phase can vary greatly in intensity and covertness, but any network scans that match network filter rules that are not configured to log will not be record the activity.;Logging access attempts to network hosts and services that are filtered using drop rules provides useful information about an attackers activities, and could be useful as evidence in any legal action taken. With no logging of drop filter rules the information would not be recorded for use by network administrators, auditors or a network forensic team. Furthermore log monitoring software, if configured, would not alert network administrators of a potential attack in progress.",
+        "ease": "An attackers attempts to access network services which are protected by the drop filter rules detailed in the finding would not be logged.",
+        "recommandation": "DigInv recommends that all network filter rules that drop network traffic should be configured to log the access attempt.;DigInv recommends that: filter rules should only allow access to specific destination addresses; filter rules should only allow access to specific destination network ports; filter rules should only allow access from specific source addresses; filter rules should specify a specific network protocol; ICMP filter rules should specify a specific message type; filter rules should always drop network packets and not reject them; filter rules should perform a specific action and not rely on a default action.",
+        "command": "access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "46": {
+        "name": "Filter Rule Allows Packets To Any Destination Port",
+        "observation": "Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.",
+        "impact": "If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.",
+        "ease": "The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.",
+        "recommandation": "DigInv recommends that, where possible, all network filtering rules should be configured to restrict access to network services from only those hosts that require the access. However, it is worth noting that it may not be possible to achieve this in all circumstances, such as with a public web server where business requirements imply that any network address should be permitted to access the service.DigInv recommends that: filter rules should only allow access to specific destination addresses; filter rules should only allow access to specific destination network ports; filter rules should only allow access from specific source addresses; filter rules should specify a specific network protocol; ICMP filter rules should specify a specific message type; filter rules should always drop network packets and not reject them; filter rules should perform a specific action and not rely on a default action.",
+        "command": "access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log",
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Planned"
+        ]
+    },
+    "47": {
         "name": "",
         "observation": "",
         "impact": "",
         "ease": "",
         "recommandation": "",
         "command": "",
-        "tab": []
+        "tab": [
+            "INFORMATIONAL",
+            "Informational",
+            "N/A",
+            "Planned"
+        ]
     }
 }

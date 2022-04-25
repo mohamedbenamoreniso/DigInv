@@ -1,5 +1,3 @@
-from ast import Try
-from Router.IntfAudit import HELPER_REGEX
 from variables import *
 import re
 from settings import *
@@ -106,22 +104,8 @@ if (parse.find_objects(r"^ntp")):
 
 glob_list=list(set(glob_list))
 
-#Network filtering(ACL Audit)
-print("----------start auditing access control lists--------------------")
-# 1 - extended access control list
-for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
-    #check if there are any source/destination allowed
-    SOURCE=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any|any4|any6|interface\s\w+|object\s\w+|object-group\s\w+)\s"
-    DESTINATION=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any|any4|any6|interface\s\w+|object\s\w+|object-group\s\w+)"
-    PORT=r"\s(eq|gt|lt|neq)\s(\d+|\w+)"
-    
-    HELPER_REGEX=r"access-list\s(\S+)\sextended\s(\w+)\s(\d+|\w+)\s"+SOURCE+DESTINATION+PORT
-    
-    acl_audits=re.findall(HELPER_REGEX,str(acl.text))
-    print(acl_audits)
 
 
-glob_list=list(set(glob_list))
 print(glob_list)
 #sort security audits from CRITICAL to INFORMATIONAL
 cl = list()

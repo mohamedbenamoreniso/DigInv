@@ -257,4 +257,3 @@ def get_interfaces(networks,parse,interfaces):
                         interfaces.append(intf)
     return interfaces
 
-print("end successfully")
