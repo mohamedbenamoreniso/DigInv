@@ -16,6 +16,7 @@ elif device_type=="switch":
 elif device_type=="firewall":
         from Firewall.GlobAudit import *
         from Firewall.IntAudit import *
+        from Firewall.Vuln import *
        
 
 

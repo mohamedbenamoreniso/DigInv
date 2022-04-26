@@ -34,7 +34,7 @@
   </tbody>
 </table>
     <h2>Security Audit Summary</h2>
-    <p>DigInv  performed a security audit of the device detailed in the scope and identified 4 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
+    <p>DigInv  performed a security audit of the device detailed in the scope and identified 6 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
     <h2>Contents</h2>
     <div class="contents">
       <div>
@@ -58,6 +58,8 @@
             <h5>2.3.2 Filter Rule Allows Packets To A Network Destination</h5>
             <h5>2.3.3 Filter Rule Allows Packets From Any Source</h5>
             <h5>2.3.4 Filter Rule Allows Packets To Any Destination</h5>
+            <h5>2.3.5 Filter Drop Rules Were Configured Without Logging</h5>
+            <h5>2.3.6 Filter Rule Allows Packets To Any Destination Port</h5>
           </div>
         </div>
         <h5>3. Vulnerability Audit</h5>
@@ -389,9 +391,1787 @@
           <div>Fix:Planned</div>
         </div>
       </div>
+      <div class="container">
+        <div class="information">
+          <h3>1. Filter Drop Rules Were Configured Without Logging</h3>
+          <h5>observation</h5>
+          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>It is common for an attacker to perform network reconnaissance in order to identify potential target hosts and services. An attackers reconnaissance phase can vary greatly in intensity and covertness, but any network scans that match network filter rules that are not configured to log will not be record the activity.</li>
+            <li>Logging access attempts to network hosts and services that are filtered using drop rules provides useful information about an attackers activities, and could be useful as evidence in any legal action taken. With no logging of drop filter rules the information would not be recorded for use by network administrators, auditors or a network forensic team. Furthermore log monitoring software, if configured, would not alert network administrators of a potential attack in progress.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>An attackers attempts to access network services which are protected by the drop filter rules detailed in the finding would not be logged.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, unless required, an outbound ACL should be configured and assigned in order to restrict administrative access to other systems.</li>
+          </ul>
+          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:Informational</div>
+          <div>Ease:N/A</div>
+          <div>Fix:Planned</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>1. Filter Rule Allows Packets To Any Destination Port</h3>
+          <h5>observation</h5>
+          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommands that,if not required IP Identification service should be disabled</li>
+          </ul>
+          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:Informational</div>
+          <div>Ease:N/A</div>
+          <div>Fix:Planned</div>
+        </div>
+      </div>
     </div>
     <h2>Vulnerabilty Audit</h2>
-    <div class="vulnerability"></div>
+    <div class="vulnerability">
+      <div>
+        <p>V34.2MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco IOS 12.0 through 15.6, Adaptive Security Appliance (ASA) Software 7.0.1 through 9.7.1.2, NX-OS 4.0 through 12.0, and IOS XE 3.6 through 3.18 are affected by a vulnerability involving the Open Shortest Path First (OSPF) Routing Protocol Link State Advertisement (LSA) database. This vulnerability could allow an unauthenticated, remote attacker to take full control of the OSPF Autonomous System (AS) domain routing table, allowing the attacker to intercept or black-hole traffic. The attacker could exploit this vulnerability by injecting crafted OSPF packets. Successful exploitation could cause the targeted router to flush its routing table and propagate the crafted OSPF LSA type 1 update throughout the OSPF AS domain. To exploit this vulnerability, an attacker must accurately determine certain parameters within the LSA database on the target router. This vulnerability can only be triggered by sending crafted unicast or multicast OSPF LSA type 1 packets. No other LSA type packets can trigger this vulnerability. OSPFv3 is not affected by this vulnerability. Fabric Shortest Path First (FSPF) protocol is not affected by this vulnerability. Cisco Bug IDs: CSCva74756, CSCve47393, CSCve47401.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The receive function in ntp_proto.c in ntpd in NTP before 4.2.8 continues to execute after detecting a certain authentication error, which might allow remote attackers to trigger an unintended association change via crafted packets.</p>
+      </div>
+      <div>
+        <p>V27.5HIGH</p>
+      </div>
+      <div>
+        <p>Multiple stack-based buffer overflows in ntpd in NTP before 4.2.8 allow remote attackers to execute arbitrary code via a crafted packet, related to (1) the crypto_recv function when the Autokey Authentication feature is used, (2) the ctl_putdata function, and (3) the configure function.</p>
+      </div>
+      <div>
+        <p>V27.5HIGH</p>
+      </div>
+      <div>
+        <p>util/ntp-keygen.c in ntp-keygen in NTP before 4.2.7p230 uses a weak RNG seed, which makes it easier for remote attackers to defeat cryptographic protection mechanisms via a brute-force attack.</p>
+      </div>
+      <div>
+        <p>V27.5HIGH</p>
+      </div>
+      <div>
+        <p>The config_auth function in ntpd in NTP before 4.2.7p11, when an auth key is not configured, improperly generates a key, which makes it easier for remote attackers to defeat cryptographic protection mechanisms via a brute-force attack.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>GNU Bash through 4.3 bash43-025 processes trailing strings after certain malformed function definitions in the values of environment variables, which allows remote attackers to write to files or possibly have unknown other impact via a crafted environment, as demonstrated by vectors involving the ForceCommand feature in OpenSSH sshd, the mod_cgi and mod_cgid modules in the Apache HTTP Server, scripts executed by unspecified DHCP clients, and other situations in which setting the environment occurs across a privilege boundary from Bash execution.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2014-6271.</p>
+      </div>
+      <div>
+        <p>V39.8CRITICAL</p>
+      </div>
+      <div>
+        <p>GNU Bash through 4.3 processes trailing strings after function definitions in the values of environment variables, which allows remote attackers to execute arbitrary code via a crafted environment, as demonstrated by vectors involving the ForceCommand feature in OpenSSH sshd, the mod_cgi and mod_cgid modules in the Apache HTTP Server, scripts executed by unspecified DHCP clients, and other situations in which setting the environment occurs across a privilege boundary from Bash execution, aka &quot;ShellShock.&quot;  NOTE: the original fix for this issue was incorrect; CVE-2014-7169 has been assigned to cover the vulnerability that is still present after the incorrect fix.</p>
+      </div>
+      <div>
+        <p>V33.4LOW</p>
+      </div>
+      <div>
+        <p>The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other products, uses nondeterministic CBC padding, which makes it easier for man-in-the-middle attackers to obtain cleartext data via a padding-oracle attack, aka the &quot;POODLE&quot; issue.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The do_change_cipher_spec function in OpenSSL 0.9.6c to 0.9.6k, and 0.9.7a to 0.9.7c, allows remote attackers to cause a denial of service (crash) via a crafted SSL/TLS handshake that triggers a null dereference.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Internet Key Exchange Version 2 Mobility and Multihoming Protocol (MOBIKE) feature for the Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause a memory leak or a reload of an affected device that leads to a denial of service (DoS) condition. The vulnerability is due to the incorrect processing of certain MOBIKE packets. An attacker could exploit this vulnerability by sending crafted MOBIKE packets to an affected device to be processed. A successful exploit could cause an affected device to continuously consume memory and eventually reload, resulting in a DoS condition. The MOBIKE feature is supported only for IPv4 addresses.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the software cryptography module of the Cisco Adaptive Security Virtual Appliance (ASAv) and Firepower 2100 Series running Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to cause an unexpected reload of the device that results in a denial of service (DoS) condition. The vulnerability is due to a logic error with how the software cryptography module handles IPsec sessions. An attacker could exploit this vulnerability by creating and sending traffic in a high number of IPsec sessions through the targeted device. A successful exploit could cause the device to reload and result in a DoS condition.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the web services interface of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to conduct directory traversal attacks and read sensitive files on a targeted system. The vulnerability is due to a lack of proper input validation of URLs in HTTP requests processed by an affected device. An attacker could exploit this vulnerability by sending a crafted HTTP request containing directory traversal character sequences to an affected device. A successful exploit could allow the attacker to view arbitrary files within the web services file system on the targeted device. The web services file system is enabled when the affected device is configured with either WebVPN or AnyConnect features. This vulnerability cannot be used to obtain access to ASA or FTD system files or underlying operating system (OS) files.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Stack-based buffer overflow in the unique_service_name function in ssdp/ssdp_server.c in the SSDP parser in the portable SDK for UPnP Devices (aka libupnp, formerly the Intel SDK for UPnP devices) before 1.6.18 allows remote attackers to execute arbitrary code via a UDP packet with a crafted string that is not properly handled after a certain pointer subtraction.</p>
+      </div>
+      <div>
+        <p>V33.7LOW</p>
+      </div>
+      <div>
+        <p>A vulnerability in the TLS handler of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software for Cisco Firepower 1000 Series firewalls could allow an unauthenticated, remote attacker to gain access to sensitive information. The vulnerability is due to improper implementation of countermeasures against the Bleichenbacher attack for cipher suites that rely on RSA for key exchange. An attacker could exploit this vulnerability by sending crafted TLS messages to the device, which would act as an oracle and allow the attacker to carry out a chosen-ciphertext attack. A successful exploit could allow the attacker to perform cryptanalytic operations that may allow decryption of previously captured TLS sessions to the affected device. To exploit this vulnerability, an attacker must be able to perform both of the following actions: Capture TLS traffic that is in transit between clients and the affected device Actively establish a considerable number of TLS connections to the affected device</p>
+      </div>
+      <div>
+        <p>V36.7MEDIUM</p>
+      </div>
+      <div>
+        <p>Multiple vulnerabilities in the secure boot process of Cisco Adaptive Security Appliance (ASA) Software and Firepower Threat Defense (FTD) Software for the Firepower 1000 Series and Firepower 2100 Series Appliances could allow an authenticated, local attacker to bypass the secure boot mechanism. The vulnerabilities are due to insufficient protections of the secure boot process. An attacker could exploit these vulnerabilities by injecting code into specific files that are then referenced during the device boot process. A successful exploit could allow the attacker to break the chain of trust and inject code into the boot process of the device, which would be executed at each boot and maintain persistence across reboots.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the cryptographic driver for Cisco Adaptive Security Appliance Software (ASA) and Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause the device to reboot unexpectedly. The vulnerability is due to incomplete input validation of a Secure Sockets Layer (SSL) or Transport Layer Security (TLS) ingress packet header. An attacker could exploit this vulnerability by sending a crafted TLS/SSL packet to an interface on the targeted device. An exploit could allow the attacker to cause the device to reload, which will result in a denial of service (DoS) condition. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed and transparent firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 and IPv6 traffic. A valid SSL or TLS session is required to exploit this vulnerability.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>The (1) TLS and (2) DTLS implementations in OpenSSL 1.0.1 before 1.0.1g do not properly handle Heartbeat Extension packets, which allows remote attackers to obtain sensitive information from process memory via crafted packets that trigger a buffer over-read, as demonstrated by reading private keys, related to d1_both.c and t1_lib.c, aka the Heartbleed bug.</p>
+      </div>
+      <div>
+        <p>V37.4HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Open Shortest Path First (OSPF) implementation of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, adjacent attacker to cause a reload of an affected device, resulting in a denial of service (DoS) condition. The vulnerability exists because the affected software improperly parses certain options in OSPF link-state advertisement (LSA) type 11 packets. An attacker could exploit this vulnerability by sending a crafted LSA type 11 OSPF packet to an affected device. A successful exploit could allow the attacker to cause a reload of the affected device, resulting in a DoS condition for client traffic that is traversing the device.</p>
+      </div>
+      <div>
+        <p>V34.9MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Secure Copy (SCP) feature of Cisco Adaptive Security Appliance (ASA) Software could allow an authenticated, remote attacker to cause a denial of service (DoS) condition. The vulnerability is due to the use of an incorrect data type for a length variable. An attacker could exploit this vulnerability by initiating the transfer of a large file to an affected device via SCP. To exploit this vulnerability, the attacker would need to have valid privilege level 15 credentials on the affected device. A successful exploit could allow the attacker to cause the length variable to roll over, which could cause the affected device to crash.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the WebVPN feature of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause increased CPU utilization on an affected device. The vulnerability is due to excessive processing load for a specific WebVPN HTTP page request. An attacker could exploit this vulnerability by sending multiple WebVPN HTTP page load requests for a specific URL. A successful exploit could allow the attacker to increase CPU load on the device, resulting in a denial of service (DoS) condition, which could cause traffic to be delayed through the device.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the implementation of Security Assertion Markup Language (SAML) 2.0 Single Sign-On (SSO) for Clientless SSL VPN (WebVPN) and AnyConnect Remote Access VPN in Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to successfully establish a VPN session to an affected device. The vulnerability is due to improper credential management when using NT LAN Manager (NTLM) or basic authentication. An attacker could exploit this vulnerability by opening a VPN session to an affected device after another VPN user has successfully authenticated to the affected device via SAML SSO. A successful exploit could allow the attacker to connect to secured networks behind the affected device.</p>
+      </div>
+      <div>
+        <p>V36.5MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the detection engine of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, adjacent attacker to send data directly to the kernel of an affected device. The vulnerability exists because the software improperly filters Ethernet frames sent to an affected device. An attacker could exploit this vulnerability by sending crafted packets to the management interface of an affected device. A successful exploit could allow the attacker to bypass the Layer 2 (L2) filters and send data directly to the kernel of the affected device. A malicious frame successfully delivered would make the target device generate a specific syslog entry.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the TCP processing engine of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition. The vulnerability is due to the improper handling of TCP traffic. An attacker could exploit this vulnerability by sending a specific sequence of packets at a high rate through an affected device. A successful exploit could allow the attacker to temporarily disrupt traffic through the device while it reboots.</p>
+      </div>
+      <div>
+        <p>V36.5MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the WebVPN service of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an authenticated, remote attacker to cause a denial of service (DoS) condition on an affected device. The vulnerability is due to improper management of authenticated sessions in the WebVPN portal. An attacker could exploit this vulnerability by authenticating with valid credentials and accessing a specific URL in the WebVPN portal. A successful exploit could allow the attacker to cause the device to reload, resulting in a temporary DoS condition.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the ingress flow creation functionality of Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to cause the CPU to increase upwards of 100% utilization, causing a denial of service (DoS) condition on an affected system. The vulnerability is due to incorrect handling of an internal software lock that could prevent other system processes from getting CPU cycles, causing a high CPU condition. An attacker could exploit this vulnerability by sending a steady stream of malicious IP packets that can cause connections to be created on the targeted device. A successful exploit could allow the attacker to exhaust CPU resources, resulting in a DoS condition during which traffic through the device could be delayed. This vulnerability applies to either IPv4 or IPv6 ingress traffic. This vulnerability affects Cisco Adaptive Security Appliance (ASA) and Firepower Threat Defense (FTD) Software that is running on the following Cisco products: 3000 Series Industrial Security Appliances (ISA), ASA 5500 Series Adaptive Security Appliances, ASA 5500-X Series Next-Generation Firewalls, ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Adaptive Security Virtual Appliances (ASAv), Firepower 2100 Series Security Appliances, Firepower 4110 Security Appliances, Firepower 9300 ASA Security Modules. Cisco Bug IDs: CSCvf63718.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the web interface of the Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to cause an affected device to reload unexpectedly, resulting in a denial of service (DoS) condition. It is also possible on certain software releases that the ASA will not reload, but an attacker could view sensitive system information without authentication by using directory traversal techniques. The vulnerability is due to lack of proper input validation of the HTTP URL. An attacker could exploit this vulnerability by sending a crafted HTTP request to an affected device. An exploit could allow the attacker to cause a DoS condition or unauthenticated disclosure of information. This vulnerability applies to IPv4 and IPv6 HTTP traffic. This vulnerability affects Cisco ASA Software and Cisco Firepower Threat Defense (FTD) Software that is running on the following Cisco products: 3000 Series Industrial Security Appliance (ISA), ASA 1000V Cloud Firewall, ASA 5500 Series Adaptive Security Appliances, ASA 5500-X Series Next-Generation Firewalls, ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Adaptive Security Virtual Appliance (ASAv), Firepower 2100 Series Security Appliance, Firepower 4100 Series Security Appliance, Firepower 9300 ASA Security Module, FTD Virtual (FTDv). Cisco Bug IDs: CSCvi16029.</p>
+      </div>
+      <div>
+        <p>V36.8MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the TCP syslog module of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to exhaust the 1550-byte buffers on an affected device, resulting in a denial of service (DoS) condition. The vulnerability is due to a missing boundary check in an internal function. An attacker could exploit this vulnerability by establishing a man-in-the-middle position between an affected device and its configured TCP syslog server and then maliciously modifying the TCP header in segments that are sent from the syslog server to the affected device. A successful exploit could allow the attacker to exhaust buffer on the affected device and cause all TCP-based features to stop functioning, resulting in a DoS condition. The affected TCP-based features include AnyConnect SSL VPN, clientless SSL VPN, and management connections such as Secure Shell (SSH), Telnet, and HTTPS.</p>
+      </div>
+      <div>
+        <p>V36.8MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the implementation of Traffic Flow Confidentiality (TFC) over IPsec functionality in Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause an affected device to restart unexpectedly, resulting in a denial of service (DoS) condition. The vulnerability is due to an error that may occur if the affected software renegotiates the encryption key for an IPsec tunnel when certain TFC traffic is in flight. An attacker could exploit this vulnerability by sending a malicious stream of TFC traffic through an established IPsec tunnel on an affected device. A successful exploit could allow the attacker to cause a daemon process on the affected device to crash, which could cause the device to crash and result in a DoS condition.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the cryptographic hardware accelerator driver of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a temporary denial of service (DoS) condition. The vulnerability exists because the affected devices have a limited amount of Direct Memory Access (DMA) memory and the affected software improperly handles resources in low-memory conditions. An attacker could exploit this vulnerability by sending a sustained, high rate of malicious traffic to an affected device to exhaust memory on the device. A successful exploit could allow the attacker to exhaust DMA memory on the affected device, which could cause the device to reload and result in a temporary DoS condition.</p>
+      </div>
+      <div>
+        <p>V37.4HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the ARP packet processing of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software for Cisco Firepower 2100 Series Security Appliances could allow an unauthenticated, adjacent attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition on an affected device. The vulnerability is due to incorrect processing of ARP packets received by the management interface of an affected device. An attacker could exploit this vulnerability by sending a series of unicast ARP packets in a short timeframe that would reach the management interface of an affected device. A successful exploit could allow the attacker to consume resources on an affected device, which would prevent the device from sending internal system keepalives and eventually cause the device to reload, resulting in a denial of service (DoS) condition.</p>
+      </div>
+      <div>
+        <p>V35.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 8.2 through 9.4.3.3 allows remote attackers to bypass intended ICMP Echo Reply ACLs via vectors related to subtypes.</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>The WebVPN CIFS implementation in Cisco Adaptive Security Appliance (ASA) Software 9.0(.4.1) and earlier allows remote CIFS servers to cause a denial of service (device reload) via a long share list, aka Bug ID CSCuj83344.</p>
+      </div>
+      <div>
+        <p>V24.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The WebVPN portal in Cisco Adaptive Security Appliance (ASA) Software 8.4(.7.15) and earlier allows remote authenticated users to obtain sensitive information via a crafted JavaScript file, aka Bug ID CSCui04520.</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>The SNMP implementation in Cisco Adaptive Security Appliance (ASA) Software 8.4(7) and 8.6(1.2) allows remote authenticated users to cause a denial of service (device reload) by sending many SNMP requests during a time of high network traffic, aka Bug ID CSCul02601.</p>
+      </div>
+      <div>
+        <p>V25.4MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 8.4(.6) and earlier, when using an unsupported configuration with overlapping criteria for filtering and inspection, allows remote attackers to cause a denial of service (traffic loop and device crash) via a packet that triggers multiple matches, aka Bug ID CSCui45606.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Internet Key Exchange version 1 (IKEv1) feature of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to trigger a reload of an affected device, resulting in a denial of service (DoS) condition. The vulnerability is due to improper management of system memory. An attacker could exploit this vulnerability by sending malicious IKEv1 traffic to an affected device. The attacker does not need valid credentials to authenticate the VPN session, nor does the attacker's source address need to match a peer statement in the crypto map applied to the ingress interface of the affected device. An exploit could allow the attacker to exhaust system memory resources, leading to a reload of an affected device.</p>
+      </div>
+      <div>
+        <p>V36.1MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Clientless SSL VPN (WebVPN) portal of Cisco Adaptive Security Appliance (ASA) and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the web-based management interface of an affected device. The vulnerability is due to insufficient validation of user-supplied input by the web-based management interface of an affected device. An attacker could exploit this vulnerability by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the interface or allow the attacker to access sensitive browser-based information.</p>
+      </div>
+      <div>
+        <p>V35.9MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the remote access VPN session manager of Cisco Adaptive Security Appliance (ASA) Software could allow a unauthenticated, remote attacker to cause a denial of service (DoS) condition on the remote access VPN services. The vulnerability is due to an issue with the remote access VPN session manager. An attacker could exploit this vulnerability by requesting an excessive number of remote access VPN sessions. An exploit could allow the attacker to cause a DoS condition.</p>
+      </div>
+      <div>
+        <p>V34.8MEDIUM</p>
+      </div>
+      <div>
+        <p>Multiple vulnerabilities in the WebVPN service of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an authenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the WebVPN portal of an affected device. The vulnerabilities exist because the software insufficiently validates user-supplied input on an affected device. An attacker could exploit these vulnerabilities by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the affected interface or access sensitive browser-based information. An attacker would need administrator privileges on the device to exploit these vulnerabilities.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Session Initiation Protocol (SIP) inspection module of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device. The vulnerability is due to improper parsing of SIP messages. An attacker could exploit this vulnerability by sending a malicious SIP packet through an affected device. A successful exploit could allow the attacker to trigger an integer underflow, causing the software to try to read unmapped memory and resulting in a crash.</p>
+      </div>
+      <div>
+        <p>V36.5MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Secure Sockets Layer (SSL) VPN feature of Cisco Adaptive Security Appliance (ASA) Software could allow an authenticated, remote attacker to cause a denial of service (DoS) condition that prevents the creation of new SSL/Transport Layer Security (TLS) connections to an affected device. The vulnerability is due to incorrect handling of Base64-encoded strings. An attacker could exploit this vulnerability by opening many SSL VPN sessions to an affected device. The attacker would need to have valid user credentials on the affected device to exploit this vulnerability. A successful exploit could allow the attacker to overwrite a special system memory location, which will eventually result in memory allocation errors for new SSL/TLS sessions to the device, preventing successful establishment of these sessions. A reload of the device is required to recover from this condition. Established SSL/TLS connections to the device and SSL/TLS connections through the device are not affected. Note: Although this vulnerability is in the SSL VPN feature, successful exploitation of this vulnerability would affect all new SSL/TLS sessions to the device, including management sessions.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the FTP inspection engine of Cisco Adaptive Security (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition on an affected device. The vulnerability is due to insufficient validation of FTP data. An attacker could exploit this vulnerability by sending malicious FTP traffic through an affected device. A successful exploit could allow the attacker to cause a DoS condition on the affected device.</p>
+      </div>
+      <div>
+        <p>V38.1HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the authorization subsystem of Cisco Adaptive Security Appliance (ASA) Software could allow an authenticated, but unprivileged (levels 0 and 1), remote attacker to perform privileged actions by using the web management interface. The vulnerability is due to improper validation of user privileges when using the web management interface. An attacker could exploit this vulnerability by sending specific HTTP requests via HTTPS to an affected device as an unprivileged user. An exploit could allow the attacker to retrieve files (including the running configuration) from the device or to upload and replace software images on the device.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Session Initiation Protocol (SIP) inspection engine of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause an affected device to reload or trigger high CPU, resulting in a denial of service (DoS) condition. The vulnerability is due to improper handling of SIP traffic. An attacker could exploit this vulnerability by sending SIP requests designed to specifically trigger this issue at a high rate across an affected device. Software updates that address this vulnerability are not yet available.</p>
+      </div>
+      <div>
+        <p>V34.0MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the per-user-override feature of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to bypass an access control list (ACL) that is configured for an interface of an affected device. The vulnerability is due to errors that could occur when the affected software constructs and applies per-user-override rules. An attacker could exploit this vulnerability by connecting to a network through an affected device that has a vulnerable configuration. A successful exploit could allow the attacker to access resources that are behind the affected device and would typically be protected by the interface ACL.</p>
+      </div>
+      <div>
+        <p>V36.1MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Web Server Authentication Required screen of the Clientless Secure Sockets Layer (SSL) VPN portal of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of that portal on an affected device. The vulnerability is due to insufficient validation of user-supplied input by the web-based interface of an affected device. An attacker could exploit this vulnerability by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the portal or allow the attacker to access sensitive browser-based information. This vulnerability affects the following Cisco products if they are running a vulnerable release of Cisco ASA Software: 3000 Series Industrial Security Appliances, Adaptive Security Virtual Appliance (ASAv), ASA 5500 Series Adaptive Security Appliances, ASA 5500-X Series Next-Generation Firewalls, ASA Services Module for Cisco Catalyst 6500 Series Switches, ASA Services Module for Cisco 7600 Series Routers. Cisco Bug IDs: CSCvh20742.</p>
+      </div>
+      <div>
+        <p>V36.1MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the WebVPN web-based management interface of Cisco Adaptive Security Appliance could allow an unauthenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the web-based management interface of an affected device. The vulnerability is due to insufficient validation of user-supplied input by the web-based management interface of an affected device. An attacker could exploit this vulnerability by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the interface or allow the attacker to access sensitive browser-based information. Cisco Bug IDs: CSCvg33985.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>Multiple vulnerabilities in the Application Layer Protocol Inspection feature of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to trigger a reload of an affected device, resulting in a denial of service (DoS) condition. The vulnerabilities are due to logical errors during traffic inspection. An attacker could exploit these vulnerabilities by sending a high volume of malicious traffic across an affected device. An exploit could allow the attacker to cause a deadlock condition, resulting in a reload of an affected device. These vulnerabilities affect Cisco ASA Software and Cisco FTD Software configured for Application Layer Protocol Inspection running on the following Cisco products: 3000 Series Industrial Security Appliance (ISA), ASA 5500 Series Adaptive Security Appliances, ASA 5500-X Series Next-Generation Firewalls, ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Adaptive Security Virtual Appliance (ASAv), Firepower 2100 Series Security Appliance, Firepower 4100 Series Security Appliance, Firepower 9300 ASA Security Module, FTD Virtual (FTDv). Cisco Bug IDs: CSCve61540, CSCvh23085, CSCvh95456.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Secure Sockets Layer (SSL) packet reassembly functionality of the detection engine in Cisco Firepower System Software could allow an unauthenticated, remote attacker to cause the detection engine to consume excessive system memory on an affected device, which could cause a denial of service (DoS) condition. The vulnerability is due to the affected software improperly handling changes to SSL connection states. An attacker could exploit this vulnerability by sending crafted SSL connections through an affected device. A successful exploit could allow the attacker to cause the detection engine to consume excessive system memory on the affected device, which could cause a DoS condition. The device may need to be reloaded manually to recover from this condition. This vulnerability affects Cisco Firepower System Software Releases 6.0.0 and later, running on any of the following Cisco products: Adaptive Security Appliance (ASA) 5500-X Series Firewalls with FirePOWER Services, Adaptive Security Appliance (ASA) 5500-X Series Next-Generation Firewalls, Advanced Malware Protection (AMP) for Networks, 7000 Series Appliances, Advanced Malware Protection (AMP) for Networks, 8000 Series Appliances, Firepower 4100 Series Appliances, FirePOWER 7000 Series Appliances, FirePOWER 8000 Series Appliances, Firepower 9300 Series Security Appliances, Firepower Threat Defense for Integrated Services Routers (ISRs), Firepower Threat Defense Virtual for VMware, Industrial Security Appliance 3000, Sourcefire 3D System Appliances. Cisco Bug IDs: CSCve23031.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Transport Layer Security (TLS) library of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to trigger a reload of the affected device, resulting in a denial of service (DoS) condition. The vulnerability is due to insufficient validation of user-supplied input. An attacker could exploit this vulnerability by sending a malicious TLS message to an interface enabled for Secure Layer Socket (SSL) services on an affected device. Messages using SSL Version 3 (SSLv3) or SSL Version 2 (SSLv2) cannot be be used to exploit this vulnerability. An exploit could allow the attacker to cause a buffer underflow, triggering a crash on an affected device. This vulnerability affects Cisco ASA Software and Cisco FTD Software that is running on the following Cisco products: Adaptive Security Virtual Appliance (ASAv), Firepower Threat Defense Virtual (FTDv), Firepower 2100 Series Security Appliance. Cisco Bug IDs: CSCve18902, CSCve34335, CSCve38446.</p>
+      </div>
+      <div>
+        <p>V36.5MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the implementation of Security Assertion Markup Language (SAML) Single Sign-On (SSO) authentication for Cisco AnyConnect Secure Mobility Client for Desktop Platforms, Cisco Adaptive Security Appliance (ASA) Software, and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to establish an authenticated AnyConnect session through an affected device running ASA or FTD Software. The authentication would need to be done by an unsuspecting third party, aka Session Fixation. The vulnerability exists because there is no mechanism for the ASA or FTD Software to detect that the authentication request originates from the AnyConnect client directly. An attacker could exploit this vulnerability by persuading a user to click a crafted link and authenticating using the company's Identity Provider (IdP). A successful exploit could allow the attacker to hijack a valid authentication token and use that to establish an authenticated AnyConnect session through an affected device running ASA or FTD Software. This vulnerability affects the Cisco AnyConnect Secure Mobility Client, and ASA Software and FTD Software configured for SAML 2.0-based SSO for AnyConnect Remote Access VPN that is running on the following Cisco products: 3000 Series Industrial Security Appliances (ISA), ASA 5500 Series Adaptive Security Appliances, ASA 5500-X Series Next-Generation Firewalls, ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Adaptive Security Virtual Appliance (ASAv), Firepower 2100 Series Security Appliance, Firepower 4100 Series Security Appliance, Firepower 9300 ASA Security Module, FTD Virtual (FTDv). Cisco Bug IDs: CSCvg65072, CSCvh87448.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Secure Sockets Layer (SSL) Virtual Private Network (VPN) Client Certificate Authentication feature for Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to establish an SSL VPN connection and bypass certain SSL certificate verification steps. The vulnerability is due to incorrect verification of the SSL Client Certificate. An attacker could exploit this vulnerability by connecting to the ASA VPN without a proper private key and certificate pair. A successful exploit could allow the attacker to establish an SSL VPN connection to the ASA when the connection should have been rejected. This vulnerability affects Cisco Adaptive Security Appliance (ASA) and Firepower Threat Defense (FTD) Software that is running on the following Cisco products: 3000 Series Industrial Security Appliances (ISA), ASA 5500 Series Adaptive Security Appliances, ASA 5500-X Series Next-Generation Firewalls, ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Adaptive Security Virtual Appliances (ASAv), Firepower 4110 Security Appliances, Firepower 9300 ASA Security Modules. Cisco Bug IDs: CSCvg40155.</p>
+      </div>
+      <div>
+        <p>V310.0CRITICAL</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Secure Sockets Layer (SSL) VPN functionality of the Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to cause a reload of the affected system or to remotely execute code. The vulnerability is due to an attempt to double free a region of memory when the webvpn feature is enabled on the Cisco ASA device. An attacker could exploit this vulnerability by sending multiple, crafted XML packets to a webvpn-configured interface on the affected system. An exploit could allow the attacker to execute arbitrary code and obtain full control of the system, or cause a reload of the affected device. This vulnerability affects Cisco ASA Software that is running on the following Cisco products: 3000 Series Industrial Security Appliance (ISA), ASA 5500 Series Adaptive Security Appliances, ASA 5500-X Series Next-Generation Firewalls, ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, ASA 1000V Cloud Firewall, Adaptive Security Virtual Appliance (ASAv), Firepower 2100 Series Security Appliance, Firepower 4110 Security Appliance, Firepower 9300 ASA Security Module, Firepower Threat Defense Software (FTD). Cisco Bug IDs: CSCvg35618.</p>
+      </div>
+      <div>
+        <p>V35.4MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the web-based management interface of Cisco Adaptive Security Appliance (ASA) 9.5(1) could allow an authenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the web-based management interface of an affected device. The vulnerability is due to insufficient validation of user-supplied input by the web-based management interface of an affected device. An attacker could exploit this vulnerability by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the interface or allow the attacker to access sensitive browser-based information. Cisco Bug IDs: CSCvd82064.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the web interface of the Cisco Adaptive Security Appliance (ASA) 9.3(3) and 9.6(2) could allow an unauthenticated, remote attacker to determine valid usernames. The attacker could use this information to conduct additional reconnaissance attacks. The vulnerability is due to the interaction between Lightweight Directory Access Protocol (LDAP) and SSL Connection Profile when they are configured together. An attacker could exploit the vulnerability by performing a username enumeration attack to the IP address of the device. An exploit could allow the attacker to determine valid usernames. Cisco Bug IDs: CSCvd47888.</p>
+      </div>
+      <div>
+        <p>V37.1HIGH</p>
+      </div>
+      <div>
+        <p>A &quot;Cisco Firepower Threat Defense 6.0.0 through 6.2.2 and Cisco ASA with FirePOWER Module Denial of Service&quot; vulnerability in the access control policy of Cisco Firepower System Software could allow an authenticated, remote attacker to cause an affected system to stop inspecting and processing packets, resulting in a denial of service (DoS) condition. The vulnerability is due to improper SSL policy handling by the affected software when packets are passed through the sensing interfaces of an affected system. An attacker could exploit this vulnerability by sending crafted packets through a targeted system. This vulnerability affects Cisco Firepower System Software that is configured with the SSL policy feature. Cisco Bug IDs: CSCvc84361.</p>
+      </div>
+      <div>
+        <p>V35.9MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the TLS protocol implementation of legacy Cisco ASA 5500 Series (ASA 5505, 5510, 5520, 5540, and 5550) devices could allow an unauthenticated, remote attacker to access sensitive information, aka a Return of Bleichenbacher's Oracle Threat (ROBOT) attack. An attacker could iteratively query a server running a vulnerable TLS stack implementation to perform cryptanalytic operations that may allow decryption of previously captured TLS sessions. Cisco Bug IDs: CSCvg97652.</p>
+      </div>
+      <div>
+        <p>V35.3MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability exists in the process of creating default IP blocks during device initialization for Cisco ASA Next-Generation Firewall Services that could allow an unauthenticated, remote attacker to send traffic to the local IP address of the device, bypassing any filters that are configured to deny local IP management traffic. The vulnerability is due to an implementation error that exists in the process of creating default IP blocks when the device is initialized, and the way in which those IP blocks interact with user-configured filters for local IP management traffic (for example, SSH to the device). An attacker could exploit this vulnerability by sending traffic to the local IP address of the targeted device. A successful exploit could allow the attacker to connect to the local IP address of the device even when there are filters configured to deny the traffic. Cisco Bug IDs: CSCvd97962.</p>
+      </div>
+      <div>
+        <p>V36.1MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the web-based management interface of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the web-based management interface of an affected device, aka HREF XSS. The vulnerability is due to insufficient validation of user-supplied input by the web-based management interface of an affected device. An attacker could exploit this vulnerability by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the interface or allow the attacker to access sensitive browser-based information. The vulnerability exists in the Cisco Adaptive Security Appliance (ASA) Software when the WEBVPN feature is enabled. Cisco Bug IDs: CSCve91068.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the implementation of the direct authentication feature in Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to cause an affected device to unexpectedly reload, resulting in a denial of service (DoS) condition. The vulnerability is due to incomplete input validation of the HTTP header. An attacker could exploit this vulnerability by sending a crafted HTTP request to the local IP address of an affected device. A successful exploit could allow the attacker to cause the affected device to reload. This vulnerability affects Cisco Adaptive Security Appliance (ASA) Software that is running on the following Cisco products: ASA 5500 Series Adaptive Security Appliances, ASA 5500-X Series Next-Generation Firewalls, ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, ASA 1000V Cloud Firewall, Adaptive Security Virtual Appliance (ASAv), Firepower 4110 Security Appliance, Firepower 9300 ASA Security Module, ISA 3000 Industrial Security Appliance. Cisco Bug IDs: CSCvd59063.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in SSL traffic decryption for Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause depletion of system memory, aka a Firepower Detection Engine SSL Decryption Memory Consumption Denial of Service vulnerability. If this memory leak persists over time, a denial of service (DoS) condition could develop because traffic can cease to be forwarded through the device. The vulnerability is due to an error in how the Firepower Detection Snort Engine handles SSL traffic decryption and notifications to and from the Adaptive Security Appliance (ASA) handler. An attacker could exploit this vulnerability by sending a steady stream of malicious Secure Sockets Layer (SSL) traffic through the device. An exploit could allow the attacker to cause a DoS condition when the device runs low on system memory. This vulnerability affects Cisco Firepower Threat Defense (FTD) Software Releases 6.0.1 and later, running on any of the following Cisco products: Adaptive Security Appliance (ASA) 5500-X Series Next-Generation Firewalls, Firepower 2100 Series Security Appliances, Firepower 4100 Series Security Appliances, Firepower 9300 Series Security Appliances. Cisco Bug IDs: CSCve02069.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the detection engine parsing of IPv6 packets for Cisco Firepower System Software could allow an unauthenticated, remote attacker to cause high CPU utilization or to cause a denial of service (DoS) condition because the Snort process restarts unexpectedly. The vulnerability is due to improper input validation of the fields in the IPv6 extension header packet. An attacker could exploit this vulnerability by sending a malicious IPv6 packet to the detection engine on the targeted device. An exploit could allow the attacker to cause a DoS condition if the Snort process restarts and traffic inspection is bypassed or traffic is dropped. This vulnerability is specific to IPv6 traffic only. This vulnerability affects Cisco Firepower System Software Releases 6.0 and later when the software has one or more file action policies configured and is running on any of the following Cisco products: 3000 Series Industrial Security Appliances (ISR), Adaptive Security Appliance (ASA) 5500-X Series with FirePOWER Services, Adaptive Security Appliance (ASA) 5500-X Series Next-Generation Firewalls, Advanced Malware Protection (AMP) for Networks, 7000 Series Appliances, Advanced Malware Protection (AMP) for Networks, 8000 Series Appliances, FirePOWER 7000 Series Appliances, FirePOWER 8000 Series Appliances, Firepower Threat Defense for Integrated Services Routers (ISRs), Firepower 2100 Series Security Appliances, Firepower 4100 Series Security Appliances, Firepower 9300 Series Security Appliances, Virtual Next-Generation Intrusion Prevention System (NGIPSv) for VMware. Cisco Bug IDs: CSCvd34776.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the data plane IP fragment handler of the Cisco Adaptive Security Appliance (ASA) CX Context-Aware Security module could allow an unauthenticated, remote attacker to cause the CX module to be unable to process further traffic, resulting in a denial of service (DoS) condition. The vulnerability is due to improper handling of IP fragments. An attacker could exploit this vulnerability by sending crafted fragmented IP traffic across the CX module. An exploit could allow the attacker to exhaust free packet buffers in shared memory (SHM), causing the CX module to be unable to process further traffic, resulting in a DoS condition. This vulnerability affects all versions of the ASA CX Context-Aware Security module. Cisco has not released and will not release software updates that address this vulnerability. There are no workarounds that address this vulnerability. Cisco Bug IDs: CSCva62946.</p>
+      </div>
+      <div>
+        <p>V34.0MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the TCP normalizer of Cisco Adaptive Security Appliance (ASA) Software (8.0 through 8.7 and 9.0 through 9.6) and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause Cisco ASA and FTD to drop any further incoming traffic on all interfaces, resulting in a denial of service (DoS) condition. The vulnerability is due to improper limitation of the global out-of-order TCP queue for specific block sizes. An attacker could exploit this vulnerability by sending a large number of unique permitted TCP connections with out-of-order segments. An exploit could allow the attacker to exhaust available blocks in the global out-of-order TCP queue, causing the dropping of any further incoming traffic on all interfaces and resulting in a DoS condition. Cisco Bug IDs: CSCvb46321.</p>
+      </div>
+      <div>
+        <p>V35.3MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Border Gateway Protocol (BGP) Bidirectional Forwarding Detection (BFD) implementation of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to bypass the access control list (ACL) for specific TCP and UDP traffic. More Information: CSCvc68229. Known Affected Releases: 9.6(2). Known Fixed Releases: 99.1(20.1) 99.1(10.2) 98.1(12.7) 98.1(1.49) 97.1(6.58) 97.1(0.134) 96.2(0.109) 9.7(1.1) 9.6(2.99) 9.6(2.8).</p>
+      </div>
+      <div>
+        <p>V38.7HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the DNS code of Cisco ASA Software could allow an unauthenticated, remote attacker to cause an affected device to reload or corrupt the information present in the device's local DNS cache. The vulnerability is due to a flaw in handling crafted DNS response messages. An attacker could exploit this vulnerability by triggering a DNS request from the Cisco ASA Software and replying with a crafted response. A successful exploit could cause the device to reload, resulting in a denial of service (DoS) condition or corruption of the local DNS cache information. Note: Only traffic directed to the affected device can be used to exploit this vulnerability. This vulnerability affects Cisco ASA Software configured in routed or transparent firewall mode and single or multiple context mode. This vulnerability can be triggered by IPv4 and IPv6 traffic. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco Firepower 9300 ASA Security Module, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.12) 9.2(4.18) 9.4(3.12) 9.5(3.2) 9.6(2.2). Cisco Bug IDs: CSCvb40898.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) code of Cisco ASA Software could allow an unauthenticated, remote attacker to cause a reload of the affected system. The vulnerability is due to improper parsing of crafted SSL or TLS packets. An attacker could exploit this vulnerability by sending a crafted packet to the affected system. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed and transparent firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 and IPv6 traffic. A valid SSL or TLS session is needed to exploit this vulnerability. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco Firepower 9300 ASA Security Module, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 8.4(7.31) 9.0(4.39) 9.1(7) 9.2(4.6) 9.3(3.8) 9.4(2) 9.5(2). Cisco Bug IDs: CSCuv48243.</p>
+      </div>
+      <div>
+        <p>V37.7HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the IPsec code of Cisco ASA Software could allow an authenticated, remote attacker to cause a reload of the affected system. The vulnerability is due to improper parsing of malformed IPsec packets. An attacker could exploit this vulnerability by sending malformed IPsec packets to the affected system. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed firewall mode only and in single or multiple context mode. This vulnerability can be triggered by IPv4 and IPv6 traffic. An attacker needs to establish a valid IPsec tunnel before exploiting this vulnerability. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco Firepower 9300 ASA Security Module, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.8) 9.2(4.15) 9.4(4) 9.5(3.2) 9.6(2). Cisco Bug IDs: CSCun16158.</p>
+      </div>
+      <div>
+        <p>V37.7HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Internet Key Exchange Version 1 (IKEv1) XAUTH code of Cisco ASA Software could allow an authenticated, remote attacker to cause a reload of an affected system. The vulnerability is due to insufficient validation of the IKEv1 XAUTH parameters passed during an IKEv1 negotiation. An attacker could exploit this vulnerability by sending crafted parameters. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability only affects systems configured in routed firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 or IPv6 traffic. A valid IKEv1 Phase 1 needs to be established to exploit this vulnerability, which means that an attacker would need to have knowledge of a pre-shared key or have a valid certificate for phase 1 authentication. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco ASA for Firepower 9300 Series, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.7) 9.2(4.11) 9.4(4) 9.5(3) 9.6(1.5). Cisco Bug IDs: CSCuz11685.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the implementation of the Lightweight Directory Access Protocol (LDAP) feature in Cisco Adaptive Security Appliance (ASA) Software and Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition. The vulnerabilities are due to the improper parsing of LDAP packets sent to an affected device. An attacker could exploit these vulnerabilities by sending a crafted LDAP packet, using Basic Encoding Rules (BER), to be processed by an affected device. A successful exploit could allow the attacker to cause the affected device to reload, resulting in a DoS condition.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the TCP proxy functionality for Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause the device to restart unexpectedly, resulting in a denial of service (DoS) condition. The vulnerability is due to an error in TCP-based packet inspection, which could cause the TCP packet to have an invalid Layer 2 (L2)-formatted header. An attacker could exploit this vulnerability by sending a crafted TCP packet sequence to the targeted device. A successful exploit could allow the attacker to cause a DoS condition.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the IPsec driver code of multiple Cisco IOS XE Software platforms and the Cisco ASA 5500-X Series Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to cause the device to reload. The vulnerability is due to improper processing of malformed IPsec Authentication Header (AH) or Encapsulating Security Payload (ESP) packets. An attacker could exploit this vulnerability by sending malformed IPsec packets to be processed by an affected device. An exploit could allow the attacker to cause a reload of the affected device.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cross-site scripting (XSS) vulnerability in +CSCOT+/translation in Cisco Secure Desktop 3.4.2048, and other versions before 3.5; as used in Cisco ASA appliance before 8.2(1), 8.1(2.7), and 8.0(5); allows remote attackers to inject arbitrary web script or HTML via a crafted POST parameter, which is not properly handled by an eval statement in binary/mainv.js that writes to start.html.</p>
+      </div>
+      <div>
+        <p>V35.9MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the HTTP web-based management interface of the Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to inject arbitrary XML commands on the affected system. More Information: CSCva38556. Known Affected Releases: 9.1(6.10). Known Fixed Releases: 100.11(0.75) 100.15(0.137) 100.8(40.129) 96.2(0.95) 97.1(0.55) 97.1(12.7) 97.1(6.30).</p>
+      </div>
+      <div>
+        <p>V38.8HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in Common Internet Filesystem (CIFS) code in the Clientless SSL VPN functionality of Cisco ASA Software, Major Releases 9.0-9.6, could allow an authenticated, remote attacker to cause a heap overflow. The vulnerability is due to insufficient validation of user supplied input. An attacker could exploit this vulnerability by sending a crafted URL to the affected system. An exploit could allow the remote attacker to cause a reload of the affected system or potentially execute code. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed firewall mode only and in single or multiple context mode. This vulnerability can be triggered by IPv4 or IPv6 traffic. A valid TCP connection is needed to perform the attack. The attacker needs to have valid credentials to log in to the Clientless SSL VPN portal. Vulnerable Cisco ASA Software running on the following products may be affected by this vulnerability: Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco ASA for Firepower 9300 Series, Cisco ASA for Firepower 4100 Series. Cisco Bug IDs: CSCvc23838.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the local Certificate Authority (CA) feature of Cisco ASA Software before 9.6(1.5) could allow an unauthenticated, remote attacker to cause a reload of the affected system. The vulnerability is due to improper handling of crafted packets during the enrollment operation. An attacker could exploit this vulnerability by sending a crafted enrollment request to the affected system. An exploit could allow the attacker to cause the reload of the affected system. Note: Only HTTPS packets directed to the Cisco ASA interface, where the local CA is allowing user enrollment, can be used to trigger this vulnerability. This vulnerability affects systems configured in routed firewall mode and in single or multiple context mode.</p>
+      </div>
+      <div>
+        <p>V36.5MEDIUM</p>
+      </div>
+      <div>
+        <p>The DHCP Relay implementation in Cisco Adaptive Security Appliance (ASA) Software 8.4.7.29 and 9.1.7.4 allows remote attackers to cause a denial of service (interface wedge) via a crafted rate of DHCP packet transmission, aka Bug ID CSCuy66942.</p>
+      </div>
+      <div>
+        <p>V38.1HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the Identity Firewall feature of Cisco ASA Software before 9.6(2.1) could allow an unauthenticated, remote attacker to cause a reload of the affected system or to remotely execute code. The vulnerability is due to a buffer overflow in the affected code area. An attacker could exploit this vulnerability by sending a crafted NetBIOS packet in response to a NetBIOS probe sent by the ASA software. An exploit could allow the attacker to execute arbitrary code and obtain full control of the system or cause a reload of the affected system. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed and transparent firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 traffic.</p>
+      </div>
+      <div>
+        <p>V22.6LOW</p>
+      </div>
+      <div>
+        <p>Buffer overflow in srtp.c in libsrtp in srtp 1.4.5 and earlier allows remote attackers to cause a denial of service (crash) via vectors related to a length inconsistency in the crypto_policy_set_from_profile_for_rtp and srtp_protect functions.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Cisco PIX and ASA appliances with 7.0 through 8.0 software, and Cisco Firewall Services Module (FWSM) 3.1(5) and earlier, allow remote attackers to cause a denial of service (device reload) via a crafted MGCP packet, aka CSCsi90468 (appliance) and CSCsi00694 (FWSM).</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the IKE implementation on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.0 before 7.0(8.11), 7.1 and 7.2 before 7.2(5), 8.0 before 8.0(5.15), 8.1 before 8.1(2.44), 8.2 before 8.2(2.10), and 8.3 before 8.3(1.1) and Cisco PIX Security Appliances 500 series devices allows remote attackers to cause a denial of service (device reload) via a crafted IKE message, aka Bug ID CSCte46507.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the SunRPC inspection feature on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.2 before 7.2(5), 8.0 before 8.0(5.19), 8.1 before 8.1(2.47), and 8.2 before 8.2(2) and Cisco PIX Security Appliances 500 series devices allows remote attackers to cause a denial of service (device reload) via crafted SunRPC UDP packets, aka Bug ID CSCtc77567.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the SunRPC inspection feature on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.2 before 7.2(5), 8.0 before 8.0(5.19), 8.1 before 8.1(2.47), and 8.2 before 8.2(2) and Cisco PIX Security Appliances 500 series devices allows remote attackers to cause a denial of service (device reload) via crafted SunRPC UDP packets, aka Bug ID CSCtc79922.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the SunRPC inspection feature on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.2 before 7.2(5), 8.0 before 8.0(5.19), 8.1 before 8.1(2.47), and 8.2 before 8.2(2) and Cisco PIX Security Appliances 500 series devices allows remote attackers to cause a denial of service (device reload) via crafted SunRPC UDP packets, aka Bug ID CSCtc85753.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the Transport Layer Security (TLS) implementation on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.2 before 7.2(5), 8.0 before 8.0(5.15), 8.1 before 8.1(2.44), 8.2 before 8.2(2.17), and 8.3 before 8.3(1.6) and Cisco PIX Security Appliances 500 series devices allows remote attackers to cause a denial of service (device reload) via a sequence of crafted TLS packets, aka Bug ID CSCtd32627.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the Transport Layer Security (TLS) implementation on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.2 before 7.2(5), 8.0 before 8.0(5.15), 8.1 before 8.1(2.44), 8.2 before 8.2(2.17), and 8.3 before 8.3(1.6) and Cisco PIX Security Appliances 500 series devices allows remote attackers to cause a denial of service (device reload) via a sequence of crafted TLS packets, aka Bug ID CSCtf37506.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the Transport Layer Security (TLS) implementation on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.2 before 7.2(5), 8.0 before 8.0(5.15), 8.1 before 8.1(2.44), 8.2 before 8.2(2.17), and 8.3 before 8.3(1.6) and Cisco PIX Security Appliances 500 series devices allows remote attackers to cause a denial of service (device reload) via a sequence of crafted TLS packets, aka Bug ID CSCtf55259.</p>
+      </div>
+      <div>
+        <p>V22.6LOW</p>
+      </div>
+      <div>
+        <p>Multiple cross-site scripting (XSS) vulnerabilities in the WebVPN feature in the Cisco VPN 3000 Series Concentrators and Cisco ASA 5500 Series Adaptive Security Appliances (ASA), when in WebVPN clientless mode, allow remote attackers to inject arbitrary web script or HTML via the domain parameter in (1) dnserror.html and (2) connecterror.html, aka bugid CSCsd81095 (VPN3k) and CSCse48193 (ASA). NOTE: the vendor states that &quot;WebVPN full-network-access mode&quot; is not affected, despite the claims by the original researcher.</p>
+      </div>
+      <div>
+        <p>V27.5HIGH</p>
+      </div>
+      <div>
+        <p>Cisco PIX/ASA 7.1.x before 7.1(2) and 7.0.x before 7.0(5), PIX 6.3.x before 6.3.5(112), and FWSM 2.3.x before 2.3(4) and 3.x before 3.1(7), when used with Websense/N2H2, allows remote attackers to bypass HTTP access restrictions by splitting the GET method of an HTTP request into multiple packets, which prevents the request from being sent to Websense for inspection, aka bugs CSCsc67612, CSCsc68472, and CSCsd81734.</p>
+      </div>
+      <div>
+        <p>V25.4MEDIUM</p>
+      </div>
+      <div>
+        <p>Race condition in Cisco Adaptive Security Appliance (ASA) 7.0(0), 7.0(2), and 7.0(4), when running with an Active/Standby configuration and when the failover LAN interface fails, allows remote attackers to cause a denial of service (standby firewall failure) by sending spoofed ARP responses from an IP address of an active firewall, which prevents the standby firewall from becoming active, aka &quot;failover denial of service.&quot;</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) and Cisco PIX security appliance 7.1.x before 7.1(2)70, 7.2.x before 7.2(4), and 8.0.x before 8.0(3)10 allows remote attackers to cause a denial of service via a crafted TCP ACK packet to the device interface.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) and Cisco PIX security appliance 8.0.x before 8.0(3)9 and 8.1.x before 8.1(1)1 allows remote attackers to cause a denial of service (device reload) via a crafted Transport Layer Security (TLS) packet to the device interface.</p>
+      </div>
+      <div>
+        <p>V25.4MEDIUM</p>
+      </div>
+      <div>
+        <p>The Instant Messenger (IM) inspection engine in Cisco Adaptive Security Appliance (ASA) and Cisco PIX security appliance 7.2.x before 7.2(4), 8.0.x before 8.0(3)10, and 8.1.x before 8.1(1)2 allows remote attackers to cause a denial of service via a crafted packet.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) and Cisco PIX security appliance 7.2.x before 7.2(3)2 and 8.0.x before 8.0(2)17 allows remote attackers to cause a denial of service (device reload) via a port scan against TCP port 443 on the device.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) and Cisco PIX security appliance 8.0.x before 8.0(3)9 allows remote attackers to bypass control-plane ACLs for the device via unknown vectors.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>SNMPv3 HMAC verification in (1) Net-SNMP 5.2.x before 5.2.4.1, 5.3.x before 5.3.2.1, and 5.4.x before 5.4.1.1; (2) UCD-SNMP; (3) eCos; (4) Juniper Session and Resource Control (SRC) C-series 1.0.0 through 2.0.0; (5) NetApp (aka Network Appliance) Data ONTAP 7.3RC1 and 7.3RC2; (6) SNMP Research before 16.2; (7) multiple Cisco IOS, CatOS, ACE, and Nexus products; (8) Ingate Firewall 3.1.0 and later and SIParator 3.1.0 and later; (9) HP OpenView SNMP Emanate Master Agent 15.x; and possibly other products relies on the client to specify the HMAC length, which makes it easier for remote attackers to bypass SNMP authentication via a length value of 1, which only checks the first byte.</p>
+      </div>
+      <div>
+        <p>V27.5HIGH</p>
+      </div>
+      <div>
+        <p>Buffer overflow in PHP before 5.2.0 allows remote attackers to execute arbitrary code via crafted UTF-8 inputs to the (1) htmlentities or (2) htmlspecialchars functions.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco PIX 500 and ASA 5500 Series Security Appliances 7.2.2, when configured to inspect certain TCP-based protocols, allows remote attackers to cause a denial of service (device reboot) via malformed TCP packets.</p>
+      </div>
+      <div>
+        <p>V29.0HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco PIX 500 and ASA 5500 Series Security Appliances 7.2.2, when configured to use the LOCAL authentication method, allows remote authenticated users to gain privileges via unspecified vectors.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the SIP inspection feature on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.0 before 8.0(5.17), 8.1 before 8.1(2.45), and 8.2 before 8.2(2.13) allows remote attackers to cause a denial of service (device reload) via crafted SIP packets, aka Bug ID CSCtd32106.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.0 before 8.0(5.20), 8.1 before 8.1(2.48), 8.2 before 8.2(3), and 8.3 before 8.3(2.1), when the RIP protocol and the Cisco Phone Proxy functionality are configured, allow remote attackers to cause a denial of service (device reload) via a RIP update, aka Bug ID CSCtg66583.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.0 before 8.0(5.23), 8.1 before 8.1(2.49), 8.2 before 8.2(4.1), and 8.3 before 8.3(2.13), when a Certificate Authority (CA) is configured, allow remote attackers to read arbitrary files via unspecified vectors, aka Bug ID CSCtk12352.</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco PIX 500 Series Security Appliances and ASA 5500 Series Adaptive Security Appliances, when running 7.0(x) up to 7.0(5) and 7.1(x) up to 7.1(2.4), and Firewall Services Module (FWSM) 3.1(x) up to 3.1(1.6), causes the EXEC password, local user passwords, and the enable password to be changed to a &quot;non-random value&quot; under certain circumstances, which causes administrators to be locked out and might allow attackers to gain access.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco PIX 500 and ASA 5500 Series Security Appliances 6.x before 6.3(5.115), 7.0 before 7.0(5.2), and 7.1 before 7.1(2.5), and the FWSM 3.x before 3.1(3.24), when the &quot;inspect sip&quot; option is enabled, allows remote attackers to cause a denial of service (device reboot) via malformed SIP packets.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco PIX 500 and ASA 5500 Series Security Appliances 7.0 before 7.0(4.14) and 7.1 before 7.1(2.1), and the FWSM 2.x before 2.3(4.12) and 3.x before 3.1(3.24), when &quot;inspect http&quot; is enabled, allows remote attackers to cause a denial of service (device reboot) via malformed HTTP traffic.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The DHCP relay agent in Cisco Adaptive Security Appliance (ASA) and PIX 7.2 allows remote attackers to cause a denial of service (dropped packets) via a DHCPREQUEST or DHCPINFORM message that causes multiple DHCPACK messages to be sent from DHCP servers to the agent, which consumes the memory allocated for a local buffer.  NOTE: this issue only occurs when multiple DHCP servers are used.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco Adaptive Security Appliance (ASA) and PIX 7.2 before 7.2(2)8, when using Layer 2 Tunneling Protocol (L2TP) or Remote Management Access, allows remote attackers to bypass LDAP authentication and gain privileges via unknown vectors.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco Adaptive Security Appliance (ASA) and PIX 7.1 before 7.1(2)49 and 7.2 before 7.2(2)17 allows remote attackers to cause a denial of service (device reload) via unknown vectors related to VPN connection termination and password expiry.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Race condition in Cisco Adaptive Security Appliance (ASA) and PIX 7.1 before 7.1(2)49 and 7.2 before 7.2(2)19, when using &quot;clientless SSL VPNs,&quot; allows remote attackers to cause a denial of service (device reload) via &quot;non-standard SSL sessions.&quot;</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) running PIX 7.0 before 7.0.7.1, 7.1 before 7.1.2.61, 7.2 before 7.2.2.34, and 8.0 before 8.0.2.11, when AAA is enabled, composes %ASA-5-111008 messages from the &quot;test aaa&quot; command with cleartext passwords and sends them over the network to a remote syslog server or places them in a local logging buffer, which allows context-dependent attackers to obtain sensitive information.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Cisco PIX and ASA appliances with 7.1 and 7.2 software, when configured for TLS sessions to the device, allow remote attackers to cause a denial of service (device reload) via a crafted TLS packet, aka CSCsg43276 and CSCsh97120.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco PIX 500 Series Security Appliance and 5500 Series Adaptive Security Appliance (ASA) before 7.2(3)6 and 8.0(3), when the Time-to-Live (TTL) decrement feature is enabled, allows remote attackers to cause a denial of service (device reload) via a crafted IP packet.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>OpenSSL 0.9.7 before 0.9.7l, 0.9.8 before 0.9.8d, and earlier versions allows attackers to cause a denial of service (CPU consumption) via parasitic public keys with large (1) &quot;public exponent&quot; or (2) &quot;public modulus&quot; values in X.509 certificates that require extra time to process when using RSA signature verification.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>OpenSSL 0.9.7 before 0.9.7l and 0.9.8 before 0.9.8d allows remote attackers to cause a denial of service (infinite loop and memory consumption) via malformed ASN.1 structures that trigger an improperly handled error condition.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The get_server_hello function in the SSLv2 client code in OpenSSL 0.9.7 before 0.9.7l, 0.9.8 before 0.9.8d, and earlier versions allows remote servers to cause a denial of service (client crash) via unknown vectors that trigger a null pointer dereference.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>OpenSSL before 0.9.7, 0.9.7 before 0.9.7k, and 0.9.8 before 0.9.8c, when using an RSA key with exponent 3, removes PKCS-1 padding before generating a hash, which allows remote attackers to forge a PKCS #1 v1.5 signature that is signed by that RSA key and prevents OpenSSL from correctly verifying X.509 and other certificates that use PKCS #1.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Buffer overflow in the SSL_get_shared_ciphers function in OpenSSL 0.9.7 before 0.9.7l, 0.9.8 before 0.9.8d, and earlier versions has unspecified impact and remote attack vectors involving a long list of ciphers.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>CRLF injection vulnerability in +webvpn+/index.html in WebVPN on Cisco Adaptive Security Appliances (ASA) 5580 series devices with software before 8.1(2) allows remote attackers to inject arbitrary HTTP headers as demonstrated by a redirect attack involving a %0d%0aLocation%3a sequence in a URI, or conduct HTTP response splitting attacks via unspecified vectors, aka Bug ID CSCsr09163.</p>
+      </div>
+      <div>
+        <p>V26.9MEDIUM</p>
+      </div>
+      <div>
+        <p>OpenSSH 4.3p2, and probably other versions, allows local users to hijack forwarded X connections by causing ssh to set DISPLAY to :10, even when another process is listening on the associated port, as demonstrated by opening TCP port 6010 (IPv4) and sniffing a cookie sent by Emacs.</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>** DISPUTED **  The Cisco PIX/ASA Finesse Operation System 7.1 and 7.2 allows local users to gain privileges by entering characters at the enable prompt, erasing these characters via the Backspace key, and then holding down the Backspace key for one second after erasing the final character. NOTE: third parties, including one who works for the vendor, have been unable to reproduce the flaw unless the enable password is blank.</p>
+      </div>
+      <div>
+        <p>V24.0MEDIUM</p>
+      </div>
+      <div>
+        <p>Race condition in the ssl3_read_bytes function in s3_pkt.c in OpenSSL through 1.0.1g, when SSL_MODE_RELEASE_BUFFERS is enabled, allows remote attackers to inject data across sessions or cause a denial of service (use-after-free and parsing error) via an SSL connection in a multithreaded environment.</p>
+      </div>
+      <div>
+        <p>V26.5MEDIUM</p>
+      </div>
+      <div>
+        <p>The default configuration of Cisco ASA 5500 Series Adaptive Security Appliance (Cisco ASA) 7.0, 7.1, 7.2, 8.0, 8.1, and 8.2 allows portal traffic to access arbitrary backend servers, which might allow remote authenticated users to bypass intended access restrictions and access unauthorized web sites via a crafted URL obfuscated with ROT13 and a certain encoding.  NOTE: this issue was originally reported as a vulnerability related to lack of restrictions to URLs listed in the Cisco WebVPN bookmark component, but the vendor states that &quot;The bookmark feature is not a security feature.&quot;</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>Multiple clientless SSL VPN products that run in web browsers, including Stonesoft StoneGate; Cisco ASA; SonicWALL E-Class SSL VPN and SonicWALL SSL VPN; SafeNet SecureWire Access Gateway; Juniper Networks Secure Access; Nortel CallPilot; Citrix Access Gateway; and other products, when running in configurations that do not restrict access to the same domain as the VPN, retrieve the content of remote URLs from one domain and rewrite them so they originate from the VPN's domain, which violates the same origin policy and allows remote attackers to conduct cross-site scripting attacks, read cookies that originated from other domains, access the Web VPN session to gain access to internal resources, perform key logging, and conduct other attacks.  NOTE: it could be argued that this is a fundamental design problem in any clientless VPN solution, as opposed to a commonly-introduced error that can be fixed in separate implementations. Therefore a single CVE has been assigned for all products that have this design.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cross-site scripting (XSS) vulnerability in +webvpn+/index.html in WebVPN on the Cisco Adaptive Security Appliances (ASA) 5520 with software 7.2(4)30 and earlier 7.2 versions including 7.2(2)22, and 8.0(4)28 and earlier 8.0 versions, when clientless mode is enabled, allows remote attackers to inject arbitrary web script or HTML via the Host HTTP header.</p>
+      </div>
+      <div>
+        <p>V26.0MEDIUM</p>
+      </div>
+      <div>
+        <p>WebVPN on the Cisco Adaptive Security Appliances (ASA) device with software 8.0(4), 8.1.2, and 8.2.1 does not properly distinguish its own login screen from the login screens it produces for third-party (1) FTP and (2) CIFS servers, which makes it easier for remote attackers to trick a user into sending WebVPN credentials to an arbitrary server via a URL associated with that server, aka Bug ID CSCsy80709.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>WebVPN on the Cisco Adaptive Security Appliances (ASA) device with software 8.0(4), 8.1.2, and 8.2.1 allows remote attackers to bypass certain protection mechanisms involving URL rewriting and HTML rewriting, and conduct cross-site scripting (XSS) attacks, by modifying the first hex-encoded character in a /+CSCO+ URI, aka Bug ID CSCsy80705.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Eval injection vulnerability in the csco_wrap_js function in /+CSCOL+/cte.js in WebVPN on the Cisco Adaptive Security Appliances (ASA) device with software 8.0(4), 8.1.2, and 8.2.1 allows remote attackers to bypass a DOM wrapper and conduct cross-site scripting (XSS) attacks by setting CSCO_WebVPN['process'] to the name of a crafted function, aka Bug ID CSCsy80694.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The do_ssl3_write function in s3_pkt.c in OpenSSL 1.x through 1.0.1g, when SSL_MODE_RELEASE_BUFFERS is enabled, does not properly manage a buffer pointer during certain recursive calls, which allows remote attackers to cause a denial of service (NULL pointer dereference and application crash) via vectors that trigger an alert condition.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Multiple unspecified vulnerabilities in Cisco Unified Service Monitor before 8.6, as used in Unified Operations Manager before 8.6 and CiscoWorks LAN Management Solution 3.x and 4.x before 4.1; and multiple EMC Ionix products including Application Connectivity Monitor (Ionix ACM) 2.3 and earlier, Adapter for Alcatel-Lucent 5620 SAM EMS (Ionix ASAM) 3.2.0.2 and earlier, IP Management Suite (Ionix IP) 8.1.1.1 and earlier, and other Ionix products; allow remote attackers to execute arbitrary code via crafted packets to TCP port 9002, aka Bug IDs CSCtn42961 and CSCtn64922, related to a buffer overflow.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Off-by-one error in the ippReadIO function in cups/ipp.c in CUPS 1.3.3 allows remote attackers to cause a denial of service (crash) via a crafted (1) textWithLanguage or (2) nameWithLanguage Internet Printing Protocol (IPP) tag, leading to a stack-based buffer overflow.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The SSL/TLS server implementation in OpenSSL 0.9.7 before 0.9.7h and 0.9.8 before 0.9.8a, when using the SSL_OP_MSIE_SSLV2_RSA_PADDING option, disables a verification step that is required for preventing protocol version rollback attacks, which allows remote attackers to force a client and server to use a weaker protocol than needed via a man-in-the-middle attack.</p>
+      </div>
+      <div>
+        <p>V29.3HIGH</p>
+      </div>
+      <div>
+        <p>Buffer overflow in the Cisco Port Forwarder ActiveX control in cscopf.ocx, as distributed through the Clientless VPN feature on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.0 through 7.2 before 7.2(5.6), 8.0 before 8.0(5.26), 8.1 before 8.1(2.53), 8.2 before 8.2(5.18), 8.3 before 8.3(2.28), 8.2 before 8.4(2.16), and 8.6 before 8.6(1.1), allows remote attackers to execute arbitrary code via unspecified vectors, aka Bug ID CSCtr00165.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 7.0 through 7.2 before 7.2(5.7), 8.0 before 8.0(5.27), 8.1 before 8.1(2.53), 8.2 before 8.2(5.8), 8.3 before 8.3(2.25), 8.4 before 8.4(2.5), and 8.5 before 8.5(1.2) and the Firewall Services Module (FWSM) 3.1 and 3.2 before 3.2(23) and 4.0 and 4.1 before 4.1(8) in Cisco Catalyst 6500 series devices, when multicast routing is enabled, allow remote attackers to cause a denial of service (device reload) via a crafted IPv4 PIM message, aka Bug IDs CSCtr47517 and CSCtu97367.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.4 before 8.4(2.11) and 8.5 before 8.5(1.4) allow remote attackers to cause a denial of service (device reload) via (1) IPv4 or (2) IPv6 packets that trigger syslog message 305006, aka Bug ID CSCts39634.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The Threat Detection feature on Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.0 through 8.2 before 8.2(5.20), 8.3 before 8.3(2.29), 8.4 before 8.4(3), 8.5 before 8.5(1.6), and 8.6 before 8.6(1.1) allows remote attackers to cause a denial of service (device reload) via (1) IPv4 or (2) IPv6 packets that trigger a shun event, aka Bug ID CSCtw35765.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The UDP inspection engine on Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.0 before 8.0(5.25), 8.1 before 8.1(2.50), 8.2 before 8.2(5.5), 8.3 before 8.3(2.22), 8.4 before 8.4(2.1), and 8.5 before 8.5(1.2) does not properly handle flows, which allows remote attackers to cause a denial of service (device reload) via a crafted series of (1) IPv4 or (2) IPv6 UDP packets, aka Bug ID CSCtq10441.</p>
+      </div>
+      <div>
+        <p>V21.9LOW</p>
+      </div>
+      <div>
+        <p>The Montgomery ladder implementation in OpenSSL through 1.0.0l does not ensure that certain swap operations have a constant-time behavior, which makes it easier for local users to obtain ECDSA nonces via a FLUSH+RELOAD cache side-channel attack.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>CRLF injection vulnerability in /+CSCOE+/logon.html on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.0 through 8.4 allows remote attackers to inject arbitrary HTTP headers and conduct HTTP response splitting attacks via unspecified vectors, aka Bug ID CSCth63101.</p>
+      </div>
+      <div>
+        <p>V36.1MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the web-based management interface of Cisco Adaptive Security Appliance (ASA) 9.1(6.11) and 9.4(1.2) could allow an unauthenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the web-based management interface of an affected device, aka WebVPN XSS. The vulnerability is due to insufficient validation of user-supplied input by the web-based management interface of an affected device. An attacker could exploit this vulnerability by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the interface or allow the attacker to access sensitive browser-based information. Cisco Bug IDs: CSCve19179.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Stack-based buffer overflow in the unique_service_name function in ssdp/ssdp_server.c in the SSDP parser in the portable SDK for UPnP Devices (aka libupnp, formerly the Intel SDK for UPnP devices) before 1.6.18 allows remote attackers to execute arbitrary code via a long UDN (aka upnp:rootdevice) field in a UDP packet.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Stack-based buffer overflow in the unique_service_name function in ssdp/ssdp_server.c in the SSDP parser in the portable SDK for UPnP Devices (aka libupnp, formerly the Intel SDK for UPnP devices) before 1.6.18 allows remote attackers to execute arbitrary code via a long UDN (aka uuid) field within a string that contains a :: (colon colon) in a UDP packet.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Memory leak in Cisco Adaptive Security Appliances (ASA) 5500 Series and PIX Security Appliances 8.0 before 8.0(4) and 8.1 before 8.1(2) allows remote attackers to cause a denial of service (memory consumption) via an unspecified sequence of packets, related to the &quot;initialization code for the hardware crypto accelerator.&quot;</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco Adaptive Security Appliances (ASA) 5500 Series and PIX Security Appliances 7.2(4)9 and 7.2(4)10 allows remote attackers to cause a denial of service (device reload) via a crafted IPv6 packet.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco Adaptive Security Appliances (ASA) 5500 Series and PIX Security Appliances 7.0 before 7.0(8)3, 7.1 before 7.1(2)78, 7.2 before 7.2(4)16, 8.0 before 8.0(4)6, and 8.1 before 8.1(1)13, when configured as a VPN using Microsoft Windows NT Domain authentication, allows remote attackers to bypass VPN authentication via unknown vectors.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The TLS implementation in the Cavium cryptographic-module firmware, as distributed with Cisco Adaptive Security Appliance (ASA) Software 9.1(5.21) and other products, does not verify the MAC field, which allows man-in-the-middle attackers to spoof TLS content by modifying packets, aka Bug ID CSCuu52976.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The Unicast Reverse Path Forwarding (uRPF) implementation in Cisco Adaptive Security Appliance (ASA) Software 9.3(1.50), 9.3(2.100), 9.3(3), and 9.4(1) mishandles cases where an IP address belongs to an internal interface but is also in the ASA routing table, which allows remote attackers to bypass uRPF validation via spoofed packets, aka Bug ID CSCuv60724.</p>
+      </div>
+      <div>
+        <p>V27.2HIGH</p>
+      </div>
+      <div>
+        <p>Cisco IOS XE 15.4(3)S on ASR 1000 devices improperly loads software packages, which allows local users to bypass license restrictions and obtain certain root privileges by using the CLI to enter crafted filenames, aka Bug ID CSCuv93130.</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>The XML parser in the management interface in Cisco Adaptive Security Appliance (ASA) Software 8.4 allows remote authenticated users to cause a denial of service (device crash) via a crafted XML document, aka Bug ID CSCut14223.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>Memory leak in the embedded web server in the WebVPN subsystem in Cisco Adaptive Security Appliance (ASA) Software allows remote attackers to cause a denial of service (memory consumption and SSL outage) via multiple crafted HTTP requests, aka Bug ID CSCue05458.</p>
+      </div>
+      <div>
+        <p>V25.7MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software, when a DHCPv6 relay is configured, allows remote attackers to cause a denial of service (device reload) via crafted DHCP packets on the local network, aka Bug ID CSCur45455.</p>
+      </div>
+      <div>
+        <p>V24.0MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 9.2(.3) and earlier, when challenge-response authentication is used, does not properly select tunnel groups, which allows remote authenticated users to bypass intended resource-access restrictions via a crafted tunnel-group parameter, aka Bug ID CSCtz48533.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The Identity Firewall (IDFW) functionality in Cisco Adaptive Security Appliance (ASA) Software allows remote attackers to change the user-cache contents via a replay attack involving crafted RADIUS Change of Authorization (CoA) messages, aka Bug ID CSCuj45332.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The Identity Firewall (IDFW) functionality in Cisco Adaptive Security Appliance (ASA) Software allows remote attackers to trigger authentication-state modifications via a crafted NetBIOS logout probe response, aka Bug ID CSCuj45340.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Memory leak in the connection-manager implementation in Cisco Adaptive Security Appliance (ASA) Software 9.1(.3) and earlier allows remote attackers to cause a denial of service (multi-protocol management outage) by making multiple management session requests, aka Bug ID CSCug33233.</p>
+      </div>
+      <div>
+        <p>V26.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The Proxy Bypass Content Rewriter feature in the WebVPN subsystem in Cisco Adaptive Security Appliance (ASA) Software 9.1(.2) and earlier allows remote authenticated users to cause a denial of service (device crash or error-recovery event) via an HTTP request that triggers a rewrite, aka Bug ID CSCug91577.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cross-site scripting (XSS) vulnerability in the WebVPN portal login page on Cisco Adaptive Security Appliances (ASA) devices allows remote attackers to inject arbitrary web script or HTML via a crafted URL, aka Bug ID CSCug83080.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The DCERPC inspection engine on Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.3 before 8.3(2.25), 8.4 before 8.4(2.5), and 8.5 before 8.5(1.13) and the Firewall Services Module (FWSM) 4.1 before 4.1(7) in Cisco Catalyst 6500 series switches and 7600 series routers allows remote attackers to cause a denial of service (device reload) via a crafted DCERPC packet, aka Bug IDs CSCtr21346 and CSCtr27521.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The DCERPC inspection engine on Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.3 before 8.3(2.25), 8.4 before 8.4(2.5), and 8.5 before 8.5(1.13) and the Firewall Services Module (FWSM) 4.1 before 4.1(7) in Cisco Catalyst 6500 series switches and 7600 series routers allows remote attackers to cause a denial of service (device reload) via a crafted DCERPC packet, aka Bug IDs CSCtr21376 and CSCtr27524.</p>
+      </div>
+      <div>
+        <p>V29.0HIGH</p>
+      </div>
+      <div>
+        <p>Stack-based buffer overflow in the DCERPC inspection engine on Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.3 before 8.3(2.34), 8.4 before 8.4(4.4), 8.5 before 8.5(1.13), and 8.6 before 8.6(1.3) and the Firewall Services Module (FWSM) 4.1 before 4.1(9) in Cisco Catalyst 6500 series switches and 7600 series routers might allow remote attackers to execute arbitrary code via a crafted DCERPC packet, aka Bug IDs CSCtr21359 and CSCtr27522.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services module in Cisco Catalyst 6500 series devices, with software 7.2 before 7.2(5.3), 8.0 before 8.0(5.25), 8.1 before 8.1(2.50), 8.2 before 8.2(5.11), 8.3 before 8.3(2.23), 8.4 before 8.4(2), and 8.5 before 8.5(1.1) allow remote attackers to cause a denial of service (device reload) via crafted MSN Instant Messenger traffic, aka Bug ID CSCtl67486.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services module in Cisco Catalyst 6500 series devices, with software 7.0 before 7.0(8.13), 7.1 and 7.2 before 7.2(5.4), 8.0 before 8.0(5.25), 8.1 before 8.1(2.50), 8.2 before 8.2(5.6), 8.3 before 8.3(2.23), 8.4 before 8.4(2.7), and 8.5 before 8.5(1.1) and Cisco Firewall Services Module (aka FWSM) 3.1 before 3.1(21), 3.2 before 3.2(22), 4.0 before 4.0(16), and 4.1 before 4.1(7) allow remote attackers to cause a denial of service (device reload) via malformed ILS traffic, aka Bug IDs CSCtq57697 and CSCtq57802.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services module in Cisco Catalyst 6500 series devices, with software 7.0 before 7.0(8.13), 7.1 and 7.2 before 7.2(5.4), 8.0 before 8.0(5.25), 8.1 and 8.2 before 8.2(5.11), 8.3 before 8.3(2.23), 8.4 before 8.4(2.6), and 8.5 before 8.5(1.1) and Cisco Firewall Services Module (aka FWSM) 3.1 before 3.1(21), 3.2 before 3.2(22), 4.0 before 4.0(16), and 4.1 before 4.1(7) allow remote attackers to cause a denial of service (device reload) via crafted SunRPC traffic, aka Bug IDs CSCto92398 and CSCtq09989.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services module in Cisco Catalyst 6500 series devices, with software 7.0 before 7.0(8.13), 7.1 and 7.2 before 7.2(5.4), 8.0 before 8.0(5.25), 8.1 and 8.2 before 8.2(5.11), 8.3 before 8.3(2.23), 8.4 before 8.4(2.6), and 8.5 before 8.5(1.1) and Cisco Firewall Services Module (aka FWSM) 3.1 before 3.1(21), 3.2 before 3.2(22), 4.0 before 4.0(16), and 4.1 before 4.1(7) allow remote attackers to cause a denial of service (device reload) via crafted SunRPC traffic, aka Bug IDs CSCtq06062 and CSCtq09986.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services module in Cisco Catalyst 6500 series devices, with software 7.0 before 7.0(8.13), 7.1 and 7.2 before 7.2(5.4), 8.0 before 8.0(5.25), 8.1 and 8.2 before 8.2(5.11), 8.3 before 8.3(2.23), 8.4 before 8.4(2.6), and 8.5 before 8.5(1.1) and Cisco Firewall Services Module (aka FWSM) 3.1 before 3.1(21), 3.2 before 3.2(22), 4.0 before 4.0(16), and 4.1 before 4.1(7) allow remote attackers to cause a denial of service (device reload) via crafted SunRPC traffic, aka Bug IDs CSCtq06065 and CSCtq09978.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services module in Cisco Catalyst 6500 series devices, with software 7.0 before 7.0(8.13), 7.1 and 7.2 before 7.2(5.4), 8.0 before 8.0(5.25), 8.1 and 8.2 before 8.2(5.11), 8.3 before 8.3(2.23), 8.4 before 8.4(2.6), and 8.5 before 8.5(1.1) and Cisco Firewall Services Module (aka FWSM) 3.1 before 3.1(21), 3.2 before 3.2(22), 4.0 before 4.0(16), and 4.1 before 4.1(7) allow remote attackers to cause a denial of service (device reload) via crafted SunRPC traffic, aka Bug IDs CSCto92380 and CSCtq09972.</p>
+      </div>
+      <div>
+        <p>V27.9HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services module in Cisco Catalyst 6500 series devices, with software 7.0 before 7.0(8.13), 7.1 and 7.2 before 7.2(5.3), 8.0 before 8.0(5.24), 8.1 before 8.1(2.50), 8.2 before 8.2(5), 8.3 before 8.3(2.18), 8.4 before 8.4(1.10), and 8.5 before 8.5(1.1) and Cisco Firewall Services Module (aka FWSM) 3.1 before 3.1(21), 3.2 before 3.2(22), 4.0 before 4.0(16), and 4.1 before 4.1(7) allow remote attackers to bypass authentication via a crafted TACACS+ reply, aka Bug IDs CSCto40365 and CSCto74274.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.0 before 7.0(8.11), 7.1 and 7.2 before 7.2(5.1), 8.0 before 8.0(5.19), 8.1 before 8.1(2.47), 8.2 before 8.2(2.19), and 8.3 before 8.3(1.8); Cisco PIX Security Appliances 500 series devices; and Cisco Firewall Services Module (aka FWSM) 3.1 before 3.1(20), 3.2 before 3.2(20), 4.0 before 4.0(15), and 4.1 before 4.1(5) allow remote attackers to cause a denial of service (device reload) via a malformed Skinny Client Control Protocol (SCCP) message, aka Bug IDs CSCtg69457 and CSCtl84952.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.0 before 7.0(8.12), 7.1 and 7.2 before 7.2(5.2), 8.0 before 8.0(5.21), 8.1 before 8.1(2.49), 8.2 before 8.2(3.6), and 8.3 before 8.3(2.7) and Cisco PIX Security Appliances 500 series devices, when transparent firewall mode is configured but IPv6 is not configured, allow remote attackers to cause a denial of service (packet buffer exhaustion and device outage) via IPv6 traffic, aka Bug ID CSCtj04707.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.3(2) allows remote attackers to cause a denial of service (device crash) via a large number of LAN-to-LAN (aka L2L) IPsec sessions, aka Bug ID CSCth36592.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.3(2) allows remote attackers to cause a denial of service (device crash) via multicast traffic, aka Bug IDs CSCtg61810 and CSCtg69742.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The Mobile User Security (MUS) service on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.3(2) does not properly authenticate HTTP requests from a Web Security appliance (WSA), which might allow remote attackers to obtain sensitive information via a HEAD request, aka Bug ID CSCte53635.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.3(2) do not properly preserve ACL behavior after a migration, which allows remote attackers to bypass intended access restrictions via an unspecified type of network traffic that had previously been denied, aka Bug ID CSCte46460.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in the SIP inspection feature on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.3(2) allows remote attackers to cause a denial of service (device crash) by making many SIP calls, aka Bug ID CSCte20030.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Memory leak on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) allows remote attackers to cause a denial of service (memory consumption) by making multiple incorrect LDAP authentication attempts, aka Bug ID CSCtf29867.</p>
+      </div>
+      <div>
+        <p>V27.5HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) allows remote attackers to bypass SMTP inspection via vectors involving a prepended space character, aka Bug ID CSCte14901.</p>
+      </div>
+      <div>
+        <p>V29.0HIGH</p>
+      </div>
+      <div>
+        <p>The WebVPN implementation on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) permits the viewing of CIFS shares even when CIFS file browsing has been disabled, which allows remote authenticated users to bypass intended access restrictions via CIFS requests, aka Bug ID CSCsz80777.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) do not properly handle Online Certificate Status Protocol (OCSP) connection failures, which allows remote OCSP responders to cause a denial of service (TCP socket exhaustion) by rejecting connection attempts, aka Bug ID CSCsz36816.</p>
+      </div>
+      <div>
+        <p>V27.5HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) permit packets to pass before the configuration has been loaded, which might allow remote attackers to bypass intended access restrictions by sending network traffic during device startup, aka Bug ID CSCsy86769.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>emWEB on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) allows remote attackers to cause a denial of service (daemon crash) via a request for a document whose name contains space characters, aka Bug ID CSCsy08416.</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) allows remote authenticated users to cause a denial of service (device crash) via a high volume of IPsec traffic, aka Bug ID CSCsx52748.</p>
+      </div>
+      <div>
+        <p>V29.0HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) do not properly determine the interfaces for which TELNET connections should be permitted, which allows remote authenticated users to bypass intended access restrictions via vectors involving the &quot;lowest security level interface,&quot; aka Bug ID CSCsv40504.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.2(4) and earlier allows remote attackers to cause a denial of service (block exhaustion) via multicast traffic, aka Bug ID CSCtg63992.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.2(4) and earlier allow remote attackers to cause a denial of service via a flood of packets, aka Bug ID CSCtg06316.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.2(3) and earlier allow remote attackers to cause a denial of service (block exhaustion) via EIGRP traffic that triggers an EIGRP multicast storm, aka Bug ID CSCtf20269.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The Neighbor Discovery (ND) protocol implementation in the IPv6 stack on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.2(3) and earlier, and Cisco PIX Security Appliances devices, allows remote attackers to cause a denial of service (CPU consumption and device hang) by sending many Router Advertisement (RA) messages with different source addresses, as demonstrated by the flood_router6 program in the thc-ipv6 package, aka Bug ID CSCti24526.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco ASA 5500 Series Adaptive Security Appliance 7.0 before 7.0(8.10), 7.2 before 7.2(4.45), 8.0 before 8.0(5.2), 8.1 before 8.1(2.37), and 8.2 before 8.2(1.16); and Cisco PIX 500 Series Security Appliance; allows remote attackers to cause a denial of service (device reload) via malformed SIP messages, aka Bug ID CSCtc96018.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco ASA 5500 Series Adaptive Security Appliance 7.0 before 7.0(8.10), 7.2 before 7.2(4.45), 8.0 before 8.0(5.7), 8.1 before 8.1(2.40), and 8.2 before 8.2(2.1); and Cisco PIX 500 Series Security Appliance; allows remote attackers to bypass NTLMv1 authentication via a crafted username, aka Bug ID CSCte21953.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco ASA 5500 Series Adaptive Security Appliance 7.0 before 7.0(8.10), 7.2 before 7.2(4.45), 8.0 before 8.0(5.1), 8.1 before 8.1(2.37), and 8.2 before 8.2(1.15); and Cisco PIX 500 Series Security Appliance; allows remote attackers to cause a denial of service (active IPsec tunnel loss and prevention of new tunnels) via a malformed IKE message through an existing tunnel to UDP port 4500, aka Bug ID CSCtc47782.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco ASA 5500 Series Adaptive Security Appliance 7.0 before 7.0(8.10), 7.2 before 7.2(4.45), 8.0 before 8.0(4.44), 8.1 before 8.1(2.35), and 8.2 before 8.2(1.10) allows remote attackers to cause a denial of service (device reload) via a malformed TCP segment when certain NAT translation and Cisco AIP-SSM configurations are used, aka Bug ID CSCtb37219.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco ASA 5500 Series Adaptive Security Appliance 7.2 before 7.2(4.45), 8.0 before 8.0(4.44), 8.1 before 8.1(2.35), and 8.2 before 8.2(1.10), allows remote attackers to cause a denial of service (page fault and device reload) via a malformed DTLS message, aka Bug ID CSCtb64913 and &quot;WebVPN DTLS Denial of Service Vulnerability.&quot;</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The Cisco Firewall Services Module (FWSM) 4.0 before 4.0(8), as used in for the Cisco Catalyst 6500 switches, Cisco 7600 routers, and ASA 5500 Adaptive Security Appliances, allows remote attackers to cause a denial of service (crash) via a malformed Skinny Client Control Protocol (SCCP) message.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco ASA 5500 Series Adaptive Security Appliance 7.0 before 7.0(8.10), 7.2 before 7.2(4.45), 8.0 before 8.0(5.2), 8.1 before 8.1(2.37), and 8.2 before 8.2(1.16); and Cisco PIX 500 Series Security Appliance; allows remote attackers to cause a denial of service (device reload) via malformed SIP messages, aka Bug ID CSCsy91157.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco ASA 5500 Series Adaptive Security Appliance 7.2 before 7.2(4.46), 8.0 before 8.0(4.38), 8.1 before 8.1(2.29), and 8.2 before 8.2(1.5); and Cisco PIX 500 Series Security Appliance; allows remote attackers to cause a denial of service (prevention of new connections) via crafted TCP segments during termination of the TCP connection that cause the connection to remain in CLOSEWAIT status, aka &quot;TCP Connection Exhaustion Denial of Service Vulnerability.&quot;</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software before 8.2(3) allow remote attackers to cause a denial of service (ASDM syslog outage) via a long URL, aka Bug IDs CSCsm11264 and CSCtb92911.</p>
+      </div>
+      <div>
+        <p>V38.8HIGH</p>
+      </div>
+      <div>
+        <p>The web-based GUI in Cisco Firepower Management Center 4.x and 5.x before 5.3.1.2 and 5.4.x before 5.4.0.1 and Cisco Adaptive Security Appliance (ASA) Software on 5500-X devices with FirePOWER Services 4.x and 5.x before 5.3.1.2 and 5.4.x before 5.4.0.1 allows remote authenticated users to execute arbitrary commands as root via crafted HTTP requests, aka Bug ID CSCur25513.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability in Cisco Adaptive Security Appliance (ASA) 5500 devices 8.0(3)15, 8.0(3)16, 8.1(1)4, and 8.1(1)5, when configured as a clientless SSL VPN endpoint, allows remote attackers to obtain usernames and passwords via unknown vectors, aka Bug ID CSCsq45636.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The HTTP server in Cisco Adaptive Security Appliance (ASA) 5500 devices 8.0 before 8.0(3)15 and 8.1 before 8.1(1)5, when configured as a clientless SSL VPN endpoint, does not properly process URIs, which allows remote attackers to cause a denial of service (device reload) via a URI in a crafted SSL or HTTP packet, aka Bug ID CSCsq19369.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Memory leak in the crypto functionality in Cisco Adaptive Security Appliance (ASA) 5500 devices 7.2 before 7.2(4)2, 8.0 before 8.0(3)14, and 8.1 before 8.1(1)4, when configured as a clientless SSL VPN endpoint, allows remote attackers to cause a denial of service (memory consumption and VPN hang) via a crafted SSL or HTTP packet, aka Bug ID CSCso66472.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Cisco PIX and Adaptive Security Appliance (ASA) 5500 devices 7.2 before 7.2(4)2, 8.0 before 8.0(3)14, and 8.1 before 8.1(1)4, when configured as a client VPN endpoint, do not properly process IPSec client authentication, which allows remote attackers to cause a denial of service (device reload) via a crafted authentication attempt, aka Bug ID CSCso69942.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Multiple unspecified vulnerabilities in the SIP inspection functionality in Cisco PIX and Adaptive Security Appliance (ASA) 5500 devices 7.0 before 7.0(7)16, 7.1 before 7.1(2)71, 7.2 before 7.2(4)7, 8.0 before 8.0(3)20, and 8.1 before 8.1(1)8 allow remote attackers to cause a denial of service (device reload) via unknown vectors, aka Bug IDs CSCsq07867, CSCsq57091, CSCsk60581, and CSCsq39315.</p>
+      </div>
+      <div>
+        <p>V35.3MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in the logging subsystem of the Cisco Firepower Threat Defense (FTD) Firepower Device Manager (FDM) could allow an unauthenticated, remote attacker to add arbitrary entries to the audit log. This vulnerability affects Cisco Firepower Threat Defense Software versions 6.1.x on the following vulnerable products that have enabled FDM: ASA5506-X ASA5506W-X ASA5506H-X ASA5508-X ASA5516-X ASA5512-X ASA5515-X ASA5525-X ASA5545-X ASA5555-X. More Information: CSCvb86860. Known Affected Releases: FRANGELICO. Known Fixed Releases: 6.2.0.</p>
+      </div>
+      <div>
+        <p>V38.1HIGH</p>
+      </div>
+      <div>
+        <p>ASA 5515-X Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 9.4.x before 9.4.1 Interim, 9.2.x before 9.2.4 Interim, ASA 5510 Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 8.4.x before 8.4.7 Interim, 8.2.x before 8.2.5 Interim, 9.1.x before 9.1.6 Interim, ASA 5555-X Adaptive Security Appliance ASA for Application Centric Infrastructure (ACI) Device Package 1.2.4.x before 1.2.4.8, ASA 5512-X Adaptive Security Appliance ASA for Application Centric Infrastructure (ACI) Device Package 1.2.4.x before 1.2.4.8, ASA 5520 Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 8.2.x before 8.2.5 Interim, 8.4.x before 8.4.7 Interim, 9.1.x before 9.1.6 Interim, ASA 5505 Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 9.2.x before 9.2.4 Interim, 8.4.x before 8.4.7 Interim, 9.1.x before 9.1.6 Interim, ASA 5525-X Adaptive Security Appliance ASA for Application Centric Infrastructure (ACI) Device Package 1.2.4.x before 1.2.4.8, ASA 5512-X Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 9.4.x before 9.4.1 Interim, 9.2.x before 9.2.4 Interim or 9.2.4.SMP, 9.1.x before 9.1.6 Interim, ASA 5545-X Adaptive Security Appliance ASA for Application Centric Infrastructure (ACI) Device Package 1.2.4.x before 1.2.4.8, ASA 5585-X Adaptive Security Appliance ASA for Application Centric Infrastructure (ACI) Device Package 1.2.4.x before 1.2.4.8, ASA 5540 Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 8.2.x before 8.2.5 Interim, 8.4.x before 8.4.7 Interim, 9.1.x before 9.1.6 Interim, ASA 5515-X Adaptive Security Appliance ASA for Application Centric Infrastructure (ACI) Device Package 1.2.4.x before 1.2.4.8, ASA 5555-X Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 9.2.x before 9.2.4 Interim or 9.2.4.SMP, 9.4.x before 9.4.1 Interim, 9.1.x before 9.1.6 Interim, ASA 5580 Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 9.1.x before 9.1.6 Interim, ASA 5585-X Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 9.2.x before 9.2.4 Interim, 9.4.x before 9.4.1 Interim, ASA 5525-X Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 9.4.x before 9.4.1 Interim, 9.2.x before 9.2.4 Interim or 9.2.4.SMP, 9.1.x before 9.1.6 Interim, ASA 5545-X Adaptive Security Appliance Adaptive Security Appliance (ASA) Software 9.4.x before 9.4.1 Interim, 9.2.x before 9.2.4 Interim or 9.2.4.SMP. 9.1.x before 9.1.6 ASA does not check the source of the ARP request or GARP packets for addresses it performs NAT translation for under unspecified conditions.</p>
+      </div>
+      <div>
+        <p>V38.6HIGH</p>
+      </div>
+      <div>
+        <p>A vulnerability in the detection engine parsing of Pragmatic General Multicast (PGM) protocol packets for Cisco Firepower System Software could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition due to the Snort process unexpectedly restarting. The vulnerability is due to improper input validation of the fields in the PGM protocol packet. An attacker could exploit this vulnerability by sending a crafted PGM packet to the detection engine on the targeted device. An exploit could allow the attacker to cause a DoS condition if the Snort process restarts and traffic inspection is bypassed or traffic is dropped. This vulnerability affects Cisco Firepower System Software that has one or more file action policies configured and is running on any of the following Cisco products: Adaptive Security Appliance (ASA) 5500-X Series with FirePOWER Services; Adaptive Security Appliance (ASA) 5500-X Series Next-Generation Firewalls; Advanced Malware Protection (AMP) for Networks, 7000 Series Appliances; Advanced Malware Protection (AMP) for Networks, 8000 Series Appliances; Firepower 4100 Series Security Appliances; FirePOWER 7000 Series Appliances; FirePOWER 8000 Series Appliances; Firepower 9300 Series Security Appliances; FirePOWER Threat Defense for Integrated Services Routers (ISRs); Industrial Security Appliance 3000; Sourcefire 3D System Appliances; Virtual Next-Generation Intrusion Prevention System (NGIPSv) for VMware. Fixed versions: 5.4.0.10 5.4.1.9 6.0.1.3 6.1.0 6.2.0. Cisco Bug IDs: CSCuz00876.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The Protocol Independent Multicast (PIM) application in Cisco Adaptive Security Appliance (ASA) Software 9.2(0.0), 9.2(0.104), 9.2(3.1), 9.2(3.4), 9.3(1.105), 9.3(2.100), 9.4(0.115), 100.13(0.21), 100.13(20.3), 100.13(21.9), and 100.14(1.1) does not properly implement multicast-forwarding registration, which allows remote attackers to cause a denial of service (forwarding outage) via a crafted multicast packet, aka Bug ID CSCus74398.</p>
+      </div>
+      <div>
+        <p>V39.8CRITICAL</p>
+      </div>
+      <div>
+        <p>Buffer overflow in the IKEv1 and IKEv2 implementations in Cisco ASA Software before 8.4(7.30), 8.7 before 8.7(1.18), 9.0 before 9.0(4.38), 9.1 before 9.1(7), 9.2 before 9.2(4.5), 9.3 before 9.3(3.7), 9.4 before 9.4(2.4), and 9.5 before 9.5(2.2) on ASA 5500 devices, ASA 5500-X devices, ASA Services Module for Cisco Catalyst 6500 and Cisco 7600 devices, ASA 1000V devices, Adaptive Security Virtual Appliance (aka ASAv), Firepower 9300 ASA Security Module, and ISA 3000 devices allows remote attackers to execute arbitrary code or cause a denial of service (device reload) via crafted UDP packets, aka Bug IDs CSCux29978 and CSCux42019.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The DHCPv6 relay implementation in Cisco Adaptive Security Appliance (ASA) software 9.0 before 9.0(4.37), 9.1 before 9.1(6.6), 9.2 before 9.2(4), 9.3 before 9.3(3.5), and 9.4 before 9.4(2) allows remote attackers to cause a denial of service (device reload) via crafted DHCPv6 packets, aka Bug IDs CSCus56252 and CSCus57142.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) software 7.2 and 8.2 before 8.2(5.58), 8.3 and 8.4 before 8.4(7.29), 8.5 through 8.7 before 8.7(1.17), 9.0 before 9.0(4.37), 9.1 before 9.1(6.4), 9.2 before 9.2(4), 9.3 before 9.3(3.1), and 9.4 before 9.4(1.1) allows remote attackers to cause a denial of service (device reload) via a crafted DNS response, aka Bug ID CSCut03495.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The IKEv1 implementation in Cisco Adaptive Security Appliance (ASA) software 7.2 and 8.2 before 8.2(5.58), 8.3 and 8.4 before 8.4(7.29), 8.5 through 8.7 before 8.7(1.17), 9.0 before 9.0(4.37), 9.1 before 9.1(6.8), 9.2 before 9.2(4), and 9.3 before 9.3(3) allows remote attackers to cause a denial of service (device reload) via crafted ISAKMP UDP packets, aka Bug ID CSCus94026.</p>
+      </div>
+      <div>
+        <p>V24.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The IKEv1 implementation in Cisco ASA Software 7.x, 8.0.x, 8.1.x, and 8.2.x before 8.2.2.13 allows remote authenticated users to bypass XAUTH authentication via crafted IKEv1 packets, aka Bug ID CSCus47259.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cross-site scripting (XSS) vulnerability in the WebVPN Portal Login page in Cisco Adaptive Security Appliance (ASA) Software allows remote attackers to inject arbitrary web script or HTML via crafted attributes in a cookie, aka Bug ID CSCuh24695.</p>
+      </div>
+      <div>
+        <p>V26.1MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 9.3(2) allows remote attackers to cause a denial of service (system reload) by sending crafted OSPFv2 packets on the local network, aka Bug ID CSCut52679.</p>
+      </div>
+      <div>
+        <p>V26.1MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 9.3(2.243) and 100.13(0.21) allows remote attackers to cause a denial of service (device reload) by sending crafted OSPFv2 packets on the local network, aka Bug ID CSCus84220.</p>
+      </div>
+      <div>
+        <p>V34.3MEDIUM</p>
+      </div>
+      <div>
+        <p>A vulnerability in TCP processing in Cisco FirePOWER system software could allow an unauthenticated, remote attacker to download files that would normally be blocked. Affected Products: The following Cisco products are vulnerable: Adaptive Security Appliance (ASA) 5500-X Series with FirePOWER Services, Advanced Malware Protection (AMP) for Networks - 7000 Series Appliances, Advanced Malware Protection (AMP) for Networks - 8000 Series Appliances, FirePOWER 7000 Series Appliances, FirePOWER 8000 Series Appliances, FirePOWER Threat Defense for Integrated Services Routers (ISRs), Next Generation Intrusion Prevention System (NGIPS) for Blue Coat X-Series, Sourcefire 3D System Appliances, Virtual Next-Generation Intrusion Prevention System (NGIPSv) for VMware. More Information: CSCvb20102. Known Affected Releases: 2.9.7.10.</p>
+      </div>
+      <div>
+        <p>V35.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 8.4 allows remote attackers to obtain sensitive information via an AnyConnect authentication attempt, aka Bug ID CSCuo65775.</p>
+      </div>
+      <div>
+        <p>V34.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The DCERPC Inspection implementation in Cisco Adaptive Security Appliance (ASA) Software 9.4.1 through 9.5.1 allows remote authenticated users to bypass an intended DCERPC-only ACL by sending arbitrary network traffic, aka Bug ID CSCuu67782.</p>
+      </div>
+      <div>
+        <p>V24.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The web-based GUI in Cisco Adaptive Security Appliance (ASA) CX Context-Aware Security 9.3(4.1.11) allows remote authenticated users to bypass intended access restrictions and obtain sensitive user information via an unspecified HTTP request, aka Bug ID CSCuv74105.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) software 7.2 and 8.2 before 8.2(5.58), 8.3 and 8.4 before 8.4(7.29), 8.5 through 8.7 before 8.7(1.17), 9.0 before 9.0(4.37), 9.1 before 9.1(6.6), 9.2 before 9.2(4), 9.3 before 9.3(3.5), and 9.4 before 9.4(1.5) allows remote attackers to cause a denial of service (device reload) via a crafted DNS response, aka Bug ID CSCuu07799.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The Cavium cryptographic-module firmware on Cisco Adaptive Security Appliance (ASA) devices with software 9.3(3) and 9.4(1.1) does not verify the AES-GCM Integrity Check Value (ICV) octets, which makes it easier for man-in-the-middle attackers to spoof IPSec and IKEv2 traffic by modifying packet data, aka Bug ID CSCuu66218.</p>
+      </div>
+      <div>
+        <p>V38.8HIGH</p>
+      </div>
+      <div>
+        <p>The RBAC implementation in Cisco ASA-CX Content-Aware Security software before 9.3.1.1(112) and Cisco Prime Security Manager (PRSM) software before 9.3.1.1(112) allows remote authenticated users to change arbitrary passwords via a crafted HTTP request, aka Bug ID CSCuo94842.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>The DHCPv6 relay implementation in Cisco Adaptive Security Appliance (ASA) Software 9.4.1 allows remote attackers to cause a denial of service (device reload) via crafted DHCPv6 packets, aka Bug ID CSCus23248.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>Cisco FireSIGHT System Software 5.4.0 through 6.0.1 and ASA with FirePOWER Services 5.4.0 through 6.0.0.1 allow remote attackers to bypass malware protection via crafted fields in HTTP headers, aka Bug ID CSCux22726.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>The HTTPS inspection engine in the Content Security and Control Security Services Module (CSC-SSM) 6.6 before 6.6.1164.0 for Cisco ASA 5500 devices allows remote attackers to cause a denial of service (memory consumption or device reload) via a flood of HTTPS packets, aka Bug ID CSCue76147.</p>
+      </div>
+      <div>
+        <p>V36.5MEDIUM</p>
+      </div>
+      <div>
+        <p>The XML parser in Cisco Adaptive Security Appliance (ASA) Software through 9.5.2 allows remote authenticated users to cause a denial of service (instability, memory consumption, or device reload) by leveraging (1) administrative access or (2) Clientless SSL VPN access to provide a crafted XML document, aka Bug ID CSCut14209.</p>
+      </div>
+      <div>
+        <p>V37.5HIGH</p>
+      </div>
+      <div>
+        <p>The Adaptive Security Appliance (ASA) 5585-X FirePOWER Security Services Processor (SSP) module for Cisco ASA with FirePOWER Services 5.3.1 through 6.0.0 misconfigures kernel logging, which allows remote attackers to cause a denial of service (resource consumption, and inspection outage or module outage) via a flood of crafted IP traffic, aka Bug ID CSCux19922.</p>
+      </div>
+      <div>
+        <p>V36.1MEDIUM</p>
+      </div>
+      <div>
+        <p>Cross-site scripting (XSS) vulnerability in HostScan Engine 3.0.08062 through 3.1.14018 in the Cisco Host Scan package, as used in ASA Web VPN, allows remote attackers to inject arbitrary web script or HTML via a crafted URL, aka Bug ID CSCuz14682.</p>
+      </div>
+      <div>
+        <p>V37.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software before 8.4(1) on ASA 5500, ASA 5500-X, PIX, and FWSM devices allows local users to gain privileges via invalid CLI commands, aka Bug ID CSCtu74257 or EPICBANANA.</p>
+      </div>
+      <div>
+        <p>V38.8HIGH</p>
+      </div>
+      <div>
+        <p>Buffer overflow in Cisco Adaptive Security Appliance (ASA) Software through 9.4.2.3 on ASA 5500, ASA 5500-X, ASA Services Module, ASA 1000V, ASAv, Firepower 9300 ASA Security Module, PIX, and FWSM devices allows remote authenticated users to execute arbitrary code via crafted IPv4 SNMP packets, aka Bug ID CSCva92151 or EXTRABACON.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The IKE implementation in the VPN component in Cisco ASA Software 9.1 before 9.1(5.1) allows remote attackers to cause a denial of service (device reload) via crafted UDP packets, aka Bug ID CSCul36176.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The protocol-inspection feature on Cisco Adaptive Security Appliances (ASA) devices does not properly implement the idle timeout, which allows remote attackers to cause a denial of service (connection-table exhaustion) via crafted requests that use an inspected protocol, aka Bug ID CSCuh13899.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The IPsec implementation in Cisco Adaptive Security Appliance (ASA) Software 9.1 before 9.1(1.7), when an IPsec VPN tunnel is enabled, allows remote attackers to cause a denial of service (device reload) via a (1) ICMP or (2) ICMPv6 packet that is improperly handled during decryption, aka Bug ID CSCue18975.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 8.4.x before 8.4(3) and 8.6.x before 8.6(1.3) does not properly manage memory upon an AnyConnect SSL VPN client disconnection, which allows remote attackers to cause a denial of service (memory consumption, and forwarding outage or system hang) via packets to the disconnected machine's IP address, aka Bug ID CSCtt36737.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The SQL*Net inspection engine in Cisco Adaptive Security Appliance (ASA) Software 7.x before 7.2(5.12), 8.x before 8.2(5.44), 8.3.x before 8.3(2.39), 8.4.x before 8.4(6), 8.5.x before 8.5(1.18), 8.6.x before 8.6(1.12), 8.7.x before 8.7(1.6), 9.0.x before 9.0(2.10), and 9.1.x before 9.1(2) and Firewall Services Module (FWSM) 3.1.x and 3.2.x before 3.2(27) and 4.x before 4.1(14) allows remote attackers to cause a denial of service (device reload) via crafted segmented Transparent Network Substrate (TNS) packets, aka Bug ID CSCub98434.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>The SSL implementation in Cisco Adaptive Security Appliance (ASA) Software 9.0 before 9.0(2.6) and 9.1 before 9.1(2) allows remote attackers to bypass authentication, and obtain VPN access or administrative access, via a crafted X.509 client certificate, aka Bug ID CSCuf52468.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The remote-access VPN implementation in Cisco Adaptive Security Appliance (ASA) Software 7.x before 7.2(5.12), 8.x before 8.2(5.46), 8.3.x before 8.3(2.39), 8.4.x before 8.4(6), 8.6.x before 8.6(1.12), 9.0.x before 9.0(3.1), and 9.1.x before 9.1(2.5), when an override-account-disable option is enabled, does not properly parse AAA LDAP responses, which allows remote attackers to bypass authentication via a VPN connection attempt, aka Bug ID CSCug83401.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>The Adaptive Security Device Management (ASDM) remote-management feature in Cisco Adaptive Security Appliance (ASA) Software 8.2.x before 8.2(5.46), 8.3.x before 8.3(2.39), 8.4.x before 8.4(6), 8.5.x before 8.5(1.18), 8.6.x before 8.6(1.12), 8.7.x before 8.7(1.7), 9.0.x before 9.0(3.1), and 9.1.x before 9.1(2.6) does not properly implement the authentication-certificate option, which allows remote attackers to bypass authentication via a TCP session to an ASDM interface, aka Bug ID CSCuh44815.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Race condition in the HTTP Deep Packet Inspection (DPI) feature in Cisco Adaptive Security Appliance (ASA) Software 8.2.x before 8.2(5.46), 8.3.x before 8.3(2.39), 8.4.x before 8.4(5.5), 8.5.x before 8.5(1.18), 8.6.x before 8.6(1.12), 8.7.x before 8.7(1.4), 9.0.x before 9.0(1.4), and 9.1.x before 9.1(1.2), in certain conditions involving the spoof-server option or ActiveX or Java response inspection, allows remote attackers to cause a denial of service (device reload) via a crafted HTTP response, aka Bug ID CSCud37992.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The Clientless SSL VPN feature in Cisco Adaptive Security Appliance (ASA) Software 8.x before 8.2(5.44), 8.3.x before 8.3(2.39), 8.4.x before 8.4(5.7), 8.6.x before 8.6(1.12), 9.0.x before 9.0(2.6), and 9.1.x before 9.1(1.7) allows remote attackers to cause a denial of service (device reload) via crafted HTTPS requests, aka Bug ID CSCua22709.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 8.2.x before 8.2(5.46), 8.3.x before 8.3(2.39), 8.4.x before 8.4(7), 8.5.x before 8.5(1.18), 8.6.x before 8.6(1.12), 8.7.x before 8.7(1.7), 9.0.x before 9.0(3.3), and 9.1.x before 9.1(1.8), when the DNS ALPI engine is enabled for TCP, allows remote attackers to cause a denial of service (device reload) via crafted TCP DNS packets, aka Bug ID CSCug03975.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The virtualization layer in Cisco ASA FirePOWER Software before 5.3.1.2 and 5.4.x before 5.4.0.1 and ASA Context-Aware (CX) Software before 9.3.2.1-9 allows remote attackers to cause a denial of service (device reload) by rapidly sending crafted packets to the management interface, aka Bug IDs CSCus11007 and CSCun56954.</p>
+      </div>
+      <div>
+        <p>V28.3HIGH</p>
+      </div>
+      <div>
+        <p>The failover ipsec implementation in Cisco Adaptive Security Appliance (ASA) Software 9.1 before 9.1(6), 9.2 before 9.2(3.3), and 9.3 before 9.3(3) does not properly validate failover communication messages, which allows remote attackers to reconfigure an ASA device, and consequently obtain administrative control, by sending crafted UDP packets over the local network to the failover interface, aka Bug ID CSCur21069.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cross-site scripting (XSS) vulnerability in the WebVPN login page in Cisco Adaptive Security Appliance (ASA) Software allows remote attackers to inject arbitrary web script or HTML via an unspecified parameter, aka Bug ID CSCun19025.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Stack-based buffer overflow in the unique_service_name function in ssdp/ssdp_server.c in the SSDP parser in the portable SDK for UPnP Devices (aka libupnp, formerly the Intel SDK for UPnP devices) 1.3.1 allows remote attackers to execute arbitrary code via a long UDN (aka device) field in a UDP packet.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Stack-based buffer overflow in the unique_service_name function in ssdp/ssdp_server.c in the SSDP parser in the portable SDK for UPnP Devices (aka libupnp, formerly the Intel SDK for UPnP devices) 1.3.1 allows remote attackers to execute arbitrary code via a long ServiceType (aka urn service) field in a UDP packet.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Stack-based buffer overflow in the unique_service_name function in ssdp/ssdp_server.c in the SSDP parser in the portable SDK for UPnP Devices (aka libupnp, formerly the Intel SDK for UPnP devices) 1.3.1 allows remote attackers to execute arbitrary code via a long UDN (aka uuid) field within a string that lacks a :: (colon colon) in a UDP packet.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Stack-based buffer overflow in the unique_service_name function in ssdp/ssdp_server.c in the SSDP parser in the portable SDK for UPnP Devices (aka libupnp, formerly the Intel SDK for UPnP devices) 1.3.1 allows remote attackers to execute arbitrary code via a long DeviceType (aka urn) field in a UDP packet.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The XML parser in Cisco Adaptive Security Appliance (ASA) Software 8.4 before 8.4(7.28), 8.6 before 8.6(1.17), 9.0 before 9.0(4.33), 9.1 before 9.1(6), 9.2 before 9.2(3.4), and 9.3 before 9.3(3), when Clientless SSL VPN, AnyConnect SSL VPN, or AnyConnect IKEv2 VPN is used, allows remote attackers to cause a denial of service (VPN outage or device reload) via a crafted XML document, aka Bug ID CSCus95290.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The DNS implementation in Cisco Adaptive Security Appliance (ASA) Software 7.2 before 7.2(5.16), 8.2 before 8.2(5.57), 8.3 before 8.3(2.44), 8.4 before 8.4(7.28), 8.5 before 8.5(1.24), 8.6 before 8.6(1.17), 8.7 before 8.7(1.16), 9.0 before 9.0(4.33), 9.1 before 9.1(6.1), 9.2 before 9.2(3.4), and 9.3 before 9.3(3) allows man-in-the-middle attackers to cause a denial of service (memory consumption or device outage) by triggering outbound DNS queries and then sending crafted responses to these queries, aka Bug ID CSCuq77655.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The syslog-management subsystem in Cisco Adaptive Security Appliance (ASA) Software allows remote attackers to obtain an administrator password by waiting for an administrator to copy a file, and then (1) sniffing the network for a syslog message or (2) reading a syslog message in a file on a syslog server, aka Bug IDs CSCuq22357 and CSCur41860.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The Smart Call Home (SCH) implementation in Cisco ASA Software 8.2 before 8.2(5.50), 8.4 before 8.4(7.15), 8.6 before 8.6(1.14), 8.7 before 8.7(1.13), 9.0 before 9.0(4.8), and 9.1 before 9.1(5.1) allows remote attackers to bypass certificate validation via an arbitrary VeriSign certificate, aka Bug ID CSCun10916.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>The Clientless SSL VPN portal customization framework in Cisco ASA Software 8.2 before 8.2(5.51), 8.3 before 8.3(2.42), 8.4 before 8.4(7.23), 8.6 before 8.6(1.14), 9.0 before 9.0(4.24), 9.1 before 9.1(5.12), and 9.2 before 9.2(2.4) does not properly implement authentication, which allows remote attackers to modify RAMFS customization objects via unspecified vectors, as demonstrated by inserting XSS sequences or capturing credentials, aka Bug ID CSCup36829.</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>Untrusted search path vulnerability in Cisco ASA Software 8.x before 8.4(3), 8.5, and 8.7 before 8.7(1.13) allows local users to gain privileges by placing a Trojan horse library file in external memory, leading to library use after device reload because of an incorrect LD_LIBRARY_PATH value, aka Bug ID CSCtq52661.</p>
+      </div>
+      <div>
+        <p>V28.3HIGH</p>
+      </div>
+      <div>
+        <p>The Clientless SSL VPN portal in Cisco ASA Software 8.2 before 8.2(5.51), 8.3 before 8.3(2.42), 8.4 before 8.4(7.23), 8.6 before 8.6(1.15), 9.0 before 9.0(4.24), 9.1 before 9.1(5.12), 9.2 before 9.2(2.8), and 9.3 before 9.3(1.1) allows remote attackers to obtain sensitive information from process memory or modify memory contents via crafted parameters, aka Bug ID CSCuq29136.</p>
+      </div>
+      <div>
+        <p>V26.8MEDIUM</p>
+      </div>
+      <div>
+        <p>The Virtual Network Management Center (VNMC) policy implementation in Cisco ASA Software 8.7 before 8.7(1.14), 9.2 before 9.2(2.8), and 9.3 before 9.3(1.1) allows local users to obtain Linux root access by leveraging administrative privileges and executing a crafted script, aka Bug IDs CSCuq41510 and CSCuq47574.</p>
+      </div>
+      <div>
+        <p>V29.0HIGH</p>
+      </div>
+      <div>
+        <p>The VPN implementation in Cisco ASA Software 7.2 before 7.2(5.15), 8.2 before 8.2(5.51), 8.3 before 8.3(2.42), 8.4 before 8.4(7.23), 8.6 before 8.6(1.15), 9.0 before 9.0(4.24), 9.1 before 9.1(5.12), 9.2 before 9.2(2.6), and 9.3 before 9.3(1.1) does not properly implement a tunnel filter, which allows remote authenticated users to obtain failover-unit access via crafted packets, aka Bug ID CSCuq28582.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The DNS inspection engine in Cisco ASA Software 9.0 before 9.0(4.13), 9.1 before 9.1(5.7), and 9.2 before 9.2(2) allows remote attackers to cause a denial of service (device reload) via crafted DNS packets, aka Bug ID CSCuo68327.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The GPRS Tunneling Protocol (GTP) inspection engine in Cisco ASA Software 8.2 before 8.2(5.51), 8.4 before 8.4(7.15), 8.7 before 8.7(1.13), 9.0 before 9.0(4.8), and 9.1 before 9.1(5.1) allows remote attackers to cause a denial of service (device reload) via a crafted series of GTP packets, aka Bug ID CSCum56399.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The SunRPC inspection engine in Cisco ASA Software 7.2 before 7.2(5.14), 8.2 before 8.2(5.51), 8.3 before 8.3(2.42), 8.4 before 8.4(7.23), 8.5 before 8.5(1.21), 8.6 before 8.6(1.14), 8.7 before 8.7(1.13), 9.0 before 9.0(4.5), and 9.1 before 9.1(5.3) allows remote attackers to cause a denial of service (device reload) via crafted SunRPC packets, aka Bug ID CSCun11074.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The IKEv2 implementation in Cisco ASA Software 8.4 before 8.4(7.15), 8.6 before 8.6(1.14), 9.0 before 9.0(4.8), and 9.1 before 9.1(5.1) allows remote attackers to cause a denial of service (device reload) via a crafted packet that is sent during tunnel creation, aka Bug ID CSCum96401.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Race condition in the Health and Performance Monitoring (HPM) for ASDM feature in Cisco ASA Software 8.3 before 8.3(2.42), 8.4 before 8.4(7.11), 8.5 before 8.5(1.19), 8.6 before 8.6(1.13), 8.7 before 8.7(1.11), 9.0 before 9.0(4.8), and 9.1 before 9.1(4.5) allows remote attackers to cause a denial of service (device reload) via TCP traffic that triggers many half-open connections at the same time, aka Bug ID CSCum00556.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The SQL*Net inspection engine in Cisco ASA Software 7.2 before 7.2(5.13), 8.2 before 8.2(5.50), 8.3 before 8.3(2.42), 8.4 before 8.4(7.15), 8.5 before 8.5(1.21), 8.6 before 8.6(1.14), 8.7 before 8.7(1.13), 9.0 before 9.0(4.5), and 9.1 before 9.1(5.1) allows remote attackers to cause a denial of service (device reload) via crafted SQL REDIRECT packets, aka Bug ID CSCum46027.</p>
+      </div>
+      <div>
+        <p>V28.5HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 8.2 before 8.2(5.47), 8.4 before 8.4(7.5), 8.7 before 8.7(1.11), 9.0 before 9.0(3.10), and 9.1 before 9.1(3.4) allows remote authenticated users to gain privileges by leveraging level-0 ASDM access, aka Bug ID CSCuj33496.</p>
+      </div>
+      <div>
+        <p>V25.4MEDIUM</p>
+      </div>
+      <div>
+        <p>The VPN authentication functionality in Cisco Adaptive Security Appliance (ASA) Software allows remote attackers to cause a denial of service (device reload) by sending many username-from-cert IKE requests, aka Bug ID CSCua91108.</p>
+      </div>
+      <div>
+        <p>V28.5HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) Software 8.4 before 8.4(7.2), 8.7 before 8.7(1.8), 9.0 before 9.0(3.6), and 9.1 before 9.1(2.8) allows remote attackers to cause a denial of service (firewall-session disruption or device reload) via crafted ICMP packets, aka Bug ID CSCui77398.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) devices with software 7.x before 7.2(5.10), 8.0 before 8.0(5.28), 8.1 and 8.2 before 8.2(5.35), 8.3 before 8.3(2.34), 8.4 before 8.4(4.11), 8.6 before 8.6(1.10), and 8.7 before 8.7(1.3), and Cisco Firewall Services Module (FWSM) software 3.1 and 3.2 before 3.2(24.1) and 4.0 and 4.1 before 4.1(11.1), allow remote attackers to cause a denial of service (device reload) via a crafted IKEv1 message, aka Bug IDs CSCub85692 and CSCud20267.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The authentication-proxy implementation on Cisco Adaptive Security Appliances (ASA) devices with software 7.x before 7.2(5.10), 8.0 before 8.0(5.31), 8.1 and 8.2 before 8.2(5.38), 8.3 before 8.3(2.37), 8.4 before 8.4(5.3), 8.5 and 8.6 before 8.6(1.10), 8.7 before 8.7(1.4), 9.0 before 9.0(1.1), and 9.1 before 9.1(1.2) allows remote attackers to cause a denial of service (device reload) via a crafted URL, aka Bug ID CSCud16590.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) devices with software 9.0 before 9.0(1.2) allow remote attackers to cause a denial of service (device reload) via a crafted field in a DNS message, aka Bug ID CSCuc80080.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) devices with software 7.x before 7.2(5.10), 8.0 before 8.0(5.31), 8.1 and 8.2 before 8.2(5.38), 8.3 before 8.3(2.37), 8.4 before 8.4(5), 8.5 before 8.5(1.17), 8.6 before 8.6(1.10), and 8.7 before 8.7(1.3) allow remote attackers to cause a denial of service (device reload) via a crafted certificate, aka Bug ID CSCuc72408.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The Cisco ASA-CX Context-Aware Security module before 9.0.2-103 for Adaptive Security Appliances (ASA) devices, and Prime Security Manager (aka PRSM) before 9.0.2-103, allows remote attackers to cause a denial of service (disk consumption and application hang) via unspecified IPv4 packets that trigger log entries, aka Bug ID CSCub70603.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.4 before 8.4(4.1), 8.5 before 8.5(1.11), and 8.6 before 8.6(1.3) allow remote attackers to cause a denial of service (device reload) via IPv6 transit traffic that triggers syslog message 110003, aka Bug ID CSCua27134.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The SIP inspection engine on Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.2 before 8.2(5.17), 8.3 before 8.3(2.28), 8.4 before 8.4(2.13), 8.5 before 8.5(1.4), and 8.6 before 8.6(1.5) allows remote attackers to cause a denial of service (device reload) via a crafted SIP media-update packet, aka Bug ID CSCtr63728.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The AAA functionality in the IPv4 SSL VPN implementations on Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 8.2 before 8.2(5.30) and 8.3 before 8.3(2.34) allows remote attackers to cause a denial of service (device reload) via a crafted authentication response, aka Bug ID CSCtz04566.</p>
+      </div>
+      <div>
+        <p>V27.1HIGH</p>
+      </div>
+      <div>
+        <p>The DHCP server on Cisco Adaptive Security Appliances (ASA) 5500 series devices, and the ASA Services Module (ASASM) in Cisco Catalyst 6500 series devices, with software 7.0 before 7.2(5.8), 7.1 before 7.2(5.8), 7.2 before 7.2(5.8), 8.0 before 8.0(5.28), 8.1 before 8.1(2.56), 8.2 before 8.2(5.27), 8.3 before 8.3(2.31), 8.4 before 8.4(3.10), 8.5 before 8.5(1.9), and 8.6 before 8.6(1.5) does not properly allocate memory for DHCP packets, which allows remote attackers to cause a denial of service (device reload) via a series of crafted IPv4 packets, aka Bug ID CSCtw84068.</p>
+      </div>
+      <div>
+        <p>V26.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) devices with firmware 8.4 do not properly validate unspecified input related to UNC share pathnames, which allows remote authenticated users to cause a denial of service (device crash) via unknown vectors, aka Bug ID CSCuc65775.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliance (ASA) software 8.7.1 and 8.7.1.1 for the Cisco ASA 1000V Cloud Firewall allows remote attackers to cause a denial of service (device reload) via a malformed H.225 H.323 IPv4 packet, aka Bug IDs CSCuc42812 and CSCuc88741.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 7.2 through 8.4 do not properly perform proxy authentication during attempts to cut through a firewall, which allows remote attackers to obtain sensitive information via a connection attempt, aka Bug ID CSCtx42746.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>The ESMTP inspection feature on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.2 through 8.5 allows remote attackers to cause a denial of service (CPU consumption) via an unspecified closing sequence, aka Bug ID CSCtt32565.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 8.2 through 8.4 process IKE requests despite a vpnclient mode configuration, which allows remote attackers to obtain potentially sensitive information by reading IKE responder traffic, aka Bug ID CSCtt07749.</p>
+      </div>
+      <div>
+        <p>V27.9HIGH</p>
+      </div>
+      <div>
+        <p>Buffer overflow on Cisco Adaptive Security Appliances (ASA) 5500 series devices with software 1.6.x; Cisco TelePresence Multipoint Switch (CTMS) devices with software 1.0.x, 1.1.x, 1.5.x, and 1.6.x; Cisco TelePresence endpoint devices with software 1.2.x through 1.6.x; and Cisco TelePresence Manager 1.2.x, 1.3.x, 1.4.x, 1.5.x, and 1.6.2 allows remote attackers to execute arbitrary code via a crafted Cisco Discovery Protocol packet, aka Bug IDs CSCtd75769, CSCtd75766, CSCtd75754, and CSCtd75761.</p>
+      </div>
+      <div>
+        <p>V25.0MEDIUM</p>
+      </div>
+      <div>
+        <p>The remote-access IPSec VPN implementation on Cisco Adaptive Security Appliances (ASA) 5500 series devices, PIX Security Appliances 500 series devices, and VPN Concentrators 3000 series devices responds to an Aggressive Mode IKE Phase I message only when the group name is configured on the device, which allows remote attackers to enumerate valid group names via a series of IKE negotiation attempts, aka Bug ID CSCtj96108, a different vulnerability than CVE-2005-2025.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cross-site scripting (XSS) vulnerability in the WebVPN portal on Cisco Adaptive Security Appliances (ASA) 5580 series devices with software before 8.1(2) allows remote attackers to inject arbitrary web script or HTML via unspecified vectors, aka Bug ID CSCsq78418.</p>
+      </div>
+      <div>
+        <p>V210.0HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5580 series devices with software before 8.1(2) complete an SSL handshake with an HTTPS client even if this client is unauthorized, which might allow remote attackers to bypass intended access restrictions via an HTTPS session, aka Bug ID CSCso10876.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5580 series devices with software before 8.1(2) allow remote attackers to cause a denial of service (traceback) via malformed TCP packets, aka Bug ID CSCsm84110.</p>
+      </div>
+      <div>
+        <p>V24.3MEDIUM</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 Series and PIX Security Appliances 7.0 before 7.0(8)1, 7.1 before 7.1(2)74, 7.2 before 7.2(4)9, and 8.0 before 8.0(4)5 do not properly implement the implicit deny statement, which might allow remote attackers to successfully send packets that bypass intended access restrictions, aka Bug ID CSCsq91277.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability on Cisco Adaptive Security Appliances (ASA) 5500 Series and PIX Security Appliances 7.2 before 7.2(4)26, 8.0 before 8.0(4)22, and 8.1 before 8.1(2)12, when SQL*Net inspection is enabled, allows remote attackers to cause a denial of service (traceback and device reload) via a series of SQL*Net packets.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability on Cisco Adaptive Security Appliances (ASA) 5500 Series devices 7.0 before 7.0(8)6, 7.1 before 7.1(2)82, 7.2 before 7.2(4)26, 8.0 before 8.0(4)24, and 8.1 before 8.1(2)14, when H.323 inspection is enabled, allows remote attackers to cause a denial of service (device reload) via a crafted H.323 packet.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Memory leak on Cisco Adaptive Security Appliances (ASA) 5500 Series and PIX Security Appliances 7.0 before 7.0(8)6, 7.1 before 7.1(2)82, 7.2 before 7.2(4)30, 8.0 before 8.0(4)28, and 8.1 before 8.1(2)19 allows remote attackers to cause a denial of service (memory consumption or device reload) via a crafted TCP packet.</p>
+      </div>
+      <div>
+        <p>V25.7MEDIUM</p>
+      </div>
+      <div>
+        <p>Unspecified vulnerability on Cisco Adaptive Security Appliances (ASA) 5500 Series devices 8.0 before 8.0(4)25 and 8.1 before 8.1(2)15, when an SSL VPN or ASDM access is configured, allows remote attackers to cause a denial of service (device reload) via a crafted (1) SSL or (2) HTTP packet.</p>
+      </div>
+      <div>
+        <p>V27.8HIGH</p>
+      </div>
+      <div>
+        <p>Cisco Adaptive Security Appliances (ASA) 5500 Series and PIX Security Appliances 7.1(1) through 7.1(2)82, 7.2 before 7.2(4)27, 8.0 before 8.0(4)25, and 8.1 before 8.1(2)15, when AAA override-account-disable is entered in a general-attributes field, allow remote attackers to bypass authentication and establish a VPN session to an ASA device via unspecified vectors.</p>
+      </div>
+    </div>
     <h3>3 Configuration Report</h3>
     <h4>3.1 Introduction</h4>
     <p>This section details the configuration settings of your device in an easy to read and understand format.         The various device configuration settings are grouped into sections of related options.</p>

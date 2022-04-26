@@ -17,7 +17,7 @@ def Query_object(object):
             for obj_child in obj.children:
                 
                 if ("subnet" in str(obj_child.text)):
-                    print("test")
+                    
                     
                     intf_audit.append(41)   
             return 1
@@ -45,7 +45,7 @@ def Query_object_group(object_group):
 
 #function to verify if network address belongs to one host(true if belongs to one host)
 def verify_mask(address):
-    print(address.split('.'))
+    
     if(['255','255','255','255']==address.split('.')):
         return True
     else:
@@ -55,7 +55,7 @@ def verify_mask(address):
 print("----------start auditing access control lists--------------------")
 # 1 - extended access control list
 for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
-    print("\n")
+    
     
     #check if there are any source/destination allowed
     SOURCE=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any4|any6|any|interface\s\w+|object\s\w+|object-group\s\w+)\s"
@@ -65,14 +65,14 @@ for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
     HELPER_REGEX=r"access-list\s(\S+)\sextended\s(\w+)\s(\d+|\w+)\s"+SOURCE+DESTINATION
     
     acl_line=re.findall(HELPER_REGEX,str(acl.text))[0]
-    print(acl_line)
+    
    
     #get the source from ACE
     acl_source=acl_line[-2]
 
     #get the destination from ACE
     acl_destination=acl_line[-1]
-    print(acl_source,acl_destination)
+    
 
     #check source
     _pass=False
@@ -105,18 +105,18 @@ for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
 
     #check destination
     _pass=False
-    #any source
+    #any destination
     if("any" in acl_destination and _pass==False):
         intf_audit.append(44)
         _pass==True
 
-    #source with object configured
+    #destination with object configured
     elif(_pass==False and "object" in acl_destination):
         if(Query_object(acl_destination)):
             intf_audit.append(42)
         
         _pass==True
-    #source with object group configured
+    #destination with object group configured
     elif(_pass==False and "object-group" in acl_destination):
         if(Query_object_group(acl_destination)):
             intf_audit.append(42)
@@ -131,8 +131,12 @@ for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
             _pass==True
 
     #check destination port
+    if ("eq" or "neq" or "gt" or "lt" not in str(acl.text)):
+        intf_audit.append(46)
 
-
+    #check log for ACE with the action deny
+    if(acl_line[1]=="deny" and "log" not in str(acl.text)):
+        intf_audit.append(45)
 
 
 intf_audit=list(set(intf_audit))
@@ -145,7 +149,7 @@ ml = list()
 ll = list()
 il = list()
 for i in intf_audit:
-    print(audits_intf[str(i)]['tab'][0])
+    
     if(audits_intf[str(i)]['tab'][0] == "CRITICAL"):
         cl.append(i)
         CRITICAL_RATING+=1
