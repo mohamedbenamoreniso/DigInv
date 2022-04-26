@@ -15,6 +15,7 @@ def Query_object(object):
         for obj in parse.find_objects(r"object\s\w+\s"+object.split()[1]):
            
             for obj_child in obj.children:
+                
                 if ("subnet" in str(obj_child.text)):
                     print("test")
                     
@@ -33,21 +34,29 @@ def Query_object_group(object_group):
             for obj_child in obj.children:
                 line=str(obj_child.text)
                 if ("subnet" in line):
-                    intf_audit.append(41)
+                    return True
                 elif("object" in line):
                     Query_object(line)  
-            return 1
+            
             
   
     except:
         return 0
 
-
+#function to verify if network address belongs to one host(true if belongs to one host)
+def verify_mask(address):
+    print(address.split('.'))
+    if(['255','255','255','255']==address.split('.')):
+        return True
+    else:
+        return False
 
 #Network filtering(ACL Audit)
 print("----------start auditing access control lists--------------------")
 # 1 - extended access control list
 for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
+    print("\n")
+    
     #check if there are any source/destination allowed
     SOURCE=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any4|any6|any|interface\s\w+|object\s\w+|object-group\s\w+)\s"
     DESTINATION=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any4|any6|any|interface\s\w+|object\s\w+|object-group\s\w+)"
@@ -74,21 +83,52 @@ for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
 
     #source with object configured
     elif(_pass==False and "object" in acl_source):
-        print(Query_object(acl_source))
+        if(Query_object(acl_source)):
+            intf_audit.append(41)
+        
         _pass==True
     #source with object group configured
     elif(_pass==False and "object-group" in acl_source):
-        print(Query_object_group(acl_source))
+        if(Query_object_group(acl_source)):
+            intf_audit.append(41)
+        
         _pass==True
     #entire network
-    elif( _pass==False and ("host" not in acl_source)):
+    elif( _pass==False and ("interface" not in acl_source) and ("host" not in acl_source)):
         
-        intf_audit.append(41)
-        _pass==True
+        if not (verify_mask(acl_source.split()[1])):
+            
+            intf_audit.append(41)
+            _pass==True
 
 
 
     #check destination
+    _pass=False
+    #any source
+    if("any" in acl_destination and _pass==False):
+        intf_audit.append(44)
+        _pass==True
+
+    #source with object configured
+    elif(_pass==False and "object" in acl_destination):
+        if(Query_object(acl_destination)):
+            intf_audit.append(42)
+        
+        _pass==True
+    #source with object group configured
+    elif(_pass==False and "object-group" in acl_destination):
+        if(Query_object_group(acl_destination)):
+            intf_audit.append(42)
+        
+        _pass==True
+    #entire network
+    elif( _pass==False and ("interface" not in acl_destination) and ("host" not in acl_destination)):
+        
+        if not (verify_mask(acl_destination.split()[1])):
+            
+            intf_audit.append(41)
+            _pass==True
 
     #check destination port
 
