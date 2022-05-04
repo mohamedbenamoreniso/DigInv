@@ -6,8 +6,7 @@ import pandas as pd
 import settings
 import variables
 from variables import *
-
-
+import ipaddr
 import itertools
 from ipaddress import NetmaskValueError
 import ipaddress
@@ -240,9 +239,9 @@ def wildcard_to_netmasks(address_str: str, wildcard_str: str):
         subnets.append(_net_cls((ip_int, _length-hostmask_length), strict=False))
 
     return subnets
-#function to determine the class of an ip address
- 
 
+ 
+#function to determine interfaces that belongs to the subnet (router)
 def get_interfaces(networks,parse,interfaces):
     
     
@@ -255,5 +254,18 @@ def get_interfaces(networks,parse,interfaces):
                 for addr in networks:
                     if ipaddress.ip_address(net_addr) in ipaddress.ip_network(addr[0],strict=False):
                         interfaces.append(intf)
+                        
+
     return interfaces
 
+#function to determine interfaces that belongs to the subnet (firewall)
+def get_interfaces_firewall(parse,network):
+    interfaces=list()
+    for intf in parse.find_objects_w_child(r'^interface',r'ip\saddress'):
+        for intf_obj in intf.children:
+
+            net_addr=intf_obj.re_match_typed(r'ip\saddress\s(\d+\.\d+\.\d+\.\d+)',default="_NO_MATCH_")
+            if(net_addr!="_NO_MATCH_"):
+               if(ipaddr.IPNetwork(network).Contains(ipaddr.IPAddress(str(net_addr.text)))):
+                   interfaces.append(intf)
+    return interfaces

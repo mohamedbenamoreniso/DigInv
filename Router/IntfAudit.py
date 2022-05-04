@@ -237,37 +237,40 @@ for ospf_obj in parse.find_objects(r'^router\sospf'):
             #Translates an OSPF (address, wildcard) to a list of ip_network objects (address, netmask)
             networks_rp.append(wildcard_to_netmasks(net[0],net[1]))
 
-interfaces_networks_rp=list(set(get_interfaces(networks_rp,parse,interfaces_networks_rp)))
-
-data=defaultdict(list)
-#Iterate over ospf interfaces
-for intf in interfaces_networks_rp:
-
-    text_auth=intf.has_child_with(r'ip\sospf\sauthentication-key')
-    md5_auth=intf.has_child_with(r'ip\sospf\smessage-digest-key')
-    for intf_child in intf.children:
-        priority=intf_child.re_match_typed(r'ip\sospf\spriority\s(\d+)',default=NO_MATCH)
-        if(priority!=NO_MATCH):
-            if(int(priority)<255):
-                intf_audit.append(28)
-                obj_data=[]
-                obj_data.extend((re.findall(r"interface\s(\S+)",str(intf.text))[0],priority))
-                data[28].append(obj_data)
-    
-    if (text_auth==True):
-        intf_audit.append(13)
-
-    elif(md5_auth==False):
-        intf_audit.append(5)
-        
-data=dict(data)
 try:
-    convert_str_table(28,["Interface","OSPF Priority"])     
+    interfaces_networks_rp=list(set(get_interfaces(networks_rp,parse,interfaces_networks_rp)))
+
+    data=defaultdict(list)
+    #Iterate over ospf interfaces
+    for intf in interfaces_networks_rp:
+
+        text_auth=intf.has_child_with(r'ip\sospf\sauthentication-key')
+        md5_auth=intf.has_child_with(r'ip\sospf\smessage-digest-key')
+        for intf_child in intf.children:
+            priority=intf_child.re_match_typed(r'ip\sospf\spriority\s(\d+)',default=NO_MATCH)
+            if(priority!=NO_MATCH):
+                if(int(priority)<255):
+                    intf_audit.append(28)
+                    obj_data=[]
+                    obj_data.extend((re.findall(r"interface\s(\S+)",str(intf.text))[0],priority))
+                    data[28].append(obj_data)
+        
+        if (text_auth==True):
+            intf_audit.append(13)
+
+        elif(md5_auth==False):
+            intf_audit.append(5)
+            
+    data=dict(data)
+    try:
+        convert_str_table(28,["Interface","OSPF Priority"])     
+    except:
+        pass
 except:
     pass
 
-networks_rp.clear()
-interfaces_networks_rp.clear()
+    networks_rp.clear()
+    interfaces_networks_rp.clear()
 #EIGRP Audit
 for ospf_obj in parse.find_objects(r'^router\seigrp'):
     

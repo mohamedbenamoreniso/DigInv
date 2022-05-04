@@ -1,7 +1,7 @@
 from nvdlib import *
 from dominate.tags import *
 from variables import d_vulnerability
-
+""""
 def vuln(score):
     global d_vulnerability
     d=div()
@@ -16,4 +16,4 @@ for rr in r:
         vuln(rr.score)
         vuln(rr.cve.description.description_data[0].value)
     except:
-        pass
+        pass """

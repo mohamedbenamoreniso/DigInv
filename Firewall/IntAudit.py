@@ -1,142 +1,193 @@
 ##############interface auditing##################
 
+from Router.IntfAudit import convert_str_table
 from variables import *
 from func import *
 from settings import *
+from collections import defaultdict
+
+#this list will contain the data to make a table every time we call the method build_table
+data=defaultdict(list)
 
 
+#Routing Protocols audit
+networks_rp=list()
+interfaces_networks_rp=list()
+auth_keys=list()
+    
+#ospf Audit
+#find interfaces that have ospf configured
+
+HELPER_REGEX=r'network\s(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+)'
+
+for ospf_obj in parse.find_objects(r'^router\sospf'):
+    
+    lsa=ospf_obj.has_child_with(r'max-lsa')
+    if(lsa==False):
+        intf_audit.append(31)
+        
 
 
-#function to query informations from objects network
-def Query_object(object):
+    for child_obj in ospf_obj.children:  # Iterate over OSPF children
 
+        network_ospf = child_obj.re_match_typed(HELPER_REGEX, default=NO_MATCH)
+
+        if network_ospf!=NO_MATCH:
+            
+            
+            try:
+                net=network_ospf.split()
+                network=net[0]+"/"+net[1]
+            except:
+                pass
+
+try:
+    interfaces_networks_rp=list(set(get_interfaces_firewall(parse,network)))
+
+    data=defaultdict(list)
+    #Iterate over ospf interfaces
+    for intf in interfaces_networks_rp:
+
+        
+        md5_auth=intf.has_child_with(r'ospf\sauthentication\smessage-digest')
+        no_auth=intf.has_child_with(r'ospf\sauthentication\snull')
+        for intf_child in intf.children:
+            priority=intf_child.re_match_typed(r'sospf\spriority\s(\d+)',default=NO_MATCH)
+            if(priority!=NO_MATCH):
+                if(int(priority)<255):
+                    intf_audit.append(28)
+                    obj_data=[]
+                    obj_data.extend((re.findall(r"interface\s(\S+)",str(intf.text))[0],priority))
+                    data[28].append(obj_data)
+        
+        
+
+        if(md5_auth==False or no_auth==True):
+            intf_audit.append(5)
+
+            
+    data=dict(data)
     try:
-
-        for obj in parse.find_objects(r"object\s\w+\s"+object.split()[1]):
-           
-            for obj_child in obj.children:
-                
-                if ("subnet" in str(obj_child.text)):
-                    
-                    
-                    intf_audit.append(41)   
-            return 1
-            
-  
+        convert_str_table(28,["Interface","OSPF Priority"])     
     except:
-        return 0
-#function to query informations from object group network
-def Query_object_group(object_group):
-    try:
+        pass
 
-        for obj in parse.find_objects(r"object-group\s\w+\s"+object_group.split()[1]):
+    networks_rp.clear()
+    interfaces_networks_rp.clear()
+except:
+    pass
+#EIGRP Audit
+for eigrp_obj in parse.find_objects(r'^router\seigrp'):
+    
+    for child_obj in eigrp_obj.children:  # Iterate over EIGRP children
+
+        network_eigrp = child_obj.re_match_typed(HELPER_REGEX, default=NO_MATCH)
+
+        if network_eigrp!=NO_MATCH:
+            
+            net=network_eigrp.split()
+
+            try:
+                net=network_ospf.split()
+                network=net[0]+"/"+net[1]
+            except:
+                pass
+
+try:
+    interfaces_networks_rp=list(set(get_interfaces_firewall(parse,network)))
+
+    for intf in interfaces_networks_rp:
+    
+            
+        md5_auth=intf.has_child_with(r"authentication\smode\seigrp\s\d+\smd5")
+        if(md5_auth==False):
+            intf_audit.append(12)   
+
+except:
+    pass
+        
+
+#BGP Audit
+i=j=0
+for obj in  parse.find_objects(r'^router bgp'):
+    bgp_damp=obj.has_child_with(r"bgp dampening")
+    if(bgp_damp==False):
+        intf_audit.append(29)
+        
+
+    for bgp in obj.children:
+        neighbor=bgp.re_match_typed(r'neighbor\s(\d+\.\d+\.\d+\.\d+)\sremote-as',default=NO_MATCH)
+        neighbor_AUTH=bgp.re_match_typed(r'neighbor\s\d+\.\d+\.\d+\.\d+\spassword\s(\w+)',default=NO_MATCH)
+        
+        if(neighbor!=NO_MATCH): i=i+1
+        if (neighbor_AUTH!=NO_MATCH):  j=j+1
            
-            for obj_child in obj.children:
-                line=str(obj_child.text)
-                if ("subnet" in line):
-                    return True
-                elif("object" in line):
-                    Query_object(line)  
+if(i+j!=0 and i%j!=0): intf_audit.append(1)
+#RIP Audit
+#under router
+
+rip_int=True
+for obj in parse.find_objects(r'^router\srip'):
+
+    if not (obj.has_child_with(r'neighbor')):
+        intf_audit.append(30)
+
+    if(obj.has_child_with(r"version\s1") or not obj.has_child_with(r"version\s2")):
+
+        intf_audit.append(6)
+        rip_int=False
+    networks_rip=list()
+    for obj_child in obj.children:
+        network=obj_child.re_match_typed(r'network\s(\d+\.\d+\.\d+\.\d+)',default=NO_MATCH)
+       
+        
+        if(network!=NO_MATCH):
+            network=ipaddress.ip_address(network)
+            if network in classA:
+                netmask="/8"
+            elif network in classB:
+                netmask="/16"
+            elif network in classC:
+                netmask="/24"
+            networks_rip.append(network)
+
+
+
+#under interface
+for obj in parse.find_objects_w_child(r'^interface',r'ip\srip'):
+
+        rip_md5=obj.has_child_with(r'ip\srip\sauthentication\smode\smd5')
+        #version 1 under interface
+        rip_v1=obj.has_child_with(r'ip\srip\s\w+\sversion\s1')
+
+        if (rip_v1==True  and rip_int==True):
+            intf_audit.append(6)
             
+
+        #clear text auth
+        if obj.has_child_with(r'ip\srip\sauthentication\skey-\w+\s\w+') and rip_md5==False:
+            intf_audit.append(7)
             
-  
-    except:
-        return 0
 
-#function to verify if network address belongs to one host(true if belongs to one host)
-def verify_mask(address):
+        #No Auth
+        elif (rip_md5==False):
+             intf_audit.append(10)
+data=defaultdict(list)          
+#weak routing  auth keys
+for key_chain in auth_keys:
     
-    if(['255','255','255','255']==address.split('.')):
-        return True
-    else:
-        return False
-
-#Network filtering(ACL Audit)
-print("----------start auditing access control lists--------------------")
-# 1 - extended access control list
-for acl in parse.find_objects(r"^access-list\s\w+\sextended"):
-    
-    
-    #check if there are any source/destination allowed
-    SOURCE=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any4|any6|any|interface\s\w+|object\s\w+|object-group\s\w+)\s"
-    DESTINATION=r"(\d+\.\d+\.\d+\.\d+\s\d+\.\d+\.\d+\.\d+|host\s\d+\.\d+\.\d+\.\d+|any4|any6|any|interface\s\w+|object\s\w+|object-group\s\w+)"
-    
-    
-    HELPER_REGEX=r"access-list\s(\S+)\sextended\s(\w+)\s(\d+|\w+)\s"+SOURCE+DESTINATION
-    
-    acl_line=re.findall(HELPER_REGEX,str(acl.text))[0]
-    
-   
-    #get the source from ACE
-    acl_source=acl_line[-2]
-
-    #get the destination from ACE
-    acl_destination=acl_line[-1]
-    
-
-    #check source
-    _pass=False
-    #any source
-    if("any" in acl_source and _pass==False):
-        intf_audit.append(43)
-        _pass==True
-
-    #source with object configured
-    elif(_pass==False and "object" in acl_source):
-        if(Query_object(acl_source)):
-            intf_audit.append(41)
-        
-        _pass==True
-    #source with object group configured
-    elif(_pass==False and "object-group" in acl_source):
-        if(Query_object_group(acl_source)):
-            intf_audit.append(41)
-        
-        _pass==True
-    #entire network
-    elif( _pass==False and ("interface" not in acl_source) and ("host" not in acl_source)):
-        
-        if not (verify_mask(acl_source.split()[1])):
+    for i in range(2,len(key_chain),3):
+        if not (check_strength_password(key_chain[i])):
+            intf_audit.append(27)
+            obj_data=[]
+            obj_data.extend((key_chain[i-2],key_chain[i-1],key_chain[i]))
             
-            intf_audit.append(41)
-            _pass==True
+            data[27].append(obj_data)
 
+data=dict(data)   
+if(27 in data):
 
-
-    #check destination
-    _pass=False
-    #any destination
-    if("any" in acl_destination and _pass==False):
-        intf_audit.append(44)
-        _pass==True
-
-    #destination with object configured
-    elif(_pass==False and "object" in acl_destination):
-        if(Query_object(acl_destination)):
-            intf_audit.append(42)
-        
-        _pass==True
-    #destination with object group configured
-    elif(_pass==False and "object-group" in acl_destination):
-        if(Query_object_group(acl_destination)):
-            intf_audit.append(42)
-        
-        _pass==True
-    #entire network
-    elif( _pass==False and ("interface" not in acl_destination) and ("host" not in acl_destination)):
-        
-        if not (verify_mask(acl_destination.split()[1])):
-            
-            intf_audit.append(41)
-            _pass==True
-
-    #check destination port
-    if ("eq" or "neq" or "gt" or "lt" not in str(acl.text)):
-        intf_audit.append(46)
-
-    #check log for ACE with the action deny
-    if(acl_line[1]=="deny" and "log" not in str(acl.text)):
-        intf_audit.append(45)
+    convert_str_table(27,["key-chain","key-ID","Key-string"])
 
 
 intf_audit=list(set(intf_audit))
