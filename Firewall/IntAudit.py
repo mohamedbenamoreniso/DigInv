@@ -52,7 +52,7 @@ try:
         md5_auth=intf.has_child_with(r'ospf\sauthentication\smessage-digest')
         no_auth=intf.has_child_with(r'ospf\sauthentication\snull')
         for intf_child in intf.children:
-            priority=intf_child.re_match_typed(r'sospf\spriority\s(\d+)',default=NO_MATCH)
+            priority=intf_child.re_match_typed(r'ospf\spriority\s(\d+)',default=NO_MATCH)
             if(priority!=NO_MATCH):
                 if(int(priority)<255):
                     intf_audit.append(28)
