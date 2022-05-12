@@ -129,3 +129,15 @@ intf_table={}
 intf_table[8]=raw(build_table(data[8],["interface","Virtual Address","group","priority"]))
 intf_table[14]=raw(build_table(data[14],["interface","Virtual Address","group","priority"]))
 print(intf_table[8],intf_table[14])
+
+
+"""
+#the configuration report
+report+=h3("3 Configuration Report")
+report+=h4("3.1 Introduction")
+report+=p("This section details the configuration settings of your device in an easy to read and understand format. \
+        The various device configuration settings are grouped into sections of related options.")
+report+=h4("3.2 Basic Information")
+report+=raw(build_table([[hostname,device_type,versio_os]],["Name","Device","OS"]))
+report+=d_device_conf
+"""

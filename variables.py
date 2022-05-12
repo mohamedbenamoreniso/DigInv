@@ -49,6 +49,10 @@ global_list_sec_audit=list()
 #list that contain all audits found in the interface audit
 intf_list_sec_audit = list()
 
+#list that contains the IDs of CVEs 
+cve_list=list()
+
+
 #IP classes
 classA = ipaddress.IPv4Network(("10.0.0.0", "255.0.0.0"))  
 classB = ipaddress.IPv4Network(("172.16.0.0", "255.240.0.0")) 

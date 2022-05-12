@@ -8,15 +8,15 @@ if device_type=="router":
         
         from Router.GlobAudit import *
         from Router.IntfAudit import *
-        from Router.vuln import *
+        from vulnerabilityAudit import *
 elif device_type=="switch":
         from Switch.GlobAudit import *
         from Switch.IntAudit import *
-        from Switch.vuln import *
+        from vulnerabilityAudit import *
 elif device_type=="firewall":
         from Firewall.GlobAudit import *
         from Firewall.IntAudit import *
-        from Firewall.Vuln import *
+        from vulnerabilityAudit import *
        
 
 
@@ -50,7 +50,7 @@ report+=h1("Audit report")
 report+=h4(_date_time)
 report+=h3("Summary")
 report+=p("DigInv performed an audit on %s of the network device detailed in the scope.The audit consisted of the following components:"%_date_time)
-names=["a best practice security audit (Part 2)","a software vulnerability audit report (Part 3)","a configuration report (Part 4)"]
+names=["a best practice security audit (Part 2)","a software vulnerability audit report (Part 3)"]
 links=["#part2","#part3","#part4"]
 menu_itmes=zip(names,links)
 
@@ -60,6 +60,7 @@ hostname=parse.find_objects(r'hostname')[0]
 hostname=hostname.re_match_typed(r'hostname\s(\S+)')
 versio_os=parse.find_objects(r'ersion')[0]
 versio_os=versio_os.re_match_typed(r'ersion\s(\d+\.\d+)')
+version=versio_os
 report+=raw(build_table([[hostname,device_type,versio_os]],["Name","Device","OS"]))
 
 
@@ -114,8 +115,15 @@ Security_Audit+=globalaudit
 Security_Audit+=interfaceaudit
 Security_Audit+=h5("3. Vulnerability Audit")
 
+vulnerability_audit=div()
+i=1
+for cve in cve_list:
+        vulnerability_audit+=h5("3.{} {}".format(i,cve))
+        i=i+1
+        
+
 #list of vuln audit
-Security_Audit+=h5("4. Configuration Report")
+Security_Audit+=vulnerability_audit
 
 #list of report configuration
 
@@ -205,17 +213,13 @@ report+=d_intfaudit
 report+=h2("Vulnerabilty Audit")
 report+=d_vulnerability
 
-#the configuration report
-report+=h3("3 Configuration Report")
-report+=h4("3.1 Introduction")
-report+=p("This section details the configuration settings of your device in an easy to read and understand format. \
-        The various device configuration settings are grouped into sections of related options.")
-report+=h4("3.2 Basic Information")
-report+=raw(build_table([[hostname,device_type,versio_os]],["Name","Device","OS"]))
-report+=d_device_conf
+
 with open("report.html","w") as f:
         f.write(report.render())
 glob_list=list(set(glob_list))
 
+import webbrowser
+webbrowser.open('file://' + os.path.realpath("report.html"))
+       
 
 
