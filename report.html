@@ -7,9 +7,9 @@
   <body>
     <h1>DigInv</h1>
     <h1>Audit report</h1>
-    <h4>2022-05-12</h4>
+    <h4>2022-05-13</h4>
     <h3>Summary</h3>
-    <p>DigInv performed an audit on 2022-05-12 of the network device detailed in the scope.The audit consisted of the following components:</p>
+    <p>DigInv performed an audit on 2022-05-13 of the network device detailed in the scope.The audit consisted of the following components:</p>
     <ul>
       <li><a href="#part2">a best practice security audit (Part 2)</a></li>
       <li><a href="#part3">a software vulnerability audit report (Part 3)</a></li>
@@ -26,14 +26,14 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>ciscoasa</td>
-      <td>firewall</td>
-      <td>9.6</td>
+      <td>vIOS-L2-01</td>
+      <td>switch</td>
+      <td>15.0</td>
     </tr>
   </tbody>
 </table>
     <h2>Security Audit Summary</h2>
-    <p>DigInv  performed a security audit of the device detailed in the scope and identified 7 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
+    <p>DigInv  performed a security audit of the device detailed in the scope and identified 1 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
     <h2>Contents</h2>
     <div class="contents">
       <div>
@@ -46,55 +46,48 @@
         <h5>2.1 Introduction</h5>
         <div class="globalaudit">
           <h5>2.2 Global Audit</h5>
-          <h5>2.2.1 Warning In Pre-Logon Banner</h5>
-          <h5>2.2.2 No Network Filtering Rules Were Configured</h5>
-          <h5>2.2.3 No Post Logon Banner Message</h5>
+          <h5>2.2.1 UDP Small Services Enabled</h5>
+          <h5>2.2.2 No Inbound TCP Connection Keep-Alives</h5>
+          <h5>2.2.3 Service Password Encryption Disabled</h5>
+          <h5>2.2.4 CDP enabled</h5>
+          <h5>2.2.5 VTP Was In Server Mode</h5>
+          <h5>2.2.6 The BOOTP Service Was Not Disabled</h5>
+          <h5>2.2.7 Domain Lookups were enabled</h5>
+          <h5>2.2.8 No Network Filtering Rules Were Configured</h5>
+          <h5>2.2.9 PAD Service Enabled</h5>
         </div>
         <div>
           <h5>2.3 Interface Audit</h5>
           <div class="intf_section">
             <h5>2.3.1 Connection Timeout not configured</h5>
-            <h5>2.3.2 Filter Rule Allows Packets From A Network Source</h5>
-            <h5>2.3.3 Filter Rule Allows Packets To A Network Destination</h5>
-            <h5>2.3.4 Filter Rule Allows Packets From Any Source</h5>
-            <h5>2.3.5 Filter Rule Allows Packets To Any Destination</h5>
-            <h5>2.3.6 Filter Drop Rules Were Configured Without Logging</h5>
-            <h5>2.3.7 Filter Rule Allows Packets To Any Destination Port</h5>
-            <h5>2.3.8 Connection Timeout not configured</h5>
-            <h5>2.3.9 Filter Rule Allows Packets From A Network Source</h5>
-            <h5>2.3.10 Filter Rule Allows Packets To A Network Destination</h5>
-            <h5>2.3.11 Filter Rule Allows Packets From Any Source</h5>
-            <h5>2.3.12 Filter Rule Allows Packets To Any Destination</h5>
-            <h5>2.3.13 Filter Drop Rules Were Configured Without Logging</h5>
-            <h5>2.3.14 Filter Rule Allows Packets To Any Destination Port</h5>
           </div>
         </div>
         <h5>3. Vulnerability Audit</h5>
         <div>
-          <h5>3.1 CVE-2004-0079</h5>
-          <h5>3.2 CVE-2020-3452</h5>
-          <h5>3.3 CVE-2017-6752</h5>
-          <h5>3.4 CVE-2017-3793</h5>
-          <h5>3.5 CVE-2017-3867</h5>
-          <h5>3.6 CVE-2017-6607</h5>
-          <h5>3.7 CVE-2017-6609</h5>
-          <h5>3.8 CVE-2017-6610</h5>
-          <h5>3.9 CVE-2017-3807</h5>
-          <h5>3.10 CVE-2016-6431</h5>
-          <h5>3.11 CVE-2016-6432</h5>
+          <h5>3.1 CVE-2017-12238</h5>
+          <h5>3.2 CVE-2012-4622</h5>
+          <h5>3.3 CVE-2016-6473</h5>
+          <h5>3.4 CVE-2014-2107</h5>
+          <h5>3.5 CVE-2012-1338</h5>
+          <h5>3.6 CVE-2013-1146</h5>
+          <h5>3.7 CVE-2012-0339</h5>
+          <h5>3.8 CVE-2012-0338</h5>
+          <h5>3.9 CVE-2011-4012</h5>
+          <h5>3.10 CVE-2011-0945</h5>
+          <h5>3.11 CVE-2011-1625</h5>
         </div>
       </div>
     </div>
     <h2>1. Your Report</h2>
     <h3>1.1 Introduction</h3>
-    <p>This report was produced by DigInv on 2022-05-12. This report is comprised of the following sections:</p>
+    <p>This report was produced by DigInv on 2022-05-13. This report is comprised of the following sections:</p>
     <ul>
       <li>a security audit section which details any identified         security-related issues. Each security issue identified includes details of what was found together with the impact of the issue,         how easy it would be for an attacker to exploit and a recommendation.         The recommendations may include alternatives and, where relevant, the commands to resolve the issue;</li>
       <li>a software vulnerability audit section that provides a comparison of the device software versions against a database of known vulnerabilities. In addition to a         brief description, each potential vulnerability includes a CVSSv2 score and references to more specific information provided by the device manufacturers and         third parties;</li>
       <li>a configuration report which details the configuration settings of all the audited devices in an easy to read format. The configuration settings are divided in to report sub-sections which group related settings together and provide additional information about their purpose;</li>
     </ul>
     <h2>2 Security Audit</h2>
-    <p>DigInv performed a security audit on 2022-05-12 of the device detailed in the Table below.</p><table border="1" class="dataframe">
+    <p>DigInv performed a security audit on 2022-05-13 of the device detailed in the Table below.</p><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -106,9 +99,9 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>ciscoasa</td>
+      <td>vIOS-L2-01</td>
       <td>Router</td>
-      <td>9.6</td>
+      <td>15.0</td>
     </tr>
   </tbody>
 </table>
@@ -229,31 +222,186 @@
     <div class="globaudit">
       <div class="container">
         <div class="information">
-          <h3>1. Warning In Pre-Logon Banner</h3>
+          <h3>1. UDP Small Services Enabled</h3>
           <h5>observation</h5>
-          <p>Logon banner messages are an important, but often overlooked, part of a secure configuration. Logon banner messages can provide connecting users with important information and warn against unauthorized access.</p>
+          <p>Some devices and platforms provide a collection of simple User Datagram Protocol (UDP) network services, which are also sometimes referred to Fix: Quick as small services. These services provide little functionality and are rarely used and they typically include:
+Echo (defined in RFC 862) returns any data sent to it back to the connecting client;
+Discard (defined in RFC 863) ignores any data sent to it by a connecting client;
+Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client.
+DigInv determined that the UDP small servers were enabled</p>
           <h5>impact</h5>
           <ul>
-            <li>A carefully worded warning message could deter a casual attacker or malicious user, but not a determined attacker. However, it would be more difficult to prove any intent without a message warning against unauthorized access if any legal action were to be taken against an attacker.</li>
+            <li>An attacker could use the UDP small servers as part of a DoS attack. UDP is a connection-less protocol and an experienced attacker could forge network packets to use the echo and chargen services to increase the network traffic and system utilization of devices offering the services. Additionally, each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not as significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.</li>
           </ul>
           <h5>ease</h5>
-          <p>An attacker would not be presented with a carefully worded legal warning prior to attempting to logon.</p>
+          <p>Tools that can be used to connect to these services are installed by default on some systems or can be downloaded from the Internet.</p>
           <h5>recommandation</h5>
           <ul>
-            <li>DigInv recommends that all pre-logon banner messages should be configured to warn against unauthorized access.</li>
+            <li>DigInv recommends that the UDP small servers should be disabled.</li>
           </ul>
-          <p class="command">banner login delimiter banner-message delimiter</p>
+          <p class="command">no service udp-small-servers</p>
         </div>
         <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:N/A</div>
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Trivial</div>
           <div>Fix:Quick</div>
         </div>
       </div>
       <div class="container">
         <div class="information">
-          <h3>2. No Network Filtering Rules Were Configured</h3>
+          <h3>2. No Inbound TCP Connection Keep-Alives</h3>
+          <h5>observation</h5>
+          <p>The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could attempt a DoS attack against a device by exhausting the number of possible connections. To perform this attack, the attacker could keep requesting new connections to the device and spoof the source IP addresses. This would then prevent any new legitimate connections to the device from being made as the device awaits the completion of the connection attempts that have already been initiated. This attack would prevent both users and administrators from connecting to the device.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools can be downloaded from the Internet that are capable of opening a large number of TCP connections without correctly terminating them.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that TCP keep alive messages should be sent to detect and drop orphaned connections from remote systems.</li>
+          </ul>
+          <p class="command">service tcp-keepalives-in</p>
+        </div>
+        <div class="square">
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>3. Service Password Encryption Disabled</h3>
+          <h5>observation</h5>
+          <p>Cisco service passwords are stored by default in their clear-text form rather than being encrypted. However, it is possible to have these passwords stored using the reversible Cisco type-7 encryption.
+DigInv determined that the Cisco device Router was not running the password encryption service that helps provide a basic level of encryption to passwords that otherwise would be stored in clear-text.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>If a malicious user were to see a Cisco configuration that contained clear-text passwords, they could use the passwords to access the device. However, an attacker who had access to a Cisco configuration file would easily be able to reverse the passwords.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Even though it is trivial to reverse Cisco type-7 passwords, they do provide a greater level of security than clear-text passwords. Tools are widely available on the Internet that reverse Cisco type-7 passwords.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that the Cisco password encryption service be enabled. The Cisco password encryption service can be started with the following Cisco IOS command:</li>
+          </ul>
+          <p class="command">service password-encryption</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Medium</div>
+          <div>Ease:Challenging</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>4. CDP enabled</h3>
+          <h5>observation</h5>
+          <p>CDP is a proprietary protocol that was developed and is primarily used by Cisco. A CDP enabled device can be configured to broadcast.
+CDP packets on the network enabling network management applications and CDP aware devices to identify each other. CDP packets include information about thesender, such as OS version and IP address information.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>CDP packets contain information about the sender, such as hardware model information, operating system version and IP address details. This information would give an attacker valuable information about the device. The attacker could then use this information as part of a targeted attack.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>CDP packets are broadcast to an entire network segment. The attacker or malicious user would require access to a network segment on which the CDP packets are broadcast and network monitoring software. A wide variety of network monitoring, packet capture and analysis tools can be downloaded from the Internet.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, CDP should be disabled.
+In some configurations with IP phones, deployed using either Auto Discovery or Dynamic Host Configuration Protocol (DHCP), the CDP service may need to be enabled. However, if the device supports disabling CDP on individual interfaces, then DigInv recommends that it should be disabled on all the interfaces where it is not required.</li>
+          </ul>
+          <p class="command">no cdp run</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>5. VTP Was In Server Mode</h3>
+          <h5>observation</h5>
+          <p>VTP was developed by Cisco to assist with the management of VLANs over multiple devices. The protocol enables the addition, renaming and deletion of VLANs on a single switch to be propagated to other network switches in the same VTP domain. A device in VTP server mode will transmit VTP packets containing VLAN information. If a device in VTP client mode in the same domain receives a VTP network packet with a higher revision number the changes will be applied.
+ DigInv determined that VTP was in server mode.It is worth mentioning that although the VTP was found to be in server mode(adefault setting), no VTP domain was configured. However, there have been instances where a device in this configuration have had their VTP domain setremotely from other networked devices.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could determine the VLAN configuration by capturing VTP packets sent from the device and VTP packets are not encrypted, even when a password is specified. The attacker could then use the VLAN information or password as part of a targeted attack.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools that are capable of capturing network packets are available on the Internet and installed by default on some OS.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, VTP should be disabled or placed in transparent mode, even if no VTP domain has been configured.</li>
+          </ul>
+          <p class="command">vtp transparent 
+vtp mode transparent</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:Moderate</div>
+          <div>Fix:Planned</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>6. The BOOTP Service Was Not Disabled</h3>
+          <h5>observation</h5>
+          <p>BOOTstrap Protocol (BOOTP) is a datagram protocol that allows compatible hosts to load their operating system over the network from a BOOTP server. Cisco routers are capable of acting as BOOTP servers for other Cisco devices and the service is enabled by default. However, BOOTP is rarely used and may represent a security risk.
+DigInv determined that BOOTP was not disabled. However, it is worth noting that not all Cisco devices support BOOTP.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could use the BOOTP service to download a copy of the router's IOS software.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools are available on the Internet to access BOOTP servers.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, the BOOTP service be disabled. The following command can be used to disable BOOTP:</li>
+          </ul>
+          <p class="command">no ip bootp server</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:LOW</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>7. Domain Lookups were enabled</h3>
+          <h5>observation</h5>
+          <p>Cisco IOS-based devices support name lookups using the Domain Name System (DNS). However, if a DNS server has not been configured, then the DNS request is broadcast.
+DigInv determined that name lookups had not been disabled and no DNS servers had been configured.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker who was able to capture network traffic could monitor DNS queries from the Cisco Router. Furthermore, Cisco devices can connect to Telnet servers by supplying only the hostname or IP address of the server. A mistyped Cisco command could be interpreted as an attempt to connect to a Telnet server and broadcast on the network.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>It would be trivial for an attacker to capture network traffic broadcast from a Cisco Router. Furthermore, network traffic capture tools are widely available on the Internet.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that domain lookups be disabled. Domain lookups can be disabled with the following command:</li>
+          </ul>
+          <p class="command">no ip domain-lookup</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:Informational</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>8. No Network Filtering Rules Were Configured</h3>
           <h5>observation</h5>
           <p>Network filtering can be configured to restrict access to network services from only those hosts that require the access, helping to prevent unauthorized access. When configured, network filter rules are processed sequentially and the first rule in the filter rule list which matches the network packet is applied.</p>
           <h5>impact</h5>
@@ -283,20 +431,20 @@
       </div>
       <div class="container">
         <div class="information">
-          <h3>3. No Post Logon Banner Message</h3>
+          <h3>9. PAD Service Enabled</h3>
           <h5>observation</h5>
-          <p>Post logon banner messages are ones that are shown to users after they have authenticated and prior to being given access to the device. It is one that is shown to users when they connect to a device and prior to the user logon.</p>
+          <p>The PAD service enables X.25 commands and connections between PAD devices and access servers, converting the character stream data into network packets and network packets into character stream data. The PAD service is enabled by default on some devices but it is only required if support for X.25 links are necessary.</p>
           <h5>impact</h5>
           <ul>
-            <li>The post logon banner is useful for detailing the acceptable use policy and the change control procedures which should be followed prior to making any changes to a device's configuration. An acceptable use message detailing the change control procedures and waning against abuse of the policy could help to prevent ad- hoc changes being made to a device's configuration. Additionally, if a device does not have the facilities to configure a pre-logon banner message then the post logon banner message could be the only place where a legal warning against unauthorized access could be given.</li>
+            <li>In addition to the extra overhead, running unused services increases the chances of an attacker finding a security hole or fingerprinting a device.</li>
           </ul>
           <h5>ease</h5>
-          <p>With no post logon banner configured, a user would not be given a reminder of the acceptable use and change control procedure policy details.</p>
+          <p>The PAD service was enabled.</p>
           <h5>recommandation</h5>
           <ul>
-            <li>DigInv recommends that a post logon banner message is configured that details both the acceptable use policy and change control procedures. Additionally, if the device does not support a pre-logon banner message then DigInv recommends that the post logon banner message should also include a carefully worded legal warning against unauthorized access.</li>
+            <li>DigInv recommends that, if not required, the PAD service should be disabled.</li>
           </ul>
-          <p class="command">banner exec delimiter banner-message delimiter</p>
+          <p class="command">no service pad</p>
         </div>
         <div class="square">
           <div>Overall:INFORMATIONAL</div>
@@ -310,7 +458,7 @@
     <div class="interfaceaudit">
       <div class="container">
         <div class="information">
-          <h3>4. Connection Timeout not configured</h3>
+          <h3>10. Connection Timeout not configured</h3>
           <h5>observation</h5>
           <p>Connection timeouts can be configured for a number of the device services. If a timeout were configured on an administrative service, an administrator that did not correctly terminate the connection would have it automatically closed after the timeout expires. However, if a timeout is not configured, or is configured to be a long timeout, an unauthorised user may be able to gain access using the administrator's previously logged-in connection.</p>
           <h5>impact</h5>
@@ -330,332 +478,6 @@
           <div>Impact:Informational</div>
           <div>Ease:Easy</div>
           <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets From A Network Source</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if NTP must be configured on the device, authentication must be configured.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets To A Network Destination</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that network filter rules should be configured to help prevent unauthorized access to network services.DigInv recommends that: filter rules should only allow access to specific destination addresses</li>
-            <li> filter rules should only allow access to specific destination network ports</li>
-            <li> filter rules should only allow access from specific source addresses</li>
-            <li> filter rules should specify a specific network protocol</li>
-            <li> ICMP filter rules should specify a specific message type</li>
-            <li> filter rules should always drop network packets and not reject them</li>
-            <li> filter rules should perform a specific action and not rely on a default action.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets From Any Source</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that a post logon banner message is configured that details both the acceptable use policy and change control procedures. Additionally, if the device does not support a pre-logon banner message then DigInv recommends that the post logon banner message should also include a carefully worded legal warning against unauthorized access.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets To Any Destination</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, the PAD service should be disabled.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Drop Rules Were Configured Without Logging</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>It is common for an attacker to perform network reconnaissance in order to identify potential target hosts and services. An attackers reconnaissance phase can vary greatly in intensity and covertness, but any network scans that match network filter rules that are not configured to log will not be record the activity.</li>
-            <li>Logging access attempts to network hosts and services that are filtered using drop rules provides useful information about an attackers activities, and could be useful as evidence in any legal action taken. With no logging of drop filter rules the information would not be recorded for use by network administrators, auditors or a network forensic team. Furthermore log monitoring software, if configured, would not alert network administrators of a potential attack in progress.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attackers attempts to access network services which are protected by the drop filter rules detailed in the finding would not be logged.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, unless required, an outbound ACL should be configured and assigned in order to restrict administrative access to other systems.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets To Any Destination Port</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommands that,if not required IP Identification service should be disabled</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Connection Timeout not configured</h3>
-          <h5>observation</h5>
-          <p>Connection timeouts can be configured for a number of the device services. If a timeout were configured on an administrative service, an administrator that did not correctly terminate the connection would have it automatically closed after the timeout expires. However, if a timeout is not configured, or is configured to be a long timeout, an unauthorised user may be able to gain access using the administrator's previously logged-in connection.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who was able to gain access to a connection that had not expired, would be able to continue using that connection. A connection could be a console port on the device that was not correctly terminated or a remote administrative connection.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The attacker would have to gain physical access to the device to use the console port, or gain remote access to an administration machine that is attached to the port. To gain access to remote connections, an attacker would have to be able to intercept network traffic between the client and the device. The attacker would then have to take over the connection, which could be very difficult with some services. Tools are available on the Internet that would facilitate the monitoring of network connections.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that domain lookups be disabled. Domain lookups can be disabled with the following command:</li>
-          </ul>
-          <p class="command">exec-timeout time(minutes) time(seconds)</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets From A Network Source</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if NTP must be configured on the device, authentication must be configured.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets To A Network Destination</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that network filter rules should be configured to help prevent unauthorized access to network services.DigInv recommends that: filter rules should only allow access to specific destination addresses</li>
-            <li> filter rules should only allow access to specific destination network ports</li>
-            <li> filter rules should only allow access from specific source addresses</li>
-            <li> filter rules should specify a specific network protocol</li>
-            <li> ICMP filter rules should specify a specific message type</li>
-            <li> filter rules should always drop network packets and not reject them</li>
-            <li> filter rules should perform a specific action and not rely on a default action.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets From Any Source</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that a post logon banner message is configured that details both the acceptable use policy and change control procedures. Additionally, if the device does not support a pre-logon banner message then DigInv recommends that the post logon banner message should also include a carefully worded legal warning against unauthorized access.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets To Any Destination</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, the PAD service should be disabled.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Drop Rules Were Configured Without Logging</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>It is common for an attacker to perform network reconnaissance in order to identify potential target hosts and services. An attackers reconnaissance phase can vary greatly in intensity and covertness, but any network scans that match network filter rules that are not configured to log will not be record the activity.</li>
-            <li>Logging access attempts to network hosts and services that are filtered using drop rules provides useful information about an attackers activities, and could be useful as evidence in any legal action taken. With no logging of drop filter rules the information would not be recorded for use by network administrators, auditors or a network forensic team. Furthermore log monitoring software, if configured, would not alert network administrators of a potential attack in progress.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attackers attempts to access network services which are protected by the drop filter rules detailed in the finding would not be logged.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, unless required, an outbound ACL should be configured and assigned in order to restrict administrative access to other systems.</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Filter Rule Allows Packets To Any Destination Port</h3>
-          <h5>observation</h5>
-          <p>Network filtering rules can be configured on a wide range of network devices to restrict access, helping to prevent unauthorized access to network hosts and services. The filtering rules are processed sequentially when they are applied to network packets, with the first rule that matches the network packet being applied.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If network filtering rules are not configured to restrict access to network services from only those hosts that require the access then unauthorized access may be gained to those services covered in this issues finding. For a network edge device, this could lead to a remote attacker gaining access to network service. For an internal device this could lead a malicious user gaining unauthorized access to a service.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network filtering would not prevent a malicious user or an attacker from accessing the network services covered by the rules detailed in this issues finding.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommands that,if not required IP Identification service should be disabled</li>
-          </ul>
-          <p class="command">access-list NAME {extended|standard} {permit|deny} PROTOCOL_NUMBER SOURCE_HOST DESTIONATION_HOST DESTINATION_PORT log</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
         </div>
       </div>
     </div>
@@ -663,11 +485,95 @@
     <div class="vulnerability">
       <div class="container">
         <div class="information">
-          <h3>1. CVE-2004-0079</h3>
+          <h3>1. CVE-2017-12238</h3>
           <h5>Description</h5>
-          <p>The do_change_cipher_spec function in OpenSSL 0.9.6c to 0.9.6k, and 0.9.7a to 0.9.7c, allows remote attackers to cause a denial of service (crash) via a crafted SSL/TLS handshake that triggers a null dereference.</p>
+          <p>A vulnerability in the Virtual Private LAN Service (VPLS) code of Cisco IOS 15.0 through 15.4 for Cisco Catalyst 6800 Series Switches could allow an unauthenticated, adjacent attacker to cause a C6800-16P10G or C6800-16P10G-XL type line card to crash, resulting in a denial of service (DoS) condition. The vulnerability is due to a memory management issue in the affected software. An attacker could exploit this vulnerability by creating a large number of VPLS-generated MAC entries in the MAC address table of an affected device. A successful exploit could allow the attacker to cause a C6800-16P10G or C6800-16P10G-XL type line card to crash, resulting in a DoS condition. This vulnerability affects Cisco Catalyst 6800 Series Switches that are running a vulnerable release of Cisco IOS Software and have a Cisco C6800-16P10G or C6800-16P10G-XL line card in use with Supervisor Engine 6T. To be vulnerable, the device must also be configured with VPLS and the C6800-16P10G or C6800-16P10G-XL line card needs to be the core-facing MPLS interfaces. Cisco Bug IDs: CSCva61927.</p>
           <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2004-0079">https://nvd.nist.gov/vuln/detail/CVE-2004-0079</a>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-12238">https://nvd.nist.gov/vuln/detail/CVE-2017-12238</a>
+        </div>
+        <div class="square">
+          <div>version:V3</div>
+          <div>score:6.5</div>
+          <div>severity:MEDIUM</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>2. CVE-2012-4622</h3>
+          <h5>Description</h5>
+          <p>Cisco IOS XE 03.02.00.XO.15.0(2)XO on Catalyst 4500E series switches, when a Supervisor Engine 7L-E card is installed, allows remote attackers to cause a denial of service (card reload) via malformed packets that trigger uncorrected ECC error messages, aka Bug ID CSCty88456.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2012-4622">https://nvd.nist.gov/vuln/detail/CVE-2012-4622</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:7.1</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>3. CVE-2016-6473</h3>
+          <h5>Description</h5>
+          <p>A vulnerability in Cisco IOS on Catalyst Switches and Nexus 9300 Series Switches could allow an unauthenticated, adjacent attacker to cause a Layer 2 network storm. More Information: CSCuu69332, CSCux07028. Known Affected Releases: 15.2(3)E. Known Fixed Releases: 12.2(50)SE4 12.2(50)SE5 12.2(50)SQ5 12.2(50)SQ6 12.2(50)SQ7 12.2(52)EY4 12.2(52)SE1 12.2(53)EX 12.2(53)SE 12.2(53)SE1 12.2(53)SE2 12.2(53)SG10 12.2(53)SG11 12.2(53)SG2 12.2(53)SG9 12.2(54)SG1 12.2(55)EX3 12.2(55)SE 12.2(55)SE1 12.2(55)SE10 12.2(55)SE2 12.2(55)SE3 12.2(55)SE4 12.2(55)SE5 12.2(55)SE6 12.2(55)SE7 12.2(55)SE8 12.2(55)SE9 12.2(58)EZ 12.2(58)SE1 12.2(58)SE2 12.2(60)EZ 12.2(60)EZ1 12.2(60)EZ2 12.2(60)EZ3 12.2(60)EZ4 12.2(60)EZ5 12.2(60)EZ6 12.2(60)EZ7 12.2(60)EZ8 15.0(1)EY2 15.0(1)SE 15.0(1)SE2 15.0(1)SE3 15.0(2)EA 15.0(2)EB 15.0(2)EC 15.0(2)ED 15.0(2)EH 15.0(2)EJ 15.0(2)EJ1 15.0(2)EK1 15.0(2)EX 15.0(2)EX1 15.0(2)EX3 15.0(2)EX4 15.0(2)EX5 15.0(2)EY 15.0(2)EY1 15.0(2)EY2 15.0(2)EZ 15.0(2)SE 15.0(2)SE1 15.0(2)SE2 15.0(2)SE3 15.0(2)SE4 15.0(2)SE5 15.0(2)SE6 15.0(2)SE7 15.0(2)SE9 15.0(2)SG10 15.0(2)SG3 15.0(2)SG6 15.0(2)SG7 15.0(2)SG8 15.0(2)SG9 15.0(2a)EX5 15.1(2)SG 15.1(2)SG1 15.1(2)SG2 15.1(2)SG3 15.1(2)SG4 15.1(2)SG5 15.1(2)SG6 15.2(1)E 15.2(1)E1 15.2(1)E2 15.2(1)E3 15.2(1)EY 15.2(2)E 15.2(2)E3 15.2(2b)E.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-6473">https://nvd.nist.gov/vuln/detail/CVE-2016-6473</a>
+        </div>
+        <div class="square">
+          <div>version:V3</div>
+          <div>score:6.5</div>
+          <div>severity:MEDIUM</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>4. CVE-2014-2107</h3>
+          <h5>Description</h5>
+          <p>Cisco IOS 12.2 and 15.0 through 15.3, when used with the Kailash FPGA before 2.6 on RSP720-3C-10GE and RSP720-3CXL-10GE devices, allows remote attackers to cause a denial of service (route switch processor outage) via crafted IP packets, aka Bug ID CSCug84789.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-2107">https://nvd.nist.gov/vuln/detail/CVE-2014-2107</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:7.1</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>5. CVE-2012-1338</h3>
+          <h5>Description</h5>
+          <p>Cisco IOS 15.0 and 15.1 on Catalyst 3560 and 3750 series switches allows remote authenticated users to cause a denial of service (device reload) by completing local web authentication quickly, aka Bug ID CSCts88664.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2012-1338">https://nvd.nist.gov/vuln/detail/CVE-2012-1338</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:6.3</div>
+          <div>severity:MEDIUM</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>6. CVE-2013-1146</h3>
+          <h5>Description</h5>
+          <p>The Smart Install client functionality in Cisco IOS 12.2 and 15.0 through 15.3 on Catalyst switches allows remote attackers to cause a denial of service (device reload) via crafted image list parameters in Smart Install packets, aka Bug ID CSCub55790.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2013-1146">https://nvd.nist.gov/vuln/detail/CVE-2013-1146</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:7.8</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>7. CVE-2012-0339</h3>
+          <h5>Description</h5>
+          <p>Cisco IOS 12.2 through 12.4 and 15.0 does not recognize the vrf-also keyword during enforcement of access-class commands, which allows remote attackers to establish TELNET connections from arbitrary source IP addresses via a standard TELNET client, aka Bug ID CSCsi77774.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2012-0339">https://nvd.nist.gov/vuln/detail/CVE-2012-0339</a>
         </div>
         <div class="square">
           <div>version:V2</div>
@@ -677,142 +583,58 @@
       </div>
       <div class="container">
         <div class="information">
-          <h3>2. CVE-2020-3452</h3>
+          <h3>8. CVE-2012-0338</h3>
           <h5>Description</h5>
-          <p>A vulnerability in the web services interface of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to conduct directory traversal attacks and read sensitive files on a targeted system. The vulnerability is due to a lack of proper input validation of URLs in HTTP requests processed by an affected device. An attacker could exploit this vulnerability by sending a crafted HTTP request containing directory traversal character sequences to an affected device. A successful exploit could allow the attacker to view arbitrary files within the web services file system on the targeted device. The web services file system is enabled when the affected device is configured with either WebVPN or AnyConnect features. This vulnerability cannot be used to obtain access to ASA or FTD system files or underlying operating system (OS) files.</p>
+          <p>Cisco IOS 12.2 through 12.4 and 15.0 does not recognize the vrf-also keyword during enforcement of access-class commands, which allows remote attackers to establish SSH connections from arbitrary source IP addresses via a standard SSH client, aka Bug ID CSCsv86113.</p>
           <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-3452">https://nvd.nist.gov/vuln/detail/CVE-2020-3452</a>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2012-0338">https://nvd.nist.gov/vuln/detail/CVE-2012-0338</a>
         </div>
         <div class="square">
-          <div>version:V3</div>
-          <div>score:7.5</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>3. CVE-2017-6752</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the web interface of the Cisco Adaptive Security Appliance (ASA) 9.3(3) and 9.6(2) could allow an unauthenticated, remote attacker to determine valid usernames. The attacker could use this information to conduct additional reconnaissance attacks. The vulnerability is due to the interaction between Lightweight Directory Access Protocol (LDAP) and SSL Connection Profile when they are configured together. An attacker could exploit the vulnerability by performing a username enumeration attack to the IP address of the device. An exploit could allow the attacker to determine valid usernames. Cisco Bug IDs: CSCvd47888.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-6752">https://nvd.nist.gov/vuln/detail/CVE-2017-6752</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:7.5</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>4. CVE-2017-3793</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the TCP normalizer of Cisco Adaptive Security Appliance (ASA) Software (8.0 through 8.7 and 9.0 through 9.6) and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause Cisco ASA and FTD to drop any further incoming traffic on all interfaces, resulting in a denial of service (DoS) condition. The vulnerability is due to improper limitation of the global out-of-order TCP queue for specific block sizes. An attacker could exploit this vulnerability by sending a large number of unique permitted TCP connections with out-of-order segments. An exploit could allow the attacker to exhaust available blocks in the global out-of-order TCP queue, causing the dropping of any further incoming traffic on all interfaces and resulting in a DoS condition. Cisco Bug IDs: CSCvb46321.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-3793">https://nvd.nist.gov/vuln/detail/CVE-2017-3793</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:4.0</div>
+          <div>version:V2</div>
+          <div>score:5.0</div>
           <div>severity:MEDIUM</div>
         </div>
       </div>
       <div class="container">
         <div class="information">
-          <h3>5. CVE-2017-3867</h3>
+          <h3>9. CVE-2011-4012</h3>
           <h5>Description</h5>
-          <p>A vulnerability in the Border Gateway Protocol (BGP) Bidirectional Forwarding Detection (BFD) implementation of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to bypass the access control list (ACL) for specific TCP and UDP traffic. More Information: CSCvc68229. Known Affected Releases: 9.6(2). Known Fixed Releases: 99.1(20.1) 99.1(10.2) 98.1(12.7) 98.1(1.49) 97.1(6.58) 97.1(0.134) 96.2(0.109) 9.7(1.1) 9.6(2.99) 9.6(2.8).</p>
+          <p>Cisco IOS 12.0, 15.0, and 15.1, when a Policy Feature Card 3C (PFC3C) is used, does not create a fragment entry during processing of an ICMPv6 ACL, which has unspecified impact and remote attack vectors, aka Bug ID CSCtj90091.</p>
           <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-3867">https://nvd.nist.gov/vuln/detail/CVE-2017-3867</a>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2011-4012">https://nvd.nist.gov/vuln/detail/CVE-2011-4012</a>
         </div>
         <div class="square">
-          <div>version:V3</div>
-          <div>score:5.3</div>
+          <div>version:V2</div>
+          <div>score:9.3</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>10. CVE-2011-0945</h3>
+          <h5>Description</h5>
+          <p>Memory leak in the Data-link switching (aka DLSw) feature in Cisco IOS 12.1 through 12.4 and 15.0 through 15.1, and IOS XE 3.1.xS before 3.1.3S and 3.2.xS before 3.2.1S, when implemented over Fast Sequence Transport (FST), allows remote attackers to cause a denial of service (memory consumption and device reload or hang) via a crafted IP protocol 91 packet, aka Bug ID CSCth69364.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2011-0945">https://nvd.nist.gov/vuln/detail/CVE-2011-0945</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:7.8</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>11. CVE-2011-1625</h3>
+          <h5>Description</h5>
+          <p>Cisco IOS 12.2, 12.3, 12.4, 15.0, and 15.1, when the data-link switching (DLSw) feature is configured, allows remote attackers to cause a denial of service (device crash) by sending a sequence of malformed packets and leveraging a &quot;narrow timing window,&quot; aka Bug ID CSCtf74999, a different vulnerability than CVE-2007-0199, CVE-2008-1152, and CVE-2009-0629.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2011-1625">https://nvd.nist.gov/vuln/detail/CVE-2011-1625</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:5.4</div>
           <div>severity:MEDIUM</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>6. CVE-2017-6607</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the DNS code of Cisco ASA Software could allow an unauthenticated, remote attacker to cause an affected device to reload or corrupt the information present in the device's local DNS cache. The vulnerability is due to a flaw in handling crafted DNS response messages. An attacker could exploit this vulnerability by triggering a DNS request from the Cisco ASA Software and replying with a crafted response. A successful exploit could cause the device to reload, resulting in a denial of service (DoS) condition or corruption of the local DNS cache information. Note: Only traffic directed to the affected device can be used to exploit this vulnerability. This vulnerability affects Cisco ASA Software configured in routed or transparent firewall mode and single or multiple context mode. This vulnerability can be triggered by IPv4 and IPv6 traffic. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco Firepower 9300 ASA Security Module, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.12) 9.2(4.18) 9.4(3.12) 9.5(3.2) 9.6(2.2). Cisco Bug IDs: CSCvb40898.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-6607">https://nvd.nist.gov/vuln/detail/CVE-2017-6607</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:8.7</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>7. CVE-2017-6609</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the IPsec code of Cisco ASA Software could allow an authenticated, remote attacker to cause a reload of the affected system. The vulnerability is due to improper parsing of malformed IPsec packets. An attacker could exploit this vulnerability by sending malformed IPsec packets to the affected system. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed firewall mode only and in single or multiple context mode. This vulnerability can be triggered by IPv4 and IPv6 traffic. An attacker needs to establish a valid IPsec tunnel before exploiting this vulnerability. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco Firepower 9300 ASA Security Module, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.8) 9.2(4.15) 9.4(4) 9.5(3.2) 9.6(2). Cisco Bug IDs: CSCun16158.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-6609">https://nvd.nist.gov/vuln/detail/CVE-2017-6609</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:7.7</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>8. CVE-2017-6610</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the Internet Key Exchange Version 1 (IKEv1) XAUTH code of Cisco ASA Software could allow an authenticated, remote attacker to cause a reload of an affected system. The vulnerability is due to insufficient validation of the IKEv1 XAUTH parameters passed during an IKEv1 negotiation. An attacker could exploit this vulnerability by sending crafted parameters. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability only affects systems configured in routed firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 or IPv6 traffic. A valid IKEv1 Phase 1 needs to be established to exploit this vulnerability, which means that an attacker would need to have knowledge of a pre-shared key or have a valid certificate for phase 1 authentication. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco ASA for Firepower 9300 Series, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.7) 9.2(4.11) 9.4(4) 9.5(3) 9.6(1.5). Cisco Bug IDs: CSCuz11685.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-6610">https://nvd.nist.gov/vuln/detail/CVE-2017-6610</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:7.7</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>9. CVE-2017-3807</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in Common Internet Filesystem (CIFS) code in the Clientless SSL VPN functionality of Cisco ASA Software, Major Releases 9.0-9.6, could allow an authenticated, remote attacker to cause a heap overflow. The vulnerability is due to insufficient validation of user supplied input. An attacker could exploit this vulnerability by sending a crafted URL to the affected system. An exploit could allow the remote attacker to cause a reload of the affected system or potentially execute code. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed firewall mode only and in single or multiple context mode. This vulnerability can be triggered by IPv4 or IPv6 traffic. A valid TCP connection is needed to perform the attack. The attacker needs to have valid credentials to log in to the Clientless SSL VPN portal. Vulnerable Cisco ASA Software running on the following products may be affected by this vulnerability: Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco ASA for Firepower 9300 Series, Cisco ASA for Firepower 4100 Series. Cisco Bug IDs: CSCvc23838.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-3807">https://nvd.nist.gov/vuln/detail/CVE-2017-3807</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:8.8</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>10. CVE-2016-6431</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the local Certificate Authority (CA) feature of Cisco ASA Software before 9.6(1.5) could allow an unauthenticated, remote attacker to cause a reload of the affected system. The vulnerability is due to improper handling of crafted packets during the enrollment operation. An attacker could exploit this vulnerability by sending a crafted enrollment request to the affected system. An exploit could allow the attacker to cause the reload of the affected system. Note: Only HTTPS packets directed to the Cisco ASA interface, where the local CA is allowing user enrollment, can be used to trigger this vulnerability. This vulnerability affects systems configured in routed firewall mode and in single or multiple context mode.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-6431">https://nvd.nist.gov/vuln/detail/CVE-2016-6431</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:7.5</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>11. CVE-2016-6432</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the Identity Firewall feature of Cisco ASA Software before 9.6(2.1) could allow an unauthenticated, remote attacker to cause a reload of the affected system or to remotely execute code. The vulnerability is due to a buffer overflow in the affected code area. An attacker could exploit this vulnerability by sending a crafted NetBIOS packet in response to a NetBIOS probe sent by the ASA software. An exploit could allow the attacker to execute arbitrary code and obtain full control of the system or cause a reload of the affected system. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed and transparent firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 traffic.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-6432">https://nvd.nist.gov/vuln/detail/CVE-2016-6432</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:8.1</div>
-          <div>severity:HIGH</div>
         </div>
       </div>
     </div>

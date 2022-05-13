@@ -1,4 +1,3 @@
-from email.policy import default
 from dominate.tags import *
 from dominate import *
 import re

@@ -1,15 +1,20 @@
 ##############interface auditing##################
 
-from Router.IntfAudit import convert_str_table
 from variables import *
 from func import *
 from settings import *
 from collections import defaultdict
-
+from dominate.util import raw
 #this list will contain the data to make a table every time we call the method build_table
 data=defaultdict(list)
 
 
+
+#convert string data to table data
+def convert_str_table(id,column):
+    
+    
+    intf_table_dict[id]=raw(build_table(data[id],column))
 #Routing Protocols audit
 networks_rp=list()
 interfaces_networks_rp=list()
@@ -154,18 +159,18 @@ for obj in parse.find_objects(r'^router\srip'):
 
 
 #under interface
-for obj in parse.find_objects_w_child(r'^interface',r'ip\srip'):
+for obj in parse.find_objects_w_child(r'^interface',r'rip'):
 
-        rip_md5=obj.has_child_with(r'ip\srip\sauthentication\smode\smd5')
+        rip_md5=obj.has_child_with(r'rip\sauthentication\smode\smd5')
         #version 1 under interface
-        rip_v1=obj.has_child_with(r'ip\srip\s\w+\sversion\s1')
+        rip_v1=obj.has_child_with(r'rip\s\w+\sversion\s1')
 
         if (rip_v1==True  and rip_int==True):
             intf_audit.append(6)
             
 
         #clear text auth
-        if obj.has_child_with(r'ip\srip\sauthentication\skey-\w+\s\w+') and rip_md5==False:
+        if obj.has_child_with(r'rip\sauthentication\skey-\w+\s\w+') and rip_md5==False:
             intf_audit.append(7)
             
 
