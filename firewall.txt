@@ -1,6 +1,3 @@
-: Saved
-
-: 
 : Serial Number: 9AX18G3EXN1
 : Hardware:   ASAv, 2048 MB RAM, CPU Pentium II 2712 MHz
 :
@@ -24,53 +21,53 @@ interface GigabitEthernet0/0
  no nameif
  no security-level
  no ip address
-!             
+!
 interface GigabitEthernet0/1
- shutdown     
- no nameif    
+ shutdown
+ no nameif
  no security-level
  no ip address
-!             
+!
 interface GigabitEthernet0/2
- shutdown     
- no nameif    
+ shutdown
+ no nameif
  no security-level
  no ip address
-!             
+!
 interface GigabitEthernet0/3
- shutdown     
- no nameif    
+ shutdown
+ no nameif
  no security-level
  no ip address
-!             
+!
 interface GigabitEthernet0/4
- shutdown     
- no nameif    
+ shutdown
+ no nameif
  no security-level
  no ip address
-!             
+!
 interface GigabitEthernet0/5
- shutdown     
- no nameif    
+ shutdown
+ no nameif
  no security-level
  no ip address
-!             
+!
 interface GigabitEthernet0/6
- shutdown     
- no nameif    
+ shutdown
+ no nameif
  no security-level
  no ip address
-!             
+!
 interface Management0/0
  management-only
- shutdown     
- no nameif    
+ shutdown
+ no nameif
  no security-level
  no ip address
-!             
+!
 ftp mode passive
 pager lines 23
-no failover   
+no failover
 icmp unreachable rate-limit 1 burst-size 1
 no asdm history enable
 arp timeout 14400
@@ -91,7 +88,7 @@ crypto ca trustpoint _SmartCallHome_ServerCA
  no validation-usage
  crl configure
 crypto ca trustpool policy
- auto-import  
+ auto-import
 crypto ca certificate chain _SmartCallHome_ServerCA
  certificate ca 18dad19e267de8bb4a2158cdcc6b3b4a
     308204d3 308203bb a0030201 02021018 dad19e26 7de8bb4a 2158cdcc 6b3b4a30 
@@ -133,20 +130,20 @@ crypto ca certificate chain _SmartCallHome_ServerCA
     e1f4116f 10b595fc e7420532 dbce9d51 5e28b69e 85d35bef a57d4540 728eb70e 
     6b0e06fb 33354871 b89d278b c4655f0d 86769c44 7af6955c f65d3208 33a454b6 
     183f685c f2424a85 3854835f d1e82cf2 ac11d6a8 ed636a
-  quit        
+  quit
 telnet timeout 5
 ssh stricthostkeycheck
-ssh timeout 5 
+ssh timeout 5
 ssh key-exchange group dh-group1-sha1
 console timeout 0
 dynamic-access-policy-record DfltAccessPolicy
-!             
+!
 class-map inspection_default
  match default-inspection-traffic
-!             
-!             
+!
+!
 policy-map type inspect dns migrated_dns_map_1
- parameters   
+ parameters
   message-length maximum client auto
   message-length maximum 512
 policy-map global_policy
@@ -166,15 +163,16 @@ policy-map global_policy
   inspect tftp 
   inspect sip  
   inspect xdmcp 
-!             
+!
 service-policy global_policy global
 prompt hostname context 
-call-home     
+call-home reporting anonymous prompt 2
+call-home
  profile License
   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
   destination transport-method http
  profile CiscoTAC-1
-  no active   
+  no active
   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
   destination address email callhome@cisco.com
   destination transport-method http
@@ -183,5 +181,6 @@ call-home
   subscribe-to-alert-group inventory periodic monthly
   subscribe-to-alert-group configuration periodic monthly
   subscribe-to-alert-group telemetry periodic daily
-Cryptochecksum:d41d8cd98f00b204e9800998ecf8427e
-: end   
+Cryptochecksum:f01c5cd3557ceba11662131c20f8a7bc
+: end
+

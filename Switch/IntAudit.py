@@ -96,6 +96,10 @@ for i in intf_audit:
 intf_audit.clear()
 intf_audit = cl+hl+ml+ll+il
 
+
+print(CRITICAL_RATING,HIGH_RATING,MEDUIM_RATING,LOW_RATING,INFORMATIONAL_RATING)
+
+
 settings.init_securityaudits_intf()
 for i in intf_audit:
     retrieve_data_from_json_intf(i)

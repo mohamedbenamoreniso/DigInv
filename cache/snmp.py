@@ -1,5 +1,11 @@
-import ipaddress
-addr4 = ipaddress.ip_address('192.0.2.1')
-t=addr4 in ipaddress.ip_interface('192.0.2.0')
+data=[0,0,1,2,3]
+with open('file.txt', 'w') as f:
+    
+    for i in data:
+        f.write('%d \n' % i)
 
-print(t)
+with open('file.txt', 'r', encoding='utf-8') as g:
+    data = [int(i) for i in g.readlines()]
+
+for i in data:
+    print(i)

@@ -268,3 +268,18 @@ def get_interfaces_firewall(parse,network):
                if(ipaddr.IPNetwork(network).Contains(ipaddr.IPAddress(str(net_addr.text)))):
                    interfaces.append(intf)
     return interfaces
+
+#function to read and write data to variable rating file to exchange data between python and javascript
+def r_w_ratingFile(data):
+    
+    with open('file.txt', 'w') as f:
+    
+        for i in data:
+            f.write('%d \n' % i)
+
+    with open('file.txt', 'r', encoding='utf-8') as g:
+        data = [int(i) for i in g.readlines()]
+
+    for i in data:
+        print(i)
+    return True
