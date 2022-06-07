@@ -164,10 +164,10 @@ for i in glob_list:
         INFORMATIONAL_RATING+=1
 
 
-print(CRITICAL_RATING,HIGH_RATING,MEDUIM_RATING,LOW_RATING,INFORMATIONAL_RATING) 
+
 glob_list.clear()
 glob_list = cl+hl+ml+ll+il
-print(glob_list)
+
 for i in glob_list:
     retrieve_data_from_json(i)
     if i in glob_table_dict:

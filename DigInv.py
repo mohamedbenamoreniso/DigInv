@@ -1,21 +1,33 @@
 import sys
+from termcolor import colored
 #never change this path 
 sys.path.extend(('./Router','./Switch','./Firewall'))
 from variables import *
 print("the device is {} and the file name is {}".format(device_type,file_name))
 from func import *
+glob_str="\nStart Auditing in Global configuration mode\n"
+intf_str="Start Auditing in Interfaces configuration\n"
+vul_str="Start auditing vulnerabilities\nAlmost done,DigInv is creating your report..... "
 if device_type=="router":
-        
+        print(colored(glob_str,'red'))
         from Router.GlobAudit import *
+        print(colored(intf_str,'green'))
         from Router.IntfAudit import *
+        print(vul_str)
         from vulnerabilityAudit import *
 elif device_type=="switch":
+        print(colored(glob_str,'red'))
         from Switch.GlobAudit import *
+        print(colored(intf_str,'green'))
         from Switch.IntAudit import *
+        print(vul_str)
         from vulnerabilityAudit import *
 elif device_type=="firewall":
+        print(colored(glob_str,'red'))
         from Firewall.GlobAudit import *
+        print(colored(intf_str,'green'))
         from Firewall.IntAudit import *
+        print(vul_str)
         from vulnerabilityAudit import *
        
 
@@ -149,7 +161,7 @@ report+=ul(li(name) for name in names)
 
 report+=h2("2 Security Audit")
 report+=p("DigInv performed a security audit on %s of the device detailed in the Table below."%_date_time)
-report+=raw(build_table([[hostname,"Router",versio_os]],["Device","Name","OS"]))
+report+=raw(build_table([[hostname,device_type,versio_os]],["Device","Name","OS"]))
 
 report+=h2("2.1.1 Security Issue Overview")
 report+=p("Each security issue identified by DigInv is described with a finding, the impact of the issue, how easy it would be for an attacker to exploit the issue and a recommendation.")

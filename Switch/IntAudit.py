@@ -67,7 +67,7 @@ for obj in parse.find_objects(r"line"):
 
 
 intf_audit=list(set(intf_audit))
-print("int")
+
 print(intf_audit)
 #sort security audits from CRITICAL to INFORMATIONAL
 cl = list()
@@ -76,7 +76,7 @@ ml = list()
 ll = list()
 il = list()
 for i in intf_audit:
-    print(audits_intf[str(i)]['tab'][0])
+   
     if(audits_intf[str(i)]['tab'][0] == "CRITICAL"):
         cl.append(i)
         CRITICAL_RATING+=1
@@ -97,7 +97,7 @@ intf_audit.clear()
 intf_audit = cl+hl+ml+ll+il
 
 
-print(CRITICAL_RATING,HIGH_RATING,MEDUIM_RATING,LOW_RATING,INFORMATIONAL_RATING)
+
 
 
 settings.init_securityaudits_intf()

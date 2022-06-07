@@ -61,8 +61,8 @@ classC = ipaddress.IPv4Network(("192.168.0.0", "255.255.0.0"))
 import argparse
 
 parser=argparse.ArgumentParser()
-parser.add_argument('--device',type=str,required=True,)
-parser.add_argument('--file',type=str,required=True)
+parser.add_argument('--device',type=str,required=True,help="Choose the nature of the device:\n-router\nswitch\nfirewall")
+parser.add_argument('--file',type=str,required=True,help="Choose the file from the local storage")
 
 args=parser.parse_args()
 
