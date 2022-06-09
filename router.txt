@@ -57,12 +57,12 @@ ip tcp synwait-time 5
 !         
 !         
 interface FastEthernet0/0
- no ip address
+ ip address 192.168.1.1 255.255.255.0
  shutdown 
  duplex half
 !         
 interface FastEthernet1/0
- no ip address
+ ip address 192.168.2.1 255.255.255.0
  shutdown 
  duplex half
 !         
@@ -93,7 +93,10 @@ control-plane
 !         
 !         
 !         
-!         
+!
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0
+ network 192.168.2.0 0.0.0.255 area 0      
 !         
 !         
 !         

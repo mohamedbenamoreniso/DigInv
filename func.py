@@ -135,7 +135,7 @@ def retrieve_data_from_json_intf(id):
         inf_div += p('%s' % settings.audits_intf[str_id]['ease'])
         inf_div+=h5("recommandation")
         #inf_div += p('%s' % settings.audits_intf[str_id]['recommandation'])
-        recommandation=settings.audits[str_id]['recommandation'].split(";")
+        recommandation=settings.audits_intf[str_id]['recommandation'].split(";")
         rec_s=ul()
         for rec in recommandation:
             rec_s+=li(rec)

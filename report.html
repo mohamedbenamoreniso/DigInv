@@ -7,9 +7,9 @@
   <body>
     <h1>DigInv</h1>
     <h1>Audit report</h1>
-    <h4>2022-05-26</h4>
+    <h4>2022-06-09</h4>
     <h3>Summary</h3>
-    <p>DigInv performed an audit on 2022-05-26 of the network device detailed in the scope.The audit consisted of the following components:</p>
+    <p>DigInv performed an audit on 2022-06-09 of the network device detailed in the scope.The audit consisted of the following components:</p>
     <ul>
       <li><a href="#part2">a best practice security audit (Part 2)</a></li>
       <li><a href="#part3">a software vulnerability audit report (Part 3)</a></li>
@@ -26,14 +26,14 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>ciscoasa</td>
-      <td>firewall</td>
-      <td>9.6</td>
+      <td>R1</td>
+      <td>router</td>
+      <td>12.4</td>
     </tr>
   </tbody>
 </table>
     <h2>Security Audit Summary</h2>
-    <p>DigInv  performed a security audit of the device detailed in the scope and identified 0 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
+    <p>DigInv  performed a security audit of the device detailed in the scope and identified 4 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
     <h2>Contents</h2>
     <div class="contents">
       <div>
@@ -46,40 +46,55 @@
         <h5>2.1 Introduction</h5>
         <div class="globalaudit">
           <h5>2.2 Global Audit</h5>
-          <h5>2.2.1 Warning In Pre-Logon Banner</h5>
-          <h5>2.2.2 No Network Filtering Rules Were Configured</h5>
-          <h5>2.2.3 No Post Logon Banner Message</h5>
+          <h5>2.2.1 UDP Small Services Enabled</h5>
+          <h5>2.2.2 No HTTP Server Session Timeout</h5>
+          <h5>2.2.3 No Inbound TCP Connection Keep-Alives</h5>
+          <h5>2.2.4 IP Classless</h5>
+          <h5>2.2.5 AUX Port Not Disabled</h5>
+          <h5>2.2.6 No HTTP Service Network Access Restrictions</h5>
+          <h5>2.2.7 Service Password Encryption Disabled</h5>
+          <h5>2.2.8 CDP enabled</h5>
+          <h5>2.2.9 VTP Was In Server Mode</h5>
+          <h5>2.2.10 IP Source Routing Was Enabled</h5>
+          <h5>2.2.11 Warning In Pre-Logon Banner</h5>
+          <h5>2.2.12 The BOOTP Service Was Not Disabled</h5>
+          <h5>2.2.13 Clear Text HTTP Service Enabled</h5>
+          <h5>2.2.14 TCP Small Services Enabled</h5>
+          <h5>2.2.15 No Network Filtering Rules Were Configured</h5>
+          <h5>2.2.16 No Post Logon Banner Message</h5>
+          <h5>2.2.17 PAD Service Enabled</h5>
+          <h5>2.2.18 No Outbound TCP Connection Keep-Alives</h5>
+          <h5>2.2.19 Authentication Failure Rate was not configured</h5>
         </div>
         <div>
           <h5>2.3 Interface Audit</h5>
-          <div class="intf_section"></div>
+          <div class="intf_section">
+            <h5>2.3.1 Not All EIGRP Updates Were Authenticated</h5>
+            <h5>2.3.2 Not All OSPF Routing Updates Were Authenticated</h5>
+            <h5>2.3.3 No OSPF LSA Thresholds</h5>
+            <h5>2.3.4 Connection Timeout not configured</h5>
+          </div>
         </div>
         <h5>3. Vulnerability Audit</h5>
         <div>
-          <h5>3.1 CVE-2004-0079</h5>
-          <h5>3.2 CVE-2020-3452</h5>
-          <h5>3.3 CVE-2017-6752</h5>
-          <h5>3.4 CVE-2017-3793</h5>
-          <h5>3.5 CVE-2017-3867</h5>
-          <h5>3.6 CVE-2017-6607</h5>
-          <h5>3.7 CVE-2017-6609</h5>
-          <h5>3.8 CVE-2017-6610</h5>
-          <h5>3.9 CVE-2017-3807</h5>
-          <h5>3.10 CVE-2016-6431</h5>
-          <h5>3.11 CVE-2016-6432</h5>
+          <h5>3.1 CVE-2008-3809</h5>
+          <h5>3.2 CVE-2008-4128</h5>
+          <h5>3.3 CVE-2006-4950</h5>
+          <h5>3.4 CVE-2008-1156</h5>
+          <h5>3.5 CVE-2010-0578</h5>
         </div>
       </div>
     </div>
     <h2>1. Your Report</h2>
     <h3>1.1 Introduction</h3>
-    <p>This report was produced by DigInv on 2022-05-26. This report is comprised of the following sections:</p>
+    <p>This report was produced by DigInv on 2022-06-09. This report is comprised of the following sections:</p>
     <ul>
       <li>a security audit section which details any identified         security-related issues. Each security issue identified includes details of what was found together with the impact of the issue,         how easy it would be for an attacker to exploit and a recommendation.         The recommendations may include alternatives and, where relevant, the commands to resolve the issue;</li>
       <li>a software vulnerability audit section that provides a comparison of the device software versions against a database of known vulnerabilities. In addition to a         brief description, each potential vulnerability includes a CVSSv2 score and references to more specific information provided by the device manufacturers and         third parties;</li>
       <li>a configuration report which details the configuration settings of all the audited devices in an easy to read format. The configuration settings are divided in to report sub-sections which group related settings together and provide additional information about their purpose;</li>
     </ul>
     <h2>2 Security Audit</h2>
-    <p>DigInv performed a security audit on 2022-05-26 of the device detailed in the Table below.</p><table border="1" class="dataframe">
+    <p>DigInv performed a security audit on 2022-06-09 of the device detailed in the Table below.</p><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -91,9 +106,9 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>ciscoasa</td>
-      <td>firewall</td>
-      <td>9.6</td>
+      <td>R1</td>
+      <td>router</td>
+      <td>12.4</td>
     </tr>
   </tbody>
 </table>
@@ -214,7 +229,259 @@
     <div class="globaudit">
       <div class="container">
         <div class="information">
-          <h3>1. Warning In Pre-Logon Banner</h3>
+          <h3>1. UDP Small Services Enabled</h3>
+          <h5>observation</h5>
+          <p>Some devices and platforms provide a collection of simple User Datagram Protocol (UDP) network services, which are also sometimes referred to Fix: Quick as small services. These services provide little functionality and are rarely used and they typically include:
+Echo (defined in RFC 862) returns any data sent to it back to the connecting client;
+Discard (defined in RFC 863) ignores any data sent to it by a connecting client;
+Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client.
+DigInv determined that the UDP small servers were enabled</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could use the UDP small servers as part of a DoS attack. UDP is a connection-less protocol and an experienced attacker could forge network packets to use the echo and chargen services to increase the network traffic and system utilization of devices offering the services. Additionally, each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not as significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools that can be used to connect to these services are installed by default on some systems or can be downloaded from the Internet.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that the UDP small servers should be disabled.</li>
+          </ul>
+          <p class="command">no service udp-small-servers</p>
+        </div>
+        <div class="square">
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Trivial</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>2. No HTTP Server Session Timeout</h3>
+          <h5>observation</h5>
+          <p>The HTTP server session timeout setting is used to determine if a web session is no longer being used, enabling a device to determine when a connection can be automatically disconnected. A HTTP server session could become unused if an administrator has not properly terminated a connection and remains authenticated, such as when a user does not click on a logout button. The session could also become unused if the user leaves their computer unattended without terminating the session.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>If an attacker was able to access a system using an authenticated session that is no longer being used, the attacker would be able to perform information gathering, configuration and other malicious activities under the context of the previous authenticated user. The level of access could potentially be at an administrative level.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>To exploit this issue an attacker would first have to identify a working HTTP server session, possibly prior to it becoming unused by the user, and then be able to control that web session. This may be as simple as using the users computer whilst they are away, otherwise the attacker may have to exploit a weakness in the protocol or perform a man-in-the-middle attack. The man-in-the-middle attack could be performed using a proxy server, but a user could become suspicious if the session is using Hypertext Transfer Protocol over SSL (HTTPS) and the web browser provides the user with a certificate warning.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that a HTTP server session timeout period of 10 minutes should be configured.</li>
+          </ul>
+          <p class="command">ip http timeout-policy idle seconds life seconds requests number</p>
+        </div>
+        <div class="square">
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>3. No Inbound TCP Connection Keep-Alives</h3>
+          <h5>observation</h5>
+          <p>The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could attempt a DoS attack against a device by exhausting the number of possible connections. To perform this attack, the attacker could keep requesting new connections to the device and spoof the source IP addresses. This would then prevent any new legitimate connections to the device from being made as the device awaits the completion of the connection attempts that have already been initiated. This attack would prevent both users and administrators from connecting to the device.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools can be downloaded from the Internet that are capable of opening a large number of TCP connections without correctly terminating them.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that TCP keep alive messages should be sent to detect and drop orphaned connections from remote systems.</li>
+          </ul>
+          <p class="command">service tcp-keepalives-in</p>
+        </div>
+        <div class="square">
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>4. IP Classless</h3>
+          <h5>observation</h5>
+          <p>Classless routing is enabled by default on Cisco routers. If a router has classless routing enabled and it receives a network packet for which there is no configured route, the router will forward the packet to the best destination. With classless routing disabled, the router would discard any network traffic for which no route is defined.
+DigInv determined that classless routing was enabled</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Network traffic that should not be routed by the router may be routed when classless routing is enabled.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>N/A</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if possible, classless routing be disabled. Classless routing can be disabled with the following command:</li>
+          </ul>
+          <p class="command">no ip classless</p>
+        </div>
+        <div class="square">
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Trivial</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>5. AUX Port Not Disabled</h3>
+          <h5>observation</h5>
+          <p>The Auxilary (AUX) port's primary purpose is to provide a remote administration capability. With a modem connected to the AUX port, a remote administrator could dial into the device in order to perform remote administration. As an extra layer of security, some devices can be configured with a callback facility. The callback facility, if configured, drops any incoming calls and dials the network administrator back.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>If an attacker is able to dial in and connect to the device remotely using the AUX port, the attacker could perform a brute-force attack against the authentication mechanism in order to gain remote administrative access. If a malicious user was able to gain physical access to a device where the AUX port had not been disabled, they could attach a modem in order to perform an attack from a remote location. If a callback facility has not been configured, then the device would not drop incoming calls and attempt to dial the network administrators phone number.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>In order to successfully exploit this issue, the attacker would require a modem to be attached to the AUX port. If a modem is already attached, an attacker could discover the modem's telephone number during a war-dial. However, even though a number of war dial tools are available on the Internet, a war dial is more likely to be discovered due to the number of telephones which would be called in an office.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, the AUX port should be disabled. If the AUX port is required and the device supports callback then DigInv suggests that the callback facility should be configured as an additional level of protection.</li>
+          </ul>
+          <p class="command">transport input none login local no exec</p>
+        </div>
+        <div class="square">
+          <div>Overall:MEDIUM</div>
+          <div>Impact:High</div>
+          <div>Ease:Challenging</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>6. No HTTP Service Network Access Restrictions</h3>
+          <h5>observation</h5>
+          <p>HTTP (RFC 2616) provides web-based services, such as information services, network device administration and other potentially sensitive services. HTTP provides no encryption of the connection between the client and server including any authentication and data transfer. HTTPS, which is HTTP over Secure Sockets Layer (SSL)/TLS, is used to provide cryptographically secure web-based connection. Network access to the HTTP service can be restricted by specifying those hosts that are allowed to access the service and thereby denying access to all other network host addresses.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Without management host address restrictions an attacker, or malicious user, with authentication credentials would be able to connect to the HTTPS service, logon and access the functionality and information provided for that user. If an attacker does not have authentication credentials they could attempt a brute- force attack in order to identify valid credentials. Additionally, if there is a vulnerability with the service then allowing anyone to connect to the service could enable an attacker to exploit the vulnerability.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>With no HTTP network host access restrictions an attacker would not be prevented from connecting to the service. Furthermore, web browsers and other web- based client tools are included as standard with most operating systems. Alternative web service tools are available on the Internet, together with vulnerability exploit code, enumeration and brute-force tools.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that access to the HTTP service should be restricted to only those network hosts that require access.</li>
+          </ul>
+          <p class="command">ip http access-class acl-number</p>
+        </div>
+        <div class="square">
+          <div>Overall:MEDIUM</div>
+          <div>Impact:Medium</div>
+          <div>Ease:Trivial</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>7. Service Password Encryption Disabled</h3>
+          <h5>observation</h5>
+          <p>Cisco service passwords are stored by default in their clear-text form rather than being encrypted. However, it is possible to have these passwords stored using the reversible Cisco type-7 encryption.
+DigInv determined that the Cisco device Router was not running the password encryption service that helps provide a basic level of encryption to passwords that otherwise would be stored in clear-text.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>If a malicious user were to see a Cisco configuration that contained clear-text passwords, they could use the passwords to access the device. However, an attacker who had access to a Cisco configuration file would easily be able to reverse the passwords.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Even though it is trivial to reverse Cisco type-7 passwords, they do provide a greater level of security than clear-text passwords. Tools are widely available on the Internet that reverse Cisco type-7 passwords.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that the Cisco password encryption service be enabled. The Cisco password encryption service can be started with the following Cisco IOS command:</li>
+          </ul>
+          <p class="command">service password-encryption</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Medium</div>
+          <div>Ease:Challenging</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>8. CDP enabled</h3>
+          <h5>observation</h5>
+          <p>CDP is a proprietary protocol that was developed and is primarily used by Cisco. A CDP enabled device can be configured to broadcast.
+CDP packets on the network enabling network management applications and CDP aware devices to identify each other. CDP packets include information about thesender, such as OS version and IP address information.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>CDP packets contain information about the sender, such as hardware model information, operating system version and IP address details. This information would give an attacker valuable information about the device. The attacker could then use this information as part of a targeted attack.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>CDP packets are broadcast to an entire network segment. The attacker or malicious user would require access to a network segment on which the CDP packets are broadcast and network monitoring software. A wide variety of network monitoring, packet capture and analysis tools can be downloaded from the Internet.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, CDP should be disabled.
+In some configurations with IP phones, deployed using either Auto Discovery or Dynamic Host Configuration Protocol (DHCP), the CDP service may need to be enabled. However, if the device supports disabling CDP on individual interfaces, then DigInv recommends that it should be disabled on all the interfaces where it is not required.</li>
+          </ul>
+          <p class="command">no cdp run</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>9. VTP Was In Server Mode</h3>
+          <h5>observation</h5>
+          <p>VTP was developed by Cisco to assist with the management of VLANs over multiple devices. The protocol enables the addition, renaming and deletion of VLANs on a single switch to be propagated to other network switches in the same VTP domain. A device in VTP server mode will transmit VTP packets containing VLAN information. If a device in VTP client mode in the same domain receives a VTP network packet with a higher revision number the changes will be applied.
+ DigInv determined that VTP was in server mode.It is worth mentioning that although the VTP was found to be in server mode(adefault setting), no VTP domain was configured. However, there have been instances where a device in this configuration have had their VTP domain setremotely from other networked devices.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could determine the VLAN configuration by capturing VTP packets sent from the device and VTP packets are not encrypted, even when a password is specified. The attacker could then use the VLAN information or password as part of a targeted attack.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools that are capable of capturing network packets are available on the Internet and installed by default on some OS.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, VTP should be disabled or placed in transparent mode, even if no VTP domain has been configured.</li>
+          </ul>
+          <p class="command">vtp transparent 
+vtp mode transparent</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:Moderate</div>
+          <div>Fix:Planned</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>10. IP Source Routing Was Enabled</h3>
+          <h5>observation</h5>
+          <p>TCP/IP packets can contain source route information, this can enable a packet to define its own route through a network rather than using a route defined by static routes or routing protocols. The source route option functionality was defined in RFC 791.
+Many network filtering and routing devices include facilities that enable them to ignore the source route defined in a packet or block the packets entirely.
+ DigInv determined that IP source routing was enabled</p>
+          <h5>impact</h5>
+          <ul>
+            <li>IP source routing can allow an attacker to specify a route for a network packet to follow, possibly to bypass a Firewall device or an Intrusion Detection System (IDS). An attacker could also use source routing to capture network traffic by routing it through a system controlled by the attacker.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>An attacker would have to control either a routing device or an end point device in order to modify a packets route through the network. However, tools can be downloaded from the Internet that would allow an attacker to specify source routes. Tools are also available to modify network routing using vulnerabilities in some routing protocols.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that IP source routing information contained in network packets should be ignored.</li>
+          </ul>
+          <p class="command">no ip source-route</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Low</div>
+          <div>Ease:Moderate</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>11. Warning In Pre-Logon Banner</h3>
           <h5>observation</h5>
           <p>Logon banner messages are an important, but often overlooked, part of a secure configuration. Logon banner messages can provide connecting users with important information and warn against unauthorized access.</p>
           <h5>impact</h5>
@@ -238,7 +505,80 @@
       </div>
       <div class="container">
         <div class="information">
-          <h3>2. No Network Filtering Rules Were Configured</h3>
+          <h3>12. The BOOTP Service Was Not Disabled</h3>
+          <h5>observation</h5>
+          <p>BOOTstrap Protocol (BOOTP) is a datagram protocol that allows compatible hosts to load their operating system over the network from a BOOTP server. Cisco routers are capable of acting as BOOTP servers for other Cisco devices and the service is enabled by default. However, BOOTP is rarely used and may represent a security risk.
+DigInv determined that BOOTP was not disabled. However, it is worth noting that not all Cisco devices support BOOTP.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could use the BOOTP service to download a copy of the router's IOS software.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools are available on the Internet to access BOOTP servers.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, the BOOTP service be disabled. The following command can be used to disable BOOTP:</li>
+          </ul>
+          <p class="command">no ip bootp server</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:LOW</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>13. Clear Text HTTP Service Enabled</h3>
+          <h5>observation</h5>
+          <p>HTTP (RFC 2616) provides web-based services, such as information services, network device administration and other potentially sensitive services. HTTP provides no encryption of the connection between the client and server including any authentication and data transfer.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Due to the lack of encryption provided by the HTTP service, an attacker who is able to monitor a session would be able to view all of the authentication credentials and data passed in the session. The attacker could then attempt to gain access to the device using the authentication credentials extracted from the session and potentially gain access under the context of that user. Since HTTP is commonly used for network device administration this could gain the attacker an administrative level of access.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>To exploit the fact that the HTTP service does not provide any encryption, the attacker would need to be able to monitor the session between a HTTP server and web browser. In some situations the attacker may not need to perform any further action other than launching a network monitoring tool. However, in a switched network the attacker may need to perform additional actions such as an ARP attack and in a routed environment the attacker may have to compromise the network routing.Tools that are capable of both monitoring and displaying network traffic in an easy to read form can be downloaded from the Internet. There are also tools that automatically detect where authentication credentials or files are being transferred and display or save the data. Tools are also available that enable an attacker to easily perform a variety of network attacks in order to be able to monitor and intercept sessions between two network devices.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that the HTTP service should be disabled. If remote administrative access is required then DigInv recommends that a cryptographically secure alternative, such as HTTPS, should be used instead.</li>
+          </ul>
+          <p class="command">no ip http server</p>
+        </div>
+        <div class="square">
+          <div>Overall:Medium</div>
+          <div>Impact:High</div>
+          <div>Ease:Moderate</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>14. TCP Small Services Enabled</h3>
+          <h5>observation</h5>
+          <p>Some devices and platforms provide a collection of simple TCP network services, which are also sometimes referred to as small services. These services provide little functionality and are rarely used and they typically include:Echo (defined in RFC 862) returns any data sent to it back to the connecting client;Discard (defined in RFC 863) ignores any data sent to it by a connecting client;Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client;Daytime (defined in RFC 867) returns the current time to a connecting client.DigInv determined that the TCP small servers were enabled</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Each running service increases the chances of an attacker being able to identify the device and successfully compromise it. Although not significant, some of the services may provide an attacker with simple information that could then be used as part of a targeted attack against the system.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools such as Telnet can be used to connect to these services and are often installed by default.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>It is generally considered good security practice to disable all unused services and not running the services will free system resources for other use. Therefore DigInv suggests that the TCP small servers should be disabled.</li>
+          </ul>
+          <p class="command">no service tcp-small-servers</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:Informational</div>
+          <div>Ease:Trivial</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>15. No Network Filtering Rules Were Configured</h3>
           <h5>observation</h5>
           <p>Network filtering can be configured to restrict access to network services from only those hosts that require the access, helping to prevent unauthorized access. When configured, network filter rules are processed sequentially and the first rule in the filter rule list which matches the network packet is applied.</p>
           <h5>impact</h5>
@@ -268,7 +608,7 @@
       </div>
       <div class="container">
         <div class="information">
-          <h3>3. No Post Logon Banner Message</h3>
+          <h3>16. No Post Logon Banner Message</h3>
           <h5>observation</h5>
           <p>Post logon banner messages are ones that are shown to users after they have authenticated and prior to being given access to the device. It is one that is shown to users when they connect to a device and prior to the user logon.</p>
           <h5>impact</h5>
@@ -290,162 +630,274 @@
           <div>Fix:Quick</div>
         </div>
       </div>
+      <div class="container">
+        <div class="information">
+          <h3>17. PAD Service Enabled</h3>
+          <h5>observation</h5>
+          <p>The PAD service enables X.25 commands and connections between PAD devices and access servers, converting the character stream data into network packets and network packets into character stream data. The PAD service is enabled by default on some devices but it is only required if support for X.25 links are necessary.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>In addition to the extra overhead, running unused services increases the chances of an attacker finding a security hole or fingerprinting a device.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>The PAD service was enabled.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that, if not required, the PAD service should be disabled.</li>
+          </ul>
+          <p class="command">no service pad</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:N/A</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>18. No Outbound TCP Connection Keep-Alives</h3>
+          <h5>observation</h5>
+          <p>The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker could attempt a DoS attack against a device by exhausting the number of possible connections. To perform this attack, the attacker could keep requesting new connections to the device and spoof the source IP addresses. This would then prevent any new legitimate connections to the device from being made as the device awaits the completion of the connection attempts that have already been initiated. This attack would prevent both users and administrators from connecting to the device.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools can be downloaded from the Internet that are capable of opening a large number of TCP connections without correctly terminating them.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that TCP keep alive messages should be sent to detect and drop orphaned connections from remote systems.</li>
+          </ul>
+          <p class="command">service tcp-keepalives-out</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:Challenging</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>19. Authentication Failure Rate was not configured</h3>
+          <h5>observation</h5>
+          <p>Authentication for a computer system is a process allowing the system to ensure the legitimacy of the access request made by an entity (human being or another system...) in order to authorize the access of this entity to system resources ( systems , networks, applications , etc.)</p>
+          <h5>impact</h5>
+          <ul>
+            <li>Allow an attacker to gain access to the device if dictionary based attack was passed succefully</li>
+          </ul>
+          <h5>ease</h5>
+          <p>One method of cracking passwords, called the dictionary attack, is to use software that attempts to log in using every word in a dictionary.Tools are available in Internet</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommands that authentication failure rate should be configured with 3 tries or less</li>
+          </ul>
+          <p class="command">security authentication failure rate &lt;3&gt;</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:INFORMATIONAL</div>
+          <div>Ease:Challenging</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
     </div>
     <h2>Interfaces Audit</h2>
-    <div class="interfaceaudit"></div>
+    <div class="interfaceaudit">
+      <div class="container">
+        <div class="information">
+          <h3>20. Not All EIGRP Updates Were Authenticated</h3>
+          <h5>observation</h5>
+          <p>EIGRP is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. EIGRP supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates are sent from a trusted source.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker may attempt to modify the routing table of a EIGRP routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments</li>
+            <li> perform a man in the middle attack</li>
+            <li> capture clear-text protocol authentication credentials</li>
+            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
+            <li> perform a network wide DoS</li>
+            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools can be downloaded from the Internet that can be used to send malicious EIGRP routing updates. With no authentication configured, an attacker would not have to determine the authentication key prior to sending malicious EIGRP route updates.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that strong EIGRP authentication keys should be configured for all routing updates. DigInv recommends that: EIGRP authentication keys should be at least eight characters in length</li>
+            <li> characters in the EIGRP authentication key should not be repeated more than three times</li>
+            <li> EIGRP authentication keys should include both upper case and lower case characters</li>
+            <li> EIGRP authentication keys should include numbers</li>
+            <li> EIGRP authentication keys should include punctuation characters</li>
+            <li> EIGRP authentication keys should not include a device's name, make or model</li>
+            <li> EIGRP authentication keys should not be based on dictionary words.</li>
+          </ul>
+          <p class="command">ip authentication mode eigrp [group] md5 ; ip authentication key-chain eigrp [group] key</p>
+        </div>
+        <div class="square">
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Planned</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>1. Not All OSPF Routing Updates Were Authenticated</h3>
+          <h5>observation</h5>
+          <p>OSPF is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. OSPF supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates are sent from a trusted source.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments</li>
+            <li> perform a man in the middle attack</li>
+            <li> capture clear-text protocol authentication credentials</li>
+            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
+            <li> perform a network wide DoS</li>
+            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools can be downloaded from the Internet that can be used to send malicious OSPF routing updates. With no authentication configured, an attacker would not have to determine the authentication key prior to sending malicious OSPF route updates.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that strong OSPF authentication keys should be configured for all routing updates. DigInv recommends that: OSPF authentication keys should be at least eight characters in length</li>
+            <li> characters in the OSPF authentication key should not be repeated more than three times</li>
+            <li> OSPF authentication keys should include both upper case and lower case characters</li>
+            <li> OSPF authentication keys should include numbers</li>
+            <li> OSPF authentication keys should include punctuation characters</li>
+            <li> OSPF authentication keys should not include a device's name, make or model</li>
+            <li> OSPF authentication keys should not be based on dictionary words.</li>
+          </ul>
+          <p class="command">ip ospf authentication message-digest</p>
+        </div>
+        <div class="square">
+          <div>Overall:HIGH</div>
+          <div>Impact:High</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Involved</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>1. No OSPF LSA Thresholds</h3>
+          <h5>observation</h5>
+          <p>OSPF is a routing protocol that can be configured to dynamically update the routing table with changes to the network topology. OSPF uses LSA to communicate changes to other routers and update the routers own Link State Database (LSDB). Devices can be configured with a LSA message threshold in order to limit the number of LSA messages being processed by the device.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker may be able to perform an OSPF DoS by flooding the device with LSA messages. monitor network traffic sent between network segments</li>
+            <li> perform a man in the middle attack</li>
+            <li> capture clear-text protocol authentication credentials</li>
+            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
+            <li> perform a network wide DoS</li>
+            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>Tools can be downloaded from the Internet that can be used to perform a DoS by flooding the device with LSA messages.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv recommends that the number of OSPF LSA messages accepted by the device should be limited.</li>
+          </ul>
+          <p class="command">max-lsa threshold</p>
+        </div>
+        <div class="square">
+          <div>Overall:LOW</div>
+          <div>Impact:Medium</div>
+          <div>Ease:Moderate</div>
+          <div>Fix:Planned</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>1. Connection Timeout not configured</h3>
+          <h5>observation</h5>
+          <p>Connection timeouts can be configured for a number of the device services. If a timeout were configured on an administrative service, an administrator that did not correctly terminate the connection would have it automatically closed after the timeout expires. However, if a timeout is not configured, or is configured to be a long timeout, an unauthorised user may be able to gain access using the administrator's previously logged-in connection.</p>
+          <h5>impact</h5>
+          <ul>
+            <li>An attacker who was able to gain access to a connection that had not expired, would be able to continue using that connection. A connection could be a console port on the device that was not correctly terminated or a remote administrative connection.</li>
+          </ul>
+          <h5>ease</h5>
+          <p>The attacker would have to gain physical access to the device to use the console port, or gain remote access to an administration machine that is attached to the port. To gain access to remote connections, an attacker would have to be able to intercept network traffic between the client and the device. The attacker would then have to take over the connection, which could be very difficult with some services. Tools are available on the Internet that would facilitate the monitoring of network connections.</p>
+          <h5>recommandation</h5>
+          <ul>
+            <li>DigInv ecommends that a timeout period of ten minutes be configured for connections to the device</li>
+          </ul>
+          <p class="command">exec-timeout time(minutes) time(seconds)</p>
+        </div>
+        <div class="square">
+          <div>Overall:INFORMATIONAL</div>
+          <div>Impact:Informational</div>
+          <div>Ease:Easy</div>
+          <div>Fix:Quick</div>
+        </div>
+      </div>
+    </div>
     <h2>Vulnerabilty Audit</h2>
     <div class="vulnerability">
       <div class="container">
         <div class="information">
-          <h3>1. CVE-2004-0079</h3>
+          <h3>1. CVE-2008-3809</h3>
           <h5>Description</h5>
-          <p>The do_change_cipher_spec function in OpenSSL 0.9.6c to 0.9.6k, and 0.9.7a to 0.9.7c, allows remote attackers to cause a denial of service (crash) via a crafted SSL/TLS handshake that triggers a null dereference.</p>
+          <p>Cisco IOS 12.0 through 12.4 on Gigabit Switch Router (GSR) devices (aka 12000 Series routers) allows remote attackers to cause a denial of service (device crash) via a malformed Protocol Independent Multicast (PIM) packet.</p>
           <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2004-0079">https://nvd.nist.gov/vuln/detail/CVE-2004-0079</a>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-3809">https://nvd.nist.gov/vuln/detail/CVE-2008-3809</a>
         </div>
         <div class="square">
           <div>version:V2</div>
-          <div>score:5.0</div>
+          <div>score:7.1</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>2. CVE-2008-4128</h3>
+          <h5>Description</h5>
+          <p>Multiple cross-site request forgery (CSRF) vulnerabilities in the HTTP Administration component in Cisco IOS 12.4 on the 871 Integrated Services Router allow remote attackers to execute arbitrary commands via (1) a certain &quot;show privilege&quot; command to the /level/15/exec/- URI, and (2) a certain &quot;alias exec&quot; command to the /level/15/exec/-/configure/http URI.  NOTE: some of these details are obtained from third party information.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4128">https://nvd.nist.gov/vuln/detail/CVE-2008-4128</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:9.3</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>3. CVE-2006-4950</h3>
+          <h5>Description</h5>
+          <p>Cisco IOS 12.2 through 12.4 before 20060920, as used by Cisco IAD2430, IAD2431, and IAD2432 Integrated Access Devices, the VG224 Analog Phone Gateway, and the MWR 1900 and 1941 Mobile Wireless Edge Routers, is incorrectly identified as supporting DOCSIS, which allows remote attackers to gain read-write access via a hard-coded cable-docsis community string and read or modify arbitrary SNMP variables.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2006-4950">https://nvd.nist.gov/vuln/detail/CVE-2006-4950</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:10.0</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>4. CVE-2008-1156</h3>
+          <h5>Description</h5>
+          <p>Unspecified vulnerability in the Multicast Virtual Private Network (MVPN) implementation in Cisco IOS 12.0, 12.2, 12.3, and 12.4 allows remote attackers to create &quot;extra multicast states on the core routers&quot; via a crafted Multicast Distribution Tree (MDT) Data Join message.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-1156">https://nvd.nist.gov/vuln/detail/CVE-2008-1156</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:5.1</div>
           <div>severity:MEDIUM</div>
         </div>
       </div>
       <div class="container">
         <div class="information">
-          <h3>2. CVE-2020-3452</h3>
+          <h3>5. CVE-2010-0578</h3>
           <h5>Description</h5>
-          <p>A vulnerability in the web services interface of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to conduct directory traversal attacks and read sensitive files on a targeted system. The vulnerability is due to a lack of proper input validation of URLs in HTTP requests processed by an affected device. An attacker could exploit this vulnerability by sending a crafted HTTP request containing directory traversal character sequences to an affected device. A successful exploit could allow the attacker to view arbitrary files within the web services file system on the targeted device. The web services file system is enabled when the affected device is configured with either WebVPN or AnyConnect features. This vulnerability cannot be used to obtain access to ASA or FTD system files or underlying operating system (OS) files.</p>
+          <p>The IKE implementation in Cisco IOS 12.2 through 12.4 on Cisco 7200 and 7301 routers with VAM2+ allows remote attackers to cause a denial of service (device reload) via a malformed IKE packet, aka Bug ID CSCtb13491.</p>
           <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-3452">https://nvd.nist.gov/vuln/detail/CVE-2020-3452</a>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2010-0578">https://nvd.nist.gov/vuln/detail/CVE-2010-0578</a>
         </div>
         <div class="square">
-          <div>version:V3</div>
-          <div>score:7.5</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>3. CVE-2017-6752</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the web interface of the Cisco Adaptive Security Appliance (ASA) 9.3(3) and 9.6(2) could allow an unauthenticated, remote attacker to determine valid usernames. The attacker could use this information to conduct additional reconnaissance attacks. The vulnerability is due to the interaction between Lightweight Directory Access Protocol (LDAP) and SSL Connection Profile when they are configured together. An attacker could exploit the vulnerability by performing a username enumeration attack to the IP address of the device. An exploit could allow the attacker to determine valid usernames. Cisco Bug IDs: CSCvd47888.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-6752">https://nvd.nist.gov/vuln/detail/CVE-2017-6752</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:7.5</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>4. CVE-2017-3793</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the TCP normalizer of Cisco Adaptive Security Appliance (ASA) Software (8.0 through 8.7 and 9.0 through 9.6) and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause Cisco ASA and FTD to drop any further incoming traffic on all interfaces, resulting in a denial of service (DoS) condition. The vulnerability is due to improper limitation of the global out-of-order TCP queue for specific block sizes. An attacker could exploit this vulnerability by sending a large number of unique permitted TCP connections with out-of-order segments. An exploit could allow the attacker to exhaust available blocks in the global out-of-order TCP queue, causing the dropping of any further incoming traffic on all interfaces and resulting in a DoS condition. Cisco Bug IDs: CSCvb46321.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-3793">https://nvd.nist.gov/vuln/detail/CVE-2017-3793</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:4.0</div>
-          <div>severity:MEDIUM</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>5. CVE-2017-3867</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the Border Gateway Protocol (BGP) Bidirectional Forwarding Detection (BFD) implementation of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, remote attacker to bypass the access control list (ACL) for specific TCP and UDP traffic. More Information: CSCvc68229. Known Affected Releases: 9.6(2). Known Fixed Releases: 99.1(20.1) 99.1(10.2) 98.1(12.7) 98.1(1.49) 97.1(6.58) 97.1(0.134) 96.2(0.109) 9.7(1.1) 9.6(2.99) 9.6(2.8).</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-3867">https://nvd.nist.gov/vuln/detail/CVE-2017-3867</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:5.3</div>
-          <div>severity:MEDIUM</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>6. CVE-2017-6607</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the DNS code of Cisco ASA Software could allow an unauthenticated, remote attacker to cause an affected device to reload or corrupt the information present in the device's local DNS cache. The vulnerability is due to a flaw in handling crafted DNS response messages. An attacker could exploit this vulnerability by triggering a DNS request from the Cisco ASA Software and replying with a crafted response. A successful exploit could cause the device to reload, resulting in a denial of service (DoS) condition or corruption of the local DNS cache information. Note: Only traffic directed to the affected device can be used to exploit this vulnerability. This vulnerability affects Cisco ASA Software configured in routed or transparent firewall mode and single or multiple context mode. This vulnerability can be triggered by IPv4 and IPv6 traffic. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco Firepower 9300 ASA Security Module, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.12) 9.2(4.18) 9.4(3.12) 9.5(3.2) 9.6(2.2). Cisco Bug IDs: CSCvb40898.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-6607">https://nvd.nist.gov/vuln/detail/CVE-2017-6607</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:8.7</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>7. CVE-2017-6609</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the IPsec code of Cisco ASA Software could allow an authenticated, remote attacker to cause a reload of the affected system. The vulnerability is due to improper parsing of malformed IPsec packets. An attacker could exploit this vulnerability by sending malformed IPsec packets to the affected system. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed firewall mode only and in single or multiple context mode. This vulnerability can be triggered by IPv4 and IPv6 traffic. An attacker needs to establish a valid IPsec tunnel before exploiting this vulnerability. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco Firepower 9300 ASA Security Module, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.8) 9.2(4.15) 9.4(4) 9.5(3.2) 9.6(2). Cisco Bug IDs: CSCun16158.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-6609">https://nvd.nist.gov/vuln/detail/CVE-2017-6609</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:7.7</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>8. CVE-2017-6610</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the Internet Key Exchange Version 1 (IKEv1) XAUTH code of Cisco ASA Software could allow an authenticated, remote attacker to cause a reload of an affected system. The vulnerability is due to insufficient validation of the IKEv1 XAUTH parameters passed during an IKEv1 negotiation. An attacker could exploit this vulnerability by sending crafted parameters. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability only affects systems configured in routed firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 or IPv6 traffic. A valid IKEv1 Phase 1 needs to be established to exploit this vulnerability, which means that an attacker would need to have knowledge of a pre-shared key or have a valid certificate for phase 1 authentication. This vulnerability affects Cisco ASA Software running on the following products: Cisco ASA 1000V Cloud Firewall, Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco ASA Services Module for Cisco Catalyst 6500 Series Switches and Cisco 7600 Series Routers, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco ASA for Firepower 9300 Series, Cisco ISA 3000 Industrial Security Appliance. Fixed versions: 9.1(7.7) 9.2(4.11) 9.4(4) 9.5(3) 9.6(1.5). Cisco Bug IDs: CSCuz11685.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-6610">https://nvd.nist.gov/vuln/detail/CVE-2017-6610</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:7.7</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>9. CVE-2017-3807</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in Common Internet Filesystem (CIFS) code in the Clientless SSL VPN functionality of Cisco ASA Software, Major Releases 9.0-9.6, could allow an authenticated, remote attacker to cause a heap overflow. The vulnerability is due to insufficient validation of user supplied input. An attacker could exploit this vulnerability by sending a crafted URL to the affected system. An exploit could allow the remote attacker to cause a reload of the affected system or potentially execute code. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed firewall mode only and in single or multiple context mode. This vulnerability can be triggered by IPv4 or IPv6 traffic. A valid TCP connection is needed to perform the attack. The attacker needs to have valid credentials to log in to the Clientless SSL VPN portal. Vulnerable Cisco ASA Software running on the following products may be affected by this vulnerability: Cisco ASA 5500 Series Adaptive Security Appliances, Cisco ASA 5500-X Series Next-Generation Firewalls, Cisco Adaptive Security Virtual Appliance (ASAv), Cisco ASA for Firepower 9300 Series, Cisco ASA for Firepower 4100 Series. Cisco Bug IDs: CSCvc23838.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-3807">https://nvd.nist.gov/vuln/detail/CVE-2017-3807</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:8.8</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>10. CVE-2016-6431</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the local Certificate Authority (CA) feature of Cisco ASA Software before 9.6(1.5) could allow an unauthenticated, remote attacker to cause a reload of the affected system. The vulnerability is due to improper handling of crafted packets during the enrollment operation. An attacker could exploit this vulnerability by sending a crafted enrollment request to the affected system. An exploit could allow the attacker to cause the reload of the affected system. Note: Only HTTPS packets directed to the Cisco ASA interface, where the local CA is allowing user enrollment, can be used to trigger this vulnerability. This vulnerability affects systems configured in routed firewall mode and in single or multiple context mode.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-6431">https://nvd.nist.gov/vuln/detail/CVE-2016-6431</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:7.5</div>
-          <div>severity:HIGH</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>11. CVE-2016-6432</h3>
-          <h5>Description</h5>
-          <p>A vulnerability in the Identity Firewall feature of Cisco ASA Software before 9.6(2.1) could allow an unauthenticated, remote attacker to cause a reload of the affected system or to remotely execute code. The vulnerability is due to a buffer overflow in the affected code area. An attacker could exploit this vulnerability by sending a crafted NetBIOS packet in response to a NetBIOS probe sent by the ASA software. An exploit could allow the attacker to execute arbitrary code and obtain full control of the system or cause a reload of the affected system. Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed and transparent firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 traffic.</p>
-          <h5>For more details about this CVE, click this link below:</h5>
-          <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-6432">https://nvd.nist.gov/vuln/detail/CVE-2016-6432</a>
-        </div>
-        <div class="square">
-          <div>version:V3</div>
-          <div>score:8.1</div>
+          <div>version:V2</div>
+          <div>score:7.8</div>
           <div>severity:HIGH</div>
         </div>
       </div>
