@@ -269,8 +269,8 @@ try:
 except:
     pass
 
-    networks_rp.clear()
-    interfaces_networks_rp.clear()
+networks_rp.clear()
+interfaces_networks_rp.clear()
 #EIGRP Audit
 for ospf_obj in parse.find_objects(r'^router\seigrp'):
     
