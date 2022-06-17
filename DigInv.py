@@ -226,12 +226,18 @@ report+=h2("Vulnerabilty Audit")
 report+=d_vulnerability
 
 
-with open("report.html","w") as f:
+with open(report_name+".html","w") as f:
         f.write(report.render())
 glob_list=list(set(glob_list))
 
 import webbrowser
-webbrowser.open('file://' + os.path.realpath("report.html"))
-       
+webbrowser.open('file://' + os.path.realpath(report_name+".html"))
+
+
+if(pdf):
+        import pdfkit
+        pdfkit.from_file(report_name+'.html', report_name+'.pdf')
+        
+
 
 

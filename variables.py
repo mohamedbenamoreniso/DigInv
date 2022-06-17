@@ -63,12 +63,16 @@ import argparse
 parser=argparse.ArgumentParser()
 parser.add_argument('--device',type=str,required=True,help="Choose the nature of the device:\n-router\nswitch\nfirewall")
 parser.add_argument('--file',type=str,required=True,help="Choose the file from the local storage")
+parser.add_argument("--output",type=str,required=True,help="Choose the name of the report")
+parser.add_argument('-p',required=False,help="generate a PDF format report",action='store_true')
 
 args=parser.parse_args()
 
 try:
         device_type=args.device
         file_name=args.file
+        pdf=args.p
+        report_name=args.output
 
 except :
         print("please check your arguments")
