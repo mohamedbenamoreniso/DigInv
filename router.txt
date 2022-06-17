@@ -1,119 +1,186 @@
-Building configuration...
-
-Current configuration : 1099 bytes
 !
-upgrade fpd auto
-version 12.4
-service timestamps debug datetime msec
-service timestamps log datetime msec
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
 no service password-encryption
 !
-hostname R1
+hostname ciscoRouter
 !
-boot-start-marker
-boot-end-marker
 !
-logging message-counter syslog
 !
-no aaa new-model
-ip source-route
-no ip icmp rate-limit unreachable
+ip tcp synwait-time 50
+!
+!
+security passwords min-length 4
+!
+!
+!
 ip cef
-!
-!
-!
-!         
-no ip domain lookup
 no ipv6 cef
-!         
-multilink bundle-name authenticated
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-!         
-archive   
- log config
-  hidekeys
-!         
-!         
-!         
-!         
-!         
-ip tcp synwait-time 5
-!         
-!         
-!         
-!         
-interface FastEthernet0/0
- ip address 192.168.1.1 255.255.255.0
- shutdown 
- duplex half
-!         
-interface FastEthernet1/0
- ip address 192.168.2.1 255.255.255.0
- shutdown 
- duplex half
-!         
-interface FastEthernet2/0
- no ip address
- shutdown 
- duplex half
-!         
-interface FastEthernet3/0
- no ip address
- shutdown 
- duplex half
-!         
-ip forward-protocol nd
-no ip http server
-no ip http secure-server
-!         
-!         
-!         
-no cdp log mismatch duplex
-!         
-!         
-!         
-!         
-!         
-!         
-control-plane
-!         
-!         
-!         
 !
-router ospf 1
- network 192.168.1.0 0.0.0.255 area 0
- network 192.168.2.0 0.0.0.255 area 0      
+!
+!
+username mohamed privilege 15 password 0 1234
+username samah privilege 15 password 0 4aa4(fgG
+username Admin privilege 15 password 0 admin
+!
+!
+license udi pid CISCO2811/K9 sn FTX101745J8-
+!
+!
+!
+!
+!
 !         
-!         
-!         
-gatekeeper
- shutdown 
-!         
-!         
+key chain mohamed
+ key 1    
+   key-string hamma1
+ key 2    
+   key-string hamma2&HA7
+key chain samah
+ key 1    
+   key-string samah1
+ key 2    
+   key-string samah2
+!  
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+snmp-server community private RO
+snmp-server community public RW 1
+!
+!
+!
+!
+!
+interface Serial0/0/1
+ bandwidth 64
+ ip address 192.168.1.101 255.255.255.0
+ description serial comm
+ ip authentication mode eigrp 100 md5
+ ip authentication key-chain eigrp 100 samah
+ vrrp 120 priority 123
+ vrrp 120 ip 10.0.0.47
+!
+interface FastEthernet0/1
+ ip address 10.0.3.32 255.255.255.0
+ ip ospf authentication
+ ip ospf authentication-key cisco
+ ip ospf priority 47
+ glbp 10 priority 100
+ glbp 10 ip 10.0.0.0
+ glbp 100 priority 100
+ glbp 100 authentication text mohamed
+ glbp 100 ip 10.0.0.3
+ vrrp 100 priority 100
+ description fastethernet gaa
+ vrrp 100 authentication text hamma
+ vrrp 100 ip 10.0.0.3
+ vrrp 50 ip 10.3.3.4
+ vrrp 50 priority 58
+ no shutdown
+!
+!
+interface FastEthernet0/2
+ ip address 10.0.0.3 255.255.255.0
+ ip ospf authentication
+ ip ospf authentication-key cisco
+ glbp 10 forwarder preempt delay minimum 60
+ glbp 10 load-balancing host-dependent
+ glbp 10 preempt delay minimum 60
+ glbp 10 priority 100
+ glbp 100 priority 100
+ glbp 100 authentication text mohamed
+ glbp 100 ip 10.0.0.3
+ vrrp 14 priority 12
+ vrrp 14 ip 12.4.2.3
+ glbp 10 timers 5 18
+ glbp 10 ip 10.0.0.0
+ glbp 10 timers redirect 1800 28800
+ standby 10 ip 10.0.0.3
+ ip authentication key-chain eigrp 4 mohamed
+ standby 10 priority 254
+ standby 10 authentication text mohamed
+ no shutdown
+!
+router bgp 12345
+ bgp log-neighbor-changes
+ no synchronization
+!
+!
+router ospf 100
+ log-adjacency-changes
+ redistribute static
+ area 0 authentication message-digest
+ network 10.0.0.0 0.0.0.255 area 0
+ network 10.0.3.0 0.0.0.255 area 0
+ default-information originate
+ max-lsa 10
+!
+!
+router ospf 101
+ log-adjacency-changes
+ redistribute static
+ network 10.0.0.0 0.0.0.255 area 0
+ network 10.0.3.0 0.0.0.255 area 0
+ default-information originate
+ max-lsa 45
+!
+!
+router eigrp 101
+ log-adjacency-changes
+ redistribute static
+ network 10.0.0.0 0.0.0.255
+ network 192.168.0.0 0.0.255.255
+ default-information originate
+!
+!
+router rip
+ network 10.0.0.0
+ network 192.168.1.0
+ network 173.1.3.6
+ version 1
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+ip http server
+no ip http secure-server
+ip http client username mohamed
+ip http client password 7 1104160D161F0E08
+!
+no ip bootp server
+!
+!
+!
+!
 line con 0
- exec-timeout 0 0
- privilege level 15
- logging synchronous
- stopbits 1
+ password password
+ login local
+!
 line aux 0
- exec-timeout 0 0
- privilege level 15
- logging synchronous
- stopbits 1
+ password 123456
+ login
+!
 line vty 0 4
- login    
-!        
+ login local
+!
+!
+!         
+ntp broadcastdelay 4000
+ntp master
+ntp server 192.168.1.2
+!
+!
+end
