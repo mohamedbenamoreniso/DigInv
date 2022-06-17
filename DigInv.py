@@ -236,7 +236,10 @@ webbrowser.open('file://' + os.path.realpath(report_name+".html"))
 
 if(pdf):
         import pdfkit
-        pdfkit.from_file(report_name+'.html', report_name+'.pdf')
+        try:
+                pdfkit.from_file(report_name+'.html', report_name+'.pdf')
+        except:
+                print("please download PDF reader")
         
 
 
