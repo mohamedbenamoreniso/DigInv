@@ -457,7 +457,7 @@ ml = list()
 ll = list()
 il = list()
 for i in intf_audit:
-    print(audits_intf[str(i)]['tab'][0])
+    
     if(audits_intf[str(i)]['tab'][0] == "CRITICAL"):
         cl.append(i)
         CRITICAL_RATING+=1

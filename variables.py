@@ -63,7 +63,6 @@ import argparse
 parser=argparse.ArgumentParser()
 parser.add_argument('--device',type=str,required=True,help="Choose the nature of the device:\n-router\nswitch\nfirewall")
 parser.add_argument('--file',type=str,required=True,help="Choose the file from the local storage")
-parser.add_argument('--pdf',type=str,required=False,help="generate a PDF report")
 
 args=parser.parse_args()
 

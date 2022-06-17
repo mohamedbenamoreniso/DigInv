@@ -152,7 +152,7 @@ names=["a security audit section which details any identified \
         how easy it would be for an attacker to exploit and a recommendation. \
         The recommendations may include alternatives and, where relevant, the commands to resolve the issue;"
         ,"a software vulnerability audit section that provides a comparison of the device software versions against a database of known vulnerabilities. In addition to a \
-        brief description, each potential vulnerability includes a CVSSv2 score and references to more specific information provided by the device manufacturers and \
+        brief description, each potential vulnerability includes a score and references to more specific information provided by the device manufacturers and \
         third parties;",
         "a configuration report which details the configuration settings of all the audited devices in an easy to read format. The configuration settings are divided in to \
 report sub-sections which group related settings together and provide additional information about their purpose;"

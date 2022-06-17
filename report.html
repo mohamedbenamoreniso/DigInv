@@ -26,14 +26,14 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>ciscoRouter</td>
+      <td>R1</td>
       <td>router</td>
-      <td>15.1</td>
+      <td>12.4</td>
     </tr>
   </tbody>
 </table>
     <h2>Security Audit Summary</h2>
-    <p>DigInv  performed a security audit of the device detailed in the scope and identified 25 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
+    <p>DigInv  performed a security audit of the device detailed in the scope and identified 3 security-related issues. Each of the issues identified is described in greater detail in the main body of this report.</p>
     <h2>Contents</h2>
     <div class="contents">
       <div>
@@ -46,71 +46,42 @@
         <h5>2.1 Introduction</h5>
         <div class="globalaudit">
           <h5>2.2 Global Audit</h5>
-          <h5>2.2.1 Users With Dictionary-Based Passwords</h5>
-          <h5>2.2.2 Default SNMP Community Strings Were Configured</h5>
-          <h5>2.2.3 UDP Small Services Enabled</h5>
-          <h5>2.2.4 Clear-Text SNMP In Use</h5>
-          <h5>2.2.5 No HTTP Server Session Timeout</h5>
-          <h5>2.2.6 No Inbound TCP Connection Keep-Alives</h5>
-          <h5>2.2.7 IP Classless</h5>
-          <h5>2.2.8 User Account Names Contained ADMIN</h5>
-          <h5>2.2.9 Users Configured With Weak Password Encryption</h5>
-          <h5>2.2.10 AUX Port Not Disabled</h5>
-          <h5>2.2.11 No HTTP Service Network Access Restrictions</h5>
-          <h5>2.2.12 NTP Control Queries Were Permitted</h5>
-          <h5>2.2.13 Service Password Encryption Disabled</h5>
-          <h5>2.2.14 CDP enabled</h5>
-          <h5>2.2.15 VTP Was In Server Mode</h5>
-          <h5>2.2.16 IP Source Routing Was Enabled</h5>
-          <h5>2.2.17 Warning In Pre-Logon Banner</h5>
-          <h5>2.2.18 The BOOTP Service Was Not Disabled</h5>
-          <h5>2.2.19 The Finger Service Was Enabled</h5>
-          <h5>2.2.20 No SNMP TFTP Server Access List Configured</h5>
-          <h5>2.2.21 Weak Minimum Password Length Policy Setting</h5>
-          <h5>2.2.22 Clear Text HTTP Service Enabled</h5>
-          <h5>2.2.23 TCP Small Services Enabled</h5>
-          <h5>2.2.24 Domain Lookups were enabled</h5>
-          <h5>2.2.25 NTP not authenticated</h5>
-          <h5>2.2.26 No Network Filtering Rules Were Configured</h5>
-          <h5>2.2.27 No Post Logon Banner Message</h5>
-          <h5>2.2.28 PAD Service Enabled</h5>
-          <h5>2.2.29 No Outbound TCP Connection Keep-Alives</h5>
-          <h5>2.2.30 Sequence Numbers and Time Stamps on Debugs was disabled</h5>
-          <h5>2.2.31 Authentication Failure Rate was not configured</h5>
-          <h5>2.2.32 TCP Synwait Time was configured with more than 10 secondes</h5>
+          <h5>2.2.1 UDP Small Services Enabled</h5>
+          <h5>2.2.2 No HTTP Server Session Timeout</h5>
+          <h5>2.2.3 No Inbound TCP Connection Keep-Alives</h5>
+          <h5>2.2.4 IP Classless</h5>
+          <h5>2.2.5 AUX Port Not Disabled</h5>
+          <h5>2.2.6 No HTTP Service Network Access Restrictions</h5>
+          <h5>2.2.7 Service Password Encryption Disabled</h5>
+          <h5>2.2.8 CDP enabled</h5>
+          <h5>2.2.9 VTP Was In Server Mode</h5>
+          <h5>2.2.10 IP Source Routing Was Enabled</h5>
+          <h5>2.2.11 Warning In Pre-Logon Banner</h5>
+          <h5>2.2.12 The BOOTP Service Was Not Disabled</h5>
+          <h5>2.2.13 Clear Text HTTP Service Enabled</h5>
+          <h5>2.2.14 TCP Small Services Enabled</h5>
+          <h5>2.2.15 No Network Filtering Rules Were Configured</h5>
+          <h5>2.2.16 No Post Logon Banner Message</h5>
+          <h5>2.2.17 PAD Service Enabled</h5>
+          <h5>2.2.18 No Outbound TCP Connection Keep-Alives</h5>
+          <h5>2.2.19 Authentication Failure Rate was not configured</h5>
         </div>
         <div>
           <h5>2.3 Interface Audit</h5>
           <div class="intf_section">
-            <h5>2.3.1 Not All GLBP Groups Were Authenticated</h5>
-            <h5>2.3.2 Clear-Text HSRP Group Authentication Was Configured</h5>
-            <h5>2.3.3 RIP Version 1 Was Configured</h5>
-            <h5>2.3.4 Clear-Text VRRP Group Authentication Was Configured</h5>
-            <h5>2.3.5 Not All VRRP Groups Were Authenticated</h5>
-            <h5>2.3.6 Clear-Text GLBP Group Authentication Was Configured</h5>
-            <h5>2.3.7 Clear-Text OSPF Authentication Was Configured</h5>
-            <h5>2.3.8 Low VRRP Router Priorities</h5>
-            <h5>2.3.9 Low GLBP Group Priorities</h5>
-            <h5>2.3.10 Interfaces Were Configured With No Filtering</h5>
-            <h5>2.3.11 Weak VRRP Group Authentication Keys</h5>
-            <h5>2.3.12 Weak GLBP Group Authentication Keys</h5>
-            <h5>2.3.13 Dictionary-Based GLBP Group Authentication Keys</h5>
-            <h5>2.3.14 Weak HSRP Group Authentication Keys</h5>
-            <h5>2.3.15 Dictionary-Based HSRP Group Authentication Keys</h5>
-            <h5>2.3.16 Weak Routing Protocol Authentication Keys</h5>
-            <h5>2.3.17 Low OSPF Router Priorities</h5>
-            <h5>2.3.18 No BGP Route Flap Prevention</h5>
-            <h5>2.3.19 No RIP Update Neighbors Were Configured</h5>
-            <h5>2.3.20 IP Directed Broadcasts Were Enabled</h5>
-            <h5>2.3.21 ICMP Address Mask Reply Messages Were Enabled</h5>
-            <h5>2.3.22 Proxy ARP Was Enabled</h5>
-            <h5>2.3.23 ICMP Unreachable Messages Were Enabled</h5>
-            <h5>2.3.24 ICMP Redirect Messages Were Enabled</h5>
-            <h5>2.3.25 Connection Timeout not configured</h5>
+            <h5>2.3.1 Not All OSPF Routing Updates Were Authenticated</h5>
+            <h5>2.3.2 No OSPF LSA Thresholds</h5>
+            <h5>2.3.3 Connection Timeout not configured</h5>
           </div>
         </div>
         <h5>3. Vulnerability Audit</h5>
-        <div></div>
+        <div>
+          <h5>3.1 CVE-2008-3809</h5>
+          <h5>3.2 CVE-2008-4128</h5>
+          <h5>3.3 CVE-2006-4950</h5>
+          <h5>3.4 CVE-2008-1156</h5>
+          <h5>3.5 CVE-2010-0578</h5>
+        </div>
       </div>
     </div>
     <h2>1. Your Report</h2>
@@ -118,7 +89,7 @@
     <p>This report was produced by DigInv on 2022-06-17. This report is comprised of the following sections:</p>
     <ul>
       <li>a security audit section which details any identified         security-related issues. Each security issue identified includes details of what was found together with the impact of the issue,         how easy it would be for an attacker to exploit and a recommendation.         The recommendations may include alternatives and, where relevant, the commands to resolve the issue;</li>
-      <li>a software vulnerability audit section that provides a comparison of the device software versions against a database of known vulnerabilities. In addition to a         brief description, each potential vulnerability includes a CVSSv2 score and references to more specific information provided by the device manufacturers and         third parties;</li>
+      <li>a software vulnerability audit section that provides a comparison of the device software versions against a database of known vulnerabilities. In addition to a         brief description, each potential vulnerability includes a score and references to more specific information provided by the device manufacturers and         third parties;</li>
       <li>a configuration report which details the configuration settings of all the audited devices in an easy to read format. The configuration settings are divided in to report sub-sections which group related settings together and provide additional information about their purpose;</li>
     </ul>
     <h2>2 Security Audit</h2>
@@ -134,9 +105,9 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>ciscoRouter</td>
+      <td>R1</td>
       <td>router</td>
-      <td>15.1</td>
+      <td>12.4</td>
     </tr>
   </tbody>
 </table>
@@ -257,93 +228,7 @@
     <div class="globaudit">
       <div class="container">
         <div class="information">
-          <h3>1. Users With Dictionary-Based Passwords</h3>
-          <h5>observation</h5>
-          <p>Access to restricted network user and administration services are typically secured using username and password authentication credentials. The strength of the authentication credentials is even more important if the service allows for devices to be reconfigured or it allows access to potentially sensitive information.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>A malicious user, or remote attacker, who is able to connect to an administrative service will be able to perform a dictionary-based attack in order to identify valid authentication credentials and logon to the device. The attacker will then be able to perform administrative and user level tasks. This could include re- configuring the device, extracting potentially sensitive information and disabling the device. Once an attacker has obtained the configuration from the device they may be able to identify authentication credentials that could then be used to gain access to other network devices.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Dictionary-based password guessing attacks have been widely documented on the Internet and published media, enabling an attacker with very little knowledge or experience to perform the attack. There are a number of different dictionary-based password guessing tools and password dictionaries available on the Internet. Additionally an experienced attacker is likely to have a collection of personal password dictionaries which they have built up over time. However, there are a number of factors that may discourage an attacker from performing a dictionary-based attack. ;Account lockout facilities can quickly prevent access to the account. ;Device protection mechanisms may slow or disconnect connections where multiple authentication attempts are made in a short period of time. ;Brute-forcing can be very time consuming, especially if the password is long or made up of various character types. ;Network administrators may be alerted to locked out accounts or authentication attempts.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that: passwords should be at least eight characters in length</li>
-            <li> characters in the password should not be repeated more than three times</li>
-            <li> passwords should include both upper case and lower case characters</li>
-            <li> passwords should include numbers</li>
-            <li> passwords should include punctuation characters</li>
-            <li> passwords should not include the username</li>
-            <li> passwords should not include a device's name, make or model</li>
-            <li> passwords should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">enable secret password;username user secret password</p>
-        </div>
-        <div class="square">
-          <div>Overall:CRITICAL</div>
-          <div>Impact:Critical</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Users With Dictionary-Based Passwords</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>User</th>
-      <th>Password</th>
-      <th>Privilege</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>mohamed</td>
-      <td>1234</td>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Admin</td>
-      <td>admin</td>
-      <td>15</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>2. Default SNMP Community Strings Were Configured</h3>
-          <h5>observation</h5>
-          <p>SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. Access to the SNMP Management Information Base (MIB) with protocol versions 1 and 2 is restricted using a community string to help prevent unauthorized access.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>With read access to the SNMP MIB an attacker would be able to enumerate a large quantity of information about the device, its configuration, network details and more. With write access to the SNMP MIB an attacker could reconfigure the device, potentially causing a DoS. Additionally, write access to SNMP on some devices would enable an attacker to download a copy of a device's configuration, including password hashes.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Default SNMP community strings are usually documented in the manufacturers manuals, on third-party Internet web sites and in the password dictionaries of testing tools. Furthermore, SNMP query tools are installed by default on some operating systems and other SNMP tools can be downloaded from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, SNMP should be disabled. If SNMP is required then DigInv recommends that only SNMP version 3 should be configured. If access using SNMP community strings is required, DigInv recommends that only strong community strings should be chosen that are also not used for any other authentication.
-DigInv recommends that:SNMP community strings should be at least eight characters in length</li>
-            <li> characters in the SNMP community string should not be repeated more than three times</li>
-            <li> SNMP community strings should include both upper case and lower case characters</li>
-            <li> SNMP community strings should include numbers</li>
-            <li> SNMP community strings should include punctuation characters</li>
-            <li> SNMP community strings should not include a device's name, make or model</li>
-            <li> SNMP community strings should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">no snmp-server</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Trivial</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>3. UDP Small Services Enabled</h3>
+          <h3>1. UDP Small Services Enabled</h3>
           <h5>observation</h5>
           <p>Some devices and platforms provide a collection of simple User Datagram Protocol (UDP) network services, which are also sometimes referred to Fix: Quick as small services. These services provide little functionality and are rarely used and they typically include:
 Echo (defined in RFC 862) returns any data sent to it back to the connecting client;
@@ -371,31 +256,7 @@ DigInv determined that the UDP small servers were enabled</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>4. Clear-Text SNMP In Use</h3>
-          <h5>observation</h5>
-          <p>SNMP is an industry standard protocol for monitoring and managing a variety of devices. SNMP services typically offer detailed information that includes a device's operating system, network interfaces, memory, system counters and system users. With write access to SNMP, it is possible to re-configure networking, system properties and even shutdown a device. There are multiple versions of SNMP and versions prior to version 3 offer no encryption of either the authentication or data network traffic.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker or malicious user who can monitor the unencrypted SNMP network traffic would capture the SNMP community string used to authenticate access to the SNMP agent service. Additionally, they would capture all the information transferred using the unencrypted connection. With write access to SNMP an attacker could modify a device's settings and potentially cause a DoS condition.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Network packet capture tools can be downloaded from the Internet that can allow an attacker to monitor the network traffic. In a modern network environment, switches are typically deployed to connect the network infrastructure devices rather than hubs. With network switch devices, the attacker should only be able to see broadcast network traffic or traffic sent directly to or from the attacker's host. However, a skilled attacker could bypass this restriction by performing an attack such as ARP spoofing or exploiting a vulnerability with the network routing. Tools for bypassing a network switching environment's restrictions can be downloaded from the Internet. It is worth noting that with no SNMP view configured, the attacker would not be restricted to a specified subset of the SNMP MIB.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, SNMP should be disabled. However, if SNMP access is required, DigInv recommends that only SNMP version 3 should be configured with strong authentication and privacy passwords.</li>
-          </ul>
-          <p class="command">no snmp-server</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>5. No HTTP Server Session Timeout</h3>
+          <h3>2. No HTTP Server Session Timeout</h3>
           <h5>observation</h5>
           <p>The HTTP server session timeout setting is used to determine if a web session is no longer being used, enabling a device to determine when a connection can be automatically disconnected. A HTTP server session could become unused if an administrator has not properly terminated a connection and remains authenticated, such as when a user does not click on a logout button. The session could also become unused if the user leaves their computer unattended without terminating the session.</p>
           <h5>impact</h5>
@@ -419,7 +280,7 @@ DigInv determined that the UDP small servers were enabled</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>6. No Inbound TCP Connection Keep-Alives</h3>
+          <h3>3. No Inbound TCP Connection Keep-Alives</h3>
           <h5>observation</h5>
           <p>The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.</p>
           <h5>impact</h5>
@@ -443,7 +304,7 @@ DigInv determined that the UDP small servers were enabled</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>7. IP Classless</h3>
+          <h3>4. IP Classless</h3>
           <h5>observation</h5>
           <p>Classless routing is enabled by default on Cisco routers. If a router has classless routing enabled and it receives a network packet for which there is no configured route, the router will forward the packet to the best destination. With classless routing disabled, the router would discard any network traffic for which no route is defined.
 DigInv determined that classless routing was enabled</p>
@@ -468,55 +329,7 @@ DigInv determined that classless routing was enabled</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>8. User Account Names Contained ADMIN</h3>
-          <h5>observation</h5>
-          <p>When User Account names contain admin, a clear indication is given to an attacker or malicous user that the account most likely has higher privilege levels than a standard user. This allows an attacker to focus their resources in a more direct way, such as targeted phishing attacks or other social engineering techniques.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>A malicious user would be able to create targeted phishing and social engineering attacks at a specific user they believe to have admin or elevated privileges. Once access is gained, they would have that user's access to a system, which could include re-configuring the device, extracting potentially sensitive information and disabling the device. Once an attacker has obtained the configuration from the device they may be able to identify authentication credentials that could then be used to gain access to other network devices.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Exploiting this vulnerability would require an attacker to have gained access to sensitive information detailing user accounts and associated ID's before being able to identify appropriate targets for phishing or social engineering attacks.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv strongly recommends that all Admin or elevated privilege accounts should not contain information that identifies them as being such.</li>
-          </ul>
-          <p class="command"></p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:Critical</div>
-          <div>Ease:Challenging</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>9. Users Configured With Weak Password Encryption</h3>
-          <h5>observation</h5>
-          <p>User passwords on Cisco IOS-based devices can be configured to store user passwords using either a MD5 password hash or using the Cisco Type 7 password encoding algorithm. Whilst the Cisco Type-7 password encoding can be easily reversed to reveal the original password, MD5 hashes can not be reversed. Instead if the original password needs to be determined from an MD5 hash, the passwords must be guessed and then put through the MD5 hashing process. The resulting MD5 hashes can then be compared in order to determine if the passwords match.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>A strong password stored using an MD5 hash can take a significant period of time to brute-force. However, the same password stored in Cisco Type 7 form can be reversed in a fraction of a second. An attacker could use decoded passwords from a Cisco device in order to gain a level of access to the device and potentially modify its configuration.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker who had access to the Cisco configuration file would easily be able to retrieve and decode passwords that are stored using the Cisco type-7 encoding scheme. However, an attacker who had access to a Cisco configuration file could attempt a brute-force attack against the stronger MD5 hashes. Tools can be downloaded from the Internet that are capable of reversing Cisco Type 7 passwords. However, an attacker would need to obtain a copy of the configuration file and would need to be able to gain initial access to the device before they could make use of an enable password.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommands that users can be configured to store passwords using an MD5 hash using the following command:</li>
-          </ul>
-          <p class="command">username user-name secret password</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:High</div>
-          <div>Ease:Challenging</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>10. AUX Port Not Disabled</h3>
+          <h3>5. AUX Port Not Disabled</h3>
           <h5>observation</h5>
           <p>The Auxilary (AUX) port's primary purpose is to provide a remote administration capability. With a modem connected to the AUX port, a remote administrator could dial into the device in order to perform remote administration. As an extra layer of security, some devices can be configured with a callback facility. The callback facility, if configured, drops any incoming calls and dials the network administrator back.</p>
           <h5>impact</h5>
@@ -540,7 +353,7 @@ DigInv determined that classless routing was enabled</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>11. No HTTP Service Network Access Restrictions</h3>
+          <h3>6. No HTTP Service Network Access Restrictions</h3>
           <h5>observation</h5>
           <p>HTTP (RFC 2616) provides web-based services, such as information services, network device administration and other potentially sensitive services. HTTP provides no encryption of the connection between the client and server including any authentication and data transfer. HTTPS, which is HTTP over Secure Sockets Layer (SSL)/TLS, is used to provide cryptographically secure web-based connection. Network access to the HTTP service can be restricted by specifying those hosts that are allowed to access the service and thereby denying access to all other network host addresses.</p>
           <h5>impact</h5>
@@ -564,31 +377,7 @@ DigInv determined that classless routing was enabled</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>12. NTP Control Queries Were Permitted</h3>
-          <h5>observation</h5>
-          <p>Time synchronization for network devices is inherently important, not just for the various services that make use of time, but also for the accurate logging of events. Therefore network devices can be configured to synchronize their time against a network time source in order to ensure that the time is synchronized. NTP (described in RFC 5905) is a complex time synchronization protocol with a number of different features and options. In addition to time, a number of control queries can be made to an NTP server, these include requesting a list of the servers NTP peers and a number of different variables.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may send control queries to an NTP service in order to gather information about the device. In addition to time information, an attacker may learn internal IP addresses of NTP peers or basic operating system information.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>NTP query tools are installed by default with some operating systems and NTP tools can be downloaded from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if a time server must be configured on the device, access should be restricted to only time requests.</li>
-          </ul>
-          <p class="command">ntp access-group query-only acl</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:Medium</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>13. Service Password Encryption Disabled</h3>
+          <h3>7. Service Password Encryption Disabled</h3>
           <h5>observation</h5>
           <p>Cisco service passwords are stored by default in their clear-text form rather than being encrypted. However, it is possible to have these passwords stored using the reversible Cisco type-7 encryption.
 DigInv determined that the Cisco device Router was not running the password encryption service that helps provide a basic level of encryption to passwords that otherwise would be stored in clear-text.</p>
@@ -613,7 +402,7 @@ DigInv determined that the Cisco device Router was not running the password encr
       </div>
       <div class="container">
         <div class="information">
-          <h3>14. CDP enabled</h3>
+          <h3>8. CDP enabled</h3>
           <h5>observation</h5>
           <p>CDP is a proprietary protocol that was developed and is primarily used by Cisco. A CDP enabled device can be configured to broadcast.
 CDP packets on the network enabling network management applications and CDP aware devices to identify each other. CDP packets include information about thesender, such as OS version and IP address information.</p>
@@ -639,7 +428,7 @@ In some configurations with IP phones, deployed using either Auto Discovery or D
       </div>
       <div class="container">
         <div class="information">
-          <h3>15. VTP Was In Server Mode</h3>
+          <h3>9. VTP Was In Server Mode</h3>
           <h5>observation</h5>
           <p>VTP was developed by Cisco to assist with the management of VLANs over multiple devices. The protocol enables the addition, renaming and deletion of VLANs on a single switch to be propagated to other network switches in the same VTP domain. A device in VTP server mode will transmit VTP packets containing VLAN information. If a device in VTP client mode in the same domain receives a VTP network packet with a higher revision number the changes will be applied.
  DigInv determined that VTP was in server mode.It is worth mentioning that although the VTP was found to be in server mode(adefault setting), no VTP domain was configured. However, there have been instances where a device in this configuration have had their VTP domain setremotely from other networked devices.</p>
@@ -665,7 +454,7 @@ vtp mode transparent</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>16. IP Source Routing Was Enabled</h3>
+          <h3>10. IP Source Routing Was Enabled</h3>
           <h5>observation</h5>
           <p>TCP/IP packets can contain source route information, this can enable a packet to define its own route through a network rather than using a route defined by static routes or routing protocols. The source route option functionality was defined in RFC 791.
 Many network filtering and routing devices include facilities that enable them to ignore the source route defined in a packet or block the packets entirely.
@@ -691,7 +480,7 @@ Many network filtering and routing devices include facilities that enable them t
       </div>
       <div class="container">
         <div class="information">
-          <h3>17. Warning In Pre-Logon Banner</h3>
+          <h3>11. Warning In Pre-Logon Banner</h3>
           <h5>observation</h5>
           <p>Logon banner messages are an important, but often overlooked, part of a secure configuration. Logon banner messages can provide connecting users with important information and warn against unauthorized access.</p>
           <h5>impact</h5>
@@ -715,7 +504,7 @@ Many network filtering and routing devices include facilities that enable them t
       </div>
       <div class="container">
         <div class="information">
-          <h3>18. The BOOTP Service Was Not Disabled</h3>
+          <h3>12. The BOOTP Service Was Not Disabled</h3>
           <h5>observation</h5>
           <p>BOOTstrap Protocol (BOOTP) is a datagram protocol that allows compatible hosts to load their operating system over the network from a BOOTP server. Cisco routers are capable of acting as BOOTP servers for other Cisco devices and the service is enabled by default. However, BOOTP is rarely used and may represent a security risk.
 DigInv determined that BOOTP was not disabled. However, it is worth noting that not all Cisco devices support BOOTP.</p>
@@ -740,79 +529,7 @@ DigInv determined that BOOTP was not disabled. However, it is worth noting that 
       </div>
       <div class="container">
         <div class="information">
-          <h3>19. The Finger Service Was Enabled</h3>
-          <h5>observation</h5>
-          <p>The Finger protocol (defined in RFC 749 and RFC 1288) enables the enumeration of status and user information from a system running a Finger service. The Finger protocol is simple and does not encrypt the data or provide any authentication. The default TCP port for the Finger service is 79.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker could use the Finger service to enumerate users and user information. The attacker could then use this information as part of a targeted attack such as password guessing or a brute-force attack. The Finger user information may also be used by an attacker for a targeted attack where user identity information would be useful.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The Finger query tool is installed by default on some platforms by default and is relatively easy to use. Additionally, tools that an attacker can use to attack a system using the information obtained using Finger are available to download from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that the Finger service should be disabled to help prevent an attacker from enumerating user information.</li>
-          </ul>
-          <p class="command">no ip finger</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:Trivial</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>20. No SNMP TFTP Server Access List Configured</h3>
-          <h5>observation</h5>
-          <p>Using SNMP, some network devices can be instructed to send its configuration to a file on a specified TFTP server. This feature enables network administrators and management software to quickly obtain a copy of a device's configuration. A network access list can be configured on those devices to help secure access to this functionality (supported on Cisco IOS devices from version 10.2).</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who had SNMP write access could remotely obtain a copy of a device's configuration. The configuration would include any passwords for the device and include the configuration of the administrative services.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>For an attacker to exploit this issue they would require SNMP query tools, a TFTP server and a community string with write access to the SNMP MIB. SNMP query tools and TFTP server software can be downloaded from the Internet and some OS install them by default. If the attacker does not know the community string it may be possible to determine it by monitoring the network traffic or by brute-forcing the community string.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that a SNMP TFTP server list ACL should be configured to ensure that configurations are only saved to specific hosts.</li>
-          </ul>
-          <p class="command">snmp-server tftp-server-list acl-number</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Medium</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>21. Weak Minimum Password Length Policy Setting</h3>
-          <h5>observation</h5>
-          <p>The minimum password length policy setting is used to force users to set passwords that are at least the specified number of characters in length.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>Strong authentication credentials are a key component of a systems security. It is therefore important that a user chooses a strong password and that it is changed on a regular basis. Generally, the greater the number of characters within a password the stronger the password will be. With a short minimum password length configured a user could set a short password, requiring less time for an attacker to brute-force the authentication password.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>It takes far less time for an attacker to brute-force the authentication credentials for a user account that has a short password.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that a minimum password length policy setting of 8 characters should be configured.</li>
-          </ul>
-          <p class="command">security passwords min-length length</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>22. Clear Text HTTP Service Enabled</h3>
+          <h3>13. Clear Text HTTP Service Enabled</h3>
           <h5>observation</h5>
           <p>HTTP (RFC 2616) provides web-based services, such as information services, network device administration and other potentially sensitive services. HTTP provides no encryption of the connection between the client and server including any authentication and data transfer.</p>
           <h5>impact</h5>
@@ -836,7 +553,7 @@ DigInv determined that BOOTP was not disabled. However, it is worth noting that 
       </div>
       <div class="container">
         <div class="information">
-          <h3>23. TCP Small Services Enabled</h3>
+          <h3>14. TCP Small Services Enabled</h3>
           <h5>observation</h5>
           <p>Some devices and platforms provide a collection of simple TCP network services, which are also sometimes referred to as small services. These services provide little functionality and are rarely used and they typically include:Echo (defined in RFC 862) returns any data sent to it back to the connecting client;Discard (defined in RFC 863) ignores any data sent to it by a connecting client;Chargen (defined in RFC 864) generates printable characters which are returned to the connecting client;Daytime (defined in RFC 867) returns the current time to a connecting client.DigInv determined that the TCP small servers were enabled</p>
           <h5>impact</h5>
@@ -860,57 +577,7 @@ DigInv determined that BOOTP was not disabled. However, it is worth noting that 
       </div>
       <div class="container">
         <div class="information">
-          <h3>24. Domain Lookups were enabled</h3>
-          <h5>observation</h5>
-          <p>Cisco IOS-based devices support name lookups using the Domain Name System (DNS). However, if a DNS server has not been configured, then the DNS request is broadcast.
-DigInv determined that name lookups had not been disabled and no DNS servers had been configured.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who was able to capture network traffic could monitor DNS queries from the Cisco Router. Furthermore, Cisco devices can connect to Telnet servers by supplying only the hostname or IP address of the server. A mistyped Cisco command could be interpreted as an attempt to connect to a Telnet server and broadcast on the network.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>It would be trivial for an attacker to capture network traffic broadcast from a Cisco Router. Furthermore, network traffic capture tools are widely available on the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that domain lookups be disabled. Domain lookups can be disabled with the following command:</li>
-          </ul>
-          <p class="command">no ip domain-lookup</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>25. NTP not authenticated</h3>
-          <h5>observation</h5>
-          <p>Time synchronization for network devices is inherently important, not just for the various services that make use of time, but also for the accurate logging of events. Therefore network devices can be configured to synchronize their time against a network time source in order to ensure that the time is synchronized. NTP (described in RFC 5905) is a complex time synchronization protocol with a number of different features and options. In addition to time, a number of control queries can be made to an NTP server, these include requesting a list of the servers NTP peers and a number of different variables.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>If an attacker is able to modify a device's time with an inaccurate time update then it would be more difficult during an examination to correlate the system logs. Furthermore, any systems that depend on accurate time, such as some authentication systems, could be disrupted and potentially cause a DoS.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>With NTP time authentication disabled, an attacker could attempt to update the time by sending malicious time updates. An attacker could do this using open source code or by sending customized network packets and spoofing the source address.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if NTP must be configured on the device, authentication must be configured.</li>
-          </ul>
-          <p class="command">ntp authentication-key key-number md5 Auth-key
-ntp server ip-address key key-num</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Medium</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>26. No Network Filtering Rules Were Configured</h3>
+          <h3>15. No Network Filtering Rules Were Configured</h3>
           <h5>observation</h5>
           <p>Network filtering can be configured to restrict access to network services from only those hosts that require the access, helping to prevent unauthorized access. When configured, network filter rules are processed sequentially and the first rule in the filter rule list which matches the network packet is applied.</p>
           <h5>impact</h5>
@@ -940,7 +607,7 @@ ntp server ip-address key key-num</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>27. No Post Logon Banner Message</h3>
+          <h3>16. No Post Logon Banner Message</h3>
           <h5>observation</h5>
           <p>Post logon banner messages are ones that are shown to users after they have authenticated and prior to being given access to the device. It is one that is shown to users when they connect to a device and prior to the user logon.</p>
           <h5>impact</h5>
@@ -964,7 +631,7 @@ ntp server ip-address key key-num</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>28. PAD Service Enabled</h3>
+          <h3>17. PAD Service Enabled</h3>
           <h5>observation</h5>
           <p>The PAD service enables X.25 commands and connections between PAD devices and access servers, converting the character stream data into network packets and network packets into character stream data. The PAD service is enabled by default on some devices but it is only required if support for X.25 links are necessary.</p>
           <h5>impact</h5>
@@ -988,7 +655,7 @@ ntp server ip-address key key-num</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>29. No Outbound TCP Connection Keep-Alives</h3>
+          <h3>18. No Outbound TCP Connection Keep-Alives</h3>
           <h5>observation</h5>
           <p>The keep-alive messages are used to determine if a connection is active or has become orphaned and is no longer used. Depending on the result, the device can reclaim resources allocated to inbound connections that have become orphaned. Connections to a device could become orphaned if a connection becomes disrupted or if the client has not properly terminated a connection.</p>
           <h5>impact</h5>
@@ -1012,31 +679,7 @@ ntp server ip-address key key-num</p>
       </div>
       <div class="container">
         <div class="information">
-          <h3>30. Sequence Numbers and Time Stamps on Debugs was disabled</h3>
-          <h5>observation</h5>
-          <p>Timestamps are useful for viewing when certain events happen on a router. Timestanps are also helpful for troubleshooting, because they allow the network administrator to compare simultaneous events on network routers and analyze whether one occurrence caused, or was a result of, another.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>sequence numbers and time stamps on all debug and log messages whenever possible. Time stamps on debug and log messages indicate the time and date that the message was generated. Sequence numbers indicate the sequence in which messages that have identical time stamps were generated.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Knowing the timing and sequence that messages are generated is an important tool in diagnosing potential attacks.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommands that, Sequence Numbers and Time Stamps on Debugs should be enabled. </li>
-          </ul>
-          <p class="command">service timestamps debug datetime localtime show-timezone msec \n service timestamps log datetime localtime show-timeout msec \n service sequence-numbers</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:INFORMATIONAL</div>
-          <div>Ease:Challenging</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>31. Authentication Failure Rate was not configured</h3>
+          <h3>19. Authentication Failure Rate was not configured</h3>
           <h5>observation</h5>
           <p>Authentication for a computer system is a process allowing the system to ensure the legitimacy of the access request made by an entity (human being or another system...) in order to authorize the access of this entity to system resources ( systems , networks, applications , etc.)</p>
           <h5>impact</h5>
@@ -1058,342 +701,12 @@ ntp server ip-address key key-num</p>
           <div>Fix:Quick</div>
         </div>
       </div>
-      <div class="container">
-        <div class="information">
-          <h3>32. TCP Synwait Time was configured with more than 10 secondes</h3>
-          <h5>observation</h5>
-          <p>A TCP connection requires a three-phase handshake to initially establish the connection. A connection request is sent by the originator, an acknowledgement is sent by the receiver, and then an acceptance of that acknowledgement is sent by the originator. </p>
-          <h5>impact</h5>
-          <ul>
-            <li>TCP synwait time is a value that is useful in defeating SYN flooding attacks, a form of Denial-of-Service (DoS) attack.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools are available in the Internet</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommands that, the TCP Synwait should be configured with 10 seconds or less</li>
-          </ul>
-          <p class="command">ip tcp synwait-time &lt;10&gt;</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:INFORMATIONAL</div>
-          <div>Ease:Challenging</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
     </div>
     <h2>Interfaces Audit</h2>
     <div class="interfaceaudit">
       <div class="container">
         <div class="information">
-          <h3>33. Not All GLBP Groups Were Authenticated</h3>
-          <h5>observation</h5>
-          <p>GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who is able to configure their router with the relevant GLBP group configuration would be able to participate in network routing in order to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could use a GLBP capable device in order to perform the attack. The attacker could then configure their GLBP capable router to be in the same group and with a higher priority in order to become the Active Virtual Gateway (AVG).</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all GLBP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if no authentication were to be configured.
-DigInv recommends that: GLBP authentication keys should be at least eight characters in length</li>
-            <li> characters in the GLBP authentication key should not be repeated more than three times</li>
-            <li> GLBP authentication keys should include both upper case and lower case characters</li>
-            <li> GLBP authentication keys should include numbers</li>
-            <li> GLBP authentication keys should include punctuation characters</li>
-            <li> GLBP authentication keys should not include a device's name, make or model</li>
-            <li> GLBP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">glbp [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Clear-Text HSRP Group Authentication Was Configured</h3>
-          <h5>observation</h5>
-          <p>HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. HSRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to join a HSRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could use a HSRP capable device, or download HSRP software from the Internet. The attacker could then configure their HSRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using a HSRP packet captured from the network.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all HSRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: HSRP authentication keys should be at least eight characters in length</li>
-            <li> characters in the HSRP authentication key should not be repeated more than three times</li>
-            <li> HSRP authentication keys should include both upper case and lower case characters</li>
-            <li> HSRP authentication keys should include numbers</li>
-            <li> HSRP authentication keys should include punctuation characters</li>
-            <li> HSRP authentication keys should not include a device's name, make or model</li>
-            <li> HSRP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">standby [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Clear-Text HSRP Group Authentication Was Configured</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>10</td>
-      <td>254</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. RIP Version 1 Was Configured</h3>
-          <h5>observation</h5>
-          <p>IP is a routing protocol that allows network devices to dynamically adapt to changes in the network infrastructure. There are three main versions of RIP: version 1 of the protocol, outlined in RFC 1058, supports simple routing updates with support only for classful routing and broadcast updates;version 2 of the protocol, outlined in RFC 2453, added support for Classless Inter-Domain Routing (CIDR), authentication (both in clear-text and MD5 forms) and multicast updates; NG, outlined in RFC 2080, adds support for Internet Protocol version 6 (IPv6) but does not include support for authentication.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication. Another issue with RIP version 1, though not necessarily a security one, is that broadcast updates can wake up computers that are shutdown on the Local Area Network (LAN).</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools can be downloaded from the Internet that can be used to send malicious RIP routing updates. With RIP version 1 supported, the attacker would not need to provide authentication information.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if RIP is required, only support for version 2 should be configured. However, this may require a firmware update if the device does not support version 2.</li>
-          </ul>
-          <p class="command">version 2</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. Clear-Text VRRP Group Authentication Was Configured</h3>
-          <h5>observation</h5>
-          <p>VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. VRRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to join a VRRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could use a VRRP capable device, or download VRRP software from the Internet. The attacker could then configure their VRRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using a VRRP packet captured from the network.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all VRRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: VRRP authentication keys should be at least eight characters in length</li>
-            <li> characters in the VRRP authentication key should not be repeated more than three times</li>
-            <li> VRRP authentication keys should include both upper case and lower case characters</li>
-            <li> VRRP authentication keys should include numbers</li>
-            <li> VRRP authentication keys should include punctuation characters</li>
-            <li> VRRP authentication keys should not include a device's name, make or model</li>
-            <li> VRRP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">vrrp group authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Clear-Text VRRP Group Authentication Was Configured</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>100</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Not All VRRP Groups Were Authenticated</h3>
-          <h5>observation</h5>
-          <p>VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. VRRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to join a VRRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could use a VRRP capable device, or download VRRP software from the Internet. The attacker could then configure their VRRP to be in the same group and with a higher priority in order to become the master during an election.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>recommends that MD5 authentication with a strong key should be configured for all VRRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if no authentication were to be configured. DigInv recommends that: VRRP authentication keys should be at least eight characters in length</li>
-            <li> characters in the VRRP authentication key should not be repeated more than three times</li>
-            <li> VRRP authentication keys should include both upper case and lower case characters</li>
-            <li> VRRP authentication keys should include numbers</li>
-            <li> VRRP authentication keys should include punctuation characters</li>
-            <li> VRRP authentication keys should not include a device's name, make or model</li>
-            <li> VRRP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">vrrp group authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Not All VRRP Groups Were Authenticated</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Serial0/0/1</td>
-      <td>10.0.0.47</td>
-      <td>120</td>
-      <td>123</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/1</td>
-      <td>10.3.3.4</td>
-      <td>50</td>
-      <td>58</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>FastEthernet0/2</td>
-      <td>12.4.2.3</td>
-      <td>14</td>
-      <td>12</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Clear-Text GLBP Group Authentication Was Configured</h3>
-          <h5>observation</h5>
-          <p>GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who is able to configure GLBP with the relevant authentication configuration in order to become the AVG would be able to control network routing in order to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>An attacker could use a GLBP capable device in the attack. The attacker could then configure their GLBP capable device to be in the same group to become a network router. The authentication key can be configured using a GLBP packet captured from the network.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all GLBP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: GLBP authentication keys should be at least eight characters in length</li>
-            <li> characters in the GLBP authentication key should not be repeated more than three times</li>
-            <li> GLBP authentication keys should include both upper case and lower case characters</li>
-            <li> GLBP authentication keys should include numbers</li>
-            <li> GLBP authentication keys should include punctuation characters</li>
-            <li> GLBP authentication keys should not include a device's name, make or model</li>
-            <li> GLBP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">glbp [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Clear-Text GLBP Group Authentication Was Configured</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>100</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Clear-Text OSPF Authentication Was Configured</h3>
+          <h3>20. Not All OSPF Routing Updates Were Authenticated</h3>
           <h5>observation</h5>
           <p>OSPF is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. OSPF supports authentication using either clear-text or MD5 authentication methods. This ensures that routing updates are sent from a trusted source.</p>
           <h5>impact</h5>
@@ -1428,12 +741,12 @@ DigInv recommends that: GLBP authentication keys should be at least eight charac
       </div>
       <div class="container">
         <div class="information">
-          <h3>1. Low VRRP Router Priorities</h3>
+          <h3>1. No OSPF LSA Thresholds</h3>
           <h5>observation</h5>
-          <p>VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. Multiple routers can be configured in a VRRP group in a master and backup router configuration. The master router is determined by an election where the router with the highest priority will become the master. Router priorities can be between 1 and 254.</p>
+          <p>OSPF is a routing protocol that can be configured to dynamically update the routing table with changes to the network topology. OSPF uses LSA to communicate changes to other routers and update the routers own Link State Database (LSDB). Devices can be configured with a LSA message threshold in order to limit the number of LSA messages being processed by the device.</p>
           <h5>impact</h5>
           <ul>
-            <li>An attacker who is able to configure VRRP with the relevant authentication configuration, could configure a higher priority and force a router election in order to become the master router. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments</li>
+            <li>An attacker may be able to perform an OSPF DoS by flooding the device with LSA messages. monitor network traffic sent between network segments</li>
             <li> perform a man in the middle attack</li>
             <li> capture clear-text protocol authentication credentials</li>
             <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
@@ -1441,886 +754,20 @@ DigInv recommends that: GLBP authentication keys should be at least eight charac
             <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
           </ul>
           <h5>ease</h5>
-          <p>To perform this attack, the attacker would first have to determine the existing VRRP configuration. If authentication credentials are used, the attacker could extract them from the captured network packets. With MD5-based authentication, the attacker would have use a dictionary/brute-force attack in order to determine the authentication key. Additionally, the attacker would require access to a network segment where they could participate in VRRP routing. The attacker could then configure their router with a higher priority in order to perform the attack. All of the software required to complete each of these components can be downloaded from the Internet.</p>
+          <p>Tools can be downloaded from the Internet that can be used to perform a DoS by flooding the device with LSA messages.</p>
           <h5>recommandation</h5>
           <ul>
-            <li>DigInv recommends that the VRRP priority of 254 should be configured. If two or more routers are present, DigInv recommends that each of the routers should be configured with high numbered priorities.</li>
+            <li>DigInv recommends that the number of OSPF LSA messages accepted by the device should be limited.</li>
           </ul>
-          <p class="command">vrrp group priority priority</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Low VRRP Router Priorities</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Serial0/0/1</td>
-      <td>10.0.0.47</td>
-      <td>120</td>
-      <td>123</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>FastEthernet0/1</td>
-      <td>10.3.3.4</td>
-      <td>50</td>
-      <td>58</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>FastEthernet0/2</td>
-      <td>12.4.2.3</td>
-      <td>14</td>
-      <td>12</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Low GLBP Group Priorities</h3>
-          <h5>observation</h5>
-          <p>GLBP is a Cisco proprietary protocol which is used for router load balancing and redundancy. A priority is configured to determine which GLBP enabled router will become the AVG and respond to ARP requests on behalf of the Active Virtual Forwarders (AVFs). The router with the highest priority will become the AVG.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who is able to configure GLBP with the relevant authentication configuration, could configure a higher priority in order to become the AVG. If an attacker is able to become the GLBP AVG, they would be able to control network routing in order to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>To perform this attack, the attacker would first have to determine the existing GLBP configuration. If authentication credentials are used, the attacker could extract them from the captured network packets. With MD5-based authentication, the attacker would have use a dictionary/brute-force attack in order todetermine the authentication key. Additionally, the attacker would require access to a network segment where they could participate in GLBP routing. The attacker could then configure their router with a higher priority in order to perform the attack. All of the software required to complete each of these components can be downloaded from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that the GLBP group priority of 255 should be configured. If two or more routers are present, DigInv recommends that each of the routers should be configured with high numbered priorities.</li>
-          </ul>
-          <p class="command">glbp group priority priority</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Low GLBP Group Priorities</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.0.0</td>
-      <td>10</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.0</td>
-      <td>10</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>100</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Interfaces Were Configured With No Filtering</h3>
-          <h5>observation</h5>
-          <p>Network filtering rule lists can be assigned to individual network interfaces to provide filtering of network traffic.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>The network traffic from an attacker attached to one of the network interfaces detailed above would not be subjected to filtering, potentially providing unrestricted access to network services.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The network traffic would not be subjected to filtering.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that all network interfaces should be configured filtering to help prevent unauthorized access to network services and hosts.</li>
-          </ul>
-          <p class="command">ip access-group ACL [in | out]</p>
-        </div>
-        <div class="square">
-          <div>Overall:HIGH</div>
-          <div>Impact:High</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Interfaces Were Configured With No Filtering</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Interface</th>
-      <th>Address</th>
-      <th>State</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.3.32</td>
-      <td>Active</td>
-      <td>fastethernet</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>Active</td>
-      <td>No Description Found</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Weak VRRP Group Authentication Keys</h3>
-          <h5>observation</h5>
-          <p>VRRP is an industry standard protocol used to provide router redundancy against a single point of failure. VRRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to join a VRRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>For a clear-text VRRP group authentication, the attacker could monitor the network traffic in order to gain the VRRP group authentication key. For MD5 authentication, an attacker could perform a dictionary-based attack. This can be achieved using software downloaded from the Internet. An attacker could use a VRRP capable device, or download VRRP software from the Internet. The attacker could then configure their VRRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using the VRRP group authentication key.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all VRRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: VRRP authentication keys should be at least eight characters in length</li>
-            <li> characters in the VRRP authentication key should not be repeated more than three times</li>
-            <li> VRRP authentication keys should include both upper case and lower case characters</li>
-            <li> VRRP authentication keys should include numbers</li>
-            <li> VRRP authentication keys should include punctuation characters</li>
-            <li> VRRP authentication keys should not include a device's name, make or model</li>
-            <li> VRRP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">vrrp group authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:High</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Weak VRRP Group Authentication Keys</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>hamma</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Weak GLBP Group Authentication Keys</h3>
-          <h5>observation</h5>
-          <p>GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who is able to configure GLBP with the relevant authentication configuration in order to become the AVG would be able to control network routing in order to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>For a clear-text GLBP group authentication, the attacker could monitor the network traffic in order to gain the GLBP group authentication key. For MD5 authentication, an attacker could perform a brute-force attack. This can be achieved using software downloaded from the Internet. An attacker could use a GLBP capable device in the attack. The attacker could then configure their GLBP capable router, with the authentication key, in order to become a network router.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all GLBP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: GLBP authentication keys should be at least eight characters in length</li>
-            <li> characters in the GLBP authentication key should not be repeated more than three times</li>
-            <li>GLBP authentication keys should include both upper case and lower case characters</li>
-            <li> GLBP authentication keys should include numbers</li>
-            <li> GLBP authentication keys should include punctuation characters</li>
-            <li> GLBP authentication keys should not include a device's name, make or model</li>
-            <li> GLBP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">glbp [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:High</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Weak GLBP Group Authentication Keys</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>mohamed</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>mohamed</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Dictionary-Based GLBP Group Authentication Keys</h3>
-          <h5>observation</h5>
-          <p>GLBP is a Cisco proprietary protocol used to provide router load balancing and redundancy against a single point of failure. GLBP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who is able to configure GLBP with the relevant authentication configuration in order to become the AVG would be able to control network routing in order to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>For a clear-text GLBP group authentication, the attacker could monitor the network traffic in order to gain the GLBP group authentication key. For MD5 authentication, an attacker could perform a brute-force attack. This can be achieved using software downloaded from the Internet. An attacker could use a GLBP capable device in the attack. The attacker could then configure their GLBP capable router, with the authentication key, in order to become a network router.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all GLBP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: GLBP authentication keys should be at least eight characters in length</li>
-            <li> characters in the GLBP authentication key should not be repeated more than three times</li>
-            <li>GLBP authentication keys should include both upper case and lower case characters</li>
-            <li> GLBP authentication keys should include numbers</li>
-            <li> GLBP authentication keys should include punctuation characters</li>
-            <li> GLBP authentication keys should not include a device's name, make or model</li>
-            <li> GLBP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">glbp [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:High</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Dictionary-Based GLBP Group Authentication Keys</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>mohamed</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>100</td>
-      <td>mohamed</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Weak HSRP Group Authentication Keys</h3>
-          <h5>observation</h5>
-          <p>HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. HSRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to join a HSRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>For a clear-text HSRP group authentication, the attacker could monitor the network traffic in order to gain the HSRP group authentication key. For MD5 authentication, an attacker could perform a brute force attack. This can be achieved using software downloaded from the Internet. An attacker could use a HSRP capable device, or download HSRP software from the Internet. The attacker could then configure their HSRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using the HSRP group authentication key.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all HSRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: HSRP authentication keys should be at least eight characters in length</li>
-            <li> characters in the HSRP authentication key should not be repeated more than three times</li>
-            <li> HSRP authentication keys should include both upper case and lower case characters</li>
-            <li> HSRP authentication keys should include numbers</li>
-            <li> HSRP authentication keys should include punctuation characters</li>
-            <li> HSRP authentication keys should not include a device's name, make or model</li>
-            <li> HSRP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">standby [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:High</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Weak HSRP Group Authentication Keys</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>10</td>
-      <td>mohamed</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Dictionary-Based HSRP Group Authentication Keys</h3>
-          <h5>observation</h5>
-          <p>HSRP is a Cisco proprietary protocol used to provide router redundancy against a single point of failure. HSRP routers are configured in a group which can be authenticated using either clear-text or MD5 authentication. Authentication is configured to ensure that routing will not be performed by an untrusted router.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to join a HSRP routing group and become the master router. If an attacker is able to become a router, they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>For a clear-text HSRP group authentication, the attacker could monitor the network traffic in order to gain the HSRP group authentication key. For MD5 authentication, an attacker could perform a brute force attack. This can be achieved using software downloaded from the Internet. An attacker could use a HSRP capable device, or download HSRP software from the Internet. The attacker could then configure their HSRP to be in the same group and with a higher priority in order to become the master during an election. The authentication key (or shared secret) can be configured using the HSRP group authentication key.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that MD5 authentication with a strong key should be configured for all HSRP groups. Although it may be possible for an attacker to extract the MD5 authentication hash from a network packet and brute-force the authentication key, it would take significantly more effort than would be required if clear-text authentication were to be configured. DigInv recommends that: HSRP authentication keys should be at least eight characters in length</li>
-            <li> characters in the HSRP authentication key should not be repeated more than three times</li>
-            <li> HSRP authentication keys should include both upper case and lower case characters</li>
-            <li> HSRP authentication keys should include numbers</li>
-            <li> HSRP authentication keys should include punctuation characters</li>
-            <li> HSRP authentication keys should not include a device's name, make or model</li>
-            <li> HSRP authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">standby [group] authentication md5 {key-string key | key-chain key-chain}</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:High</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Dictionary-Based HSRP Group Authentication Keys</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>interface</th>
-      <th>Virtual Address</th>
-      <th>group</th>
-      <th>priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>10</td>
-      <td>mohamed</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Weak Routing Protocol Authentication Keys</h3>
-          <h5>observation</h5>
-          <p>Routers and routing devices can be configured to send route updates to each other. This enables devices to dynamically adapt to changes in the network topology and enables router devices to make informed decisions when routing network traffic between networks. Authentication keys, sometimes referred to as shared secrets, can be configured for routing protocols. The routing protocol authentication keys are configured to ensure that any routing updates sent to the device that will update the device's routing information were only sent from trusted sources.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker may attempt to modify the routing table of a routing device in an attempt to route network traffic through a device that they control. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools can be downloaded from the Internet that can be used to send malicious routing updates. With a simple dictionary-based authentication key configured, it would not be time consuming for an attacker to determine the authentication key. The attacker could then send routing updates that appear to be authentic and the source address can be spoofed.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that strong routing protocol authentication keys should be configured for all routing updates. DigInv recommends that: routing authentication keys should be at least eight characters in length</li>
-            <li> characters in the routing authentication key should not be repeated more than three times</li>
-            <li> routing authentication keys should include both upper case and lower case characters</li>
-            <li> routing authentication keys should include numbers</li>
-            <li> routing authentication keys should include punctuation characters</li>
-            <li> routing authentication keys should not include a device's name, make or model</li>
-            <li> routing authentication keys should not be based on dictionary words.</li>
-          </ul>
-          <p class="command">key chain chain-name  key key-number key-string authentication-string</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:High</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Involved</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Weak Routing Protocol Authentication Keys</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>key-chain</th>
-      <th>key-ID</th>
-      <th>Key-string</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>samah</td>
-      <td>1</td>
-      <td>samah1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>samah</td>
-      <td>2</td>
-      <td>samah2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>mohamed</td>
-      <td>1</td>
-      <td>hamma1</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Low OSPF Router Priorities</h3>
-          <h5>observation</h5>
-          <p>OSPF is a routing protocol that can be configured to dynamically update the routing table with changes to the network topology. Multiple routers can be configured on a network for fault tolerance, in that situation the router with the highest priority will take precedence. Router priorities can be between 0 and 255, if set to 0 the router will not become the designated or backup router. If two routers have the same priority, the router with the highest router Identifier (ID) will then take precedence.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who is able to configure OSPF with the relevant authentication configuration, could configure a higher priority in order to take precedence over the existing router. If an attacker is able to control a routing device they would be able to: monitor network traffic sent between network segments</li>
-            <li> perform a man in the middle attack</li>
-            <li> capture clear-text protocol authentication credentials</li>
-            <li> capture encrypted authentication hashes which could be subjected to a brute-force attack</li>
-            <li> perform a network wide DoS</li>
-            <li> route updates could be redistributed by the device to other routing devices and possibly using other routing protocols and authentication.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>To perform this attack, the attacker would first have to determine the existing OSPF configuration. If authentication credentials are used, the attacker could extract them from the captured network packets. With MD5-based authentication, the attacker would have use a dictionary/brute-force attack in order to determine the authentication key. Additionally, the attacker would require access to a network segment where they could participate in OSPF routing. The attacker could then configure their router with a higher priority in order to perform the attack. All of the software required to complete each of these components can be downloaded from the Internet.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that the OSPF priority of 255 should be configured. If two or more routers are present, DigInv recommends that each of the routers should be configured with high numbered priorities.</li>
-          </ul>
-          <p class="command">ip ospf priority priority-no</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:High</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Low OSPF Router Priorities</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Interface</th>
-      <th>OSPF Priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>47</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. No BGP Route Flap Prevention</h3>
-          <h5>observation</h5>
-          <p>BGP is a routing protocol that allows network devices to dynamically adapt to changes to the network topology. BGP routers update their neighbors with changes such as network link status changes. BGP route flapping is a condition where routing tables are constantly being updated due to a link transitioning between up and down status. These transitions cause routing tables to be continuously updated across the infrastructure. Routing devices can be configured with BGP route dampening in order to help mitigate against constant route flapping.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>Excessive route updates, caused by a link status constantly changing between up to down, can impact network routing performance. Network routing could slow with network packets being dropped, possibly causing a DoS condition.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>It is possible for an attacker to send BGP packets to a router to update the routing table and cause a route flapping condition. However, the attacker may need additional information in order to perform the attack, such as a BGP password.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that BGP route dampening should be configured to help prevent excessive routing updates from causing a DoS condition.</li>
-          </ul>
-          <p class="command">bgp dampening</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:Medium</div>
-          <div>Ease:Moderate</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. No RIP Update Neighbors Were Configured</h3>
-          <h5>observation</h5>
-          <p>RIP is a routing protocol that allows network devices to dynamically adapt to changes in the network infrastructure. The routing devices can be configured to send RIP routing updates to specified RIP neighbors. If not specified, RIP routing updates will be sent to all LAN hosts.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>With no RIP routing update neighbors configured, route updates will be sent to all LAN hosts. If an attacker is able to monitor a network segment to which the device is attached, they would be able to monitor the routing traffic. This would give the attacker: a list of routes that the device sending the updates is aware of</li>
-            <li> if clear-text authentication is used, the authentication key</li>
-            <li> if MD5 authentication is used, the authentication hash which could then be subjected to a brute-force attack.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>RIP routing updates will be sent to all hosts on the LAN. Tools can be downloaded from the Internet that can be used to monitor, extract and exploit the information contained in the RIP route update packets.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that RIP routing update neighbors should be configured to send RIP updates to specific addresses.</li>
-          </ul>
-          <p class="command">neighbor ip-address</p>
-        </div>
-        <div class="square">
-          <div>Overall:MEDIUM</div>
-          <div>Impact:Medium</div>
-          <div>Ease:Trivial</div>
-          <div>Fix:Planned</div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="information">
-          <h3>1. IP Directed Broadcasts Were Enabled</h3>
-          <h5>observation</h5>
-          <p>ICMP echo requests can be addressed to an entire network or subnet as well as to individual hosts. Disabling directed broadcasts on each individual network interface will help prevent network ping requests.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>A DoS attack known as a Smurf attack makes use of network ICMP echo requests to perform the attack. An attacker would send an ICMP echo request with the victim hosts IP address spoofed as the source address. The hosts on the network would then reply to the echo request, flooding the victim host.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>Tools can be downloaded from the Internet that are capable of performing the smurf attack outlined above.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that directed broadcasts should be disabled on all network interfaces.</li>
-          </ul>
-          <p class="command">no ip directed broadcast</p>
+          <p class="command">max-lsa threshold</p>
         </div>
         <div class="square">
           <div>Overall:LOW</div>
           <div>Impact:Medium</div>
           <div>Ease:Moderate</div>
-          <div>Fix:Quick</div>
+          <div>Fix:Planned</div>
         </div>
       </div>
-      <p>This table below illustrates the weakness of : IP Directed Broadcasts Were Enabled</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Interface</th>
-      <th>Address</th>
-      <th>State</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.3.32</td>
-      <td>Active</td>
-      <td>fastethernet</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>Active</td>
-      <td>No Description Found</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. ICMP Address Mask Reply Messages Were Enabled</h3>
-          <h5>observation</h5>
-          <p>ICMP address mask reply messages inform network hosts of the TCP / IP network mask for a network segment. This protocol can now be regarded as legacy as hosts will typically either make use of protocols such as DHCP or be configured fixed address information.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker could use the ICMP address mask reply feature to gain additional information about the network configuration.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>ICMP scanning tools, that are capably of sending various types of ICMP messages, can be downloaded from the Internet. Furthermore, some OS include ICMP tools as standard.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, ICMP address mask reply messages should be disabled on all network interfaces.</li>
-          </ul>
-          <p class="command">no ip mask-reply</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : ICMP Address Mask Reply Messages Were Enabled</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Interface</th>
-      <th>Address</th>
-      <th>State</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.3.32</td>
-      <td>Active</td>
-      <td>fastethernet</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>Active</td>
-      <td>No Description Found</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. Proxy ARP Was Enabled</h3>
-          <h5>observation</h5>
-          <p>ARP is a protocol that network hosts use to translate network IP addresses into MAC addresses. Under normal circumstances, ARP packets are confined to the sender's network segment. However, some network devices can be configured to act as a proxy for ARP requests, retransmitting an ARP request on other network segments and sending any response back to the originator of the request.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>A router that acts as a proxy for ARP requests will extend layer two access across multiple network segments, potentially breaking perimeter security.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>A network device with proxy ARP enabled will proxy ARP requests for all hosts on those interfaces. A number of ARP tools can be downloaded from the Internet for use in exploiting this issue.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, the Proxy ARP feature should be disabled on all interfaces.</li>
-          </ul>
-          <p class="command">no ip proxy-arp</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:Easy</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : Proxy ARP Was Enabled</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Interface</th>
-      <th>Address</th>
-      <th>State</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.3.32</td>
-      <td>Active</td>
-      <td>fastethernet</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>Active</td>
-      <td>No Description Found</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. ICMP Unreachable Messages Were Enabled</h3>
-          <h5>observation</h5>
-          <p>When a network packet is sent to a destination host or service that is unreachable, a ICMP unreachable message can be sent from a network gateway or the destination host to inform the requester that it was unreachable. If it is a host that is unreachable the message will be in the form of an ICMP host unreachable message. ICMP unreachable messages are described in more detail in RFC 792.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker who was performing network scans to determine what services were available would be able to scan a device more quickly. If the device being scanned sends ICMP unreachable messages, informing the attacker that a network or protocol is not supported, the attacker will not have to wait for a connection time-out.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>The ICMP messages are automatically returned by a device with the ICMP unreachable feature enabled. Network scanning tools can be downloaded from the Internet that are able to perform a wide variety of scan types and take into account ICMP unreachable messages.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, ICMP unreachable messages should be disabled. However, it is important to note that whilst disabling of ICMP unreachable messages will not stop a network scan, it will make the scan more time consuming for the attacker to perform.</li>
-          </ul>
-          <p class="command">no ip unreachables</p>
-        </div>
-        <div class="square">
-          <div>Overall:LOW</div>
-          <div>Impact:Low</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : ICMP Unreachable Messages Were Enabled</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Interface</th>
-      <th>Address</th>
-      <th>State</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.3.32</td>
-      <td>Active</td>
-      <td>fastethernet</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>Active</td>
-      <td>No Description Found</td>
-    </tr>
-  </tbody>
-</table>
-      <div class="container">
-        <div class="information">
-          <h3>1. ICMP Redirect Messages Were Enabled</h3>
-          <h5>observation</h5>
-          <p>When sending network traffic through a router, ICMP redirect messages could be sent to the router in order to indicate a specific route that the sending host would like the network traffic to take. On a router that accepts ICMP redirect message the network traffic will be forwarded using the specified route.Furthermore, some routers will cache the new routing information for use with future network packets.</p>
-          <h5>impact</h5>
-          <ul>
-            <li>An attacker could use ICMP redirects to modify the route that a packet takes through a network. However, it is worth noting that on networks with functional network routing, disabling ICMP redirects will have little to no effect.</li>
-          </ul>
-          <h5>ease</h5>
-          <p>ICMP redirect messages will be accepted, but not necessarily acted upon. An attacker could download software from the Internet in order to perform this attack.</p>
-          <h5>recommandation</h5>
-          <ul>
-            <li>DigInv recommends that, if not required, the processing of ICMP redirect messages on devices should be disabled.</li>
-          </ul>
-          <p class="command">no ip redirects</p>
-        </div>
-        <div class="square">
-          <div>Overall:INFORMATIONAL</div>
-          <div>Impact:Informational</div>
-          <div>Ease:N/A</div>
-          <div>Fix:Quick</div>
-        </div>
-      </div>
-      <p>This table below illustrates the weakness of : ICMP Redirect Messages Were Enabled</p><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Interface</th>
-      <th>Address</th>
-      <th>State</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>FastEthernet0/1</td>
-      <td>10.0.3.32</td>
-      <td>Active</td>
-      <td>fastethernet</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>FastEthernet0/2</td>
-      <td>10.0.0.3</td>
-      <td>Active</td>
-      <td>No Description Found</td>
-    </tr>
-  </tbody>
-</table>
       <div class="container">
         <div class="information">
           <h3>1. Connection Timeout not configured</h3>
@@ -2347,6 +794,77 @@ DigInv recommends that: GLBP authentication keys should be at least eight charac
       </div>
     </div>
     <h2>Vulnerabilty Audit</h2>
-    <div class="vulnerability"></div>
+    <div class="vulnerability">
+      <div class="container">
+        <div class="information">
+          <h3>1. CVE-2008-3809</h3>
+          <h5>Description</h5>
+          <p>Cisco IOS 12.0 through 12.4 on Gigabit Switch Router (GSR) devices (aka 12000 Series routers) allows remote attackers to cause a denial of service (device crash) via a malformed Protocol Independent Multicast (PIM) packet.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-3809">https://nvd.nist.gov/vuln/detail/CVE-2008-3809</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:7.1</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>2. CVE-2008-4128</h3>
+          <h5>Description</h5>
+          <p>Multiple cross-site request forgery (CSRF) vulnerabilities in the HTTP Administration component in Cisco IOS 12.4 on the 871 Integrated Services Router allow remote attackers to execute arbitrary commands via (1) a certain &quot;show privilege&quot; command to the /level/15/exec/- URI, and (2) a certain &quot;alias exec&quot; command to the /level/15/exec/-/configure/http URI.  NOTE: some of these details are obtained from third party information.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4128">https://nvd.nist.gov/vuln/detail/CVE-2008-4128</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:9.3</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>3. CVE-2006-4950</h3>
+          <h5>Description</h5>
+          <p>Cisco IOS 12.2 through 12.4 before 20060920, as used by Cisco IAD2430, IAD2431, and IAD2432 Integrated Access Devices, the VG224 Analog Phone Gateway, and the MWR 1900 and 1941 Mobile Wireless Edge Routers, is incorrectly identified as supporting DOCSIS, which allows remote attackers to gain read-write access via a hard-coded cable-docsis community string and read or modify arbitrary SNMP variables.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2006-4950">https://nvd.nist.gov/vuln/detail/CVE-2006-4950</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:10.0</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>4. CVE-2008-1156</h3>
+          <h5>Description</h5>
+          <p>Unspecified vulnerability in the Multicast Virtual Private Network (MVPN) implementation in Cisco IOS 12.0, 12.2, 12.3, and 12.4 allows remote attackers to create &quot;extra multicast states on the core routers&quot; via a crafted Multicast Distribution Tree (MDT) Data Join message.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2008-1156">https://nvd.nist.gov/vuln/detail/CVE-2008-1156</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:5.1</div>
+          <div>severity:MEDIUM</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="information">
+          <h3>5. CVE-2010-0578</h3>
+          <h5>Description</h5>
+          <p>The IKE implementation in Cisco IOS 12.2 through 12.4 on Cisco 7200 and 7301 routers with VAM2+ allows remote attackers to cause a denial of service (device reload) via a malformed IKE packet, aka Bug ID CSCtb13491.</p>
+          <h5>For more details about this CVE, click this link below:</h5>
+          <a href="https://nvd.nist.gov/vuln/detail/CVE-2010-0578">https://nvd.nist.gov/vuln/detail/CVE-2010-0578</a>
+        </div>
+        <div class="square">
+          <div>version:V2</div>
+          <div>score:7.8</div>
+          <div>severity:HIGH</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
